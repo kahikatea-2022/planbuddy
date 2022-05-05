@@ -2,7 +2,7 @@ exports.up = function (knex) {
   return knex.schema.createTable('user_profiles', (table) => {
     table.increments('id')
     table.string('auth0_id')
-    table.string('name')
+    table.string('user_name')
     table.string('email')
   })
 }
