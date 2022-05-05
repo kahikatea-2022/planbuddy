@@ -5,7 +5,8 @@ import Nav from './Nav'
 import PingRoutes from './PingRoutes'
 import Registration from './Registration'
 import Users from './Users'
-import LandingPage from './LandingPage'
+// import LandingPage from './LandingPage'
+import NewGoal from './NewGoal'
 import { Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -14,7 +15,8 @@ function App() {
   return (
     <div className="app">
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        {/* <Route path="/" element={<LandingPage />} /> */}
+        <Route path="/" element={<NewGoal />} />
         <Route path="/" element={<Nav />} />
 
         <Route path="/" element={<Users />} />
