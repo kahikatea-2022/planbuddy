@@ -14,4 +14,11 @@ export function addGoal(goal) {
   }
 }
 
+export function fetchGoals() {
+  return (dispatch) => {
+    // insert wait indicator dispatch here
+    return //api function
+  }
+}
+
 export { ADD_GOAL, SET_GOALS }
