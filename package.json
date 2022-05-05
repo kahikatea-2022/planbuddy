@@ -33,7 +33,20 @@
     ]
   },
   "eslintConfig": {
-    "extends": "eda/react",
+    "extends": [
+      "eda/react",
+      "plugin:react/recommended"
+    ],
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
+        }
+      }
+    },
     "ignorePatterns": [
       "bundle.js"
     ]
