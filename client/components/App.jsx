@@ -5,6 +5,7 @@ import Nav from './Nav'
 import PingRoutes from './PingRoutes'
 import Registration from './Registration'
 import Users from './Users'
+import LandingPage from './LandingPage'
 import { Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -13,7 +14,9 @@ function App() {
   return (
     <div className="app">
       <Routes>
+        <Route path="/" element={<LandingPage />} />
         <Route path="/" element={<Nav />} />
+
         <Route path="/" element={<Users />} />
         <Route path="/" element={<PingRoutes />} />
         <Route path="/profile" element={<Registration />} />
