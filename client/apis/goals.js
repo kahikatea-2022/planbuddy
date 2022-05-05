@@ -9,7 +9,7 @@ export function getGoals() {
     goal_name: 'Befriend Rayman',
     why: 'THeir floating hands look so delicous',
     weekly_hours: '120',
-  })
+  }).then((res) => res)
 
   // return request.get(rootUrl + '/goals').then((res) => {
   //   return res.body.users
