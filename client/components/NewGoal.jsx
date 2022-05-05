@@ -2,9 +2,11 @@ import { format } from 'prettier'
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { addGoal, ADD_GOAL } from '../actions/goals'
+import { useNavigate } from 'react-router-dom'
 
 function NewGoal() {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const inputData = {
     user_name: '',
@@ -25,7 +27,7 @@ function NewGoal() {
     if (event.code === 'Enter') {
       dispatch(addGoal(inputState))
       console.log('submitHandler')
-      //navigate()
+      navigate('/goals')
     }
   }
 
