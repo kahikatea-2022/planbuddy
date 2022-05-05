@@ -7,7 +7,8 @@ exports.seed = async function(knex) {
   await knex('resources').del()
   await knex('resources').insert([
     {
-      id: 1, 
+      resource_id: 1,
+      goal_id: 1, 
       subgoal_id: 1,
       resource_name: 'youtube',
       url: 'www.youtube.com'

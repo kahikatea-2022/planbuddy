@@ -7,8 +7,8 @@ exports.seed = async function(knex) {
   await knex('tasks_database').del()
   await knex('tasks_database').insert([
     {
-      id: 1,
-      plan_id: 1,
+      task_id: 1,
+      goal_id: 1,
       subgoal_id: 1,
       task_name: 'place holder name from tasks database',
       time_spent: 'null',
