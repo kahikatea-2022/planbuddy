@@ -7,7 +7,7 @@ exports.seed = async function(knex) {
   await knex('user_profiles').del()
   await knex('user_profiles').insert([
     {
-      id: 1,
+      user_id: 1,
       auth0_id: 'auth0_id currently null',
       user_name: 'Timmy Piano',
       email: 'timmyp@gmail.com'

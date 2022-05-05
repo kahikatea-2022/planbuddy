@@ -7,7 +7,7 @@ exports.seed = async function(knex) {
   await knex('sub_goals').del()
   await knex('sub_goals').insert([
     {
-      id: 1,
+      subgoal_id: 1,
       goal_id: 1,
       subgoal_name: 'learn C major scale',
       reward_id: 1,
