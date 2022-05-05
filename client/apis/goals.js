@@ -7,7 +7,7 @@ export function getGoals() {
   return Promise.resolve({
     user_name: 'Globox',
     goal_name: 'Befriend Rayman',
-    why: 'THeir floating hands look so delicous',
+    why: 'Their floating hands look so delicous',
     weekly_hours: '120',
   }).then((res) => res)
 
