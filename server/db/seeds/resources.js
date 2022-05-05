@@ -12,6 +12,13 @@ exports.seed = async function(knex) {
       subgoal_id: 1,
       resource_name: 'youtube',
       url: 'www.youtube.com'
+    }, 
+    {
+      resource_id: 2,
+      goal_id: 1, 
+      subgoal_id: 2,
+      resource_name: 'piano.com',
+      url: 'www.piano.com'
     }
   ]);
 };

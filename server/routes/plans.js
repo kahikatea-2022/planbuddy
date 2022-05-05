@@ -2,7 +2,7 @@ const express = require('express')
 const jwtAuthz = require('express-jwt-authz')
 const { getUserRoles, checkJwt } = require('../auth0')
 
-const db = require('../db/users')
+const db = require('../db/plans')
 const router = express.Router()
 
 // middleware for checking permissions (authorization)
@@ -13,9 +13,9 @@ const checkAdmin = jwtAuthz(['read:my_private_route'], {
 
 // GET /api/v1/users/
 router.get('/', (req, res) => {
-  db.getUsers()
+  db.getPlans()
     .then((users) => {
-      res.json(users)
+      res.json({ users })
       return null
     })
     .catch((err) => {
@@ -23,7 +23,6 @@ router.get('/', (req, res) => {
       res.status(500).json({ message: 'Something went wrong' })
     })
 })
-
 
 
 

@@ -1,19 +1,16 @@
 const connection = require('./connection')
 
+//GET ALL USERS from the database
 function getUsers(db = connection) {
-  return db('users').select(
-    'id',
-    'auth0_id as auth0Id',
-    'name',
-    'email',
-    'description'
+  return db('user_profiles').select(
   )
 }
 
-function addUser(input, db = connection) {
-  const { auth0Id, name, email, description } = input
-  const user = { auth0_id: auth0Id, name, email, description }
-  return db('users').insert(user)
+//ADD USER to the database
+function addUser(userData, db = connection) {
+  const { auth0Id, name, email } = userData
+  const user = { auth0_id: auth0Id, name, email }
+  return db('user_profiles').insert(user)
 }
 
 module.exports = {

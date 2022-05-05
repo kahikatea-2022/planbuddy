@@ -1,5 +1,5 @@
 exports.up = function (knex) {
-  return knex.schema.createTable('tasks_database', (table) => {
+  return knex.schema.createTable('tasks', (table) => {
     table.increments('task_id')
     table.integer('goal_id').references('goals.goal_id')
     table.integer('subgoal_id').references('sub_goals.subgoal_id')
@@ -11,5 +11,5 @@ exports.up = function (knex) {
 }
 
 exports.down = function (knex) {
-  return knex.schema.dropTable('tasks_database')
+  return knex.schema.dropTable('tasks')
 }
