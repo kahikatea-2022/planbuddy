@@ -2,7 +2,13 @@ const express = require('express')
 const jwtAuthz = require('express-jwt-authz')
 const { getUserRoles, checkJwt } = require('../auth0')
 
-const db = require('../db/goals')
+//these are the variables to acces the DB functions by table name
+const goals = require('../db/goals')
+const resources = require('../db/resources')
+const subGoals = require('../db/sub_goals')
+const tasks = require('../db/tasks')
+const users = require('../db/users')
+
 const router = express.Router()
 
 // middleware for checking permissions (authorization)
