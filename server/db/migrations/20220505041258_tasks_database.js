@@ -3,7 +3,7 @@ exports.up = function (knex) {
     table.increments('id')
     table.integer('plan_id')
     table.integer('subgoal_id').references('sub_goals.id')
-    table.string('name')
+    table.string('task_name')
     table.string('time_spent')
     table.boolean('completed')
     table.boolean('current')
