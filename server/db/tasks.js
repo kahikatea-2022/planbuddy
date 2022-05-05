@@ -3,8 +3,8 @@
 const connection = require('./connection')
 
 //GET tasks data by goal_id
-function getTasks(tasks_id, db = connection) {
-  return db('goals').where('goal_id', tasks_id).select
+function getTasks(goal_id, db = connection) {
+  return db('goals').where('goal_id', goal_id).select()
 }
 
 module.exports = {
