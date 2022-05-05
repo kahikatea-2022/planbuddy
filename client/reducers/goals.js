@@ -6,5 +6,7 @@ export default function goals(state = emptyGoal, action) {
       return action.goals
     case 'ADD_GOAL':
       return [...state, action.goal]
+    default:
+      return state
   }
 }

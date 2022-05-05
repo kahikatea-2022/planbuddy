@@ -6,5 +6,7 @@ export default function resources(state = emptyResources, action) {
       return action.resources
     case 'ADD_RESOURCE':
       return [...state, action.resource]
+    default:
+      return state
   }
 }
