@@ -59,7 +59,7 @@ function BoilerPlate(){
       <p>Welcome to boilerplate</p>
       <p>Normal html goes here</p>
       <p className='classes goes here'>classes</p>
-      <p>using state values: {name}</p>
+      <p>using state values: {goals.name}</p>
 
       <input type='text' value={inputState} onChange={changeHandler}/>
 
