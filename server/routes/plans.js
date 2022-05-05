@@ -2,7 +2,7 @@ const express = require('express')
 const jwtAuthz = require('express-jwt-authz')
 const { getUserRoles, checkJwt } = require('../auth0')
 
-const db = require('../db/plans')
+const db = require('../db/goals')
 const router = express.Router()
 
 // middleware for checking permissions (authorization)
