@@ -13,6 +13,14 @@ exports.seed = async function(knex) {
       reward_id: 1,
       completed: false,
       current: true
+    },
+    {
+      subgoal_id: 2,
+      goal_id: 1,
+      subgoal_name: 'learn major chords',
+      reward_id: 2,
+      completed: false,
+      current: true
     }
   ]);
 };
