@@ -121,11 +121,43 @@ Response:
 ```
 OK
 ```
+### sub goals database
 
-- To access the resources database: /api/v1/resources
-- to access the sub goals database: /api/v1/subGoals
-- To access the user profiles database: /api/v1/users
-- to access the tasks database: /api/v1/tasks
+| Method | Endpoint                   | Send Body                                         | Returns                      |
+| ------ | -------------------------- | ------------------------------------------------- | ---------------------------- |
+|     |             |                                 |  |
+|     |  |                                 |  |
+|    |              |    |  |
+|   |      |  |             |
+
+
+### resources database
+
+| Method | Endpoint                   | Send Body                                         | Returns                      |
+| ------ | -------------------------- | ------------------------------------------------- | ---------------------------- |
+|     |             |                                 |  |
+|     |  |                                 |  |
+|    |              |    |  |
+|   |      |  |             |
+
+### user profiles database
+
+| Method | Endpoint                   | Send Body                                         | Returns                      |
+| ------ | -------------------------- | ------------------------------------------------- | ---------------------------- |
+|     |             |                                 |  |
+|     |  |                                 |  |
+|    |              |    |  |
+|   |      |  |             |
+
+
+### tasks database
+
+| Method | Endpoint                   | Send Body                                         | Returns                      |
+| ------ | -------------------------- | ------------------------------------------------- | ---------------------------- |
+|     |             |                                 |  |
+|     |  |                                 |  |
+|    |              |    |  |
+|   |      |  |             |
 
 # Fullstack boilerplate
 
