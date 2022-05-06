@@ -28,7 +28,7 @@ router.get('/getUserGoals', (req, res) => {
   let id = 1
   goals
     .getUserGoals(id)
-    .the((data) => {
+    .then((data) => {
       res.json(data)
       return null
     })
