@@ -8,12 +8,15 @@ function getUsers(db = connection) {
 
 //ADD USER to the database
 function addUser(userData, db = connection) {
-  const { auth0Id, name, email } = userData
-  const user = { auth0_id: auth0Id, name, email }
-  return db('user_profiles').insert(user)
+  return db('user_profiles').insert(userData)
 }
 
 module.exports = {
   getUsers,
   addUser,
 }
+
+
+//relates to add new user data refactoring
+// const { auth0_Id, user_name, email, current_task } = userData
+//   const user = { auth0_id: auth0_Id, user_name, email, current_task }
