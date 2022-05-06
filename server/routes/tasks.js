@@ -11,7 +11,7 @@ const router = express.Router()
 router.get('/', (req, res) => {
   let id = 1
 
-  tasks.getSubGoals(id)
+  tasks.getTasks(id)
     .then((data) => {
       res.json(data)
       return null
