@@ -116,3 +116,31 @@ a {
   flex-direction: column;
   align-items: center;
 }
+
+// Research component
+
+body {
+  font-family: 'Caveat', cursive;
+}
+
+p,
+h1 {
+  color: #2d2c2c;
+}
+
+.subGoalCreator {
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  border-radius: 25px;
+  border-width: 2px;
+  border-color: darkgrey;
+  padding: 5px;
+  margin: 2px;
+}
+
+img {
+  height: 45px;
+  width: auto;
+  align-items: center;
+}
