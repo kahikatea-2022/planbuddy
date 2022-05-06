@@ -269,12 +269,42 @@ Response:
 
 ### tasks database
 
-| Method | Endpoint | Send Body | Returns |
-| ------ | -------- | --------- | ------- |
-|        |          |           |         |
-|        |          |           |         |
-|        |          |           |         |
-|        |          |           |         |
+| Method | Endpoint                             | Send Body          | Returns                    |
+| ------ | ------------------------------------ | ------------------ | -------------------------- |
+| GET    | api/v1/resources/getTasksBySubGoalId | requires subgoalId | returns tasks by subgoalId |
+|        |                                      |                    |                            |
+|        |                                      |                    |                            |
+|        |                                      |                    |                            |
+
+### Data structures:
+
+GET api/v1/resources/getResourcesBySubGoalId
+
+Request:
+
+```
+{
+    "subgoalId": "2"
+}
+
+```
+
+Response:
+
+```
+[
+    {
+        "task_id": 2,
+        "goal_id": 1,
+        "subgoal_id": 2,
+        "task_name": "place holder name 2 from tasks database",
+        "time_spent": "null",
+        "completed": 0,
+        "current": 1
+    }
+]
+
+```
 
 # Fullstack boilerplate
 

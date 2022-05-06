@@ -10,7 +10,12 @@ function getTasks(goal_id, db = connection) {
 function getTasksBySubGoalId(subgoal_id, db = connection) {
   return db('tasks').where('subgoal_id', subgoal_id).select()
 }
+
+function getTaskById(tasks_id, db = connection) {
+  return db('tasks').where('tasks_id', tasks_id).select().first
+}
 module.exports = {
   getTasks,
   getTasksBySubGoalId,
+  getTaskById,
 }
