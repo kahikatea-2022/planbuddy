@@ -14,7 +14,16 @@ function getUserGoals(user_id, db = connection) {
 
 //POST add a new goal to the database
 function addNewGoal(goal, db = connection) {
-  return db('goals').insert(goal)
+  const data = {
+    user_id: goal.userId,
+    goal_name: goal.goalName,
+    why: goal.why,
+    weekly_hours: goal.weeklyHours,
+    date_created: goal.dateCreated,
+    completed: goal.completed,
+  }
+
+  return db('goals').insert(data)
 }
 
 function editGoal(data, db = connection) {
