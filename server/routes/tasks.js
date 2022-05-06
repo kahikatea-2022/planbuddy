@@ -31,10 +31,25 @@ router.get('/getTasksbySubgoalId', (req,res) => {
     res.json(data)
     return null
   })
-
   .catch((err) => {
     console.error(err)
     res.status(500).json({ message: 'Something went wrong getting tasks by subgoalId' })
+  })
+})
+
+//GET /api/v1/tasks
+// get task by task ID
+router.get('/getTaskById', (req, res) => {
+  const id = req.body.taskId
+
+  tasks.getTaskById(id)
+  .then((data) => {
+    res.json(data)
+    return null
+  })
+  .catch((err) => {
+    console.error(err)
+    res.status(500).json({ message: 'Something went wrong getting task by taskId' })
   })
 })
 
