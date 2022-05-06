@@ -4,10 +4,7 @@ const { getUserRoles, checkJwt } = require('../auth0')
 
 //these are the variables to acces the DB functions by table name
 const goals = require('../db/goals')
-const resources = require('../db/resources')
-const subGoals = require('../db/sub_goals')
-const tasks = require('../db/tasks')
-const users = require('../db/users')
+
 
 const router = express.Router()
 
@@ -19,8 +16,6 @@ const checkAdmin = jwtAuthz(['read:my_private_route'], {
 
 // GET /api/v1/plans/
 router.get('/', (req, res) => {
-  let userPlan = {}
-  
   goals.getGoalData(1)
     .then((data) => {
       userPlan.goalData = data
