@@ -15,3 +15,12 @@ export function getGoals() {
   //   return res.body.users
   // })
 }
+
+// URL will need checking
+export function getGoalById(id) {
+  return request.get(`${rootUrl}/goals/${id}`).then((res) => res.body)
+}
+// URL will need checking
+export function getGoalsByUserId(id) {
+  return request.get(`${rootUrl}/user/${id}`).then((res) => res.body)
+}
