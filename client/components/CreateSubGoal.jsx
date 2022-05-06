@@ -113,7 +113,7 @@ function CreateSubGoal() {
         <h2>Great work, now add your first tasks</h2>
         <input
           type="text"
-          id="task"
+          id="name"
           value={inputStateTasks.name}
           onChange={handleFormTasks}
         ></input>
