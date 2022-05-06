@@ -101,12 +101,13 @@ Request:
 
 ```
 
-    {
-
-    	"goal_name": "Learn to swim",
-    	"why": "im going to hawaii",
-    	"weekly_hours": 8,
-    	"completed": 0
+{
+      "userId": "1",
+      "goalName": "learn to swim",
+      "why": "impress my friends",
+      "weeklyHours": "20",
+      "dateCreated": 778686947,
+      "completed": false
     }
 
 ```
@@ -152,7 +153,7 @@ OK
 | ------ | ------------------------------ | ------------------ | ------------------------------- |
 | GET    | api/v1/subGoals/getSubGoals    | requires goalId    | returns all subgoals by goal_id |
 | GET    | api/v1/subGoals/getSubGoalById | requires subgoalId | subgoal by subgoal_id           |
-|        |                                |                    |                                 |
+| POST   | api/v1/subGoals/addNewSubgoal  |                    |                                 |
 |        |                                |                    |                                 |
 
 ### Data structures:
@@ -202,6 +203,36 @@ Request:
 
 {
 "subgoalId": "2"
+}
+
+```
+
+Response:
+
+```
+
+    {
+    	"subgoal_id": 2,
+    	"goal_id": 1,
+    	"subgoal_name": "learn major chords",
+    	"reward_id": 2,
+    	"completed": 0,
+    	"current": 1
+    }
+
+```
+
+POST api/v1/subGoals/getSubGoalById
+
+Request:
+
+```
+{
+    "goalId": "1",
+    "subgoalName": "Learn correct fingering",
+    "rewardId": "3",
+    "completed": "false",
+    "current": "true"
 }
 
 ```

@@ -12,7 +12,14 @@ function getSubGoalById(subgoal_id, db = connection) {
 }
 
 function addNewSubGoal(newSubGoal, db = connection) {
-  return db('sub_goals').insert(newSubGoal)
+  const data = {
+    goal_id: newSubGoal.goalId,
+    subgoal_name: newSubGoal.subgoalName,
+    reward_id: newSubGoal.rewardId,
+    completed: newSubGoal.completed,
+    current: newSubGoal.current,
+  }
+  return db('sub_goals').insert(data)
 }
 
 module.exports = {
