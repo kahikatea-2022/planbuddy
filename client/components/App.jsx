@@ -9,6 +9,7 @@ import LandingPage from './LandingPage'
 import NewGoal from './NewGoal'
 import { Routes, Route } from 'react-router-dom'
 import Goal from './Goal'
+import Research from './Research'
 
 function App() {
   cacheUser(useAuth0)
@@ -20,7 +21,7 @@ function App() {
         <Route path="/newgoal" element={<NewGoal />} />
         <Route path="/goal" element={<Goal />} />
         <Route path="/nav" element={<Nav />} />
-
+        <Route path="/research" element={<Research />} />
         <Route path="/" element={<Users />} />
         <Route path="/" element={<PingRoutes />} />
         <Route path="/profile" element={<Registration />} />
