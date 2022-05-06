@@ -272,7 +272,7 @@ Response:
 | Method | Endpoint                             | Send Body          | Returns                    |
 | ------ | ------------------------------------ | ------------------ | -------------------------- |
 | GET    | api/v1/resources/getTasksBySubGoalId | requires subgoalId | returns tasks by subgoalId |
-| GET    |                                      |                    |                            |
+| GET    | api/v1/tasks/getTaskById             | requires taskId    | returns a task by taskId   |
 |        |                                      |                    |                            |
 |        |                                      |                    |                            |
 
@@ -303,6 +303,32 @@ Response:
         "current": 1
     }
 ]
+
+```
+
+GET api/v1/tasks/getTaskById
+
+Request:
+
+```
+{
+    "taskId": "2"
+}
+
+```
+
+Response:
+
+```
+{
+	"task_id": 2,
+	"goal_id": 1,
+	"subgoal_id": 2,
+	"task_name": "place holder name 2 from tasks database",
+	"time_spent": "null",
+	"completed": 0,
+	"current": 1
+}
 
 ```
 
