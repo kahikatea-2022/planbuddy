@@ -8,7 +8,7 @@ function getGoalDataById(goal_id, db = connection) {
 }
 
 //GET user plans from database by user id
-function getUserPlans(user_id, db = connection) {
+function getUserGoals(user_id, db = connection) {
   return db('goals').where('user_id', user_id).select()
 }
 
@@ -19,6 +19,6 @@ function addNewGoal(goal, db = connection) {
 
 module.exports = {
   getGoalDataById,
-  getUserPlans,
+  getUserGoals,
   addNewGoal,
 }
