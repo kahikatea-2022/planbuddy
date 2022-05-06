@@ -1,3 +1,27 @@
+# Planning
+
+## Planning
+Before starting the technical planning for this project we came together and worked out some guidelines to help ensure we would be taking care of our health and communicate effectively while balancing a high workload. We wanted to make sure we could stay as efficient as possible under stress and avoid any splits in the team that could affect both our wellbeing and the product.
+
+### Wellbeing
+To avoid burnout we first set out a work schedule of 9am-5pm with the expectation that we would likely be doing work in the evenings as well. In order to ensure we were able to plan our workload we made a planner where we plotted out all the importatnt commitments we would have to take into account during the project and agreed to discuss what work was to be done afterhours during our afternoon meeting.
+This would be acheived either as a team effort or in pairs where the pair would commit to a time slot in the afternoon/evening where they would be online and working on the agreed upon feature/s.
+
+To facilitate efficiency and avoid fatigue we also decided to limit our codeing to 1 hour the evening of our final day of planning as the planning phase for a complete product can be draining and in our experience it certainly was. This allowed us to start more fresh the following day with new energy reserves.
+
+### Conflict
+In stressful environments ankin to a project like this people can be more in edge and conflict can arise more easily. This can have a negative impact on both team morale and efficiency; both being essential for projects with a deadline. To address this we set down a few poiints around how we would communicate with eachother when friction arose in an endeavour to nip it in the bud, so to speak, before escalation occurred.
+OUr first point was to be honest about how we felt during our regular checkins and stand-ups. This was to create a safe space based on trust and genuinity where noone would feel like they had to hold back their feelings.
+The previous point leads into our second agreed point which was to speak up early rather than waiting and letting anything sit and fester.
+Our third agreed point was to have regular checkins to facilitate these conversations and ensure everyone was being heard and everyone was up to date with their colleagues work and mindspace.
+The final, and one of the most important points, was some guidelines around how we would initiate a difficult conversation with a colleague. The points discussed was as follows:
+- Take the main goal of the team into account before you start the conversation
+- ask the recipient of your conversation, without judgement, about their own reasoning and thoughts behind their actions that led to the conversation
+- listen actively and acknowledge their viewpoint and relate this to the issue at hand
+- remind them of the overarching goal of the team and how their actions are affecting this.
+- as required ask them what they need to resolve their own conflict if that is what led to the undesired behaviour in the first place.
+
+
 # Fullstack boilerplate
 
 ## Getting Started
