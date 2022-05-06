@@ -12,7 +12,7 @@ function getTasksBySubGoalId(subgoal_id, db = connection) {
 }
 
 function getTaskById(tasks_id, db = connection) {
-  return db('tasks').where('tasks_id', tasks_id).select().first
+  return db('tasks').where('task_id', tasks_id).select().first()
 }
 module.exports = {
   getTasks,

@@ -272,7 +272,7 @@ Response:
 | Method | Endpoint                             | Send Body          | Returns                    |
 | ------ | ------------------------------------ | ------------------ | -------------------------- |
 | GET    | api/v1/resources/getTasksBySubGoalId | requires subgoalId | returns tasks by subgoalId |
-|        |                                      |                    |                            |
+| GET    |                                      |                    |                            |
 |        |                                      |                    |                            |
 |        |                                      |                    |                            |
 
