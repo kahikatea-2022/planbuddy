@@ -1,9 +1,10 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 function LandingPage() {
   const {logout, loginWithRedirect, isAuthenticated} = useAuth0()
-  
+  const user = useSelector((state) => state.user)
   function handleLogin(event){
     event.preventDefault()
     loginWithRedirect({
@@ -16,6 +17,7 @@ function LandingPage() {
       redirectUri: `${window.location.origin}/register`
     })
   }
+  
   return (
     <>
       <h1>PlanBuddy</h1>
