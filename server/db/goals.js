@@ -14,7 +14,7 @@ function getUserGoals(user_id, db = connection) {
 
 //POST add a new goal to the database
 function addNewGoal(goal, db = connection) {
-  return db('goals').insert(goal).returning('goal_id')
+  return db('goals').insert(goal)
 }
 
 function editGoal(data, db = connection) {
