@@ -11,9 +11,13 @@ To facilitate efficiency and avoid fatigue we also decided to limit our codeing 
 
 ### Conflict
 In stressful environments ankin to a project like this people can be more in edge and conflict can arise more easily. This can have a negative impact on both team morale and efficiency; both being essential for projects with a deadline. To address this we set down a few poiints around how we would communicate with eachother when friction arose in an endeavour to nip it in the bud, so to speak, before escalation occurred.
-OUr first point was to be honest about how we felt during our regular checkins and stand-ups. This was to create a safe space based on trust and genuinity where noone would feel like they had to hold back their feelings.
+
+Our first point was to be honest about how we felt during our regular checkins and stand-ups. This was to create a safe space based on trust and genuinity where noone would feel like they had to hold back their feelings.
+
 The previous point leads into our second agreed point which was to speak up early rather than waiting and letting anything sit and fester.
+
 Our third agreed point was to have regular checkins to facilitate these conversations and ensure everyone was being heard and everyone was up to date with their colleagues work and mindspace.
+
 The final, and one of the most important points, was some guidelines around how we would initiate a difficult conversation with a colleague. The points discussed was as follows:
 - Take the main goal of the team into account before you start the conversation
 - ask the recipient of your conversation, without judgement, about their own reasoning and thoughts behind their actions that led to the conversation
