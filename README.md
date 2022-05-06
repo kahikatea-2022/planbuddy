@@ -125,7 +125,7 @@ OK
 | Method | Endpoint                    | Send Body        | Returns                         |
 | ------ | --------------------------- | ---------------- | ------------------------------- |
 | GET    | api/v1/subGoals/getSubGoals | requires goal_id | returns all subgoals by goal_id |
-|        |                             |                  |                                 |
+| GET    |                             |                  |                                 |
 |        |                             |                  |                                 |
 |        |                             |                  |                                 |
 
