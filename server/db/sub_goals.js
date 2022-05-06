@@ -10,7 +10,13 @@ function getSubGoals(goal_id, db = connection) {
 function getSubGoalById(subgoal_id, db = connection) {
   return db('sub_goals').where('subgoal_id', subgoal_id).select().first()
 }
+
+function addNewSubGoal(newSubGoal, db = connection) {
+  return db('sub_goals').insert(newSubGoal)
+}
+
 module.exports = {
   getSubGoals,
   getSubGoalById,
+  addNewSubGoal,
 }
