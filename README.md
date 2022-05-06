@@ -32,10 +32,12 @@ The final, and one of the most important points, was some guidelines around how 
 
 - To access the goals database: /api/v1/goals
 
-  - GET /api/v1/goals/ - gets goal data by ID - requires a goal_id
-  - GET /api/v1/goals/getUserGoals - returns all of a users goals - requires a user_id
-  - POST /api/v1/goals/ - adds new goal - requires goal data object
-  - PATCH /api/v1/goals/editGoal - edits goal by ID - requires goal data object including goal_id
+| Method   |      Endpoint      |  Send Body |   Returns   |
+|----------| ------------------ |----------- |  ---------  |
+| GET      |  /api/v1/goals/      | requires goal_id     | returns goal data by goal_id            |
+| GET      |    /api/v1/goals/getUserGoals        |   requires user_id     | returns all of a users goals            |
+| POST      | /api/v1/goals/     |    requires goal data object that includes user_id    | adds new goal to goals table            |
+| PATCH      | /api/v1/goals/     |    requires goal data object that includes a goal_id     | edits goal by id            |
 
 - To access the resources database: /api/v1/resources
 - to access the sub goals database: /api/v1/subGoals
