@@ -7,7 +7,7 @@ function getGoalDataById(goal_id, db = connection) {
   return db('goals').where('goal_id', goal_id).select().first()
 }
 
-//GET user plans from database by user id
+//GET user goals from database by user id
 function getUserGoals(user_id, db = connection) {
   return db('goals').where('user_id', user_id).select()
 }
