@@ -8,7 +8,7 @@ function getSubGoals(goal_id, db = connection) {
 }
 
 function getSubGoalById(subgoal_id, db = connection) {
-  return db('sub_goals').where('subgoal_id', subgoal_id).select()
+  return db('sub_goals').where('subgoal_id', subgoal_id).select().first()
 }
 module.exports = {
   getSubGoals,

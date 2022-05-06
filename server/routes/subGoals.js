@@ -8,7 +8,7 @@ const router = express.Router()
 
 // GET /api/v1/subGoals
 router.get('/getSubGoals', (req, res) => {
-  let id = 1
+  let id = req.body.goalId
 
   subGoals.getSubGoals(id)
     .then((data) => {
@@ -23,7 +23,7 @@ router.get('/getSubGoals', (req, res) => {
 
 // GET /api/v1/subGoals
 router.get('/getSubGoalById', (req, res) => {
-  let id = 2
+  let id = req.body.subgoalId
 
   subGoals.getSubGoalById(id)
   .then((data) => {
