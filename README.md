@@ -223,12 +223,40 @@ Response:
 
 ### resources database
 
-| Method | Endpoint | Send Body | Returns |
-| ------ | -------- | --------- | ------- |
-|        |          |           |         |
-|        |          |           |         |
-|        |          |           |         |
-|        |          |           |         |
+| Method | Endpoint                                 | Send Body          | Returns                |
+| ------ | ---------------------------------------- | ------------------ | ---------------------- |
+| GET    | api/v1/resources/getResourcesBySubGoalId | requires subgoalId | resources by subgoalId |
+|        |                                          |                    |                        |
+|        |                                          |                    |                        |
+|        |                                          |                    |                        |
+
+### Data structures:
+
+GET api/v1/resources/getResourcesBySubGoalId
+
+Request:
+
+```
+{
+    "subgoalId": "2"
+}
+
+```
+
+Response:
+
+```
+[
+    {
+        "resource_id": 2,
+        "goal_id": 1,
+        "subgoal_id": 2,
+        "resource_name": "piano.com",
+        "url": "www.piano.com"
+    }
+]
+
+```
 
 ### user profiles database
 
