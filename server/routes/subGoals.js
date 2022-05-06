@@ -8,7 +8,7 @@ const router = express.Router()
 
 
 // GET /api/v1/plans/
-router.get('/', (req, res) => {
+router.get('/getSubGoals', (req, res) => {
   let id = 1
 
   subGoals.getSubGoals(id)
