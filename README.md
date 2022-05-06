@@ -30,11 +30,11 @@ The final, and one of the most important points, was some guidelines around how 
 
 ## API Routes
 
-To access the goals database: /api/v1/goals
-To access the resources database: /api/v1/resources
-to access the sub goals database: /api/v1/subGoals
-To access the user profiles database: /api/v1/users
-to access the tasks database: /api/v1/tasks
+- To access the goals database: /api/v1/goals
+- To access the resources database: /api/v1/resources
+- to access the sub goals database: /api/v1/subGoals
+- To access the user profiles database: /api/v1/users
+- to access the tasks database: /api/v1/tasks
 
 # Fullstack boilerplate
 
