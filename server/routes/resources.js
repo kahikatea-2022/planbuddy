@@ -14,17 +14,14 @@ const checkAdmin = jwtAuthz(['read:my_private_route'], {
 
 // GET /api/v1/plans/
 router.get('/', (req, res) => {
-  let userPlan = {}
-
-  goals
-    .getGoalData(1)
+  let id = 1
+  resources
+    .getResourcesData(id)
     .then((data) => {
-      userPlan.goalData = data
-    })
-    .then(() => {
-      res.json(userPlan)
+      res.json(data)
       return null
     })
+
     .catch((err) => {
       console.error(err)
       res.status(500).json({ message: 'Something went wrong' })
