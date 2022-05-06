@@ -45,8 +45,8 @@ router.post('/', (req, res) => {
   const goalData = req.body
   goals
     .addNewGoal(goalData)
-    .then(() => {
-      res.sendStatus(200)
+    .then((newId) => {
+      res.status(200).json({ newId })
       return null
     })
     .catch((err) => {
@@ -60,17 +60,16 @@ router.post('/', (req, res) => {
 //PATCH /api/v1/plans/
 router.patch('/editGoal', (req, res) => {
   const data = req.body
-  goals.editGoal(data)
-  .then(() => {
-    res.sendStatus(200)
-    return null
-  })
-  .catch((err) => {
-    console.error(err)
-    res
-      .status(500)
-      .json({ message: 'Something went wrong editing the goal' })
-  })
+  goals
+    .editGoal(data)
+    .then(() => {
+      res.sendStatus(200)
+      return null
+    })
+    .catch((err) => {
+      console.error(err)
+      res.status(500).json({ message: 'Something went wrong editing the goal' })
+    })
 })
 
 module.exports = router
