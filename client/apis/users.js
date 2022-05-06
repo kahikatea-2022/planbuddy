@@ -17,3 +17,10 @@ export function getUserRoles(id) {
     return res.body.roles
   })
 }
+
+export function addUserName(id, name) {
+  return request
+    .patch(`${rootUrl}/users/`)
+    .send({ id, name })
+    .then((res) => res.body)
+}
