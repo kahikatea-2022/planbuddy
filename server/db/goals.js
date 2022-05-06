@@ -17,8 +17,12 @@ function addNewGoal(goal, db = connection) {
   return db('goals').insert(goal)
 }
 
+function editGoal(data, db = connection) {
+  return db('goals').where('goal_id', data.goal_id).update(data)
+}
 module.exports = {
   getGoalDataById,
   getUserGoals,
   addNewGoal,
+  editGoal,
 }
