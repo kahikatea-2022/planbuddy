@@ -17,11 +17,16 @@ const checkAdmin = jwtAuthz(['read:my_private_route'], {
 })
 
 
-// GET /api/v1/users/
+// GET /api/v1/plans/
 router.get('/', (req, res) => {
-  db.getPlans()
-    .then((users) => {
-      res.json({ users })
+  let userPlan = {}
+  
+  goals.getGoalData(1)
+    .then((data) => {
+      userPlan.goalData = data
+    })
+    .then(() => {
+      res.json(userPlan)
       return null
     })
     .catch((err) => {

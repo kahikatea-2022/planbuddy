@@ -18,4 +18,5 @@ function getUserPlans(user_id, db = connection) {
 
 module.exports = {
   getGoalData,
+  getUserPlans
 }
