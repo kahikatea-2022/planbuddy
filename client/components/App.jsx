@@ -8,6 +8,7 @@ import Users from './Users'
 import LandingPage from './LandingPage'
 import NewGoal from './NewGoal'
 import { Routes, Route } from 'react-router-dom'
+import Goal from './Goal'
 
 function App() {
   cacheUser(useAuth0)
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/newgoal" element={<NewGoal />} />
+        <Route path="/goal" element={<Goal />} />
         <Route path="/nav" element={<Nav />} />
 
         <Route path="/" element={<Users />} />
