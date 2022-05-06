@@ -22,4 +22,20 @@ router.get('/', (req, res) => {
     })
 })
 
+//GET /api/v1/tasks
+router.get('/getTasksbySubgoalId', (req,res) => {
+  const id = req.body.subgoalId
+
+  tasks.getTasksBySubGoalId(id)
+  .then((data) => {
+    res.json(data)
+    return null
+  })
+
+  .catch((err) => {
+    console.error(err)
+    res.status(500).json({ message: 'Something went wrong getting tasks by subgoalId' })
+  })
+})
+
 module.exports = router
