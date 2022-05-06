@@ -1,13 +1,13 @@
 const SET_TASKS = 'SET_TASKS'
 const ADD_TASK = 'ADD_TASK'
 
-export function setGoals(tasks) {
+export function setTasks(tasks) {
   return {
     type: SET_TASKS,
     tasks,
   }
 }
-export function addGoal(task) {
+export function addTask(task) {
   return {
     type: ADD_TASK,
     task,
