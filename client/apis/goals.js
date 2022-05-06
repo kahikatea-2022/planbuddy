@@ -24,3 +24,18 @@ export function getGoalById(id) {
 export function getGoalsByUserId(id) {
   return request.get(`${rootUrl}/user/${id}`).then((res) => res.body)
 }
+export function addNewGoal(goal) {
+  return request
+    .post(`${rootUrl}/goals/`)
+    .send(goal)
+    .then((res) => res.body)
+}
+
+// {
+//   "user_id": "1",
+//   "goal_name": "",
+//   "why": "impress my friends",
+//   "weekly_hours": "20",
+//   "date_created": 778686947,
+//   "completed": false
+// }
