@@ -37,14 +37,22 @@ The final, and one of the most important points, was some guidelines around how 
 
 | Method | Endpoint                   | Send Body                                         | Returns                      |
 | ------ | -------------------------- | ------------------------------------------------- | ---------------------------- |
-| GET    | /api/v1/goals/             | requires goal_id                                  | returns goal data by goal_id |
-| GET    | /api/v1/goals/getUserGoals | requires user_id                                  | returns all of a users goals |
+| GET    | /api/v1/goals/             | requires goalId                                   | returns goal data by goal_id |
+| GET    | /api/v1/goals/getUserGoals | requires userId                                   | returns all of a users goals |
 | POST   | /api/v1/goals/             | requires goal data object that includes user_id   | adds new goal to goals table |
 | PATCH  | /api/v1/goals/editGoal     | requires goal data object that includes a goal_id | edits goal by id             |
 
 #### Data structures
 
 GET /api/v1/goals/
+Request:
+
+```
+{
+    "goalId": "1"
+}
+```
+
 Response:
 
 ```
@@ -60,81 +68,111 @@ Response:
 ```
 
 GET /api/v1/goals/getUserGoals
+
+Request:
+
+```
+{
+    "userId": "1"
+}
+
+```
+
 Response:
 
 ```
+
 [
-	{
-		"goal_id": 1,
-		"user_id": 1,
-		"goal_name": "Learn piano",
-		"why": "impress my friends",
-		"weekly_hours": 20,
-		"date_created": 778686947,
-		"completed": 0
-	}
+{
+"goal_id": 1,
+"user_id": 1,
+"goal_name": "Learn piano",
+"why": "impress my friends",
+"weekly_hours": 20,
+"date_created": 778686947,
+"completed": 0
+}
 ]
+
 ```
 
 POST /api/v1/goals/
 Request:
 
 ```
-	{
 
-		"goal_name": "Learn to swim",
-		"why": "im going to hawaii",
-		"weekly_hours": 8,
-		"completed": 0
-	}
+    {
 
+    	"goal_name": "Learn to swim",
+    	"why": "im going to hawaii",
+    	"weekly_hours": 8,
+    	"completed": 0
+    }
 
 ```
 
 Response:
 
 ```
+
 {
-	"newId": [
-		4
-	]
+"newId": [
+4
+]
 }
+
 ```
 
 PATCH /api/v1/goals/editGoal
 Request:
 
 ```
-	{
-		"goal_id": "2",
-		"goal_name": "Learn to dance",
-		"why": "I want to get some exercise",
-		"weekly_hours": 40,
-		"completed": 0
-	}
+
+    {
+    	"goal_id": "2",
+    	"goal_name": "Learn to dance",
+    	"why": "I want to get some exercise",
+    	"weekly_hours": 40,
+    	"completed": 0
+    }
+
 ```
 
 Response:
 
 ```
+
 OK
+
 ```
 
 ### Sub Goals database
 
-| Method | Endpoint                    | Send Body        | Returns                         |
-| ------ | --------------------------- | ---------------- | ------------------------------- |
-| GET    | api/v1/subGoals/getSubGoals | requires goal_id | returns all subgoals by goal_id |
-| GET    |                             |                  |                                 |
-|        |                             |                  |                                 |
-|        |                             |                  |                                 |
+| Method | Endpoint                       | Send Body          | Returns                         |
+| ------ | ------------------------------ | ------------------ | ------------------------------- |
+| GET    | api/v1/subGoals/getSubGoals    | requires goalId    | returns all subgoals by goal_id |
+| GET    | api/v1/subGoals/getSubGoalById | requires subgoalId | subgoal by subgoal_id           |
+|        |                                |                    |                                 |
+|        |                                |                    |                                 |
 
 ### Data structures:
 
 GET api/v1/subGoals/getSubGoals
+
+Request:
+
+```
+
+{
+"goalId": "1"
+}
+
+```
+
 Response:
 
 ```
+
 [
 {
 "subgoal_id": 1,
@@ -153,6 +191,33 @@ Response:
 "current": 1
 }
 ]
+
+```
+
+GET api/v1/subGoals/getSubGoalById
+
+Request:
+
+```
+
+{
+"subgoalId": "2"
+}
+
+```
+
+Response:
+
+```
+
+    {
+    	"subgoal_id": 2,
+    	"goal_id": 1,
+    	"subgoal_name": "learn major chords",
+    	"reward_id": 2,
+    	"completed": 0,
+    	"current": 1
+    }
 
 ```
 
@@ -293,3 +358,7 @@ Let's create a new application in Auth0, this application will be linked and con
 Now the server will be able to get a new access token and retrieve the user's roles. If the logged-in user has a Role(s), it will be displayed next to the name. (see `Nav.jsx`)
 
 🎉 Congratulations! Your application is now Authenticated with Auth0 🎉
+
+```
+
+```
