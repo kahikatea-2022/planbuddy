@@ -26,6 +26,16 @@ The final, and one of the most important points, was some guidelines around how 
 - as required ask them what they need to resolve their own conflict if that is what led to the undesired behaviour in the first place.
 
 
+# Backend Information
+
+## API Routes
+
+To access the goals database: api/v1/goals
+To access the resources database: api/v1/resources
+to access the sub goals database: api/v1/subGoals
+To access the user profiles database: api/v1/users
+to access the tasks database: api/v1/tasks
+
 # Fullstack boilerplate
 
 ## Getting Started
