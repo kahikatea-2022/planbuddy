@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 })
 
 //GET /api/v1/goals/
-router.get('/', (req, res) => {
+router.get('/getUserGoals', (req, res) => {
   //this is hardcoded and will be replaced by res.body (perhaps)
   let id = 1
   goals
