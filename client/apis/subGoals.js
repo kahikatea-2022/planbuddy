@@ -21,7 +21,7 @@ export function getSubGoals(goal_id) {
   // ]).then((res) => res)
 
   // check URL when routes are ready
-  return request.get(rootUrl + `/subgoal/` + goal_id).then((res) => {
+  return request.get(rootUrl + `/subgoals/` + goal_id).then((res) => {
     return res.body
   })
 }
