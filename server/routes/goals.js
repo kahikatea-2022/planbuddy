@@ -1,13 +1,18 @@
 const express = require('express')
 
-const db = require('../db/users')
+//these are the variables to acces the DB functions by table name
+const goals = require('../db/goals')
+
 const router = express.Router()
 
-// GET /api/v1/users/
+// GET /api/v1/plans/
+
 router.get('/', (req, res) => {
-  db.getUsers()
-    .then((users) => {
-      res.json(users)
+  let id = 1
+  goals
+    .getUserPlans(id)
+    .then((data) => {
+      res.json(data)
       return null
     })
     .catch((err) => {
