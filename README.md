@@ -31,6 +31,12 @@ The final, and one of the most important points, was some guidelines around how 
 ## API Routes
 
 - To access the goals database: /api/v1/goals
+
+  - GET /api/v1/goals/ - gets goal data by ID - requires a goal_id
+  - GET /api/v1/goals/getUserGoals - returns all of a users goals - requires a user_id
+  - POST /api/v1/goals/ - adds new goal - requires goal data object
+  - PATCH /api/v1/goals/editGoal - edits goal by ID - requires goal data object including goal_id
+
 - To access the resources database: /api/v1/resources
 - to access the sub goals database: /api/v1/subGoals
 - To access the user profiles database: /api/v1/users
