@@ -11,7 +11,6 @@ function Registration() {
     auth0Id: '',
     name: '',
     email: '',
-    description: '',
   })
 
   useEffect(() => {
@@ -19,8 +18,9 @@ function Registration() {
       auth0Id: user.auth0Id,
       name: user.name,
       email: user.email,
-      description: user.description,
     })
+    console.log('useEffect')
+    if(user?.auth0Id) navigate('/')
   }, [user])
 
   function handleChange(e) {
@@ -43,43 +43,31 @@ function Registration() {
   }
 
   return (
-    <section className="form">
-      <h2>Register Profile</h2>
+    <section >
+      <div className='mascot centered'><img className='mascot' src='/images/mascot.jpg' alt='bird mascot cheering you on!'></img></div>
       <form className="registration">
-        <label htmlFor="auth0Id">auth0Id</label>
         <input
           name="auth0Id"
           value={form.auth0Id}
           onChange={handleChange}
           disabled={true}
-        ></input>
+          hidden={true}
+          ></input>
 
-        <label htmlFor="name">Name</label>
         <input
           name="name"
           value={form.name}
           onChange={handleChange}
           disabled={true}
-        ></input>
-
-        <label htmlFor="email">Email</label>
+          hidden={true}
+          ></input>
         <input
           name="email"
           value={form.email}
           onChange={handleChange}
           disabled={true}
+          hidden={true}
         ></input>
-
-        <label htmlFor="description">Description</label>
-        <textarea
-          name="description"
-          value={form.description}
-          onChange={handleChange}
-          cols={3}
-        ></textarea>
-        <button type="button" onClick={handleClick}>
-          Register
-        </button>
       </form>
     </section>
   )

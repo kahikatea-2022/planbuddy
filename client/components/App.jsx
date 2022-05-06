@@ -24,7 +24,7 @@ function App() {
         <Route path="/research" element={<Research />} />
         <Route path="/" element={<Users />} />
         <Route path="/" element={<PingRoutes />} />
-        <Route path="/profile" element={<Registration />} />
+        <Route path="/register" element={<Registration />} />
       </Routes>
     </div>
   )
