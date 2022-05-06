@@ -9,13 +9,11 @@ Before starting the technical planning for this project we came together and wor
 To avoid burnout we first set out a work schedule of 9am-5pm with the expectation that we would likely be doing work in the evenings as well. In order to ensure we were able to plan our workload we made a planner where we plotted out all the important commitments we would have to take into account during the project and agreed to discuss what work was to be done afterhours during our afternoon meeting.
 This would be achieved either as a team effort or in pairs where the pair would commit to a time slot in the afternoon/evening where they would be online and working on the agreed upon feature/s.
 
-
 To facilitate efficiency and avoid fatigue we also decided to limit our coding to 1 hour the evening of our final day of planning as the planning phase for a complete product can be draining and in our experience it certainly was. This allowed us to start more fresh the following day with new energy reserves.
 
 ### Conflict
 
 In stressful environments ankin to a project like this, people can be more in edge and conflict can arise more easily. This can have a negative impact on both team morale and efficiency; both being essential for projects with a deadline. To address this we set down a few poiints around how we would communicate with eachother when friction arose in an endeavour to nip it in the bud, so to speak, before escalation occurred.
-
 
 Our first point was to be honest about how we felt during our regular checkins and stand-ups. This was to create a safe space based on trust and genuinity where noone would feel like they had to hold back their feelings.
 
@@ -121,43 +119,69 @@ Response:
 ```
 OK
 ```
-### sub goals database
 
-| Method | Endpoint                   | Send Body                                         | Returns                      |
-| ------ | -------------------------- | ------------------------------------------------- | ---------------------------- |
-|     |             |                                 |  |
-|     |  |                                 |  |
-|    |              |    |  |
-|   |      |  |             |
+### Sub Goals database
 
+| Method | Endpoint                    | Send Body        | Returns                         |
+| ------ | --------------------------- | ---------------- | ------------------------------- |
+| GET    | api/v1/subGoals/getSubGoals | requires goal_id | returns all subgoals by goal_id |
+|        |                             |                  |                                 |
+|        |                             |                  |                                 |
+|        |                             |                  |                                 |
+
+### Data structures:
+
+GET api/v1/subGoals/getSubGoals
+Response:
+
+```
+[
+{
+"subgoal_id": 1,
+"goal_id": 1,
+"subgoal_name": "learn C major scale",
+"reward_id": 1,
+"completed": 0,
+"current": 1
+},
+{
+"subgoal_id": 2,
+"goal_id": 1,
+"subgoal_name": "learn major chords",
+"reward_id": 2,
+"completed": 0,
+"current": 1
+}
+]
+
+```
 
 ### resources database
 
-| Method | Endpoint                   | Send Body                                         | Returns                      |
-| ------ | -------------------------- | ------------------------------------------------- | ---------------------------- |
-|     |             |                                 |  |
-|     |  |                                 |  |
-|    |              |    |  |
-|   |      |  |             |
+| Method | Endpoint | Send Body | Returns |
+| ------ | -------- | --------- | ------- |
+|        |          |           |         |
+|        |          |           |         |
+|        |          |           |         |
+|        |          |           |         |
 
 ### user profiles database
 
-| Method | Endpoint                   | Send Body                                         | Returns                      |
-| ------ | -------------------------- | ------------------------------------------------- | ---------------------------- |
-|     |             |                                 |  |
-|     |  |                                 |  |
-|    |              |    |  |
-|   |      |  |             |
-
+| Method | Endpoint | Send Body | Returns |
+| ------ | -------- | --------- | ------- |
+|        |          |           |         |
+|        |          |           |         |
+|        |          |           |         |
+|        |          |           |         |
 
 ### tasks database
 
-| Method | Endpoint                   | Send Body                                         | Returns                      |
-| ------ | -------------------------- | ------------------------------------------------- | ---------------------------- |
-|     |             |                                 |  |
-|     |  |                                 |  |
-|    |              |    |  |
-|   |      |  |             |
+| Method | Endpoint | Send Body | Returns |
+| ------ | -------- | --------- | ------- |
+|        |          |           |         |
+|        |          |           |         |
+|        |          |           |         |
+|        |          |           |         |
 
 # Fullstack boilerplate
 
