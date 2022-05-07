@@ -214,12 +214,12 @@ Response:
 
 ### Sub Goals database
 
-| Method | Endpoint                       | Send Body          | Returns                                          |
-| ------ | ------------------------------ | ------------------ | ------------------------------------------------ |
-| GET    | api/v1/subGoals/getSubGoals    | requires goalId    | returns an array of subgoals by goal_id          |
-| GET    | api/v1/subGoals/getSubGoalById | requires subgoalId | returns subgoal by subgoal_id                    |
-| POST   | api/v1/subGoals/addNewSubgoal  | (see request)      | edits existing subgoal and returns newSubgoal Id |
-| PATCH  |                                |                    | confirmation                                     |
+| Method | Endpoint                         | Send Body          | Returns                                          |
+| ------ | -------------------------------- | ------------------ | ------------------------------------------------ |
+| GET    | api/v1/subGoals/getSubGoals      | requires goalId    | returns an array of subgoals by goal_id          |
+| GET    | api/v1/subGoals/getSubGoalById   | requires subgoalId | returns subgoal by subgoal_id                    |
+| POST   | api/v1/subGoals/addNewSubgoal    | (see request)      | edits existing subgoal and returns newSubgoal Id |
+| PATCH  | api/v1/subGoals/upateSubgoalById | (see request)      | confirmation                                     |
 
 ### Data structures:
 
@@ -319,6 +319,29 @@ Response:
     ]
 }
 
+```
+
+PATCH api/v1/subGoals/upateSubgoalById
+
+Request:
+
+```
+{
+    "subgoalId": "1",
+    "goalId": "1",
+    "subgoalName": "New Subgoal Name",
+    "rewardId": "1",
+    "completed": true,
+    "current": false
+}
+```
+
+Response:
+
+```
+{
+    "message": "your subgoal was successfully updated"
+}
 ```
 
 ### resources database
