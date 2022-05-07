@@ -7,8 +7,8 @@ const router = express.Router()
 
 
 // GET /api/v1/resources/
-router.get('/', (req, res) => {
-  let id = 1
+router.get('/getResourcesByGoalId', (req, res) => {
+  let id = req.body.goalId
   resources
     .getResourcesData(id)
     .then((data) => {

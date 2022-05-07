@@ -7,8 +7,8 @@ const tasks = require('../db/tasks')
 const router = express.Router()
 
 // GET /api/v1/plans/
-router.get('/', (req, res) => {
-  let id = 1
+router.get('/getTasksByGoalId', (req, res) => {
+  let id = req.body.goalId
 
   tasks
     .getTasks(id)

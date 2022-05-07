@@ -6,7 +6,7 @@ const goals = require('../db/goals')
 const router = express.Router()
 
 // GET /api/v1/goals/
-router.get('/', (req, res) => {
+router.get('/getGoalById', (req, res) => {
   let id = req.body.goalId
   goals
     .getGoalDataById(id)
