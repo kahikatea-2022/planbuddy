@@ -9,7 +9,7 @@ export function setResources(resources) {
     resources,
   }
 }
-export function addResourcel(resource) {
+export function addResource(resource) {
   return {
     type: ADD_RESOURCE,
     resource,
