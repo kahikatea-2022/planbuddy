@@ -148,6 +148,7 @@ Response:
 ```
 
 PATCH /api/v1/goals/editGoal
+
 Request:
 
 ```
@@ -174,12 +175,12 @@ OK
 
 ### Sub Goals database
 
-| Method | Endpoint                       | Send Body          | Returns                                          |
-| ------ | ------------------------------ | ------------------ | ------------------------------------------------ |
-| GET    | api/v1/subGoals/getSubGoals    | requires goalId    | returns an array of subgoals by goal_id          |
-| GET    | api/v1/subGoals/getSubGoalById | requires subgoalId | returns subgoal by subgoal_id                    |
-| POST   | api/v1/subGoals/addNewSubgoal  | (see request)      | edits existing subgoal and returns newSubgoal Id |
-|        |                                |                    |                                                  |
+| Method | Endpoint                         | Send Body          | Returns                                          |
+| ------ | -------------------------------- | ------------------ | ------------------------------------------------ |
+| GET    | api/v1/subGoals/getSubGoals      | requires goalId    | returns an array of subgoals by goal_id          |
+| GET    | api/v1/subGoals/getSubGoalById   | requires subgoalId | returns subgoal by subgoal_id                    |
+| POST   | api/v1/subGoals/addNewSubgoal    | (see request)      | edits existing subgoal and returns newSubgoal Id |
+| PATCH  | api/v1/subGoals/upateSubgoalById | (see request)      | confirmation                                     |
 
 ### Data structures:
 
@@ -281,17 +282,41 @@ Response:
 
 ```
 
+PATCH api/v1/subGoals/upateSubgoalById
+
+Request:
+
+```
+{
+    "subgoalId": "1",
+    "goalId": "1",
+    "subgoalName": "New Subgoal Name",
+    "rewardId": "1",
+    "completed": true,
+    "current": false
+}
+```
+
+Response:
+
+```
+{
+    "message": "your subgoal was successfully updated"
+}
+```
+
 ### resources database
 
 | Method | Endpoint                                 | Send Body          | Returns                                    |
 | ------ | ---------------------------------------- | ------------------ | ------------------------------------------ |
 | GET    | api/v1/resources/getResourcesByGoalId    | requires goalId    | returns an array of resources by goalId    |
 | GET    | api/v1/resources/getResourcesBySubgoalId | requires subgoalId | returns an array of resources by subgoalId |
-|        |                                          |                    |                                            |
+| POST   | api/v1/resources/addNewResource          | (see request)      | returns newResourceId                      |
 |        |                                          |                    |                                            |
 
 ### Data structures:
 
+GET api/v1/resources/getResourcesByGoalId
 Request:
 
 ```
@@ -349,14 +374,39 @@ Response:
 
 ```
 
+POST api/v1/resources/addNewResource
+
+Request:
+
+```
+{
+    "goalId": "1",
+    "subgoalId": "1",
+    "resourceName": "piano lessons website",
+    "url": "scales.com"
+}
+
+```
+
+Response:
+
+```
+{
+    "newResourceId": [
+        4
+    ]
+}
+
+```
+
 ### user profiles database
 
-| Method | Endpoint                  | Send Body        | Returns                       |
-| ------ | ------------------------- | ---------------- | ----------------------------- |
-| GET    | /api/v1/users/getAllUsers | requires nothing | returns an array of all users |
-| GET    |                           |                  |                               |
-|        |                           |                  |                               |
-|        |                           |                  |                               |
+| Method | Endpoint                               | Send Body                       | Returns                             |
+| ------ | -------------------------------------- | ------------------------------- | ----------------------------------- |
+| GET    | api/v1/users/getAllUsers               | requires nothing                | returns an array of all users       |
+| POST   | api/v1/users/addNewUser                | (see request)                   | returns newUserId                   |
+| GET    | api/v1/users/getCurrentTaskByUserId    | requires userId                 | returns current task by userId      |
+| PATCH  | api/v1/users/updateCurrentTaskByUserId | requires userId and CurrentTask | returns 'you update was successful' |
 
 ### Data structures:
 
@@ -390,6 +440,69 @@ Response:
 ]
 ```
 
+POST api/v1/users/addNewUser
+Request:
+
+```
+{
+    "auth0Id": "currently null",
+    "userName": "Reggie Sax",
+    "email": "johnnyg@gmail.com",
+    "currentTask": "1"
+}
+
+```
+
+Response:
+
+```
+{
+    "newId": [
+        6
+    ]
+}
+
+```
+
+GET api/v1/users/getCurrentTaskByUserId
+
+Request:
+
+```
+{
+    "userId": "1"
+}
+```
+
+Response:
+
+```
+{
+    "currentTask": 1
+}
+
+```
+
+PATCH api/v1/users/updateCurrentTaskByUserId
+
+Request:
+
+```
+{
+    "userId": "1",
+    "currentTask": "1"
+}
+```
+
+Response:
+
+```
+{
+    "message": "your update was successful"
+}
+
+```
+
 ### tasks database
 
 | Method | Endpoint                         | Send Body          | Returns                             |
@@ -397,7 +510,7 @@ Response:
 | GET    | api/v1/tasks/getTaskById         | requires taskId    | returns a task by taskId            |
 | GET    | api/v1/tasks/getTasksBySubGoalId | requires subgoalId | returns tasks by subgoalId          |
 | GET    | api/v1/tasks/getTasksByGoalId    | requires goalId    | returns an array of tasks by goalId |
-|        |                                  |                    |                                     |
+| PATCH  | api/v1/tasks/updateTaskById      | (see request)      | confirmation                        |
 
 ### Data structures:
 
@@ -486,6 +599,110 @@ Response:
         "current": 1
     }
 ]
+```
+
+PATCH api/v1/tasks/updateTaskById
+Request:
+
+```
+{
+    "taskId": "2",
+    "goalId": "1",
+    "subgoalId": "3",
+    "taskName": "This is the new name",
+    "timeSpent": "this is the new time spent",
+    "completed": true,
+    "current": false
+}
+```
+
+Response:
+
+```
+{
+    "message": "your task was successfully updated"
+}
+```
+
+### Reflections database
+
+| Method | Endpoint                                  | Send Body             | Returns                                   |
+| ------ | ----------------------------------------- | --------------------- | ----------------------------------------- |
+| GET    | api/v1/reflections/getReflectionById      | requires reflectionId | returns reflection by reflectionId        |
+| GET    | api/v1/reflections/getReflectionsByTaskId | requires taskId       | returns an array of reflections by taskId |
+| POST   | api/v1/reflections/addNewReflection       | (see request)         | returns newReflectionId                   |
+|        |                                           |                       |                                           |
+
+### Data structures:
+
+GET api/v1/reflections/getReflectionById
+
+Request:
+
+```
+{
+
+    "reflectionId": "2"
+}
+
+```
+
+Response:
+
+```
+{
+        "reflectionId": 2,
+        "goalId": 1,
+        "taskId": 2,
+        "reflection": "reflection for reflection_id 2"
+}
+```
+
+GET api/v1/reflections/getReflectionsByTaskId
+
+Request:
+
+```
+{
+    "taskId": "2"
+}
+
+```
+
+Response:
+
+```
+[
+    {
+        "reflectionId": 2,
+        "goalId": 1,
+        "taskId": 2,
+        "reflection": "reflection for reflection_id 2"
+    }
+]
+```
+
+POST api/v1/reflections/addNewReflection
+
+Request:
+
+```
+{
+    "goalId": "1",
+    "taskId": "3",
+    "reflection": "reflecting is hard"
+}
+
+```
+
+Response:
+
+```
+{
+    "newReflectionId": [
+        4
+    ]
+}
 ```
 
 # Fullstack boilerplate

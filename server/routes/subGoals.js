@@ -35,6 +35,7 @@ router.get('/getSubGoalById/:id', (req, res) => {
     })
 })
 
+// POST /api/v1/subGoals
 router.post('/addNewSubgoal', (req, res) => {
   const newSubgoal = req.body
 
@@ -47,6 +48,23 @@ router.post('/addNewSubgoal', (req, res) => {
       res
         .status(500)
         .json({ message: 'Something went wrong creating new subgoal' })
+    })
+})
+
+//PATCH /api/v1/subGoals
+router.patch('/upateSubgoalById', (req, res) => {
+  const data = req.body
+
+  db.updateSubGoalById(data)
+    .then(() => {
+      res.status(200).json({ message: 'your subgoal was successfully updated' })
+      return null
+    })
+    .catch((err) => {
+      console.error(err)
+      res
+        .status(500)
+        .json({ message: 'Something went wrong updating the subgoal' })
     })
 })
 
