@@ -41,6 +41,7 @@ The final, and one of the most important points, was some guidelines around how 
 | GET    | /api/v1/goals/getUserGoals | requires userId                                   | returns array of a users goals                  |
 | POST   | /api/v1/goals/addNewGoal   | requires goal data object that includes user_id   | adds new goal to goals table and returns new id |
 | PATCH  | /api/v1/goals/editGoal     | requires goal data object that includes a goal_id | edits goal by id                                |
+| PATCH  | /api/v1/goals/             | requires goalId and completion boolean            | comfirmation                                    |
 
 #### Data structures
 

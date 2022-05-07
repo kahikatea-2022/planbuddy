@@ -66,7 +66,7 @@ function editGoal(goalData, db = connection) {
 function updateCompletionById(goalData, db = connection) {
   const data = {
     goal_id: goalData.goalId,
-    completion: goalData.completion,
+    completed: goalData.completed,
   }
 
   return db('goals').where('goal_id', goalData.goalId).update(data)
