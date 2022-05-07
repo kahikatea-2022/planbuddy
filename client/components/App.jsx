@@ -17,21 +17,21 @@ function App() {
 
   return (
     <div className="app">
+      <Nav/>
       <Routes>
         <Route path="*" element={<LandingPage />} />
         <Route path="/register" element={<Registration />} />
         </Routes>
-        <IfAuthenticated>
+        {/* <IfAuthenticated> */}
         <Routes>
-        
-        <Route path="/newgoal" element={<NewGoal />} />
-        <Route path="/goal" element={<Goal />} />
-        <Route path="/nav" element={<Nav />} />
-        <Route path="/research" element={<Research />} />
-        <Route path="/" element={<Users />} />
-        <Route path="/" element={<PingRoutes />} />
-      </Routes>
-        </IfAuthenticated>
+          <Route path="/newgoal" element={<NewGoal />} />
+          <Route path="/goal" element={<Goal />} />
+          <Route path="/nav" element={<Nav />} />
+          <Route path="/research" element={<Research />} />
+          <Route path="/" element={<Users />} />
+          {/* <Route path="/" element={<PingRoutes />} /> */}
+        </Routes>
+        {/* </IfAuthenticated> */}
     </div>
   )
 }
