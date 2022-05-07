@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
-import { addUser } from '../apis/users'
+import { addUser, getUsers } from '../apis/users'
 
 function Registration() {
   const user = useSelector((state) => state.user)
   const navigate = useNavigate()
-
+  function checkUser(){
+    if(user?.name) {
+      getUsers().then(users=>{
+        if(users.find(el=>el.auth0Id === user.auth0Id)) navigate('/welcome/veteran')
+      }).catch(console.error)
+    }
+  }
+  checkUser()
   const [form, setForm] = useState({
     auth0Id: '',
     name: '',
@@ -20,7 +27,17 @@ function Registration() {
       email: user.email,
     })
     console.log('useEffect')
-    if(user?.auth0Id) navigate('/welcome/new')
+    if(user?.auth0Id) {
+      const newUser = {
+        auth0Id: user.auth0Id,
+        userName: user.name,
+        email: user.email,
+        currentTask: null
+      }
+      // console.log(newUser)
+      addUser(newUser).then(console.log)
+      navigate('/welcome/new')
+    }
   }, [user])
 
   function handleChange(e) {
@@ -44,7 +61,7 @@ function Registration() {
 
   return (
     <section >
-      <div className='mascot centered'><img className='mascot' src='/images/mascot.jpg' alt='bird mascot cheering you on!'></img></div>
+      <div className='mascot centered'><img className='mascot' src='/images/PlanBuddy.png' alt='bird mascot cheering you on!'></img></div>
       <form className="registration">
         <input
           name="auth0Id"

@@ -3,14 +3,14 @@ import request from 'superagent'
 const rootUrl = '/api/v1'
 
 export function getUsers() {
-  return request.get(rootUrl + '/users').then((res) => {
+  return request.get(rootUrl + '/users/getAllUsers').then((res) => {
     return res.body
     console.log(res.body)
   })
 }
 
 export function addUser(user) {
-  return request.post(rootUrl + '/users').send(user)
+  return request.post(rootUrl + '/users/addNewUser').send(user)
 }
 
 export function getUserRoles(id) {

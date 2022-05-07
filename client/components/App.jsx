@@ -13,6 +13,7 @@ import Goal from './Goal'
 import Research from './Research'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import Welcome from './Welcome'
+import GoalOverview from './GoalOverview'
 
 function App() {
   cacheUser(useAuth0)
@@ -28,12 +29,14 @@ function App() {
       </IfNotAuthenticated>
       <IfAuthenticated>
         <Routes>
+        <Route path="/register" element={<Registration />} />
+
           <Route path="/" element={<LandingPage />} />
           <Route path="/welcome/:type" element={<Welcome />} />
           <Route path="/newgoal" element={<NewGoal />} />
-          <Route path="/goal" element={<Goal />} />
+          <Route path="/goal/:goalId" element={<GoalOverview />} />
           <Route path="/nav" element={<Nav />} />
-          <Route path="/research" element={<Research />} />
+          <Route path="/research/:goalId" element={<Research />} />
           <Route path="/" element={<Users />} />
           {/* <Route path="/" element={<PingRoutes />} /> */}
         </Routes>

@@ -19,12 +19,13 @@ export function getGoals() {
 // URL will need checking
 export function getGoalsByUserId(id) {
   return request
-    .get(`${rootUrl}/goals/getUserGoals/${id}`)
+    .get(`${rootUrl}/goals/getUserGoals/`)
+    .send({ goalId: id })
     .then((res) => res.body)
 }
 export function addNewGoal(goal) {
   return request
-    .post(`${rootUrl}/goals/`)
+    .post(`${rootUrl}/goals/addNewGoal`)
     .send(goal)
     .then((res) => res.body)
 }
