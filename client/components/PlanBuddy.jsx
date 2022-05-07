@@ -6,25 +6,39 @@ import { useNavigate } from 'react-router-dom'
 import Goal from './Goal'
 
 function PlanBuddy() {
+  const [click, setClick] = useState(false)
+
+  function toggleBuddyMenu() {
+    console.log('hello')
+    setClick(!click)
+  }
+
   return (
     <>
-      <div className="hamburgerMenu">
-        <ul>
-          <li>
-            <a href="http://localhost:3000/goaloverview"> Goals Overview </a>
-          </li>
-          <li>
-            <a href="http://localhost:3000/welcome"> Daily Learning </a>
-          </li>
-        </ul>
+      {click && (
+        <div className="hamburgerMenu">
+          <ul>
+            <li>
+              <a href="http://localhost:3000/goaloverview"> Goals Overview </a>
+            </li>
+            <li>
+              <a href="http://localhost:3000/welcome"> Daily Learning </a>
+            </li>
+          </ul>
+        </div>
+      )}
+      <div>
+        <img
+          onClick={toggleBuddyMenu}
+          className="Buddy"
+          src="/images/PlanBuddy.png"
+        ></img>
       </div>
-
-      <img className="Buddy" src="/images/PlanBuddy.png"></img>
     </>
   )
 }
 
-// need menu to appear only onclick of buddy
+// onhover we want Buddys image to change
 
 // helpful suggestions rendered depending on current component
 
