@@ -7,6 +7,7 @@ import Registration from './Registration'
 import Users from './Users'
 import LandingPage from './LandingPage'
 import NewGoal from './NewGoal'
+import CreateSubGoal from './CreateSubGoal'
 import { Routes, Route } from 'react-router-dom'
 import Goal from './Goal'
 import Research from './Research'
@@ -17,7 +18,7 @@ function App() {
 
   return (
     <div className="app">
-      <Nav/>
+      <Nav />
       <Routes>
         <Route path="*" element={<LandingPage />} />
         <Route path="/register" element={<Registration />} />
