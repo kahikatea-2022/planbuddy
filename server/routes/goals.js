@@ -40,7 +40,7 @@ router.get('/getUserGoals', (req, res) => {
     })
 })
 
-// POST /api/v1/plans/
+// POST /api/v1/goals/
 router.post('/addNewGoal', (req, res) => {
   const goalData = req.body
   db.addNewGoal(goalData)
@@ -56,7 +56,7 @@ router.post('/addNewGoal', (req, res) => {
     })
 })
 
-//PATCH /api/v1/plans/
+//PATCH /api/v1/goals/
 router.patch('/editGoal', (req, res) => {
   const data = req.body
   db.editGoal(data)
@@ -69,5 +69,6 @@ router.patch('/editGoal', (req, res) => {
       res.status(500).json({ message: 'Something went wrong editing the goal' })
     })
 })
+
 
 module.exports = router

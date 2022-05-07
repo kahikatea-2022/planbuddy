@@ -24,6 +24,7 @@ function getReflectionById(id, db = connection) {
     'task_id as taskId',
     'reflection'
   )
+  .first()
 }
 
 function addNewReflection(reflectionData, db = connection) {
