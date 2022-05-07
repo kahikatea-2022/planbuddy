@@ -34,6 +34,7 @@ export function clearUsers() {
 export function fetchUsers() {
   return (dispatch) => {
     return getUsers().then((users) => {
+      console.log(users)
       dispatch(setUsers(users))
       return null
     })

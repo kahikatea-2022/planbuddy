@@ -10,6 +10,7 @@ import NewGoal from './NewGoal'
 import { Routes, Route } from 'react-router-dom'
 import Goal from './Goal'
 import Research from './Research'
+import { IfAuthenticated } from './Authenticated'
 
 function App() {
   cacheUser(useAuth0)
@@ -17,15 +18,20 @@ function App() {
   return (
     <div className="app">
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="*" element={<LandingPage />} />
+        <Route path="/register" element={<Registration />} />
+        </Routes>
+        <IfAuthenticated>
+        <Routes>
+        
         <Route path="/newgoal" element={<NewGoal />} />
         <Route path="/goal" element={<Goal />} />
         <Route path="/nav" element={<Nav />} />
         <Route path="/research" element={<Research />} />
         <Route path="/" element={<Users />} />
         <Route path="/" element={<PingRoutes />} />
-        <Route path="/profile" element={<Registration />} />
       </Routes>
+        </IfAuthenticated>
     </div>
   )
 }
