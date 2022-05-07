@@ -25,6 +25,7 @@ function App() {
       </Routes>
       {/* <IfAuthenticated> */}
       <Routes>
+        {/* <Route path='/welcome/:type' element={}/> */}
         <Route path="/newgoal" element={<NewGoal />} />
         <Route path="/goal" element={<Goal />} />
         <Route path="/nav" element={<Nav />} />

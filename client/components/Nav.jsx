@@ -27,12 +27,12 @@ function Nav() {
 
   return (
     <nav>
-      <h1 className="logo">Full-stack Boilerplate with Auth0</h1>
+      <div className="logo">
+        <h1>PlanBuddy</h1>
+        <img className="pencil" src="/images/Pencil.png"></img>
+      </div>
       <section className="nav-item">
         <IfAuthenticated>
-          <p>
-            Hello, {user.name} {user.roles ? `(${user.roles})` : null}
-          </p>
           <section className="sign">
             <a href="/" onClick={handleLogoff} className="nav-link">
               Log out
@@ -41,7 +41,7 @@ function Nav() {
         </IfAuthenticated>
         <IfNotAuthenticated>
           {/* <section className='nav-item'> */}
-          <p>Hello, guest</p>
+
           <section className="sign">
             <a href="/" onClick={handleLogin} className="nav-link">
               Sign in
@@ -58,3 +58,6 @@ function Nav() {
 }
 
 export default Nav
+
+//Still undecided as to whether planBuddy icon is static or if it displays hamburger menu.
+//We're thinking to instead have the buddy/mascot display the hamburger icon <- we reckon this option.

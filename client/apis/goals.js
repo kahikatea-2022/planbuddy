@@ -17,12 +17,10 @@ export function getGoals() {
 }
 
 // URL will need checking
-export function getGoalById(id) {
-  return request.get(`${rootUrl}/goals/${id}`).then((res) => res.body)
-}
-// URL will need checking
 export function getGoalsByUserId(id) {
-  return request.get(`${rootUrl}/user/${id}`).then((res) => res.body)
+  return request
+    .get(`${rootUrl}/goals/getUserGoals/${id}`)
+    .then((res) => res.body)
 }
 export function addNewGoal(goal) {
   return request
