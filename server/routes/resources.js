@@ -1,7 +1,7 @@
 const express = require('express')
 
 //these are the variables to acces the DB functions by table name
-const resources = require('../db/resources')
+const db = require('../db/resources')
 
 const router = express.Router()
 
@@ -9,7 +9,7 @@ const router = express.Router()
 // GET /api/v1/resources/
 router.get('/getResourcesByGoalId', (req, res) => {
   let id = req.body.goalId
-  resources
+  db
     .getResourcesData(id)
     .then((data) => {
       res.json(data)
@@ -26,7 +26,7 @@ router.get('/getResourcesByGoalId', (req, res) => {
 router.get('/getResourcesBySubgoalId', (req, res) => {
   const id = req.body.subgoalId
 
-  resources.getResourcesBySubGoalId(id)
+  db.getResourcesBySubGoalId(id)
   .then((data) => {
     res.json(data)
     return null

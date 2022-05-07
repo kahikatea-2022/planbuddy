@@ -2,7 +2,7 @@ const express = require('express')
 
 //these are the variables to acces the DB functions by table name
 
-const tasks = require('../db/tasks')
+const db = require('../db/tasks')
 
 const router = express.Router()
 
@@ -10,7 +10,7 @@ const router = express.Router()
 router.get('/getTasksByGoalId', (req, res) => {
   let id = req.body.goalId
 
-  tasks
+  db
     .getTasks(id)
     .then((data) => {
       res.json(data)
@@ -26,7 +26,7 @@ router.get('/getTasksByGoalId', (req, res) => {
 router.get('/getTasksbySubgoalId', (req, res) => {
   const id = req.body.subgoalId
 
-  tasks
+  db
     .getTasksBySubGoalId(id)
     .then((data) => {
       res.json(data)
@@ -45,7 +45,7 @@ router.get('/getTasksbySubgoalId', (req, res) => {
 router.get('/getTaskById', (req, res) => {
   const id = req.body.taskId
 
-  tasks
+  db
     .getTaskById(id)
     .then((data) => {
       res.json(data)
@@ -62,7 +62,7 @@ router.get('/getTaskById', (req, res) => {
 router.post('/addNewTask', (req, res) => {
   const newTask = req.body
 
-  tasks
+  db
     .addNewTask(newTask)
     .then((newTaskId) => {
       res.status(200).json({ newTaskId })
