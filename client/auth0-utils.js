@@ -23,9 +23,9 @@ export async function cacheUser(useAuth0) {
       // add logic to add user id to user for all functionality
       // needs to be able to post a new user
       // console.log(users)
-      const userFromDb = users.find((el) => el.email === user.name)
       // console.log(user)
-      console.log(userFromDb)
+      const userFromDb = users.find((el) => el.email === user.name)
+      // console.log(userFromDb)
 
       const token = await getAccessTokenSilently()
       // const roles = await getUserRoles(user.sub)
@@ -33,11 +33,11 @@ export async function cacheUser(useAuth0) {
         auth0Id: user.sub,
         email: user.email,
         name: user.nickname,
-        id: userFromDb.userId,
+        id: userFromDb?.userId,
         token,
       }
       // removed roles from userToSave
-      console.log(userToSave)
+      // console.log(userToSave)
       saveUser(userToSave)
     } catch (err) {
       console.error(err)
