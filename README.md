@@ -351,12 +351,12 @@ Response:
 
 ### user profiles database
 
-| Method | Endpoint                  | Send Body        | Returns                       |
-| ------ | ------------------------- | ---------------- | ----------------------------- |
-| GET    | /api/v1/users/getAllUsers | requires nothing | returns an array of all users |
-| GET    |                           |                  |                               |
-|        |                           |                  |                               |
-|        |                           |                  |                               |
+| Method | Endpoint                | Send Body        | Returns                       |
+| ------ | ----------------------- | ---------------- | ----------------------------- |
+| GET    | api/v1/users/addNewUser | requires nothing | returns an array of all users |
+| POST   | api/v1/users/addNewUser | (see request)    | returns newUserId             |
+|        |                         |                  |                               |
+|        |                         |                  |                               |
 
 ### Data structures:
 
@@ -388,6 +388,30 @@ Response:
         "currentTask": 1
     }
 ]
+```
+
+POST api/v1/users/addNewUser
+Request:
+
+```
+{
+    "auth0Id": "currently null",
+    "userName": "Reggie Sax",
+    "email": "johnnyg@gmail.com",
+    "currentTask": "1"
+}
+
+```
+
+Response:
+
+```
+{
+    "newId": [
+        6
+    ]
+}
+
 ```
 
 ### tasks database
@@ -486,6 +510,87 @@ Response:
         "current": 1
     }
 ]
+```
+
+### Reflections database
+
+| Method | Endpoint                                  | Send Body             | Returns                                   |
+| ------ | ----------------------------------------- | --------------------- | ----------------------------------------- |
+| GET    | api/v1/reflections/getReflectionById      | requires reflectionId | returns reflection by reflectionId        |
+| GET    | api/v1/reflections/getReflectionsByTaskId | requires taskId       | returns an array of reflections by taskId |
+| POST   | api/v1/reflections/addNewReflection       | (see request)         | returns newReflectionId                   |
+|        |                                           |                       |                                           |
+
+### Data structures:
+
+GET api/v1/reflections/getReflectionById
+
+Request:
+
+```
+{
+
+    "reflectionId": "2"
+}
+
+```
+
+Response:
+
+```
+{
+        "reflectionId": 2,
+        "goalId": 1,
+        "taskId": 2,
+        "reflection": "reflection for reflection_id 2"
+}
+```
+
+GET api/v1/reflections/getReflectionsByTaskId
+
+Request:
+
+```
+{
+    "taskId": "2"
+}
+
+```
+
+Response:
+
+```
+[
+    {
+        "reflectionId": 2,
+        "goalId": 1,
+        "taskId": 2,
+        "reflection": "reflection for reflection_id 2"
+    }
+]
+```
+
+POST api/v1/reflections/addNewReflection
+
+Request:
+
+```
+{
+    "goalId": "1",
+    "taskId": "3",
+    "reflection": "reflecting is hard"
+}
+
+```
+
+Response:
+
+```
+{
+    "newReflectionId": [
+        4
+    ]
+}
 ```
 
 # Fullstack boilerplate
