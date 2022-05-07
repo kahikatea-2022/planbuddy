@@ -40,7 +40,7 @@ function NewGoal() {
       dispatch(addGoal(goalData))
       console.log('submitHandler')
       addNewGoal(goalData).then(newId=>{
-       const goalId = newId[0]
+       const goalId = newId.newId[0]
        navigate('/goal/' + goalId)
       }).catch(console.error)
       // navigate('/goals')
