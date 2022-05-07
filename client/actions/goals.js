@@ -1,4 +1,4 @@
-import { getGoals, getGoalsByUserId } from '../apis/goals'
+import { getGoalsByUserId } from '../apis/goals'
 
 const SET_GOALS = 'SET_GOALS'
 const ADD_GOAL = 'ADD_GOAL'
