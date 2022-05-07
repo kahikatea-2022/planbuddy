@@ -45,6 +45,7 @@ router.post('/addNewResource', (req, res) => {
   db.addNewResource(data)
   .then((newResourceId) => {
     res.status(200).json({ newResourceId })
+    return null
   })
   .catch((err) => {
     console.error(err)

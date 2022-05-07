@@ -40,7 +40,7 @@ router.get('/getUserGoals', (req, res) => {
     })
 })
 
-// POST /api/v1/plans/
+// POST /api/v1/goals/
 router.post('/addNewGoal', (req, res) => {
   const goalData = req.body
   db.addNewGoal(goalData)
@@ -56,7 +56,7 @@ router.post('/addNewGoal', (req, res) => {
     })
 })
 
-//PATCH /api/v1/plans/
+//PATCH /api/v1/goals/
 router.patch('/editGoal', (req, res) => {
   const data = req.body
   db.editGoal(data)
@@ -67,6 +67,21 @@ router.patch('/editGoal', (req, res) => {
     .catch((err) => {
       console.error(err)
       res.status(500).json({ message: 'Something went wrong editing the goal' })
+    })
+})
+
+//PATCH /api/v1/goals/
+router.patch('/updateGoalCompletionByGoalId', (req, res) => {
+  const data = req.body
+
+  db.updateCompletionById(data)
+    .then(() => {
+      res.status(200).json({ message: 'your goal completion was successfully updated' })
+      return null
+    })
+    .catch((err) => {
+      console.error(err)
+      res.status(500).json({ message: 'Something went wrong updating the goal completion' })
     })
 })
 
