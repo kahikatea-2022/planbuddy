@@ -2,7 +2,8 @@ import { format } from 'prettier'
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { addGoal, ADD_GOAL, fetchGoals } from '../actions/goals'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { fetchGoal } from '../actions/goal'
 
 function Goal() {
   // const exampleData = {
@@ -10,29 +11,32 @@ function Goal() {
   //   why: 'Play at friends wedding',
   //   weekly_hours: '20',
   // }
-
-  const goals = useSelector((state) => state.goals)
-  console.log(goals)
+  
+  const {goalId} = useParams()
+  // might change this to reflect index of goal in users goals array
+  const goal = useSelector((state) => state.goal)
 
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchGoals())
+    console.log('useEffect')
+    dispatch(fetchGoal(Number(goalId)))
   }, [])
+  // console.log(goal)
 
-  return (
-    goals.length !== 0 && (
+  return goal?.goalId? (
+    
       <>
         <h1> Learning Plan </h1>
-        <p> I want to learn {goals[0].goal_name}</p>
-        <p> So that I can {goals[0].why}</p>
+        <p> I want to learn {goal.goalName}</p>
+        <p> So that I can {goal.why}</p>
         <p>
-          I will dedicate {goals[0].weekly_hours} hours per week to achieve this
+          I will dedicate {goal.weeklyHours} hours per week to achieve this
           goal
         </p>
       </>
-    )
-  )
+
+  ):<p>Please Wait</p>
 }
 
 export default Goal

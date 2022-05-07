@@ -7,6 +7,7 @@ const goalsRoutes = require('./routes/goals')
 const resourcesRoutes = require('./routes/resources')
 const subGoalsRoutes = require('./routes/subGoals')
 const tasksRoutes = require('./routes/tasks')
+const reflectionsRoutes = require('./routes/reflections')
 
 const server = express()
 
@@ -19,6 +20,7 @@ server.use('/api/v1/goals', goalsRoutes)
 server.use('/api/v1/resources', resourcesRoutes)
 server.use('/api/v1/subGoals', subGoalsRoutes)
 server.use('/api/v1/tasks', tasksRoutes)
+server.use('/api/v1/reflections', reflectionsRoutes)
 
 server.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'))

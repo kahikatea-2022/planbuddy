@@ -6,6 +6,16 @@ import { useNavigate } from 'react-router-dom'
 import Goal from './Goal'
 
 function PlanBuddy() {
+  const [mascotHover, setMascotHover] = useState(false)
+  // this part of the code is to change buddys image when you mouse over them
+  const [imgSource, setImgSource] = useState('/images/PlanBuddy.png')
+
+  function changeBuddyImage() {
+    if (mascotHover) setImgSource('/images/PlanBuddy-mouthOpen.png')
+    if (!mascotHover) setImgSource('/images/PlanBuddy.png')
+  }
+
+  // this part of code is to render the menu when you click on buddy
   const [click, setClick] = useState(false)
 
   function toggleBuddyMenu() {
@@ -30,8 +40,16 @@ function PlanBuddy() {
       <div>
         <img
           onClick={toggleBuddyMenu}
+          onMouseOver={() => {
+            setMascotHover(false)
+            changeBuddyImage()
+          }}
+          onMouseLeave={() => {
+            setMascotHover(true)
+            changeBuddyImage()
+          }}
           className="Buddy"
-          src="/images/PlanBuddy.png"
+          src={imgSource}
         ></img>
       </div>
     </>
@@ -40,9 +58,12 @@ function PlanBuddy() {
 
 // onhover we want Buddys image to change
 
-// helpful suggestions rendered depending on current component
+// define the source of the image to planbuddy state
+// have a planbuddy state which is initialised to /images/planbuddy.png
+// mouseover function to set the planbuddy state to /images/planbuddy2.png
+//another function onMouseLeave(?) changes back to the original
 
-// if you click on buddy, a hamburger menu will appear with the following links: GoalsOverview/DailyLearning/
+// helpful suggestions rendered depending on current component
 
 // Welcome.jsx =  Buddy is saying all the words displayed. Perhaps put in a speech bubble?
 // NewGoal =  Buddy is saying all the words - perhaps speech bubble and to the right?
