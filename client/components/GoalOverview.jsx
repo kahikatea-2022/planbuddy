@@ -21,8 +21,10 @@ function GoalOverview() {
     dispatch(fetchSubGoals(Number(goalId)))
   }, [])
   function subgoalHandler(){
+
     // needs to be changed back to check if true for proper implementation
-    if(goal.researched !== true){
+    // adds new subgoal and redirects to new subgoal
+    if(goal.researched === true){
       const newSubgoal = {
         goalId: goal.goalId,
         subgoalName: 'Please enter a name for your subgoal',
@@ -33,7 +35,9 @@ function GoalOverview() {
       addSubGoal(newSubgoal).then(res=>{
         navigate('/subgoal/' + res)
       }).catch(console.error)
-    } 
+    } else {
+      navigate('/research/' + goal.goalId)
+    }
   }
   return (
     <>
