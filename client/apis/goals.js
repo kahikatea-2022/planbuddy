@@ -24,7 +24,7 @@ export function getGoalsByUserId(id) {
 }
 export function addNewGoal(goal) {
   return request
-    .post(`${rootUrl}/goals/`)
+    .post(`${rootUrl}/goals/addNewGoal`)
     .send(goal)
     .then((res) => res.body)
 }

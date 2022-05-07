@@ -6,19 +6,22 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { addNewGoal } from '../apis/goals'
 
 function NewGoal() {
+  const user = useSelector(state=>state.user)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const {userid} = useParams()
   const inputData = {
-    user_id: Number(userid),
-    goal_name: '',
+    userId: user?.id,
+    goalName: '',
     why: '',
-    weekly_hours: '',
+    weeklyHours: '',
+    completed: false,
+    researched: false
   }
+  console.log(inputData)
   const [formState, setFormState] = useState(1)
   const [goalData, setGoalData] = useState(inputData)
   const [name, setName] = useState('')
-  const user = useSelector(state=>state.user)
   const handleForm = (event) => {
     setGoalData({ ...goalData, [event.target.id]: event.target.value })
     console.log(goalData)
@@ -36,7 +39,10 @@ function NewGoal() {
     if (event.code === 'Enter') {
       dispatch(addGoal(goalData))
       console.log('submitHandler')
-      addNewGoal(goalData)
+      addNewGoal(goalData).then(newId=>{
+       const goalId = newId[0]
+       navigate('/goal/' + goalId)
+      }).catch(console.error)
       // navigate('/goals')
     }
   }
@@ -48,13 +54,13 @@ function NewGoal() {
 
     {formState === 1 &&
     <>
-    <label htmlFor="goal_name">What skill are you trying to learn?</label>
+    <label htmlFor="goalName">What skill are you trying to learn?</label>
       <input
         type="text"
-        id="goal_name"
+        id="goalName"
         onChange={handleForm}
         onKeyUp={advanceForm}
-        value={goalData.goal_name}
+        value={goalData.goalName}
       ></input>
       </>}
 
@@ -72,14 +78,14 @@ function NewGoal() {
 
       {formState === 3 &&
         <>
-        <label htmlFor="weekly_hours">
+        <label htmlFor="weeklyHours">
         How many hours per week will you put into this?
       </label>
       <input
         type="text"
-        id="weekly_hours"
+        id="weeklyHours"
         onChange={handleForm}
-        value={goalData.weekly_hours}
+        value={goalData.weeklyHours}
         onKeyUp={submitHandler}
       ></input>
       </>}
