@@ -8,6 +8,7 @@ import Users from './Users'
 import LandingPage from './LandingPage'
 import NewGoal from './NewGoal'
 import CreateSubGoal from './CreateSubGoal'
+import VeteranView from './VeteranView'
 import { Routes, Route } from 'react-router-dom'
 import Goal from './Goal'
 import Research from './Research'
@@ -34,7 +35,9 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/welcome/:type" element={<Welcome />} />
           <Route path="/newgoal" element={<NewGoal />} />
+          <Route path="/veteranview" element={<VeteranView />} />
           <Route path="/goal/:goalId" element={<GoalOverview />} />
+          <Route path="/subgoal/:subgoalId" element={<CreateSubGoal />} />
           <Route path="/nav" element={<Nav />} />
           <Route path="/research/:goalId" element={<Research />} />
           <Route path="/" element={<Users />} />
