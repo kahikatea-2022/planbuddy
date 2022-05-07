@@ -6,9 +6,8 @@ const db = require('../db/sub_goals')
 const router = express.Router()
 
 // GET /api/v1/subGoals
-router.get('/getSubGoals:id', (req, res) => {
-  let id = Number(req.params.goalId)
-
+router.get('/getSubGoals/:id', (req, res) => {
+  let id = Number(req.params.id)
   db.getSubGoals(id)
     .then((data) => {
       res.json(data)
@@ -23,7 +22,6 @@ router.get('/getSubGoals:id', (req, res) => {
 // GET /api/v1/subGoals
 router.get('/getSubGoalById/:id', (req, res) => {
   let id = Number(req.params.subgoalId)
-
   db.getSubGoalById(id)
     .then((data) => {
       res.json(data)

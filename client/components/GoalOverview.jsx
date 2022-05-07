@@ -46,12 +46,10 @@ function GoalOverview() {
       {(subGoals?.length !== 0) &&
         subGoals.map(subGoal=>{
           return(
-            <div key={subGoal.subgoalId} className="subGoalCreator">
-            {/* <a href='' > */}
-            <img src="/images/Pencil.png"></img>
-            <p>{subGoal.subgoalName}</p>
-            {/* </a> */}
-          </div>
+            <div key={subGoal.subgoalId} onClick={()=>navigate('/subgoal/' + subGoal.subgoalId)} className="subGoalCreator">
+              <img src="/images/Pencil.png"></img>
+              <p>{subGoal.subgoalName}</p>
+            </div>
           )
       })}
       <div onClick={subgoalHandler} className="subGoalCreator">
