@@ -287,11 +287,12 @@ Response:
 | ------ | ---------------------------------------- | ------------------ | ------------------------------------------ |
 | GET    | api/v1/resources/getResourcesByGoalId    | requires goalId    | returns an array of resources by goalId    |
 | GET    | api/v1/resources/getResourcesBySubgoalId | requires subgoalId | returns an array of resources by subgoalId |
-|        |                                          |                    |                                            |
+| POST   | api/v1/resources/addNewResource          | (see request)      | returns newResourceId                      |
 |        |                                          |                    |                                            |
 
 ### Data structures:
 
+GET api/v1/resources/getResourcesByGoalId
 Request:
 
 ```
@@ -346,6 +347,31 @@ Response:
         "url": "www.piano.com"
     }
 ]
+
+```
+
+POST api/v1/resources/addNewResource
+
+Request:
+
+```
+{
+    "goalId": "1",
+    "subgoalId": "1",
+    "resourceName": "piano lessons website",
+    "url": "scales.com"
+}
+
+```
+
+Response:
+
+```
+{
+    "newResourceId": [
+        4
+    ]
+}
 
 ```
 

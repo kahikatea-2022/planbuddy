@@ -22,9 +22,17 @@ function addUser(userData, db = connection) {
   return db('user_profiles').insert(data)
 }
 
+function getCurrentTaskByUserId(userId, db = connection) {
+  return db('user_profiles')
+    .where('user_id', userId)
+    .select('current_task as currentTask')
+    .first()
+}
+
 module.exports = {
   getUsers,
   addUser,
+  getCurrentTaskByUserId,
 }
 
 //relates to add new user data refactoring
