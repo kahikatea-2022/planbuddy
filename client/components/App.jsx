@@ -11,29 +11,33 @@ import CreateSubGoal from './CreateSubGoal'
 import { Routes, Route } from 'react-router-dom'
 import Goal from './Goal'
 import Research from './Research'
-import { IfAuthenticated } from './Authenticated'
+import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
+import Welcome from './Welcome'
 
 function App() {
   cacheUser(useAuth0)
 
   return (
     <div className="app">
-      <Nav />
-      <Routes>
-        <Route path="*" element={<LandingPage />} />
-        <Route path="/register" element={<Registration />} />
-      </Routes>
-      {/* <IfAuthenticated> */}
-      <Routes>
-        {/* <Route path='/welcome/:type' element={}/> */}
-        <Route path="/newgoal" element={<NewGoal />} />
-        <Route path="/goal" element={<Goal />} />
-        <Route path="/nav" element={<Nav />} />
-        <Route path="/research" element={<Research />} />
-        <Route path="/" element={<Users />} />
-        {/* <Route path="/" element={<PingRoutes />} /> */}
-      </Routes>
-      {/* </IfAuthenticated> */}
+      <Nav/>
+      <IfNotAuthenticated>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/register" element={<Registration />} />
+        </Routes>
+      </IfNotAuthenticated>
+      <IfAuthenticated>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/welcome/:type" element={<Welcome/>}/>
+          <Route path="/newgoal" element={<NewGoal />} />
+          <Route path="/goal" element={<Goal />} />
+          <Route path="/nav" element={<Nav />} />
+          <Route path="/research" element={<Research />} />
+          <Route path="/" element={<Users />} />
+          {/* <Route path="/" element={<PingRoutes />} /> */}
+        </Routes>
+      </IfAuthenticated>
     </div>
   )
 }
