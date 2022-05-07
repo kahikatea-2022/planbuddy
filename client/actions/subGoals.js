@@ -1,7 +1,7 @@
 const SET_SUBGOALS = 'SET_SUBGOALS'
 const ADD_SUBGOAL = 'SET_SUBGOAL'
 
-export function setGoals(subGoals) {
+export function setSubGoals(subGoals) {
   return {
     type: SET_SUBGOALS,
     subGoals,
