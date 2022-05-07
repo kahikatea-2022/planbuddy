@@ -16,6 +16,20 @@ router.get('/getAllUsers', (req, res) => {
     })
 })
 
+// GET /api/v1/users/
+router.get('/getCurrentTaskByUserId', (req, res) => {
+  const id = req.body.userId 
+
+  db.getCurrentTaskByUserId(id)
+  .then((currentTaskId) => {
+    res.json(currentTaskId)
+  })
+  .catch((err) => {
+    console.error(err)
+    res.status(500).json({ message: 'Something went wrong getting getting current task by user id' })
+  })
+})
+
 // POST /api/v1/users
 // add new user to database and return new user ID
 router.post('/addNewUser', (req, res) => {

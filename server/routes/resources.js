@@ -39,12 +39,12 @@ router.get('/getResourcesBySubgoalId', (req, res) => {
 })
 
 //POST /api/v1/resources
-router.get('/addNewResource', (req, res) => {
+router.post('/addNewResource', (req, res) => {
   const data = req.body
 
   db.addNewResource(data)
-  .then((newId) => {
-    res.status(200).json({ newId })
+  .then((newResourceId) => {
+    res.status(200).json({ newResourceId })
   })
   .catch((err) => {
     console.error(err)
