@@ -69,7 +69,7 @@ function updateTaskById(task, db = connection) {
     completed: task.completed,
     current: task.current,
   }
-  return db('task').where('task_id', task.taskId).update(data)
+  return db('tasks').where('task_id', task.taskId).update(data)
 }
 
 module.exports = {
