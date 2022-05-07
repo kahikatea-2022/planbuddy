@@ -20,7 +20,7 @@ function Registration() {
       email: user.email,
     })
     console.log('useEffect')
-    if(user?.auth0Id) navigate('/')
+    if(user?.auth0Id) navigate('/welcome/new')
   }, [user])
 
   function handleChange(e) {
