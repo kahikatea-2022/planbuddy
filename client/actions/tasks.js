@@ -1,4 +1,5 @@
 const SET_TASKS = 'SET_TASKS'
+const SET_TASK = 'SET_TASK'
 const ADD_TASK = 'ADD_TASK'
 
 export function setGoals(tasks) {
@@ -14,4 +15,4 @@ export function addGoal(task) {
   }
 }
 
-export { SET_TASKS, ADD_TASK }
+export { SET_TASKS, SET_TASK, ADD_TASK }
