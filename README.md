@@ -153,7 +153,7 @@ OK
 | ------ | ------------------------------ | ------------------ | ------------------------------- |
 | GET    | api/v1/subGoals/getSubGoals    | requires goalId    | returns all subgoals by goal_id |
 | GET    | api/v1/subGoals/getSubGoalById | requires subgoalId | subgoal by subgoal_id           |
-| POST   | api/v1/subGoals/addNewSubgoal  |                    |                                 |
+| POST   | api/v1/subGoals/addNewSubgoal  | (see request)      |                                 |
 |        |                                |                    |                                 |
 
 ### Data structures:
@@ -222,7 +222,7 @@ Response:
 
 ```
 
-POST api/v1/subGoals/getSubGoalById
+POST api/v1/subGoals/addNewSubGoal
 
 Request:
 
@@ -257,7 +257,7 @@ Response:
 | Method | Endpoint                                 | Send Body          | Returns                |
 | ------ | ---------------------------------------- | ------------------ | ---------------------- |
 | GET    | api/v1/resources/getResourcesBySubGoalId | requires subgoalId | resources by subgoalId |
-|        |                                          |                    |                        |
+| POST   |                                          |                    |                        |
 |        |                                          |                    |                        |
 |        |                                          |                    |                        |
 
@@ -291,25 +291,25 @@ Response:
 
 ### user profiles database
 
-| Method | Endpoint | Send Body | Returns |
-| ------ | -------- | --------- | ------- |
-|        |          |           |         |
-|        |          |           |         |
-|        |          |           |         |
-|        |          |           |         |
+| Method | Endpoint      | Send Body        | Returns                 |
+| ------ | ------------- | ---------------- | ----------------------- |
+| GET    | /api/v1/users | requires nothing | returns a list of users |
+| GET    |               |                  |                         |
+|        |               |                  |                         |
+|        |               |                  |                         |
 
 ### tasks database
 
-| Method | Endpoint                             | Send Body          | Returns                    |
-| ------ | ------------------------------------ | ------------------ | -------------------------- |
+| Method | Endpoint                         | Send Body          | Returns                    |
+| ------ | -------------------------------- | ------------------ | -------------------------- |
 | GET    | api/v1/tasks/getTasksBySubGoalId | requires subgoalId | returns tasks by subgoalId |
-| GET    | api/v1/tasks/getTaskById             | requires taskId    | returns a task by taskId   |
-|        |                                      |                    |                            |
-|        |                                      |                    |                            |
+| GET    | api/v1/tasks/getTaskById         | requires taskId    | returns a task by taskId   |
+|        |                                  |                    |                            |
+|        |                                  |                    |                            |
 
 ### Data structures:
 
-GET api/v1/tasks/getResourcesBySubGoalId
+GET api/v1/tasks/getTasksBySubGoalId
 
 Request:
 
