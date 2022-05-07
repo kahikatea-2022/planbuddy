@@ -5,6 +5,7 @@ import user from './user'
 import goals from './goals'
 import goal from './goal'
 import subGoals from './subGoals'
+import subGoal from './subGoal'
 import resources from './resources'
 import tasks from './tasks'
 
@@ -14,6 +15,7 @@ export default combineReducers({
   goals,
   goal,
   subGoals,
+  subGoal,
   resources,
   tasks,
 })
