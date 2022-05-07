@@ -35,8 +35,8 @@ function Registration() {
         currentTask: null
       }
       // console.log(newUser)
-      // addUser(newUser).then(console.log)
-      // navigate('/welcome/new')
+      addUser(newUser).then(console.log)
+      navigate('/welcome/new')
     }
   }, [user])
 
