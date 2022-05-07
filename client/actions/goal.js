@@ -1,3 +1,5 @@
+import { getGoalsByUserId } from '../apis/goals'
+
 const SET_GOAL = 'SET_GOAL'
 
 export function setGoal(goal) {
@@ -7,10 +9,10 @@ export function setGoal(goal) {
   }
 }
 
-export function fetchGoal() {
+export function fetchGoal(id) {
   return (dispatch) => {
     // insert wait indicator dispatch here
-    return getGoal().then((data) => {
+    return getGoalsByUserId(id).then((data) => {
       dispatch(setGoal(data))
     })
   }
