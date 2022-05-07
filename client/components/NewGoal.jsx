@@ -15,7 +15,7 @@ function NewGoal() {
     why: '',
     weekly_hours: '',
   }
-  const [formState, setFormState] = useState(0)
+  const [formState, setFormState] = useState(1)
   const [goalData, setGoalData] = useState(inputData)
   const [name, setName] = useState('')
   const user = useSelector(state=>state.user)
@@ -46,24 +46,9 @@ function NewGoal() {
       {/* this only renders once after signing up */}
       <label>Thanks for signing up {user?.name}!</label>
 
-      {/* this only renders once after signing up */}
-      {formState === 0 &&
-      <>
-      <label htmlFor="user_name">
-        So that we can customise your experience, what is your name?
-      </label>
-      <input
-        type="text"
-        id="user_name"
-        onChange={handleFormName}
-        onKeyUp={advanceForm}
-        value={name}
-      ></input>
-      </>}
-
     {formState === 1 &&
     <>
-    <label htmlFor="goal_name">What is your learning goal?</label>
+    <label htmlFor="goal_name">What skill are you trying to learn?</label>
       <input
         type="text"
         id="goal_name"
