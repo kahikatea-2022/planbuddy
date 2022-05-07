@@ -22,7 +22,7 @@ function GoalOverview() {
       <Goal />
 
       <p>Click on a subgoal to get started/into</p>
-
+    <div className='flex'>
       <div className="subGoalCreator">
         {/* <a href='' > */}
         <img src="/images/Pencil.png"></img>
@@ -35,6 +35,7 @@ function GoalOverview() {
         <img src="/images/greyPencil.png"></img>
         <p>click to add subgoal</p>
         {/* </a> */}
+      </div>
       </div>
     </>
   )
