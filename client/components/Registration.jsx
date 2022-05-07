@@ -29,7 +29,7 @@ function Registration() {
       }
       // console.log(newUser)
       addUser(newUser).then(console.log)
-      // navigate('/welcome/new')
+      navigate('/welcome/new')
     }
   }, [user])
 
