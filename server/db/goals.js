@@ -72,10 +72,19 @@ function updateCompletionById(goalData, db = connection) {
   return db('goals').where('goal_id', goalData.goalId).update(data)
 }
 
+function updateResearchedById(goalData, db = connection) {
+  const data = {
+    goal_id: goalData.goalId,
+    researched: goalData.researched,
+  }
+  return db('goals').where('goal_id', goalData.goalId).update(data)
+}
+
 module.exports = {
   getGoalDataById,
   getUserGoals,
   addNewGoal,
   editGoal,
   updateCompletionById,
+  updateResearchedById,
 }
