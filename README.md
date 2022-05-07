@@ -549,7 +549,7 @@ Response:
 | GET    | api/v1/tasks/getTaskById         | requires taskId    | returns a task by taskId            |
 | GET    | api/v1/tasks/getTasksBySubGoalId | requires subgoalId | returns tasks by subgoalId          |
 | GET    | api/v1/tasks/getTasksByGoalId    | requires goalId    | returns an array of tasks by goalId |
-| PATCH  |                                  | (see request)      | confirmation                        |
+| PATCH  | api/v1/tasks/updateTaskById      | (see request)      | confirmation                        |
 
 ### Data structures:
 

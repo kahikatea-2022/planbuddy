@@ -63,7 +63,7 @@ function updateTaskById(task, db = connection) {
   const data = {
     task_id: task.taskId,
     goal_id: task.goalId,
-    subgoal_id: task.subGoalId,
+    subgoal_id: task.subgoalId,
     task_name: task.taskName,
     time_spent: task.timeSpent,
     completed: task.completed,
