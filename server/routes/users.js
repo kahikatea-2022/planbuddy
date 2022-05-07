@@ -4,7 +4,7 @@ const db = require('../db/users')
 const router = express.Router()
 
 // GET /api/v1/users/
-router.get('/', (req, res) => {
+router.get('/getAllUsers', (req, res) => {
   db.getUsers()
     .then((users) => {
       res.json(users)

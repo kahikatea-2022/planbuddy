@@ -41,7 +41,7 @@ router.get('/getUserGoals', (req, res) => {
 })
 
 // POST /api/v1/plans/
-router.post('/', (req, res) => {
+router.post('/addNewGoal', (req, res) => {
   const goalData = req.body
   goals
     .addNewGoal(goalData)

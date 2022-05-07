@@ -59,7 +59,7 @@ function editGoal(goalData, db = connection) {
     date_created: goalData.dateCreated,
     completed: goalData.completed,
   }
-  return db('goals').where('goal_id', data.goal_id).update(goalData)
+  return db('goals').where('goal_id', data.goal_id).update(data)
 }
 module.exports = {
   getGoalDataById,
