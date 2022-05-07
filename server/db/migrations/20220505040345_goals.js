@@ -7,6 +7,7 @@ exports.up = function (knex) {
     table.integer('weekly_hours')
     table.date('date_created')
     table.boolean('completed')
+    table.boolean('researched')
   })
 }
 

@@ -4,6 +4,7 @@ exports.up = function (knex) {
     table.string('auth0_id')
     table.string('user_name')
     table.string('email')
+    table.integer('current_task')
   })
 }
 

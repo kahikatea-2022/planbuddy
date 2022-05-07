@@ -5,9 +5,9 @@ const goals = require('../db/goals')
 
 const router = express.Router()
 
-// GET /api/v1/plans/
-router.get('/', (req, res) => {
-  let id = 1
+// GET /api/v1/goals/
+router.get('/getGoalById', (req, res) => {
+  let id = req.body.goalId
   goals
     .getGoalDataById(id)
     .then((data) => {
@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
 //GET /api/v1/goals/
 router.get('/getUserGoals', (req, res) => {
   //this is hardcoded and will be replaced by res.body (perhaps)
-  let id = 1
+  let id = req.body.userId
   goals
     .getUserGoals(id)
     .then((data) => {
@@ -41,7 +41,7 @@ router.get('/getUserGoals', (req, res) => {
 })
 
 // POST /api/v1/plans/
-router.post('/', (req, res) => {
+router.post('/addNewGoal', (req, res) => {
   const goalData = req.body
   goals
     .addNewGoal(goalData)
