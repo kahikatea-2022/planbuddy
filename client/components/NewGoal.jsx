@@ -1,7 +1,7 @@
-import { format } from 'prettier'
+// import { format } from 'prettier'
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { addGoal, ADD_GOAL } from '../actions/goals'
+import { addGoal} from '../actions/goals'
 import { useNavigate, useParams } from 'react-router-dom'
 import { addNewGoal } from '../apis/goals'
 
