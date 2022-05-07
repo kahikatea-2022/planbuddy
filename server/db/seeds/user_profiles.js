@@ -10,7 +10,8 @@ exports.seed = async function(knex) {
       user_id: 1,
       auth0_id: 'auth0_id currently null',
       user_name: 'Timmy Piano',
-      email: 'timmyp@gmail.com'
+      email: 'timmyp@gmail.com',
+      current_task: 1
     }
   ]);
 };

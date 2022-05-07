@@ -13,7 +13,8 @@ exports.seed = async function(knex) {
       why: 'impress my friends',
       weekly_hours: 20,
       date_created: 778686947,
-      completed: false
+      completed: false,
+      researched: false
     }
   ]);
 };

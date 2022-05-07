@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div className="app">
-      <Nav/>
+      <Nav />
       <IfNotAuthenticated>
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -29,7 +29,7 @@ function App() {
       <IfAuthenticated>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/welcome/:type" element={<Welcome/>}/>
+          <Route path="/welcome/:type" element={<Welcome />} />
           <Route path="/newgoal" element={<NewGoal />} />
           <Route path="/goal" element={<Goal />} />
           <Route path="/nav" element={<Nav />} />

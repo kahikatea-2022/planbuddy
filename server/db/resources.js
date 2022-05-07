@@ -6,9 +6,28 @@ const connection = require('./connection')
 function getResourcesData(goal_id, db = connection) {
   return db('resources')
   .where('goal_id', goal_id)
-  .select()
+  .select(
+    'resource_id as resourceId',
+    'goal_id as goalId',
+    'subgoal_id as subgoalId',
+    'resource_name as resourceName',
+    'url'
+  )
+}
+
+function getResourcesBySubGoalId(subgoal_id, db = connection) {
+  return db('resources')
+  .where('subgoal_id', subgoal_id)
+  .select(
+    'resource_id as resourceId',
+    'goal_id as goalId',
+    'subgoal_id as subgoalId',
+    'resource_name as resourceName',
+    'url'
+  )
 }
 
 module.exports = {
-  getResourcesData
+  getResourcesData,
+  getResourcesBySubGoalId,
 }
