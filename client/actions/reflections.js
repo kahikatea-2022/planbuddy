@@ -1,0 +1,6 @@
+const SET_REFLECTIONS = 'SET_REFLECTIONS'
+const SET_REFLECTION = 'ADD_REFLECTION'
+
+// TODO add reflections actions
+
+export { SET_REFLECTION, SET_REFLECTIONS }
