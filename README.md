@@ -35,16 +35,16 @@ The final, and one of the most important points, was some guidelines around how 
 
 ### Goals database
 
-| Method | Endpoint                   | Send Body                                         | Returns                      |
-| ------ | -------------------------- | ------------------------------------------------- | ---------------------------- |
-| GET    | /api/v1/goals/             | requires goalId                                   | returns goal data by goal_id |
-| GET    | /api/v1/goals/getUserGoals | requires userId                                   | returns all of a users goals |
-| POST   | /api/v1/goals/             | requires goal data object that includes user_id   | adds new goal to goals table |
-| PATCH  | /api/v1/goals/editGoal     | requires goal data object that includes a goal_id | edits goal by id             |
+| Method | Endpoint                   | Send Body                                         | Returns                                         |
+| ------ | -------------------------- | ------------------------------------------------- | ----------------------------------------------- |
+| GET    | /api/v1/goals/getGoalById  | requires goalId                                   | returns goal by goal_id                         |
+| GET    | /api/v1/goals/getUserGoals | requires userId                                   | returns array of a users goals                  |
+| POST   | /api/v1/goals/addNewGoal   | requires goal data object that includes user_id   | adds new goal to goals table and returns new id |
+| PATCH  | /api/v1/goals/editGoal     | requires goal data object that includes a goal_id | edits goal by id                                |
 
 #### Data structures
 
-GET /api/v1/goals/
+GET /api/v1/goals/getGoalById
 Request:
 
 ```
@@ -57,13 +57,14 @@ Response:
 
 ```
 {
-	"goal_id": 1,
-	"user_id": 1,
-	"goal_name": "learn guitar",
-	"why": "impress my partner",
-	"weekly_hours": 20000,
-	"date_created": 778686947,
-	"completed": 0
+    "goalId": 1,
+    "userId": 1,
+    "goalName": "learn guitar",
+    "why": "impress my partner",
+    "weeklyHours": 20000,
+    "dateCreated": 778686947,
+    "completed": 0,
+    "researched": 0
 }
 ```
 
@@ -75,28 +76,50 @@ Request:
 {
     "userId": "1"
 }
-
 ```
 
 Response:
 
 ```
 
-[
 {
-"goal_id": 1,
-"user_id": 1,
-"goal_name": "Learn piano",
-"why": "impress my friends",
-"weekly_hours": 20,
-"date_created": 778686947,
-"completed": 0
+    "userId": "1"
 }
-]
+[
+    {
+        "goalId": 1,
+        "userId": 1,
+        "goalName": "learn guitar",
+        "why": "impress my partner",
+        "weeklyHours": 20000,
+        "dateCreated": 778686947,
+        "completed": 0,
+        "researched": 0
+    },
+    {
+        "goalId": 2,
+        "userId": 1,
+        "goalName": "learn to swim",
+        "why": "impress my friends",
+        "weeklyHours": 20,
+        "dateCreated": 778686947,
+        "completed": 0,
+        "researched": null
+    },
+    {
+        "goalId": 3,
+        "userId": 1,
+        "goalName": "learn to swim",
+        "why": "impress my friends",
+        "weeklyHours": 20,
+        "dateCreated": 778686947,
+        "completed": 0,
+        "researched": null
+    },
 
 ```
 
-POST /api/v1/goals/
+POST /api/v1/goals/addNewGoal
 Request:
 
 ```
@@ -108,7 +131,7 @@ Request:
       "weeklyHours": "20",
       "dateCreated": 778686947,
       "completed": false
-    }
+}
 
 ```
 
@@ -117,9 +140,9 @@ Response:
 ```
 
 {
-"newId": [
-4
-]
+    "newId": [
+        5
+    ]
 }
 
 ```
@@ -129,13 +152,15 @@ Request:
 
 ```
 
-    {
-    	"goal_id": "2",
-    	"goal_name": "Learn to dance",
-    	"why": "I want to get some exercise",
-    	"weekly_hours": 40,
-    	"completed": 0
-    }
+{
+      "goalId": "1",
+      "userId": "1",
+      "goalName": "learn guitar",
+      "why": "impress my partner",
+      "weeklyHours": "20000",
+      "dateCreated": 778686947,
+      "completed": false
+}
 
 ```
 
@@ -149,12 +174,12 @@ OK
 
 ### Sub Goals database
 
-| Method | Endpoint                       | Send Body          | Returns                         |
-| ------ | ------------------------------ | ------------------ | ------------------------------- |
-| GET    | api/v1/subGoals/getSubGoals    | requires goalId    | returns all subgoals by goal_id |
-| GET    | api/v1/subGoals/getSubGoalById | requires subgoalId | subgoal by subgoal_id           |
-| POST   | api/v1/subGoals/addNewSubgoal  | (see request)      |                                 |
-|        |                                |                    |                                 |
+| Method | Endpoint                       | Send Body          | Returns                                          |
+| ------ | ------------------------------ | ------------------ | ------------------------------------------------ |
+| GET    | api/v1/subGoals/getSubGoals    | requires goalId    | returns an array of subgoals by goal_id          |
+| GET    | api/v1/subGoals/getSubGoalById | requires subgoalId | returns subgoal by subgoal_id                    |
+| POST   | api/v1/subGoals/addNewSubgoal  | (see request)      | edits existing subgoal and returns newSubgoal Id |
+|        |                                |                    |                                                  |
 
 ### Data structures:
 
@@ -163,9 +188,8 @@ GET api/v1/subGoals/getSubGoals
 Request:
 
 ```
-
 {
-"goalId": "1"
+    "goalId": "1"
 }
 
 ```
@@ -175,23 +199,31 @@ Response:
 ```
 
 [
-{
-"subgoal_id": 1,
-"goal_id": 1,
-"subgoal_name": "learn C major scale",
-"reward_id": 1,
-"completed": 0,
-"current": 1
-},
-{
-"subgoal_id": 2,
-"goal_id": 1,
-"subgoal_name": "learn major chords",
-"reward_id": 2,
-"completed": 0,
-"current": 1
-}
-]
+    {
+        "subgoalId": 1,
+        "goalId": 1,
+        "subgoalName": "learn C major scale",
+        "rewardId": 1,
+        "completed": 0,
+        "current": 1
+    },
+    {
+        "subgoalId": 2,
+        "goalId": 1,
+        "subgoalName": "learn major chords",
+        "rewardId": 2,
+        "completed": 0,
+        "current": 1
+    },
+    {
+        "subgoalId": 3,
+        "goalId": 1,
+        "subgoalName": "Learn correct fingering",
+        "rewardId": 3,
+        "completed": "false",
+        "current": "true"
+    }
+]]
 
 ```
 
@@ -202,7 +234,7 @@ Request:
 ```
 
 {
-"subgoalId": "2"
+    "subgoalId": "2"
 }
 
 ```
@@ -211,14 +243,14 @@ Response:
 
 ```
 
-    {
-    	"subgoal_id": 2,
-    	"goal_id": 1,
-    	"subgoal_name": "learn major chords",
-    	"reward_id": 2,
-    	"completed": 0,
-    	"current": 1
-    }
+{
+    "subgoalId": 2,
+    "goalId": 1,
+    "subgoalName": "learn major chords",
+    "rewardId": 2,
+    "completed": 0,
+    "current": 1
+}
 
 ```
 
@@ -241,29 +273,57 @@ Response:
 
 ```
 
-    {
-    	"subgoal_id": 2,
-    	"goal_id": 1,
-    	"subgoal_name": "learn major chords",
-    	"reward_id": 2,
-    	"completed": 0,
-    	"current": 1
-    }
+{
+    "newSubgoalId": [
+        3
+    ]
+}
 
 ```
 
 ### resources database
 
-| Method | Endpoint                                 | Send Body          | Returns                |
-| ------ | ---------------------------------------- | ------------------ | ---------------------- |
-| GET    | api/v1/resources/getResourcesBySubGoalId | requires subgoalId | resources by subgoalId |
-| POST   |                                          |                    |                        |
-|        |                                          |                    |                        |
-|        |                                          |                    |                        |
+| Method | Endpoint                                 | Send Body          | Returns                                    |
+| ------ | ---------------------------------------- | ------------------ | ------------------------------------------ |
+| GET    | api/v1/resources/getResourcesByGoalId    | requires goalId    | returns an array of resources by goalId    |
+| GET    | api/v1/resources/getResourcesBySubgoalId | requires subgoalId | returns an array of resources by subgoalId |
+|        |                                          |                    |                                            |
+|        |                                          |                    |                                            |
 
 ### Data structures:
 
-GET api/v1/resources/getResourcesBySubGoalId
+Request:
+
+```
+{
+    "goalId": "1"
+}
+
+```
+
+Response
+
+```
+[
+    {
+        "resourceId": 1,
+        "goalId": 1,
+        "subgoalId": 1,
+        "resourceName": "youtube",
+        "url": "www.youtube.com"
+    },
+    {
+        "resourceId": 2,
+        "goalId": 1,
+        "subgoalId": 2,
+        "resourceName": "piano.com",
+        "url": "www.piano.com"
+    }
+]
+
+```
+
+GET api/v1/resources/getResourcesBySubgoalId
 
 Request:
 
@@ -279,10 +339,10 @@ Response:
 ```
 [
     {
-        "resource_id": 2,
-        "goal_id": 1,
-        "subgoal_id": 2,
-        "resource_name": "piano.com",
+        "resourceId": 2,
+        "goalId": 1,
+        "subgoalId": 2,
+        "resourceName": "piano.com",
         "url": "www.piano.com"
     }
 ]
@@ -291,51 +351,55 @@ Response:
 
 ### user profiles database
 
-| Method | Endpoint      | Send Body        | Returns                 |
-| ------ | ------------- | ---------------- | ----------------------- |
-| GET    | /api/v1/users | requires nothing | returns a list of users |
-| GET    |               |                  |                         |
-|        |               |                  |                         |
-|        |               |                  |                         |
-
-### tasks database
-
-| Method | Endpoint                         | Send Body          | Returns                    |
-| ------ | -------------------------------- | ------------------ | -------------------------- |
-| GET    | api/v1/tasks/getTasksBySubGoalId | requires subgoalId | returns tasks by subgoalId |
-| GET    | api/v1/tasks/getTaskById         | requires taskId    | returns a task by taskId   |
-|        |                                  |                    |                            |
-|        |                                  |                    |                            |
+| Method | Endpoint                  | Send Body        | Returns                       |
+| ------ | ------------------------- | ---------------- | ----------------------------- |
+| GET    | /api/v1/users/getAllUsers | requires nothing | returns an array of all users |
+| GET    |                           |                  |                               |
+|        |                           |                  |                               |
+|        |                           |                  |                               |
 
 ### Data structures:
 
-GET api/v1/tasks/getTasksBySubGoalId
-
-Request:
-
-```
-{
-    "subgoalId": "2"
-}
-
-```
+GET /api/v1/users/getAllUsers
 
 Response:
 
 ```
 [
     {
-        "task_id": 2,
-        "goal_id": 1,
-        "subgoal_id": 2,
-        "task_name": "place holder name 2 from tasks database",
-        "time_spent": "null",
-        "completed": 0,
-        "current": 1
+        "userId": 1,
+        "auth0Id": "auth0_id currently null",
+        "userName": "Timmy Piano",
+        "email": "timmyp@gmail.com",
+        "currentTask": 1
+    },
+    {
+        "userId": 2,
+        "auth0Id": null,
+        "userName": "Johnny Gat",
+        "email": "johnnyg@gmail.com",
+        "currentTask": 1
+    },
+    {
+        "userId": 3,
+        "auth0Id": "currently null",
+        "userName": "Reggie Sax",
+        "email": "johnnyg@gmail.com",
+        "currentTask": 1
     }
 ]
-
 ```
+
+### tasks database
+
+| Method | Endpoint                         | Send Body          | Returns                             |
+| ------ | -------------------------------- | ------------------ | ----------------------------------- |
+| GET    | api/v1/tasks/getTaskById         | requires taskId    | returns a task by taskId            |
+| GET    | api/v1/tasks/getTasksBySubGoalId | requires subgoalId | returns tasks by subgoalId          |
+| GET    | api/v1/tasks/getTasksByGoalId    | requires goalId    | returns an array of tasks by goalId |
+|        |                                  |                    |                                     |
+
+### Data structures:
 
 GET api/v1/tasks/getTaskById
 
@@ -352,15 +416,76 @@ Response:
 
 ```
 {
-	"task_id": 2,
-	"goal_id": 1,
-	"subgoal_id": 2,
-	"task_name": "place holder name 2 from tasks database",
-	"time_spent": "null",
-	"completed": 0,
-	"current": 1
+    "taskId": 2,
+    "goalId": 1,
+    "subgoalId": 2,
+    "taskName": "place holder name 2 from tasks database",
+    "timeSpent": "null",
+    "completed": 0,
+    "current": 1
 }
 
+```
+
+GET api/v1/tasks/getTasksBySubGoalId
+
+Request:
+
+```
+{
+    "subgoalId": "2"
+}
+
+```
+
+Response:
+
+```
+{
+    "taskId": 2,
+    "goalId": 1,
+    "subgoalId": 2,
+    "taskName": "place holder name 2 from tasks database",
+    "timeSpent": "null",
+    "completed": 0,
+    "current": 1
+}
+
+```
+
+GET api/v1/tasks/getTasksByGoalId
+
+Request:
+
+```
+{
+    "goalId": "1"
+}
+```
+
+Response:
+
+```
+[
+    {
+        "taskId": 1,
+        "goalId": 1,
+        "subgoalId": 1,
+        "taskName": "place holder name from tasks database",
+        "timeSpent": "null",
+        "completed": 0,
+        "current": 1
+    },
+    {
+        "taskId": 2,
+        "goalId": 1,
+        "subgoalId": 2,
+        "taskName": "place holder name 2 from tasks database",
+        "timeSpent": "null",
+        "completed": 0,
+        "current": 1
+    }
+]
 ```
 
 # Fullstack boilerplate
