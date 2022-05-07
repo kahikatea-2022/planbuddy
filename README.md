@@ -219,7 +219,7 @@ Response:
 | GET    | api/v1/subGoals/getSubGoals    | requires goalId    | returns an array of subgoals by goal_id          |
 | GET    | api/v1/subGoals/getSubGoalById | requires subgoalId | returns subgoal by subgoal_id                    |
 | POST   | api/v1/subGoals/addNewSubgoal  | (see request)      | edits existing subgoal and returns newSubgoal Id |
-|        |                                |                    |                                                  |
+| PATCH  |                                |                    | confirmation                                     |
 
 ### Data structures:
 

@@ -41,8 +41,19 @@ function addNewSubGoal(newSubGoal, db = connection) {
   return db('sub_goals').insert(data)
 }
 
+//PATCH update completion
+function updateCompletionById(subGoalData, db = connection) {
+  const data = {
+    subgoal_id: subGoalData.goalId,
+    completed: subGoalData.completed,
+  }
+
+  return db('goals').where('subgoal_id', subGoalData.goalId).update(data)
+}
+
 module.exports = {
   getSubGoals,
   getSubGoalById,
   addNewSubGoal,
+  updateCompletionById
 }
