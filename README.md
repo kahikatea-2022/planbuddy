@@ -35,14 +35,12 @@ The final, and one of the most important points, was some guidelines around how 
 
 ### Goals database
 
-| Method | Endpoint                                   | Send Body                                         | Returns                                         |
-| ------ | ------------------------------------------ | ------------------------------------------------- | ----------------------------------------------- |
-| GET    | /api/v1/goals/getGoalById                  | requires goalId                                   | returns goal by goal_id                         |
-| GET    | /api/v1/goals/getUserGoals                 | requires userId                                   | returns array of a users goals                  |
-| POST   | /api/v1/goals/addNewGoal                   | requires goal data object that includes user_id   | adds new goal to goals table and returns new id |
-| PATCH  | /api/v1/goals/editGoal                     | requires goal data object that includes a goal_id | edits goal by id                                |
-| PATCH  | /api/v1/goals/updateGoalCompletionByGoalId | requires goalId and completed boolean             | comfirmation                                    |
-| PATCH  | /api/v1/goals/updateResearchedById         | requires goalId and researched boolean            | comfirmation                                    |
+| Method | Endpoint                   | Send Body                                         | Returns                                         |
+| ------ | -------------------------- | ------------------------------------------------- | ----------------------------------------------- |
+| GET    | /api/v1/goals/getGoalById  | requires goalId                                   | returns goal by goal_id                         |
+| GET    | /api/v1/goals/getUserGoals | requires userId                                   | returns array of a users goals                  |
+| POST   | /api/v1/goals/addNewGoal   | requires goal data object that includes user_id   | adds new goal to goals table and returns new id |
+| PATCH  | /api/v1/goals/editGoal     | requires goal data object that includes a goal_id | edits goal by id                                |
 
 #### Data structures
 
@@ -150,6 +148,7 @@ Response:
 ```
 
 PATCH /api/v1/goals/editGoal
+
 Request:
 
 ```
@@ -172,44 +171,6 @@ Response:
 
 OK
 
-```
-
-PATCH api/v1/goals/updateGoalCompletionByGoalId
-
-Request:
-
-```
-{
-    "goalId": "1",
-    "completed": true
-}
-```
-
-Response:
-
-```
-{
-    "message": "your goal completion was successfully updated"
-}
-```
-
-PATCH api/v1/goals/updateResearchedById
-
-Request:
-
-```
-{
-    "goalId": "1",
-    "researched": true
-}
-```
-
-Response:
-
-```
-{
-    "message": "your goal researched was successfully updated"
-}
 ```
 
 ### Sub Goals database
