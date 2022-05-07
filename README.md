@@ -302,14 +302,14 @@ Response:
 
 | Method | Endpoint                             | Send Body          | Returns                    |
 | ------ | ------------------------------------ | ------------------ | -------------------------- |
-| GET    | api/v1/resources/getTasksBySubGoalId | requires subgoalId | returns tasks by subgoalId |
+| GET    | api/v1/tasks/getTasksBySubGoalId | requires subgoalId | returns tasks by subgoalId |
 | GET    | api/v1/tasks/getTaskById             | requires taskId    | returns a task by taskId   |
 |        |                                      |                    |                            |
 |        |                                      |                    |                            |
 
 ### Data structures:
 
-GET api/v1/resources/getResourcesBySubGoalId
+GET api/v1/tasks/getResourcesBySubGoalId
 
 Request:
 

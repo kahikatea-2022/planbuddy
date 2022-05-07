@@ -59,4 +59,20 @@ router.get('/getTaskById', (req, res) => {
     })
 })
 
+router.post('/addNewTask', (req, res) => {
+  const newTask = req.body
+
+  tasks
+    .addNewTask(newTask)
+    .then((newTaskId) => {
+      res.status(200).json({ newTaskId })
+    })
+    .catch((err) => {
+      console.error(err)
+      res
+        .status(500)
+        .json({ message: 'Something went wrong creating new task' })
+    })
+})
+
 module.exports = router
