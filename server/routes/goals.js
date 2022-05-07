@@ -85,4 +85,19 @@ router.patch('/updateGoalCompletionByGoalId', (req, res) => {
     })
 })
 
+//PATCH /api/v1/goals/
+router.patch('/updateResearchedById', (req, res) => {
+  const data = req.body
+
+  db.updateResearchedById(data)
+    .then(() => {
+      res.status(200).json({ message: 'your goal researched was successfully updated' })
+      return null
+    })
+    .catch((err) => {
+      console.error(err)
+      res.status(500).json({ message: 'Something went wrong updating the researched status' })
+    })
+})
+
 module.exports = router
