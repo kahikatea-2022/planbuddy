@@ -49,7 +49,7 @@ function getTaskById(tasks_id, db = connection) {
 function addNewTask(task, db = connection) {
   const data = {
     goal_id: task.goalId,
-    subgoal_id: task.subGoalId,
+    subgoal_id: task.subgoalId,
     task_name: task.taskName,
     time_spent: task.timeSpent,
     completed: task.completed,

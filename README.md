@@ -640,6 +640,29 @@ Response:
 ]
 ```
 
+PATCH api/v1/tasks/updateTaskById
+Request:
+
+```
+{
+    "taskId": "2",
+    "goalId": "1",
+    "subgoalId": "3",
+    "taskName": "This is the new name",
+    "timeSpent": "this is the new time spent",
+    "completed": true,
+    "current": false
+}
+```
+
+Response:
+
+```
+{
+    "message": "your task was successfully updated"
+}
+```
+
 ### Reflections database
 
 | Method | Endpoint                                  | Send Body             | Returns                                   |
