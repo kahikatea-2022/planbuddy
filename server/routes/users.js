@@ -45,4 +45,18 @@ router.post('/addNewUser', (req, res) => {
   })
 })
 
+//PATCH /api/v1/users
+router.patch('/updateCurrentTaskByUserId', (req, res) => {
+  const data = req.body
+
+  db.updateCurrentTaskByUserId(data)
+  .then(() => {
+    res.status(200).json({ message: 'your update was successful'})
+  })
+  .catch((err) => {
+    console.error(err)
+    res.status(500).json({ message: 'Something went wrong updating the current task by user id' })
+  })
+})
+
 module.exports = router
