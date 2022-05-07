@@ -52,7 +52,7 @@ function updateSubGoalById(newSubGoal, db = connection) {
     current: newSubGoal.current,
   }
 
-  return db('goals').where('subgoal_id', newSubGoal.subgoalId).update(data)
+  return db('sub_goals').where('subgoal_id', newSubGoal.subgoalId).update(data)
 }
 
 module.exports = {
