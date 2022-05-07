@@ -1,4 +1,4 @@
-import { getSubGoals } from '../apis/subGoals'
+import { getSubGoalById, getSubGoals } from '../apis/subGoals'
 
 const SET_SUBGOALS = 'SET_SUBGOALS'
 const SET_SUBGOAL = 'SET_SUBGOAL'
@@ -30,5 +30,11 @@ export function fetchSubGoals(goalId) {
     })
   }
 }
-
-export { SET_SUBGOALS, ADD_SUBGOAL }
+export function fetchSubGoal(subGoalId) {
+  return (dispatch) => {
+    return getSubGoalById(subGoalId).then((data) => {
+      dispatch(setSubGoal(data))
+    })
+  }
+}
+export { SET_SUBGOALS, ADD_SUBGOAL, SET_SUBGOAL }
