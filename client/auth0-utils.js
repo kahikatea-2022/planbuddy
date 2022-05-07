@@ -19,14 +19,14 @@ export async function cacheUser(useAuth0) {
   if (isAuthenticated) {
     try {
       const token = await getAccessTokenSilently()
-      const roles = await getUserRoles(user.sub)
+      // const roles = await getUserRoles(user.sub)
       const userToSave = {
         auth0Id: user.sub,
         email: user.email,
         name: user.nickname,
         token,
-        roles,
       }
+      // removed roles from userToSave
       saveUser(userToSave)
     } catch (err) {
       console.error(err)
