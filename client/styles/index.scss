@@ -43,14 +43,21 @@ table th {
 nav {
   display: flex;
   align-items: center;
-  background-color: black;
-  color: white;
+  color: rgb(8, 6, 6);
   padding: 10px;
   align-self: stretch;
 }
 
 .logo {
   width: 50%;
+  display: flex;
+  flex-direction: row;
+}
+
+.pencil {
+  padding-top: 30px;
+  height: 35px;
+  width: auto;
 }
 
 .sign {
@@ -146,7 +153,6 @@ img {
   align-items: center;
 }
 
-
 button {
   font-family: 'Caveat', cursive;
   font-size: larger;
@@ -155,9 +161,6 @@ button {
 // Mascot
 .mascot {
   height: 20rem;
-
 }
 .mascot.centered {
-
-
 }
