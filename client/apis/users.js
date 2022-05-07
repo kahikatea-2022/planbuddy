@@ -10,7 +10,7 @@ export function getUsers() {
 }
 
 export function addUser(user) {
-  return request.post(rootUrl + '/users').send(user)
+  return request.post(rootUrl + '/users/addNewUser').send(user)
 }
 
 export function getUserRoles(id) {

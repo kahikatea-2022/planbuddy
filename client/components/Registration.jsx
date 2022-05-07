@@ -20,7 +20,17 @@ function Registration() {
       email: user.email,
     })
     console.log('useEffect')
-    if(user?.auth0Id) navigate('/welcome/new')
+    if(user?.auth0Id) {
+      const newUser = {
+        auth0Id: user.auth0Id,
+        userName: user.name,
+        email: user.email,
+        currentTask: null
+      }
+      // console.log(newUser)
+      addUser(newUser).then(console.log)
+      // navigate('/welcome/new')
+    }
   }, [user])
 
   function handleChange(e) {

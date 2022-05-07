@@ -28,6 +28,8 @@ function App() {
       </IfNotAuthenticated>
       <IfAuthenticated>
         <Routes>
+        <Route path="/register" element={<Registration />} />
+
           <Route path="/" element={<LandingPage />} />
           <Route path="/welcome/:type" element={<Welcome />} />
           <Route path="/newgoal" element={<NewGoal />} />
