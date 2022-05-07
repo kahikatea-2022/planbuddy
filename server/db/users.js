@@ -36,7 +36,7 @@ function updateCurrentTaskByUserId(userData, db = connection) {
     user_id: userData.userId,
     current_task: userData.currentTask,
   }
-  return db('user_profiles').where('userId', userData).update(data)
+  return db('user_profiles').where('user_Id', userData.userId).update(data)
 }
 
 module.exports = {
