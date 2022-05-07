@@ -38,5 +38,19 @@ router.get('/getResourcesBySubgoalId', (req, res) => {
   })
 })
 
+//POST /api/v1/resources
+router.get('/addNewResource', (req, res) => {
+  const data = req.body
+
+  db.addNewResource(data)
+  .then((newId) => {
+    res.status(200).json({ newId })
+  })
+  .catch((err) => {
+    console.error(err)
+    res.status(500).json({ message: 'Something went wrong getting resources by subgoalId' })
+  })
+})
+
 
 module.exports = router
