@@ -11,7 +11,6 @@ import CreateSubGoal from './CreateSubGoal'
 import { Routes, Route } from 'react-router-dom'
 import Goal from './Goal'
 import Research from './Research'
-import Reflections from './Reflections'
 import { IfAuthenticated } from './Authenticated'
 
 function App() {
@@ -21,14 +20,12 @@ function App() {
     <div className="app">
       <Nav />
       <Routes>
-        <Route path="/reflections" element={<Reflections />} />
         <Route path="*" element={<LandingPage />} />
         <Route path="/register" element={<Registration />} />
       </Routes>
       {/* <IfAuthenticated> */}
       <Routes>
         <Route path="/newgoal" element={<NewGoal />} />
-
         <Route path="/goal" element={<Goal />} />
         <Route path="/nav" element={<Nav />} />
         <Route path="/research" element={<Research />} />
