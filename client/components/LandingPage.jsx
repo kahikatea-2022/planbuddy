@@ -8,7 +8,7 @@ function LandingPage() {
   function handleLogin(event){
     event.preventDefault()
     loginWithRedirect({
-      redirectUri: `${window.location.origin}/welcome`
+      redirectUri: `${window.location.origin}/welcome/veteran`
     })
   }
   function handleRegister(event){
