@@ -34,6 +34,6 @@ function GoalOverview() {
 // link for existing goal will be subGoal component
 // use Css to make boxes side by side
 // Add Nav bar
-// edit button required top corner
+// edit button required (stretch)
 
 export default GoalOverview
