@@ -13,6 +13,7 @@ import Goal from './Goal'
 import Research from './Research'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import Welcome from './Welcome'
+import PlanBuddy from './PlanBuddy'
 
 function App() {
   cacheUser(useAuth0)
@@ -22,7 +23,7 @@ function App() {
       <Nav />
       <IfNotAuthenticated>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<PlanBuddy />} />
           <Route path="/register" element={<Registration />} />
         </Routes>
       </IfNotAuthenticated>

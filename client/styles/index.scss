@@ -165,10 +165,33 @@ button {
 .mascot.centered {
 }
 
+// Buddy Component
 .Buddy {
   height: 25%;
   width: auto;
   position: absolute;
   right: 0;
   bottom: 0;
+}
+
+.hamburgerMenu {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding-bottom: 150px;
+  padding-right: 25px;
+}
+
+ul {
+  list-style-type: none;
+  text-decoration: none;
+}
+
+a {
+  list-style-type: none;
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(113, 116, 114);
 }

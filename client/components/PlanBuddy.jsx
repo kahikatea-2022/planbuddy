@@ -8,12 +8,23 @@ import Goal from './Goal'
 function PlanBuddy() {
   return (
     <>
-      <div className="hamburgerMenu"></div>
+      <div className="hamburgerMenu">
+        <ul>
+          <li>
+            <a href="http://localhost:3000/goaloverview"> Goals Overview </a>
+          </li>
+          <li>
+            <a href="http://localhost:3000/welcome"> Daily Learning </a>
+          </li>
+        </ul>
+      </div>
 
       <img className="Buddy" src="/images/PlanBuddy.png"></img>
     </>
   )
 }
+
+// need menu to appear only onclick of buddy
 
 // helpful suggestions rendered depending on current component
 
