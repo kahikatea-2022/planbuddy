@@ -1,12 +1,22 @@
 import { format } from 'prettier'
-import React, { useState } from 'react'
+import React, { useState , useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { addGoal, ADD_GOAL } from '../actions/goals'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Goal from './Goal'
+import { fetchGoal } from '../actions/goal'
 // import SubGoal from './SubGoal'
 
 function GoalOverview() {
+  const {goalId} = useParams()
+  const goal = useSelector(state=>state.goal)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    console.log('useEffect')
+    dispatch(fetchGoal(Number(goalId)))
+  }, [])
+  console.log(goal)
+
   return (
     <>
       <Goal />

@@ -13,6 +13,7 @@ export function fetchGoal(id) {
   return (dispatch) => {
     // insert wait indicator dispatch here
     return getGoalById(id).then((data) => {
+      console.log(12, data)
       dispatch(setGoal(data))
     })
   }

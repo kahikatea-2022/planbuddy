@@ -6,10 +6,11 @@ const db = require('../db/goals')
 const router = express.Router()
 
 // GET /api/v1/goals/
-router.get('/getGoalById', (req, res) => {
-  let id = req.body.goalId
-  db
-    .getGoalDataById(id)
+router.get('/getGoalById/:id', (req, res) => {
+  // modified this to take id from URL as I wasnt able to send data for the get request, change back as needed xoxoxo
+  // let id = req.body.goalId
+  const id = Number(req.params.id)
+  db.getGoalDataById(id)
     .then((data) => {
       res.json(data)
       return null
@@ -26,8 +27,7 @@ router.get('/getGoalById', (req, res) => {
 router.get('/getUserGoals', (req, res) => {
   //this is hardcoded and will be replaced by res.body (perhaps)
   let id = req.body.userId
-  db
-    .getUserGoals(id)
+  db.getUserGoals(id)
     .then((data) => {
       res.json(data)
       return null
@@ -43,8 +43,7 @@ router.get('/getUserGoals', (req, res) => {
 // POST /api/v1/plans/
 router.post('/addNewGoal', (req, res) => {
   const goalData = req.body
-  db
-    .addNewGoal(goalData)
+  db.addNewGoal(goalData)
     .then((newId) => {
       res.status(200).json({ newId })
       return null
@@ -60,8 +59,7 @@ router.post('/addNewGoal', (req, res) => {
 //PATCH /api/v1/plans/
 router.patch('/editGoal', (req, res) => {
   const data = req.body
-  db
-    .editGoal(data)
+  db.editGoal(data)
     .then(() => {
       res.sendStatus(200)
       return null
