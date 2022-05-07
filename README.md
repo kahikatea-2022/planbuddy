@@ -377,12 +377,12 @@ Response:
 
 ### user profiles database
 
-| Method | Endpoint                | Send Body        | Returns                       |
-| ------ | ----------------------- | ---------------- | ----------------------------- |
-| GET    | api/v1/users/addNewUser | requires nothing | returns an array of all users |
-| POST   | api/v1/users/addNewUser | (see request)    | returns newUserId             |
-|        |                         |                  |                               |
-|        |                         |                  |                               |
+| Method | Endpoint                            | Send Body        | Returns                        |
+| ------ | ----------------------------------- | ---------------- | ------------------------------ |
+| GET    | api/v1/users/getAllUsers            | requires nothing | returns an array of all users  |
+| POST   | api/v1/users/addNewUser             | (see request)    | returns newUserId              |
+| GET    | api/v1/users/getCurrentTaskByUserId | requires userId  | returns current task by userId |
+|        |                                     |                  |                                |
 
 ### Data structures:
 
@@ -436,6 +436,25 @@ Response:
     "newId": [
         6
     ]
+}
+
+```
+
+GET api/v1/users/getCurrentTaskByUserId
+
+Request:
+
+```
+{
+    "userId": "1"
+}
+```
+
+Response:
+
+```
+{
+    "currentTask": 1
 }
 
 ```

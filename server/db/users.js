@@ -22,6 +22,7 @@ function addUser(userData, db = connection) {
   return db('user_profiles').insert(data)
 }
 
+//GET
 function getCurrentTaskByUserId(userId, db = connection) {
   return db('user_profiles')
     .where('user_id', userId)
@@ -29,10 +30,20 @@ function getCurrentTaskByUserId(userId, db = connection) {
     .first()
 }
 
+//PATCH
+function updateCurrentTaskByUserId(userData, db = connection) {
+  const data = {
+    user_id: userData.userId,
+    current_task: userData.currentTask,
+  }
+  return db('user_profiles').where('userId', userData).update(data)
+}
+
 module.exports = {
   getUsers,
   addUser,
   getCurrentTaskByUserId,
+  updateCurrentTaskByUserId,
 }
 
 //relates to add new user data refactoring
