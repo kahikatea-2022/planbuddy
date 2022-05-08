@@ -35,6 +35,19 @@ function addNewReflection(reflectionData, db = connection) {
   return db('reflections').insert(data)
 }
 
+//PATCH edit reflection by reflectionId
+function editReflection(reflectionData, db = connection) {
+  const data = {
+    reflection_id: reflectionData.reflectionId,
+    goal_id: reflectionData.goalId,
+    task_id: reflectionData.taskId,
+    reflection: reflectionData.reflection,
+  }
+  return db('reflections')
+    .where('reflection_id', data.reflection_id)
+    .update(data)
+}
+
 //DELETE
 function deleteReflectionById(reflectionId, db = connection) {
   return db('reflections').where('reflection_id', reflectionId).del()
@@ -51,4 +64,5 @@ module.exports = {
   addNewReflection,
   deleteReflectionById,
   deleteAllByGoalId,
+  editReflection,
 }
