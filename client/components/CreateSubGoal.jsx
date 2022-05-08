@@ -4,9 +4,10 @@ import { format } from 'prettier'
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { addGoal, ADD_GOAL, fetchGoals } from '../actions/goals'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { addResource } from '../actions/resources'
 import { addTask, setTasks } from '../actions/tasks'
+import { fetchSubGoal } from '../actions/subGoals'
 
 //Steps:
 //Create an add resources form
@@ -40,7 +41,8 @@ function CreateSubGoal() {
   //     current: false,
   //   },
   // ]
-
+  const {subgoalId} = useParams()
+  const subgoal = useSelector(state=>state.subGoal)
   const resources = useSelector((state) => state.resources)
   const tasks = useSelector((state) => state.tasks)
   console.log(resources)
@@ -56,6 +58,9 @@ function CreateSubGoal() {
     current: false,
   })
 
+  useEffect(()=>{
+    dispatch(fetchSubGoal(Number(subgoalId)))
+  },[])
   const handleFormResources = (event) => {
     setInputStateResources({
       ...inputStateResources,
@@ -87,24 +92,27 @@ function CreateSubGoal() {
   // console.log('resourcestate', resources.resource_name)
   return (
     <>
-      <h1>Create SubGoal</h1>
-      <form>
-        <label htmlFor="resource_name">Resources for your learning:</label>
-        <input
-          type="text"
-          id="resource_name"
-          onChange={handleFormResources}
-          value={inputStateResources.resource_name}
-        ></input>
-        <label htmlFor="url">Link to resource:</label>
-        <input
-          type="text"
-          id="url"
-          onChange={handleFormResources}
-          value={inputStateResources.url}
-        ></input>
-        <button onClick={submitHandlerResources}>Add</button>
-      </form>
+      <h1>{subgoal.subgoalName}</h1>
+      <div>
+        <p>Resources:</p>
+        <form>
+          <label htmlFor="resource_name">Name of resource:</label>
+          <input
+            type="text"
+            id="resource_name"
+            onChange={handleFormResources}
+            value={inputStateResources.resource_name}
+          ></input>
+          <label htmlFor="url">Link to resource:</label>
+          <input
+            type="text"
+            id="url"
+            onChange={handleFormResources}
+            value={inputStateResources.url}
+          ></input>
+          <button onClick={submitHandlerResources}>Add</button>
+        </form>
+      </div>
       {/* list to render the resources*/}
       {/* <ul>
         <li>{resources.resource_name}</li>
