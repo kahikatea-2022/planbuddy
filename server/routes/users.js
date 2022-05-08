@@ -59,4 +59,18 @@ router.patch('/updateCurrentTaskByUserId', (req, res) => {
   })
 })
 
+//DELETE /api/v1/users
+router.delete('/deleteUserById', (req, res) => {
+  const userId = req.body.userId
+
+  db.deleteUserById(userId)
+  .then(() => {
+    res.status(200).json({ message: 'user deleted successfully' })
+  })
+  .catch((err) => {
+    console.error(err)
+    res.status(500).json({ message: 'there was an error deleting the user' })
+  })
+})
+
 module.exports = router

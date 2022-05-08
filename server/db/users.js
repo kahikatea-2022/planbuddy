@@ -39,11 +39,17 @@ function updateCurrentTaskByUserId(userData, db = connection) {
   return db('user_profiles').where('user_Id', userData.userId).update(data)
 }
 
+//DELETE
+function deleteUserById(userData, db = connection) {
+  return db('user_profiles').where('user_id', userData).del()
+}
+
 module.exports = {
   getUsers,
   addUser,
   getCurrentTaskByUserId,
   updateCurrentTaskByUserId,
+  deleteUserById,
 }
 
 //relates to add new user data refactoring
