@@ -64,6 +64,7 @@ function NewGoal() {
         onChange={handleForm}
         onKeyUp={advanceForm}
         value={goalData.goalName}
+        autoFocus
       ></input>
       </>}
 
@@ -76,7 +77,8 @@ function NewGoal() {
         onChange={handleForm}
         onKeyUp={advanceForm}
         value={goalData.why}
-      ></input>
+        autoFocus
+        ></input>
       </>}
 
       {formState === 3 &&
@@ -90,7 +92,8 @@ function NewGoal() {
         onChange={handleForm}
         value={goalData.weeklyHours}
         onKeyUp={submitHandler}
-      ></input>
+        autoFocus
+        ></input>
       </>}
     </>
   )
