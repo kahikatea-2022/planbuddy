@@ -29,7 +29,7 @@ function getResourcesBySubGoalId(subgoal_id, db = connection) {
 
 function addNewResource(newResource, db = connection) {
   const data = {
-    resource_id: newResource.resource_id,
+    // resource_id: newResource.resource_id,
     goal_id: newResource.goalId,
     subgoal_id: newResource.subgoalId,
     resource_name: newResource.resourceName,

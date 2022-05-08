@@ -58,6 +58,7 @@ function editGoal(goalData, db = connection) {
     weekly_hours: goalData.weeklyHours,
     date_created: goalData.dateCreated,
     completed: goalData.completed,
+    researched: goalData.researched,
   }
   return db('goals').where('goal_id', data.goal_id).update(data)
 }

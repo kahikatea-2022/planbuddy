@@ -21,7 +21,7 @@ router.get('/getSubGoals/:id', (req, res) => {
 
 // GET /api/v1/subGoals
 router.get('/getSubGoalById/:id', (req, res) => {
-  let id = Number(req.params.subgoalId)
+  let id = Number(req.params.id)
   db.getSubGoalById(id)
     .then((data) => {
       res.json(data)
@@ -52,7 +52,7 @@ router.post('/addNewSubgoal', (req, res) => {
 })
 
 //PATCH /api/v1/subGoals
-router.patch('/upateSubgoalById', (req, res) => {
+router.patch('/updateSubgoalById', (req, res) => {
   const data = req.body
 
   db.updateSubGoalById(data)

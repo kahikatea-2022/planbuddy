@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addGoal} from '../actions/goals'
 import { useNavigate, useParams } from 'react-router-dom'
 import { addNewGoal } from '../apis/goals'
+import { useEffect } from 'react'
 
 function NewGoal() {
   const user = useSelector(state=>state.user)
@@ -23,9 +24,11 @@ function NewGoal() {
   const [goalData, setGoalData] = useState(inputData)
   const [name, setName] = useState('')
   const handleForm = (event) => {
-    setGoalData({ ...goalData, [event.target.id]: event.target.value })
+    setGoalData({ ...goalData,userId: user?.id, [event.target.id]: event.target.value })
     console.log(goalData)
   }
+  
+  useEffect(()=>{},[user])
   function handleFormName(event){
     setName(event.target.value)
   }
@@ -61,6 +64,7 @@ function NewGoal() {
         onChange={handleForm}
         onKeyUp={advanceForm}
         value={goalData.goalName}
+        autoFocus
       ></input>
       </>}
 
@@ -73,7 +77,8 @@ function NewGoal() {
         onChange={handleForm}
         onKeyUp={advanceForm}
         value={goalData.why}
-      ></input>
+        autoFocus
+        ></input>
       </>}
 
       {formState === 3 &&
@@ -87,7 +92,8 @@ function NewGoal() {
         onChange={handleForm}
         value={goalData.weeklyHours}
         onKeyUp={submitHandler}
-      ></input>
+        autoFocus
+        ></input>
       </>}
     </>
   )

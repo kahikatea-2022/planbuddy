@@ -2,34 +2,77 @@ import { format } from 'prettier'
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { addGoal, ADD_GOAL, fetchGoals } from '../actions/goals'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { fetchGoal } from '../actions/goal'
+import { updateGoal } from '../apis/goal'
+import { addSubGoal } from '../apis/subGoals'
 
 function Research() {
+  const navigate = useNavigate()
   const goals = useSelector((state) => state.goals)
-
+  const goal = useSelector(state=>state.goal)
+  const user = useSelector(state=>state.user)
+  const [subgoals, setSubgoals] = useState({
+    input1: '',
+    input2: '',
+    input3: '',
+  })
+  const {goalId} = useParams()
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchGoals())
-  }, [])
+    
+    dispatch(fetchGoal(Number(goalId)))
+    //needs ID
+  }, [user])
+  
+  function handleForm(event) {
+    setSubgoals({ ...subgoals, [event.target.id]: event.target.value })
+    console.log(subgoals)
+  }
+  function completeHandler(e){
+    e.preventDefault()
+    const entries = Object.values(subgoals).filter(el=>el !== '')
+    if(entries.length >= 3) completeResearch(Number(goalId), entries)
+    //needs to update goal status to researched
+    // only available after adding 3 sub goals
+    // adds the fresh subgoals to the database
+  }
+  function completeResearch(id, entries){
+    const updateData = {goalId: id, researched: true}
+    updateGoal(updateData).then(async (res)=>{
+      const redir = await addSubGoal({goalId: id, subgoalName: entries[0], completed: false, current: false})
+      await addSubGoal({goalId: id, subgoalName: entries[1], completed: false, current: false})
+      await addSubGoal({goalId: id, subgoalName: entries[2], completed: false, current: false})
+      navigate('/subgoal/' + redir)
+    }).catch(console.error)
 
+  }
   return (
-    goals.length !== 0 && (
+    
       <>
         <h1>Research Time!</h1>
-        <p>Start by googling {goals[0].goal_name} basics</p>
-        <p>Find and write down sub goals for {goals[0].goal_name}</p>
-        <p>Create a sub goal to get started!</p>
+        <p>Start by googling {goal.goalName} basics</p>
+        <p>Find and write down 3 sub goals for {goal.goalName} </p>
+        <p>Once Done press complete Research to continue!</p>
+        <label htmlFor='input1'>Subgoal 1: 
+        <input onChange={handleForm} id='input1' name='input1' type={'text'}/>
+        x</label>
+        <label htmlFor='input2'>Subgoal 2: 
+        <input onChange={handleForm} id='input2' name='input2' type={'text'}/>
+        x</label>
+        <label htmlFor='input3'>Subgoal 3: 
+        <input onChange={handleForm} id='input3' name='input3' type={'text'}/>
+        x</label>
 
-        <div className="subGoalCreator">
-          {/* <a href='' > */}
+        {/* <div  className="subGoalCreator">
           <img src="/images/greyPencil.png"></img>
           <p>click to add subgoal</p>
-          {/* </a> */}
-        </div>
+        </div> */}
+        <button onClick={completeHandler}>Complete Research</button>
       </>
     )
-  )
+  
 }
 
 // need to add planBuddy nav index

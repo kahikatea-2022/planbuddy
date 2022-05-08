@@ -19,8 +19,7 @@ export function getGoals() {
 // URL will need checking
 export function getGoalsByUserId(id) {
   return request
-    .get(`${rootUrl}/goals/getUserGoals/`)
-    .send({ goalId: id })
+    .get(`${rootUrl}/goals/getUserGoals/` + id)
     .then((res) => res.body)
 }
 export function addNewGoal(goal) {

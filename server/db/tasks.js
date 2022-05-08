@@ -60,6 +60,7 @@ function addNewTask(task, db = connection) {
 
 //PATCH
 function updateTaskById(task, db = connection) {
+  console.log(task)
   const data = {
     task_id: task.taskId,
     goal_id: task.goalId,
