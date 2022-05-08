@@ -1,12 +1,12 @@
 const initialState = [
-  {
-    resource_name: 'youtube',
-    url: 'www.youtube.com',
-  },
-  {
-    resource_name: 'udemy',
-    url: 'www.udemy.com',
-  },
+  // {
+  //   resource_name: 'youtube',
+  //   url: 'www.youtube.com',
+  // },
+  // {
+  //   resource_name: 'udemy',
+  //   url: 'www.udemy.com',
+  // },
 ]
 
 export default function resources(state = initialState, action) {

@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { addGoal, ADD_GOAL, fetchGoals } from '../actions/goals'
 import { useNavigate, useParams } from 'react-router-dom'
-import { addResource } from '../actions/resources'
+import { addResource, fetchResources } from '../actions/resources'
 import { addTask, setTasks } from '../actions/tasks'
 import { fetchSubGoal } from '../actions/subGoals'
 
@@ -60,6 +60,7 @@ function CreateSubGoal() {
 
   useEffect(()=>{
     dispatch(fetchSubGoal(Number(subgoalId)))
+    dispatch(fetchResources(Number(subgoalId)))
   },[])
   const handleFormResources = (event) => {
     setInputStateResources({
@@ -95,6 +96,13 @@ function CreateSubGoal() {
       <h1>{subgoal.subgoalName}</h1>
       <div>
         <p>Resources:</p>
+        <ul>
+          {resources.map(resource=>{
+            return(
+              <li key={resource.resourceName + resource.resourceId}><a>{resource.resource_name}</a></li>
+            )
+          })}
+        </ul>
         <form>
           <label htmlFor="resource_name">Name of resource:</label>
           <input
