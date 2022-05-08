@@ -15,6 +15,7 @@ import Research from './Research'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import Welcome from './Welcome'
 import GoalOverview from './GoalOverview'
+import DailyLearning from './DailyLearning'
 
 function App() {
   cacheUser(useAuth0)
@@ -37,8 +38,8 @@ function App() {
           <Route path="/veteranview" element={<VeteranView />} />
           <Route path="/goal/:goalId" element={<GoalOverview />} />
           <Route path="/subgoal/:subgoalId" element={<CreateSubGoal />} />
-          <Route path="/nav" element={<Nav />} />
           <Route path="/research/:goalId" element={<Research />} />
+          <Route path="/dailylearning/:taskid" element={<DailyLearning />} />
           <Route path="/" element={<Users />} />
           {/* <Route path="/" element={<PingRoutes />} /> */}
         </Routes>
