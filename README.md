@@ -345,12 +345,12 @@ Response:
 
 ### resources database
 
-| Method | Endpoint                                 | Send Body          | Returns                                    |
-| ------ | ---------------------------------------- | ------------------ | ------------------------------------------ |
-| GET    | api/v1/resources/getResourcesByGoalId    | requires goalId    | returns an array of resources by goalId    |
-| GET    | api/v1/resources/getResourcesBySubgoalId | requires subgoalId | returns an array of resources by subgoalId |
-| POST   | api/v1/resources/addNewResource          | (see request)      | returns newResourceId                      |
-|        |                                          |                    |                                            |
+| Method | Endpoint                                 | Send Body           | Returns                                    |
+| ------ | ---------------------------------------- | ------------------- | ------------------------------------------ |
+| GET    | api/v1/resources/getResourcesByGoalId    | requires goalId     | returns an array of resources by goalId    |
+| GET    | api/v1/resources/getResourcesBySubgoalId | requires subgoalId  | returns an array of resources by subgoalId |
+| POST   | api/v1/resources/addNewResource          | (see request)       | returns newResourceId                      |
+| DELETE | api/v1/resources/deleteResourceById      | requires resourceId | confirmation                               |
 
 ### Data structures:
 
@@ -435,6 +435,24 @@ Response:
     ]
 }
 
+```
+
+DELETE api/v1/resources/deleteResourceById
+
+Request:
+
+```
+{
+    "resourceId": "1"
+}
+```
+
+Response:
+
+```
+{
+    "message": "resource deleted successfully"
+}
 ```
 
 ### user profiles database
