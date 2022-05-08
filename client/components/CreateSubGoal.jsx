@@ -8,6 +8,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { addResource, fetchResources } from '../actions/resources'
 import { addTask, setTasks } from '../actions/tasks'
 import { fetchSubGoal } from '../actions/subGoals'
+import { addNewResource } from '../apis/resources'
 
 //Steps:
 //Create an add resources form
@@ -48,7 +49,7 @@ function CreateSubGoal() {
   console.log(resources)
 
   const [inputStateResources, setInputStateResources] = useState({
-    resource_name: '',
+    resourceName: '',
     url: '',
   })
 
@@ -56,6 +57,8 @@ function CreateSubGoal() {
     name: '',
     completed: false,
     current: false,
+    goalId: subgoal.goalId,
+    subgoalId: subgoal.subgoalId
   })
 
   useEffect(()=>{
@@ -79,7 +82,12 @@ function CreateSubGoal() {
 
   function submitHandlerResources(event) {
     event.preventDefault()
-    dispatch(addResource(inputStateResources))
+    const newResource = {...inputStateResources, goalId: subgoal.goalId, subgoalId: subgoal.subgoalId}
+    addNewResource(newResource).then(res=>{
+      const newId = res.newResourceId[0]
+      dispatch(addResource({...newResource, resourceId: newId}))
+
+    }).catch(console.error)
   }
 
   function submitHandlerTasks(event) {
@@ -104,10 +112,10 @@ function CreateSubGoal() {
           })}
         </ul>
         <form>
-          <label htmlFor="resource_name">Name of resource:</label>
+          <label htmlFor="resourceName">Name of resource:</label>
           <input
             type="text"
-            id="resource_name"
+            id="resourceName"
             onChange={handleFormResources}
             value={inputStateResources.resource_name}
           ></input>

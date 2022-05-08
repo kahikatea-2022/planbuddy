@@ -8,3 +8,9 @@ export function getResourcesBySubGoalId(id) {
     .get(rootUrl + '/resources/getResourcesBySubgoalId/' + id)
     .then((res) => res.body)
 }
+export function addNewResource(resource) {
+  return request
+    .post(`${rootUrl}/resources/addNewResource`)
+    .send(resource)
+    .then((res) => res.body)
+}
