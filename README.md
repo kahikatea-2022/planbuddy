@@ -194,12 +194,13 @@ Response:
 
 ### Sub Goals database
 
-| Method | Endpoint                         | Send Body          | Returns                                          |
-| ------ | -------------------------------- | ------------------ | ------------------------------------------------ |
-| GET    | api/v1/subGoals/getSubGoals      | requires goalId    | returns an array of subgoals by goal_id          |
-| GET    | api/v1/subGoals/getSubGoalById   | requires subgoalId | returns subgoal by subgoal_id                    |
-| POST   | api/v1/subGoals/addNewSubgoal    | (see request)      | edits existing subgoal and returns newSubgoal Id |
-| PATCH  | api/v1/subGoals/upateSubgoalById | (see request)      | confirmation                                     |
+| Method | Endpoint                          | Send Body          | Returns                                          |
+| ------ | --------------------------------- | ------------------ | ------------------------------------------------ |
+| GET    | api/v1/subGoals/getSubGoals       | requires goalId    | returns an array of subgoals by goal_id          |
+| GET    | api/v1/subGoals/getSubGoalById    | requires subgoalId | returns subgoal by subgoal_id                    |
+| POST   | api/v1/subGoals/addNewSubgoal     | (see request)      | edits existing subgoal and returns newSubgoal Id |
+| PATCH  | api/v1/subGoals/upateSubgoalById  | (see request)      | confirmation                                     |
+| DELETE | api/v1/subGoals/deleteSubgoalById | requires subgoalId | confirmation                                     |
 
 ### Data structures:
 
@@ -321,6 +322,24 @@ Response:
 ```
 {
     "message": "your subgoal was successfully updated"
+}
+```
+
+DELETE api/v1/subGoals/deleteSubgoalById
+
+Request:
+
+```
+{
+    "subgoalId": "1"
+}
+```
+
+Response:
+
+```
+{
+    "message": "subgoal deleted successfully"
 }
 ```
 
