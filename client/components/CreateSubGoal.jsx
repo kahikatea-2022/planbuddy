@@ -9,6 +9,7 @@ import { addResource, fetchResources } from '../actions/resources'
 import { addTask, setTasks } from '../actions/tasks'
 import { fetchSubGoal } from '../actions/subGoals'
 import { addNewResource } from '../apis/resources'
+import { addNewTask } from '../apis/tasks'
 
 //Steps:
 //Create an add resources form
@@ -54,11 +55,12 @@ function CreateSubGoal() {
   })
 
   const [inputStateTasks, setInputStateTasks] = useState({
-    name: '',
+    taskName: '',
     completed: false,
     current: false,
     goalId: subgoal.goalId,
-    subgoalId: subgoal.subgoalId
+    subgoalId: subgoal.subgoalId,
+    timeSpent: 0
   })
 
   useEffect(()=>{
@@ -92,7 +94,12 @@ function CreateSubGoal() {
 
   function submitHandlerTasks(event) {
     event.preventDefault()
-    dispatch(addTask(inputStateTasks))
+    const newTask = {...inputStateTasks, goalId: subgoal.goalId, subgoalId: subgoal.subgoalId}
+    addNewTask(newTask).then(res=>{
+      const newId = res.newTaskId[0]
+      dispatch(addTask({...newTask, taskId: newId}))
+    }).catch(console.error)
+    
   }
 
   // useEffect(() => {
@@ -107,7 +114,7 @@ function CreateSubGoal() {
         <ul>
           {resources.map(resource=>{
             return(
-              <li key={resource.resourceName + resource.resourceId}><a>{resource.resource_name}</a></li>
+              <li key={resource.resourceName + resource.resourceId}><a href={resource.url}>{resource.resourceName}</a></li>
             )
           })}
         </ul>
@@ -135,9 +142,16 @@ function CreateSubGoal() {
       </ul> */}
       <form>
         <h2>Great work, now add your first tasks</h2>
+        <ul>
+          {tasks.map(task=>{
+            return(
+              <li key={task.taskName + task.taskId}>{task.taskName}</li>
+            )
+          })}
+        </ul>
         <input
           type="text"
-          id="name"
+          id="taskName"
           value={inputStateTasks.name}
           onChange={handleFormTasks}
         ></input>

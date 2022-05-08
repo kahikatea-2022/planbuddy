@@ -13,3 +13,9 @@ export function getTasksBySubGoalId(id) {
     .get(rootUrl + '/tasks/getTasksBySubGoalId/' + id)
     .then((res) => res.body)
 }
+export function addNewTask(task) {
+  return request
+    .post(rootUrl + '/tasks/addNewTask/')
+    .send(task)
+    .then((res) => res.body)
+}
