@@ -50,11 +50,14 @@ function editResource(newResource, db = connection) {
   return db('resources').where('resource_id', data.resource_id).update(data)
 }
 
-
-
 //DELETE
 function deleteResourceById(resourceId, db = connection) {
   return db('resources').where('resource_id', resourceId).del()
+}
+
+//DELETE whole plan data by goal id DANGER ZONE!!!!!
+function deleteAllByGoalId(goalId, db = connection) {
+  return db('resources').where('goal_id', goalId).del()
 }
 
 module.exports = {
@@ -63,4 +66,5 @@ module.exports = {
   addNewResource,
   deleteResourceById,
   editResource,
+  deleteAllByGoalId,
 }

@@ -44,12 +44,18 @@ function deleteUserById(userData, db = connection) {
   return db('user_profiles').where('user_id', userData).del()
 }
 
+//DELETE whole plan data by goal id DANGER ZONE!!!!!
+function deleteAllByGoalId(goalId, db = connection) {
+  return db('user_profiles').where('goal_id', goalId).del()
+}
+
 module.exports = {
   getUsers,
   addUser,
   getCurrentTaskByUserId,
   updateCurrentTaskByUserId,
   deleteUserById,
+  deleteAllByGoalId,
 }
 
 //relates to add new user data refactoring
