@@ -40,8 +40,8 @@ router.get('/getTasksbySubgoalId/:id', (req, res) => {
 
 //GET /api/v1/tasks
 // get task by task ID
-router.get('/getTaskById', (req, res) => {
-  const id = req.body.taskId
+router.get('/getTaskById/:id', (req, res) => {
+  const id = req.params.id
 
   db.getTaskById(id)
     .then((data) => {
@@ -72,21 +72,19 @@ router.post('/addNewTask', (req, res) => {
     })
 })
 
-
 //DELETE /api/v1/tasks
 router.delete('/deleteTaskById', (req, res) => {
   const taskId = req.body.taskId
 
   db.deleteTaskById(taskId)
-  .then(() => {
-    res.status(200).json({ message: 'task deleted successfully' })
-  })
-  .catch((err) => {
-    console.error(err)
-    res.status(500).json({ message: 'there was an error deleting the task' })
-  })
+    .then(() => {
+      res.status(200).json({ message: 'task deleted successfully' })
+    })
+    .catch((err) => {
+      console.error(err)
+      res.status(500).json({ message: 'there was an error deleting the task' })
+    })
 })
-
 
 router.patch('/updateTaskById/', (req, res) => {
   const update = req.body
