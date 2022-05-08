@@ -47,7 +47,7 @@ function editResource(newResource, db = connection) {
     resource_name: newResource.resourceName,
     url: newResource.url,
   }
-  return db('resources').where('resource_id', data.resourceId).update(data)
+  return db('resources').where('resource_id', data.resource_id).update(data)
 }
 
 
