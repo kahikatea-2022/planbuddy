@@ -70,5 +70,19 @@ router.patch('/editGoal', (req, res) => {
     })
 })
 
+//DELETE /api/v1/goals
+router.delete('/deleteGoalById', (req, res) => {
+  const goalId = req.body.goalId
+
+  db.deleteGoalById(goalId)
+  .then(() => {
+    res.status(200).json({ message: 'goal deleted successfully' })
+  })
+  .catch((err) => {
+    console.error(err)
+    res.status(500).json({ message: 'there was an error deleting the goal' })
+  })
+})
+
 
 module.exports = router
