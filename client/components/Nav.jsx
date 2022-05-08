@@ -28,7 +28,9 @@ function Nav() {
   return (
     <nav>
       <div className="logo">
-        <h1>PlanBuddy</h1>
+        <u>
+          <h1>PlanBuddy</h1>
+        </u>
         <img className="pencil" src="/images/Pencil.png"></img>
       </div>
       <section className="nav-item">

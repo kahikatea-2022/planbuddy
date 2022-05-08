@@ -54,8 +54,9 @@ nav {
   flex-direction: row;
 }
 
+// this is the pencil
 .pencil {
-  padding-top: 30px;
+  padding-top: 5px;
   height: 35px;
   width: auto;
 }
@@ -107,6 +108,7 @@ a {
   font-family: 'Courier New', Courier, monospace;
 }
 
+// this makes the buttons sit side by side and have a bit of a gap between them
 .buttons {
   display: flex;
   flex-direction: row;
@@ -131,14 +133,24 @@ body {
   font-family: 'Caveat', cursive;
 }
 
-p,
-h1 {
+p {
   color: #4a4848;
-  // padding: 0px;
-  // margin: 0px;
+  padding: 0px;
+  margin: 0px;
 }
 
-// this img refers to the pencil next to the PlanBuddy Logo
+h1 {
+  color: #4a4848;
+  padding: 0px;
+  margin: 0px;
+}
+
+h2 {
+  color: #4a4848;
+  padding: 0px;
+  margin: 0px;
+}
+
 img {
   height: 100px;
   width: 100px;

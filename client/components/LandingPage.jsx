@@ -22,9 +22,9 @@ function LandingPage() {
   return (
     <>
       <h1>PlanBuddy</h1>
-      <h2>Helping you with the planning so you can focus on the learning!</h2>
+      <p>Helping you with the planning so you can focus on the learning!</p>
       {!isAuthenticated && (
-        <div className="flex">
+        <div className="buttons">
           <button onClick={handleLogin}>Sign In</button>
           <button onClick={handleRegister}>New User</button>
         </div>
