@@ -9,7 +9,7 @@ function DailyLearning() {
   const task = useSelector(state=>state.task)
   const subgoal = useSelector(state=>state.subgoal)
   const resources = useSelector(state=>state.resources)
-  const reflections = useSelector(state =>state.reflections)
+  const reflections = useSelector(state=>state.reflections)
 
   const {taskid} = useParams()
   return (
