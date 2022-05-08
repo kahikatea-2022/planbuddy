@@ -780,7 +780,8 @@ Response:
 | GET    | api/v1/reflections/getReflectionById      | requires reflectionId | returns reflection by reflectionId        |
 | GET    | api/v1/reflections/getReflectionsByTaskId | requires taskId       | returns an array of reflections by taskId |
 | POST   | api/v1/reflections/addNewReflection       | (see request)         | returns newReflectionId                   |
-| DELETE | api/v1/reflections/deleteReflectionById   | requires reflectionId | dletes reflection by ID                   |
+| PATCH  | api/v1/reflections/editReflectionById     | (see request)         | returns confirmation                      |
+| DELETE | api/v1/reflections/deleteReflectionById   | requires reflectionId | deletes reflection by ID                  |
 
 ### Data structures:
 
@@ -862,6 +863,27 @@ Response:
 ]
 }
 
+```
+
+PATCH api/v1/reflections/editReflectionById
+
+Request:
+
+```
+{
+    "reflectionId": "1",
+    "goalId": "1",
+    "taskId": "1",
+    "reflection": "updated reflection blah blah"
+}
+```
+
+Response:
+
+```
+{
+    "message": "reflection edited successfully"
+}
 ```
 
 DELETE api/v1/reflections/deleteReflectionById
