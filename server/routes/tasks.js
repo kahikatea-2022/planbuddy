@@ -59,6 +59,7 @@ router.get('/getTaskById', (req, res) => {
     })
 })
 
+//POST /api/v1/tasks
 router.post('/addNewTask', (req, res) => {
   const newTask = req.body
 
@@ -73,6 +74,20 @@ router.post('/addNewTask', (req, res) => {
         .status(500)
         .json({ message: 'Something went wrong creating new task' })
     })
+})
+
+//DELETE /api/v1/tasks
+router.delete('/deleteTaskById', (req, res) => {
+  const taskId = req.body.taskId
+
+  db.deleteTaskById(taskId)
+  .then(() => {
+    res.status(200).json({ message: 'task deleted successfully' })
+  })
+  .catch((err) => {
+    console.error(err)
+    res.status(500).json({ message: 'there was an error deleting the task' })
+  })
 })
 
 module.exports = router
