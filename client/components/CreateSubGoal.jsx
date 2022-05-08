@@ -115,10 +115,6 @@ function CreateSubGoal() {
       navigate('/goal/' + subgoal.goalId)
     }).catch(console.error)
   }
-  // useEffect(() => {
-  //   dispatch(setTasks())
-  // }, [])
-  // console.log('resourcestate', resources.resource_name)
   return (
     <>
       <h1>{subgoal.subgoalName}</h1>
