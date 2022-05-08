@@ -727,7 +727,7 @@ Response:
 | GET    | api/v1/reflections/getReflectionById      | requires reflectionId | returns reflection by reflectionId        |
 | GET    | api/v1/reflections/getReflectionsByTaskId | requires taskId       | returns an array of reflections by taskId |
 | POST   | api/v1/reflections/addNewReflection       | (see request)         | returns newReflectionId                   |
-|        |                                           |                       |                                           |
+| DELETE | api/v1/reflections/deleteReflectionById  | requires reflectionId  | dletes reflection by ID                   |
 
 ### Data structures:
 
@@ -798,6 +798,24 @@ Response:
     "newReflectionId": [
         4
     ]
+}
+```
+
+DELETE api/v1/reflections/deleteReflectionById
+
+Request:
+
+```
+{
+	"reflectionId": "1"
+}
+```
+
+Response:
+
+```
+{
+	"message": "reflection deleted successfully"
 }
 ```
 
