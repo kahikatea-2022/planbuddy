@@ -34,7 +34,6 @@ export function fetchTask(id) {
   return (dispatch) => {
     // insert wait indicator dispatch here
     return getTask(id).then((data) => {
-      console.log(data)
       dispatch(setTask(data))
     })
   }
