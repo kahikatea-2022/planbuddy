@@ -48,7 +48,7 @@ function DailyLearning() {
         <ul>
           {reflections.map(reflection=>{
             return(
-              <li key={reflection.reflection + reflection.reflectionId}>{reflection.reflection.slice(0, 15) + '...'}</li>
+              <li key={reflection.reflection + reflection.reflectionId}>{reflection.reflection.slice(15) + '...'}</li>
             )
           })}
         </ul>
