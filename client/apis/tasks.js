@@ -19,9 +19,9 @@ export function addNewTask(task) {
     .send(task)
     .then((res) => res.body)
 }
-export function updateTaskCompletion(id, bool) {
+export function updateTaskCompletion(task, bool) {
   return request
-    .patch(rootUrl + '/tasks/updateTaskById/' + id)
-    .send({ completed: bool })
+    .patch(rootUrl + '/tasks/updateTaskById/')
+    .send({ taskId: task.taskId, completed: bool })
     .then((res) => res.body)
 }

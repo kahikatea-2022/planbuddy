@@ -71,4 +71,16 @@ router.post('/addNewTask', (req, res) => {
     })
 })
 
+router.patch('/updateTaskById/', (req, res) => {
+  const update = req.body
+  db.updateTaskById(update)
+    .then((response) => {
+      res.status(200).json({ response })
+      console.log(update)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.status(500).json({ message: 'Something went wrong updating task' })
+    })
+})
 module.exports = router

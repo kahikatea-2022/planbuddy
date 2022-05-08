@@ -9,7 +9,7 @@ import { addResource, fetchResources } from '../actions/resources'
 import { addTask, fetchTasks, setTasks } from '../actions/tasks'
 import { fetchSubGoal } from '../actions/subGoals'
 import { addNewResource } from '../apis/resources'
-import { addNewTask } from '../apis/tasks'
+import { addNewTask, updateTaskCompletion } from '../apis/tasks'
 
 //Steps:
 //Create an add resources form
@@ -102,9 +102,10 @@ function CreateSubGoal() {
     }).catch(console.error)
     
   }
-  function checkboxHandler(){
+  function checkboxHandler(task){
     setCheckboxState(!checkboxState)
-    console.log(!checkboxState)
+    // console.log(!checkboxState)
+    updateTaskCompletion(task, !checkboxState)
   }
   // useEffect(() => {
   //   dispatch(setTasks())
@@ -150,7 +151,7 @@ function CreateSubGoal() {
           {tasks.map(task=>{
             return(
               <li key={task.taskName + task.taskId}>
-                <input onChange={checkboxHandler} type={'checkbox'}/>{task.taskName}
+                <input onChange={()=>checkboxHandler(task)} type={'checkbox'} defaultChecked={task.completed}/>{task.taskName}
               </li>
             )
           })}
