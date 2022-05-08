@@ -133,8 +133,24 @@ body {
 
 p,
 h1 {
-  color: #2d2c2c;
+  color: #4a4848;
+  // padding: 0px;
+  // margin: 0px;
 }
+
+// this img refers to the pencil next to the PlanBuddy Logo
+img {
+  height: 100px;
+  width: 100px;
+  align-items: center;
+  padding-left: 0px;
+  padding-top: 5px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  border-bottom: 0px;
+}
+
+// for the pencil in the square
 
 .subGoalCreator {
   display: flex;
@@ -142,15 +158,26 @@ h1 {
   border-style: solid;
   border-radius: 25px;
   border-width: 2px;
-  border-color: darkgrey;
-  padding: 5px;
-  margin: 2px;
+  border-color: #4a4848;
+  // padding: 5px;
+  // margin: 2px;
+  height: 120px;
+  width: 160px;
 }
 
-img {
-  height: 45px;
-  width: auto;
-  align-items: center;
+.pencilButtonImg {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-left: 30px;
+  padding-bottom: 0px;
+}
+
+.pencilButtonText {
+  margin-bottom: 0px;
+  padding-bottom: 5px;
+  padding-top: 0px;
+  margin-top: 0px;
+  padding-left: 10px;
 }
 
 button {
