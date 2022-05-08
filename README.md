@@ -43,7 +43,7 @@ The final, and one of the most important points, was some guidelines around how 
 | PATCH  | /api/v1/goals/editGoal       | requires goal data object that includes a goal_id | edits goal by id                                |
 | DELETE | /api/v1/users/deleteGoalById | requires goalId                                   | returns confirmation                            |
 
-#### Data structures
+### Data structures
 
 GET /api/v1/goals/getGoalById
 Request:
@@ -350,6 +350,7 @@ Response:
 | GET    | api/v1/resources/getResourcesByGoalId    | requires goalId     | returns an array of resources by goalId    |
 | GET    | api/v1/resources/getResourcesBySubgoalId | requires subgoalId  | returns an array of resources by subgoalId |
 | POST   | api/v1/resources/addNewResource          | (see request)       | returns newResourceId                      |
+| PATCH  | api/v1/resources/editResource/           | (see request)       | confirmation                               |
 | DELETE | api/v1/resources/deleteResourceById      | requires resourceId | confirmation                               |
 
 ### Data structures:
@@ -437,21 +438,45 @@ Response:
 
 ```
 
-DELETE api/v1/resources/deleteResourceById
+PATCH api/v1/resources/editResource/
 
 Request:
 
 ```
 {
-    "resourceId": "1"
+    {
+	"resourceId":"1",
+	"goalId":"1",
+	"subgoalId":"1",
+	"resourceName":"Bonjour",
+	"url":"www.Bonjour.com"
 }
+```
+
+OK
+
+```
+}
+
+DELETE api/v1/resources/deleteResourceById
+
+```
+
+Request:
+
+```
+
+{
+"resourceId": "1"
+}
+
 ```
 
 Response:
 
 ```
 {
-    "message": "resource deleted successfully"
+"message": "resource deleted successfully"
 }
 ```
 
@@ -472,40 +497,43 @@ GET /api/v1/users/getAllUsers
 Response:
 
 ```
+
 [
-    {
-        "userId": 1,
-        "auth0Id": "auth0_id currently null",
-        "userName": "Timmy Piano",
-        "email": "timmyp@gmail.com",
-        "currentTask": 1
-    },
-    {
-        "userId": 2,
-        "auth0Id": null,
-        "userName": "Johnny Gat",
-        "email": "johnnyg@gmail.com",
-        "currentTask": 1
-    },
-    {
-        "userId": 3,
-        "auth0Id": "currently null",
-        "userName": "Reggie Sax",
-        "email": "johnnyg@gmail.com",
-        "currentTask": 1
-    }
+{
+"userId": 1,
+"auth0Id": "auth0_id currently null",
+"userName": "Timmy Piano",
+"email": "timmyp@gmail.com",
+"currentTask": 1
+},
+{
+"userId": 2,
+"auth0Id": null,
+"userName": "Johnny Gat",
+"email": "johnnyg@gmail.com",
+"currentTask": 1
+},
+{
+"userId": 3,
+"auth0Id": "currently null",
+"userName": "Reggie Sax",
+"email": "johnnyg@gmail.com",
+"currentTask": 1
+}
 ]
+
 ```
 
 POST api/v1/users/addNewUser
 Request:
 
 ```
+
 {
-    "auth0Id": "currently null",
-    "userName": "Reggie Sax",
-    "email": "johnnyg@gmail.com",
-    "currentTask": "1"
+"auth0Id": "currently null",
+"userName": "Reggie Sax",
+"email": "johnnyg@gmail.com",
+"currentTask": "1"
 }
 
 ```
@@ -513,10 +541,11 @@ Request:
 Response:
 
 ```
+
 {
-    "newId": [
-        6
-    ]
+"newId": [
+6
+]
 }
 
 ```
@@ -526,16 +555,19 @@ GET api/v1/users/getCurrentTaskByUserId
 Request:
 
 ```
+
 {
-    "userId": "1"
+"userId": "1"
 }
+
 ```
 
 Response:
 
 ```
+
 {
-    "currentTask": 1
+"currentTask": 1
 }
 
 ```
@@ -545,17 +577,20 @@ PATCH api/v1/users/updateCurrentTaskByUserId
 Request:
 
 ```
+
 {
-    "userId": "1",
-    "currentTask": "1"
+"userId": "1",
+"currentTask": "1"
 }
+
 ```
 
 Response:
 
 ```
+
 {
-    "message": "your update was successful"
+"message": "your update was successful"
 }
 
 ```
@@ -565,8 +600,9 @@ DELETE api/v1/users/deleteUserById
 Request:
 
 ```
+
 {
-    "userId": "1"
+"userId": "1"
 }
 
 ```
@@ -574,8 +610,9 @@ Request:
 Response:
 
 ```
+
 {
-    "message": "user deleted successfully"
+"message": "user deleted successfully"
 }
 
 ```
@@ -597,8 +634,9 @@ GET api/v1/tasks/getTaskById
 Request:
 
 ```
+
 {
-    "taskId": "2"
+"taskId": "2"
 }
 
 ```
@@ -606,14 +644,15 @@ Request:
 Response:
 
 ```
+
 {
-    "taskId": 2,
-    "goalId": 1,
-    "subgoalId": 2,
-    "taskName": "place holder name 2 from tasks database",
-    "timeSpent": "null",
-    "completed": 0,
-    "current": 1
+"taskId": 2,
+"goalId": 1,
+"subgoalId": 2,
+"taskName": "place holder name 2 from tasks database",
+"timeSpent": "null",
+"completed": 0,
+"current": 1
 }
 
 ```
@@ -623,8 +662,9 @@ GET api/v1/tasks/getTasksBySubGoalId
 Request:
 
 ```
+
 {
-    "subgoalId": "2"
+"subgoalId": "2"
 }
 
 ```
@@ -632,14 +672,15 @@ Request:
 Response:
 
 ```
+
 {
-    "taskId": 2,
-    "goalId": 1,
-    "subgoalId": 2,
-    "taskName": "place holder name 2 from tasks database",
-    "timeSpent": "null",
-    "completed": 0,
-    "current": 1
+"taskId": 2,
+"goalId": 1,
+"subgoalId": 2,
+"taskName": "place holder name 2 from tasks database",
+"timeSpent": "null",
+"completed": 0,
+"current": 1
 }
 
 ```
@@ -649,57 +690,65 @@ GET api/v1/tasks/getTasksByGoalId
 Request:
 
 ```
+
 {
-    "goalId": "1"
+"goalId": "1"
 }
+
 ```
 
 Response:
 
 ```
+
 [
-    {
-        "taskId": 1,
-        "goalId": 1,
-        "subgoalId": 1,
-        "taskName": "place holder name from tasks database",
-        "timeSpent": "null",
-        "completed": 0,
-        "current": 1
-    },
-    {
-        "taskId": 2,
-        "goalId": 1,
-        "subgoalId": 2,
-        "taskName": "place holder name 2 from tasks database",
-        "timeSpent": "null",
-        "completed": 0,
-        "current": 1
-    }
+{
+"taskId": 1,
+"goalId": 1,
+"subgoalId": 1,
+"taskName": "place holder name from tasks database",
+"timeSpent": "null",
+"completed": 0,
+"current": 1
+},
+{
+"taskId": 2,
+"goalId": 1,
+"subgoalId": 2,
+"taskName": "place holder name 2 from tasks database",
+"timeSpent": "null",
+"completed": 0,
+"current": 1
+}
 ]
+
 ```
 
 PATCH api/v1/tasks/updateTaskById
 Request:
 
 ```
+
 {
-    "taskId": "2",
-    "goalId": "1",
-    "subgoalId": "3",
-    "taskName": "This is the new name",
-    "timeSpent": "this is the new time spent",
-    "completed": true,
-    "current": false
+"taskId": "2",
+"goalId": "1",
+"subgoalId": "3",
+"taskName": "This is the new name",
+"timeSpent": "this is the new time spent",
+"completed": true,
+"current": false
 }
+
 ```
 
 Response:
 
 ```
+
 {
-    "message": "your task was successfully updated"
+"message": "your task was successfully updated"
 }
+
 ```
 
 DELETE api/v1/tasks/deleteTaskById
@@ -707,17 +756,21 @@ DELETE api/v1/tasks/deleteTaskById
 Request:
 
 ```
+
 {
-    "taskId": "1"
+"taskId": "1"
 }
+
 ```
 
 Response:
 
 ```
+
 {
-    "message": "task deleted successfully"
+"message": "task deleted successfully"
 }
+
 ```
 
 ### Reflections database
@@ -727,7 +780,7 @@ Response:
 | GET    | api/v1/reflections/getReflectionById      | requires reflectionId | returns reflection by reflectionId        |
 | GET    | api/v1/reflections/getReflectionsByTaskId | requires taskId       | returns an array of reflections by taskId |
 | POST   | api/v1/reflections/addNewReflection       | (see request)         | returns newReflectionId                   |
-| DELETE | api/v1/reflections/deleteReflectionById  | requires reflectionId  | dletes reflection by ID                   |
+| DELETE | api/v1/reflections/deleteReflectionById   | requires reflectionId | dletes reflection by ID                   |
 
 ### Data structures:
 
@@ -736,9 +789,11 @@ GET api/v1/reflections/getReflectionById
 Request:
 
 ```
+
 {
 
     "reflectionId": "2"
+
 }
 
 ```
@@ -746,12 +801,14 @@ Request:
 Response:
 
 ```
+
 {
-        "reflectionId": 2,
-        "goalId": 1,
-        "taskId": 2,
-        "reflection": "reflection for reflection_id 2"
+"reflectionId": 2,
+"goalId": 1,
+"taskId": 2,
+"reflection": "reflection for reflection_id 2"
 }
+
 ```
 
 GET api/v1/reflections/getReflectionsByTaskId
@@ -759,8 +816,9 @@ GET api/v1/reflections/getReflectionsByTaskId
 Request:
 
 ```
+
 {
-    "taskId": "2"
+"taskId": "2"
 }
 
 ```
@@ -768,14 +826,16 @@ Request:
 Response:
 
 ```
+
 [
-    {
-        "reflectionId": 2,
-        "goalId": 1,
-        "taskId": 2,
-        "reflection": "reflection for reflection_id 2"
-    }
+{
+"reflectionId": 2,
+"goalId": 1,
+"taskId": 2,
+"reflection": "reflection for reflection_id 2"
+}
 ]
+
 ```
 
 POST api/v1/reflections/addNewReflection
@@ -783,10 +843,11 @@ POST api/v1/reflections/addNewReflection
 Request:
 
 ```
+
 {
-    "goalId": "1",
-    "taskId": "3",
-    "reflection": "reflecting is hard"
+"goalId": "1",
+"taskId": "3",
+"reflection": "reflecting is hard"
 }
 
 ```
@@ -794,11 +855,13 @@ Request:
 Response:
 
 ```
+
 {
-    "newReflectionId": [
-        4
-    ]
+"newReflectionId": [
+4
+]
 }
+
 ```
 
 DELETE api/v1/reflections/deleteReflectionById
@@ -806,16 +869,47 @@ DELETE api/v1/reflections/deleteReflectionById
 Request:
 
 ```
+
 {
-	"reflectionId": "1"
+"reflectionId": "1"
 }
+
 ```
 
 Response:
 
 ```
+
 {
-	"message": "reflection deleted successfully"
+"message": "reflection deleted successfully"
+}
+
+```
+
+### Plan database
+
+| Method | Endpoint                        | Send Body       | Returns                                                         |
+| ------ | ------------------------------- | --------------- | --------------------------------------------------------------- |
+| DELETE | api/v1/plans/deletePlanByGoalId | requires goalId | (warning) deletes all infortmation relating to a plan (warning) |
+|        |                                 |                 |                                                                 |
+|        |                                 |                 |                                                                 |
+|        |                                 |                 |                                                                 |
+
+### Data structures:
+
+DELETE api/v1/plans/deletePlanByGoalId
+
+```
+Request:
+{
+"goalId": "1"
+}
+```
+
+```
+Response:
+{
+"message": "plan deleted successfully"
 }
 ```
 
