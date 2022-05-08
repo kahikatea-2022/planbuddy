@@ -13,9 +13,14 @@ function DailyLearning() {
         <p className="pencilButtonText">**subgoal name**</p>
       </div>
       <h1> Today's Task: </h1>
-      <p> **Sit down and play the guitar** </p>
+      <label>
+        <input type="checkbox" />
+        **Sit down and play some guitar **
+      </label>
     </>
   )
 }
+
+// need the logic to redirect upon ticking the textbox
 
 export default DailyLearning
