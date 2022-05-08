@@ -401,12 +401,13 @@ Response:
 
 ### user profiles database
 
-| Method | Endpoint                               | Send Body                       | Returns                             |
-| ------ | -------------------------------------- | ------------------------------- | ----------------------------------- |
-| GET    | api/v1/users/getAllUsers               | requires nothing                | returns an array of all users       |
-| POST   | api/v1/users/addNewUser                | (see request)                   | returns newUserId                   |
-| GET    | api/v1/users/getCurrentTaskByUserId    | requires userId                 | returns current task by userId      |
-| PATCH  | api/v1/users/updateCurrentTaskByUserId | requires userId and CurrentTask | returns 'you update was successful' |
+| Method | Endpoint                               | Send Body                       | Returns                              |
+| ------ | -------------------------------------- | ------------------------------- | ------------------------------------ |
+| GET    | api/v1/users/getAllUsers               | requires nothing                | returns an array of all users        |
+| POST   | api/v1/users/addNewUser                | (see request)                   | returns newUserId                    |
+| GET    | api/v1/users/getCurrentTaskByUserId    | requires userId                 | returns current task by userId       |
+| PATCH  | api/v1/users/updateCurrentTaskByUserId | requires userId and CurrentTask | returns 'your update was successful' |
+| DELETE | api/v1/users/deleteUserById            | requires userId                 | returns confirmation                 |
 
 ### Data structures:
 
@@ -499,6 +500,26 @@ Response:
 ```
 {
     "message": "your update was successful"
+}
+
+```
+
+DELETE api/v1/users/deleteUserById
+
+Request:
+
+```
+{
+    "userId": "1"
+}
+
+```
+
+Response:
+
+```
+{
+    "message": "user deleted successfully"
 }
 
 ```
