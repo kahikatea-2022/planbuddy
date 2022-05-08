@@ -63,9 +63,25 @@ function editGoal(goalData, db = connection) {
   return db('goals').where('goal_id', data.goal_id).update(data)
 }
 
+//DELETE
+function deleteGoalById(goalId, db = connection) {
+  return db('goals').where('goal_id', goalId).del()
+}
+
+//DELETE whole pland data by goal id DANGER ZONE!!!!!
+function deletePlanByGoalId(goalId, db = connection) {
+  console.log(goalId);
+  return db('goals')
+  .where('goal_id', goalId)
+  .join('tasks', 'tasks.goal_id', 'goals.goal_id')
+  .del()
+}
+
 module.exports = {
   getGoalDataById,
   getUserGoals,
   addNewGoal,
   editGoal,
+  deleteGoalById,
+  deletePlanByGoalId
 }

@@ -53,4 +53,18 @@ router.post('/addNewReflection', (req, res) => {
   })
 })
 
+//DELETE /api/v1/reflections
+router.delete('/deleteReflectionById', (req, res) => {
+  const reflectionId = req.body.reflectionId
+
+  db.deleteReflectionById(reflectionId)
+  .then(() => {
+    res.status(200).json({ message: 'reflection deleted successfully' })
+  })
+  .catch((err) => {
+    console.error(err)
+    res.status(500).json({ message: 'there was an error deleting the reflection' })
+  })
+})
+
 module.exports = router
