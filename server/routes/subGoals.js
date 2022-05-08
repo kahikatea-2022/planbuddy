@@ -68,4 +68,18 @@ router.patch('/upateSubgoalById', (req, res) => {
     })
 })
 
+//DELETE /api/v1/subGoals
+router.delete('/deleteSubgoalById', (req, res) => {
+  const subgoalId = req.body.subgoalId
+
+  db.deleteSubgoalById(subgoalId)
+  .then(() => {
+    res.status(200).json({ message: 'subgoal deleted successfully' })
+  })
+  .catch((err) => {
+    console.error(err)
+    res.status(500).json({ message: 'there was an error deleting the subgoal' })
+  })
+})
+
 module.exports = router
