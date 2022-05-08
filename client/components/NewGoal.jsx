@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addGoal} from '../actions/goals'
 import { useNavigate, useParams } from 'react-router-dom'
 import { addNewGoal } from '../apis/goals'
+import { useEffect } from 'react'
 
 function NewGoal() {
   const user = useSelector(state=>state.user)
@@ -23,9 +24,11 @@ function NewGoal() {
   const [goalData, setGoalData] = useState(inputData)
   const [name, setName] = useState('')
   const handleForm = (event) => {
-    setGoalData({ ...goalData, [event.target.id]: event.target.value })
+    setGoalData({ ...goalData,userId: user?.id, [event.target.id]: event.target.value })
     console.log(goalData)
   }
+  
+  useEffect(()=>{},[user])
   function handleFormName(event){
     setName(event.target.value)
   }
