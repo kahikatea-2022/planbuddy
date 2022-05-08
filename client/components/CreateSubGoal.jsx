@@ -48,7 +48,7 @@ function CreateSubGoal() {
   const resources = useSelector((state) => state.resources)
   const tasks = useSelector((state) => state.tasks)
   console.log(resources)
-
+  const [checkboxState, setCheckboxState] = useState(false)
   const [inputStateResources, setInputStateResources] = useState({
     resourceName: '',
     url: '',
@@ -102,7 +102,10 @@ function CreateSubGoal() {
     }).catch(console.error)
     
   }
-
+  function checkboxHandler(){
+    setCheckboxState(!checkboxState)
+    console.log(!checkboxState)
+  }
   // useEffect(() => {
   //   dispatch(setTasks())
   // }, [])
@@ -146,7 +149,9 @@ function CreateSubGoal() {
         <ul>
           {tasks.map(task=>{
             return(
-              <li key={task.taskName + task.taskId}>{task.taskName}</li>
+              <li key={task.taskName + task.taskId}>
+                <input onChange={checkboxHandler} type={'checkbox'}/>{task.taskName}
+              </li>
             )
           })}
         </ul>

@@ -19,3 +19,9 @@ export function addNewTask(task) {
     .send(task)
     .then((res) => res.body)
 }
+export function updateTaskCompletion(id, bool) {
+  return request
+    .patch(rootUrl + '/tasks/updateTaskById/' + id)
+    .send({ completed: bool })
+    .then((res) => res.body)
+}
