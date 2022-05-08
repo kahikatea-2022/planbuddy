@@ -13,8 +13,6 @@ const router = express.Router()
 //DELETE /api/v1/plans
 router.delete('/deletePlanByGoalId', (req, res) => {
   const id = req.body.goalId
-
-console.log('route hit');
   
 Promise.all([
   goals.deleteAllByGoalId(id),
