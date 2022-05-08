@@ -10,6 +10,7 @@ import { addTask, fetchTasks, setTasks } from '../actions/tasks'
 import { fetchSubGoal } from '../actions/subGoals'
 import { addNewResource } from '../apis/resources'
 import { addNewTask, updateTaskCompletion } from '../apis/tasks'
+import { updateSubgoalById } from '../apis/subGoals'
 
 //Steps:
 //Create an add resources form
@@ -18,6 +19,7 @@ import { addNewTask, updateTaskCompletion } from '../apis/tasks'
 
 function CreateSubGoal() {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   // const navigate = useNavigate()
 
   // const resources = [
@@ -107,6 +109,12 @@ function CreateSubGoal() {
     // console.log(!checkboxState)
     updateTaskCompletion(task, !checkboxState)
   }
+  function completeHandler(e){
+    e.preventDefault()
+    updateSubgoalById(subgoal, true).then(res=>{
+      navigate('/goal/' + subgoal.goalId)
+    }).catch(console.error)
+  }
   // useEffect(() => {
   //   dispatch(setTasks())
   // }, [])
@@ -164,6 +172,7 @@ function CreateSubGoal() {
         ></input>
         <button onClick={submitHandlerTasks}>Add</button>
       </form>
+      <button onClick={completeHandler}>Complete Subgoal</button>
     </>
   )
 }
