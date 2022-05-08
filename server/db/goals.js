@@ -62,9 +62,15 @@ function editGoal(goalData, db = connection) {
   return db('goals').where('goal_id', data.goal_id).update(data)
 }
 
+//DELETE
+function deleteGoalById(goalId, db = connection) {
+  return db('goals').where('goal_id', goalId).del()
+}
+
 module.exports = {
   getGoalDataById,
   getUserGoals,
   addNewGoal,
   editGoal,
+  deleteGoalById,
 }
