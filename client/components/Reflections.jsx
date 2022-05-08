@@ -13,7 +13,7 @@ function Reflections() {
       <div className="subGoalCreator">
         {/* <a href='' > */}
         <img src="/images/Pencil.png"></img>
-        <p>*Learn C Major Scale*</p>
+        <p>*C Major Scale*</p>
         {/* </a> */}
       </div>
       <textarea rows="5" cols="50"></textarea>

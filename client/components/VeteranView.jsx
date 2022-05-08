@@ -7,8 +7,14 @@ import { useNavigate } from 'react-router-dom'
 function VeteranView() {
   return (
     <>
-      <button> Continue with *current goal* </button>
-      <button> I'm learning something else today </button>
+      <button className="speechBubble tail">
+        {' '}
+        Continue with *current goal*{' '}
+      </button>
+      <button className="speechBubble tail">
+        {' '}
+        I'm learning something else today{' '}
+      </button>
     </>
   )
 }

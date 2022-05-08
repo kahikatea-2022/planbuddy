@@ -74,6 +74,14 @@ a {
   color: inherit;
 }
 
+.MainLogo {
+  min-height: 200%;
+  width: auto;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  padding-top: 8%;
+}
+
 .nav-item {
   width: 50%;
   text-align: right;
@@ -82,7 +90,8 @@ a {
 .app {
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  // gap: 100px;
+  gap: 50px;
   align-items: center;
 }
 
@@ -180,6 +189,7 @@ img {
   margin: 20px;
   height: 120px;
   width: 160px;
+  text-align: center;
 }
 
 .pencilButtonImg {
@@ -195,11 +205,53 @@ img {
   padding-top: 0px;
   margin-top: 0px;
   padding-left: 10px;
+  text-align: center;
 }
 
 button {
   font-family: 'Caveat', cursive;
   font-size: larger;
+  background-color: rgb(250, 250, 250);
+}
+
+// speech bubble, ENSURE YOU USE AS className="speechBubble tail"
+.speechBubble {
+  width: 300px;
+  margin: 50px auto;
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+  color: black;
+  font-family: 'Caveat';
+  position: relative;
+  border-radius: 25px;
+  gap: 50px;
+}
+
+.tail:before {
+  content: '';
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid transparent;
+  border-right: 10px solid black;
+  border-top: 10px solid black;
+  border-bottom: 10px solid transparent;
+  right: 23px;
+  bottom: -20px;
+}
+
+.tail:after {
+  content: '';
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 15px solid transparent;
+  border-right: 20px solid #fff;
+  border-top: 20px solid transparent;
+  border-bottom: 15px solid transparent;
+  right: 24px;
+  bottom: -14px;
 }
 
 // Mascot
@@ -344,5 +396,24 @@ a:hover {
   }
   100% {
     opacity: 0;
+  }
+}
+
+.WelcomeMessage {
+  padding-top: 10%;
+  text-align: center;
+  line-height: 250%;
+}
+
+.DailyLearning {
+  padding-top: 10%;
+  text-align: center;
+  line-height: 250%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h1 {
+    padding-bottom: 10%;
+    padding-top: 10%;
   }
 }

@@ -21,8 +21,10 @@ function LandingPage() {
 
   return (
     <>
-      <h1>PlanBuddy</h1>
-      <p>Helping you with the planning so you can focus on the learning!</p>
+      <img className="MainLogo" src="/images/PlanBuddyLogo0.png"></img>
+      <p className="speechBubble tail">
+        Helping you with the planning so you can focus on the learning!
+      </p>
       {!isAuthenticated && (
         <div className="buttons">
           <button onClick={handleLogin}>Sign In</button>

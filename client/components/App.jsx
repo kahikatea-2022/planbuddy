@@ -15,6 +15,9 @@ import Research from './Research'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import Welcome from './Welcome'
 import GoalOverview from './GoalOverview'
+import PlanBuddy from './PlanBuddy'
+import DailyLearning from './DailyLearning'
+import Reflections from './Reflections'
 
 function App() {
   cacheUser(useAuth0)
@@ -24,7 +27,7 @@ function App() {
       <Nav />
       <IfNotAuthenticated>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<NewGoal />} />
           <Route path="/register" element={<Registration />} />
         </Routes>
       </IfNotAuthenticated>

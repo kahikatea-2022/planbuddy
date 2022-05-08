@@ -3,6 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { getLoginFn, getLogoutFn, getRegisterFn } from '../auth0-utils'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import { useSelector } from 'react-redux'
+// We have decided that Nav bar functionality will be done through Buddy as it is a much clearer interface
 
 function Nav() {
   const user = useSelector((state) => state.user)

@@ -7,6 +7,7 @@ import Goal from './Goal'
 import { fetchGoal } from '../actions/goal'
 import { fetchSubGoals } from '../actions/subGoals'
 import { addSubGoal } from '../apis/subGoals'
+import PlanBuddy from './PlanBuddy'
 // import SubGoal from './SubGoal'
 
 function GoalOverview() {
@@ -60,8 +61,9 @@ function GoalOverview() {
         <div onClick={subgoalHandler} className="subGoalCreator">
           {/* <a href={goal.researched?`/subgoal/${}`} > */}
           <img className="pencilButtonImg" src="/images/greyPencil.png"></img>
-          <p className="pencilButtonText">click to add subgoal</p>
+          <p className="pencilButtonText">Add subgoal</p>
           {/* </a> */}
+          <PlanBuddy />
         </div>
       </div>
     </>
