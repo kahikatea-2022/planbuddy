@@ -54,6 +54,7 @@ function Research() {
         <h1>Research Time!</h1>
         <p>Start by googling {goal.goalName} basics</p>
         <p>Find and write down 3 sub goals for {goal.goalName} </p>
+        <p>Once Done press complete Research to continue!</p>
         <label htmlFor='input1'>Subgoal 1: 
         <input onChange={handleForm} id='input1' name='input1' type={'text'}/>
         x</label>
@@ -64,10 +65,10 @@ function Research() {
         <input onChange={handleForm} id='input3' name='input3' type={'text'}/>
         x</label>
 
-        <div  className="subGoalCreator">
+        {/* <div  className="subGoalCreator">
           <img src="/images/greyPencil.png"></img>
           <p>click to add subgoal</p>
-        </div>
+        </div> */}
         <button onClick={completeHandler}>Complete Research</button>
       </>
     )
