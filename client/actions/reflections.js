@@ -1,3 +1,5 @@
+import { getReflectionsByTaskId } from '../apis/reflections'
+
 const SET_REFLECTIONS = 'SET_REFLECTIONS'
 const SET_REFLECTION = 'SET_REFLECTION'
 const ADD_REFLECTION = 'ADD_REFLECTION'
@@ -23,7 +25,7 @@ export function addReflection(reflection) {
 }
 export function fetchReflections(taskId) {
   return (dispatch) => {
-    return getResourcesBySubGoalId(taskId).then((data) => {
+    return getReflectionsByTaskId(taskId).then((data) => {
       console.log(data)
       dispatch(setReflections(data))
       return null
