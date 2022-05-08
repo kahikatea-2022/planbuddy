@@ -570,6 +570,7 @@ Response:
 | GET    | api/v1/tasks/getTasksBySubGoalId | requires subgoalId | returns tasks by subgoalId          |
 | GET    | api/v1/tasks/getTasksByGoalId    | requires goalId    | returns an array of tasks by goalId |
 | PATCH  | api/v1/tasks/updateTaskById      | (see request)      | confirmation                        |
+| DELETE | api/v1/tasks/deleteTaskById      | requires taskId    | confirmation                        |
 
 ### Data structures:
 
@@ -680,6 +681,24 @@ Response:
 ```
 {
     "message": "your task was successfully updated"
+}
+```
+
+DELETE api/v1/tasks/deleteTaskById
+
+Request:
+
+```
+{
+    "taskId": "1"
+}
+```
+
+Response:
+
+```
+{
+    "message": "task deleted successfully"
 }
 ```
 

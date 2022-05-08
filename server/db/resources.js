@@ -38,8 +38,14 @@ function addNewResource(newResource, db = connection) {
   return db('resources').insert(data)
 }
 
+//DELETE
+function deleteResourceById(resourceId, db = connection) {
+  return db('resources').where('resource_id', resourceId).del()
+}
+
 module.exports = {
   getResourcesData,
   getResourcesBySubGoalId,
   addNewResource,
+  deleteResourceById,
 }
