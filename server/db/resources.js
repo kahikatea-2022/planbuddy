@@ -38,6 +38,20 @@ function addNewResource(newResource, db = connection) {
   return db('resources').insert(data)
 }
 
+//PATCH
+function editResource(newResource, db = connection) {
+  const data = {
+    resource_id: newResource.resourceId,
+    goal_id: newResource.goalId,
+    subgoal_id: newResource.subgoalId,
+    resource_name: newResource.resourceName,
+    url: newResource.url,
+  }
+  return db('resources').where('resource_id', data.resourceId).update(data)
+}
+
+
+
 //DELETE
 function deleteResourceById(resourceId, db = connection) {
   return db('resources').where('resource_id', resourceId).del()
@@ -48,4 +62,5 @@ module.exports = {
   getResourcesBySubGoalId,
   addNewResource,
   deleteResourceById,
+  editResource,
 }

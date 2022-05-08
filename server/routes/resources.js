@@ -53,6 +53,9 @@ router.post('/addNewResource', (req, res) => {
   })
 })
 
+//PATCH /api/v1/resources
+router.patch('/editResource')
+
 //DELETE /api/v1/resources
 router.delete('/deleteResourceById', (req, res) => {
   const resourceId = req.body.resourceId
