@@ -59,6 +59,7 @@ router.post('/addNewGoal', (req, res) => {
 //PATCH /api/v1/goals/
 router.patch('/editGoal', (req, res) => {
   const data = req.body
+  console.log(data)
   db.editGoal(data)
     .then(() => {
       res.sendStatus(200)
