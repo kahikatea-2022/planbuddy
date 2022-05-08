@@ -6,20 +6,28 @@ import { useNavigate } from 'react-router-dom'
 
 function Research() {
   const goals = useSelector((state) => state.goals)
+  const goal = useSelector(state=>state.goal)
+  const user = useSelector(state=>state.user)
 
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchGoals(2))
+    
+    dispatch(fetchGoals(user.id))
     //needs ID
-  }, [])
-
+  }, [user])
+  function completeHandler(e){
+    e.preventDefault()
+    //needs to update goal status to researched
+    // only available after adding 3 sub goals
+    // adds the fresh subgoals to the database
+  }
   return (
-    goals.length !== 0 && (
+    goals?.length !== 0 && (
       <>
         <h1>Research Time!</h1>
-        <p>Start by googling {goals[0].goal_name} basics</p>
-        <p>Find and write down sub goals for {goals[0].goal_name}</p>
+        <p>Start by googling  basics</p>
+        <p>Find and write down sub goals for </p>
         <p>Create a sub goal to get started!</p>
 
         <div className="subGoalCreator">
@@ -28,6 +36,7 @@ function Research() {
           <p>click to add subgoal</p>
           {/* </a> */}
         </div>
+        <button onClick={completeHandler}>Complete Research</button>
       </>
     )
   )
