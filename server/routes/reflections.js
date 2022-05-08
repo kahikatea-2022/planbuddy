@@ -67,4 +67,20 @@ router.delete('/deleteReflectionById', (req, res) => {
   })
 })
 
+//PATCH /api/v1/resources
+router.patch('/editReflectionById', (req, res) => {
+  const data = req.body
+  db.editReflection(data)
+    .then(() => {
+      res.status(200).json({ message: 'reflection edited successfully' })
+      return null
+    })
+    .catch((err) => {
+      console.error(err)
+      res
+        .status(500)
+        .json({ message: 'Something went wrong editing the reflection' })
+    })
+})
+
 module.exports = router
