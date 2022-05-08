@@ -41,10 +41,7 @@ function updateCurrentTaskByUserId(userData, db = connection) {
 
 //DELETE
 function deleteUserById(userData, db = connection) {
-  const data = {
-    user_id: userData.userId,
-  }
-  return db('user_profiles').where('user_id', data.user_id).del()
+  return db('user_profiles').where('user_id', userData.userId).del()
 }
 
 module.exports = {
