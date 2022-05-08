@@ -53,5 +53,18 @@ router.post('/addNewResource', (req, res) => {
   })
 })
 
+//DELETE /api/v1/resources
+router.delete('/deleteResourceById', (req, res) => {
+  const resourceId = req.body.resourceId
+
+  db.deleteResourceById(resourceId)
+  .then(() => {
+    res.status(200).json({ message: 'resource deleted successfully' })
+  })
+  .catch((err) => {
+    console.error(err)
+    res.status(500).json({ message: 'there was an error deleting the resource' })
+  })
+})
 
 module.exports = router
