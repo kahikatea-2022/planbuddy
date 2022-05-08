@@ -10,7 +10,8 @@ function Research() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchGoals())
+    dispatch(fetchGoals(2))
+    //needs ID
   }, [])
 
   return (

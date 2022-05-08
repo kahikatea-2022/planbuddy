@@ -24,9 +24,9 @@ router.get('/getGoalById/:id', (req, res) => {
 })
 
 //GET /api/v1/goals/
-router.get('/getUserGoals', (req, res) => {
+router.get('/getUserGoals/:id', (req, res) => {
   //this is hardcoded and will be replaced by res.body (perhaps)
-  let id = req.body.userId
+  let id = Number(req.params.id)
   db.getUserGoals(id)
     .then((data) => {
       res.json(data)
@@ -69,6 +69,5 @@ router.patch('/editGoal', (req, res) => {
       res.status(500).json({ message: 'Something went wrong editing the goal' })
     })
 })
-
 
 module.exports = router

@@ -10,8 +10,7 @@ const router = express.Router()
 router.get('/getTasksByGoalId', (req, res) => {
   let id = req.body.goalId
 
-  db
-    .getTasks(id)
+  db.getTasks(id)
     .then((data) => {
       res.json(data)
       return null
@@ -23,11 +22,10 @@ router.get('/getTasksByGoalId', (req, res) => {
 })
 
 //GET /api/v1/tasks
-router.get('/getTasksbySubgoalId', (req, res) => {
-  const id = req.body.subgoalId
+router.get('/getTasksbySubgoalId/:id', (req, res) => {
+  const id = Number(req.params.id)
 
-  db
-    .getTasksBySubGoalId(id)
+  db.getTasksBySubGoalId(id)
     .then((data) => {
       res.json(data)
       return null
@@ -45,8 +43,7 @@ router.get('/getTasksbySubgoalId', (req, res) => {
 router.get('/getTaskById', (req, res) => {
   const id = req.body.taskId
 
-  db
-    .getTaskById(id)
+  db.getTaskById(id)
     .then((data) => {
       res.json(data)
       return null
@@ -62,8 +59,7 @@ router.get('/getTaskById', (req, res) => {
 router.post('/addNewTask', (req, res) => {
   const newTask = req.body
 
-  db
-    .addNewTask(newTask)
+  db.addNewTask(newTask)
     .then((newTaskId) => {
       res.status(200).json({ newTaskId })
     })
