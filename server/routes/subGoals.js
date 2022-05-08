@@ -52,7 +52,7 @@ router.post('/addNewSubgoal', (req, res) => {
 })
 
 //PATCH /api/v1/subGoals
-router.patch('/upateSubgoalById', (req, res) => {
+router.patch('/updateSubgoalById', (req, res) => {
   const data = req.body
 
   db.updateSubGoalById(data)

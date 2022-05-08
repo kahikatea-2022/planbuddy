@@ -9,7 +9,8 @@ import { addResource, fetchResources } from '../actions/resources'
 import { addTask, fetchTasks, setTasks } from '../actions/tasks'
 import { fetchSubGoal } from '../actions/subGoals'
 import { addNewResource } from '../apis/resources'
-import { addNewTask } from '../apis/tasks'
+import { addNewTask, updateTaskCompletion } from '../apis/tasks'
+import { updateSubgoalById } from '../apis/subGoals'
 
 //Steps:
 //Create an add resources form
@@ -18,6 +19,7 @@ import { addNewTask } from '../apis/tasks'
 
 function CreateSubGoal() {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   // const navigate = useNavigate()
 
   // const resources = [
@@ -48,7 +50,7 @@ function CreateSubGoal() {
   const resources = useSelector((state) => state.resources)
   const tasks = useSelector((state) => state.tasks)
   console.log(resources)
-
+  const [checkboxState, setCheckboxState] = useState(false)
   const [inputStateResources, setInputStateResources] = useState({
     resourceName: '',
     url: '',
@@ -102,7 +104,17 @@ function CreateSubGoal() {
     }).catch(console.error)
     
   }
-
+  function checkboxHandler(task){
+    setCheckboxState(!checkboxState)
+    // console.log(!checkboxState)
+    updateTaskCompletion(task, !checkboxState)
+  }
+  function completeHandler(e){
+    e.preventDefault()
+    updateSubgoalById(subgoal, true).then(res=>{
+      navigate('/goal/' + subgoal.goalId)
+    }).catch(console.error)
+  }
   // useEffect(() => {
   //   dispatch(setTasks())
   // }, [])
@@ -146,7 +158,9 @@ function CreateSubGoal() {
         <ul>
           {tasks.map(task=>{
             return(
-              <li key={task.taskName + task.taskId}>{task.taskName}</li>
+              <li key={task.taskName + task.taskId}>
+                <input onChange={()=>checkboxHandler(task)} type={'checkbox'} defaultChecked={task.completed}/>{task.taskName}
+              </li>
             )
           })}
         </ul>
@@ -158,6 +172,7 @@ function CreateSubGoal() {
         ></input>
         <button onClick={submitHandlerTasks}>Add</button>
       </form>
+      <button onClick={completeHandler}>Complete Subgoal</button>
     </>
   )
 }
