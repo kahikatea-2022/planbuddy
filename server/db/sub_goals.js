@@ -55,9 +55,15 @@ function updateSubGoalById(newSubGoal, db = connection) {
   return db('sub_goals').where('subgoal_id', newSubGoal.subgoalId).update(data)
 }
 
+//DELETE
+function deleteSubgoalById(subgoalId, db = connection) {
+  return db('sub_goals').where('goal_id', subgoalId).del()
+}
+
 module.exports = {
   getSubGoals,
   getSubGoalById,
   addNewSubGoal,
   updateSubGoalById,
+  deleteSubgoalById,
 }
