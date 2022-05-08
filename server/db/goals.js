@@ -71,8 +71,8 @@ function deleteGoalById(goalId, db = connection) {
 function deletePlanByGoalId(goalId, db = connection) {
   console.log(goalId);
   return db('goals')
-  .join('sub_goals', 'goals.goal_id', 'sub_goals.goal_id')
   .where('goal_id', goalId)
+  .join('tasks', 'tasks.goal_id', 'goals.goal_id')
   .del()
 }
 
