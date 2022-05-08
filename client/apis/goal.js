@@ -7,3 +7,6 @@ export function getGoalById(id) {
     .get(`${rootUrl}/goals/getGoalById/${id}`)
     .then((res) => res.body)
 }
+export function updateGoal(update) {
+  return request.get(`${rootUrl}/goals/editGoal/`).then((res) => res.body)
+}
