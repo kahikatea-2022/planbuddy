@@ -6,8 +6,10 @@ const db = require('../db/resources')
 const router = express.Router()
 
 // GET /api/v1/resources/
-router.get('/getResourcesByGoalId', (req, res) => {
-  let id = req.body.goalId
+
+router.get('/getResourcesByGoalId/:id', (req, res) => {
+  let id = req.params.id
+  
   db.getResourcesData(id)
     .then((data) => {
       res.json(data)
@@ -21,8 +23,8 @@ router.get('/getResourcesByGoalId', (req, res) => {
 })
 
 // GET /api/v1/resources
-router.get('/getResourcesBySubgoalId', (req, res) => {
-  const id = req.body.subgoalId
+router.get('/getResourcesBySubgoalId/:id', (req, res) => {
+  let id = req.params.id
 
   db.getResourcesBySubGoalId(id)
     .then((data) => {
@@ -32,11 +34,9 @@ router.get('/getResourcesBySubgoalId', (req, res) => {
 
     .catch((err) => {
       console.error(err)
-      res
-        .status(500)
-        .json({
-          message: 'Something went wrong getting resources by subgoalId',
-        })
+      res.status(500).json({
+        message: 'Something went wrong getting resources by subgoalId',
+      })
     })
 })
 
