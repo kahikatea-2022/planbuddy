@@ -61,7 +61,7 @@ export function getIsAuthenticated(useAuth0) {
 
 export function getRegisterFn(useAuth0) {
   const { loginWithRedirect } = useAuth0()
-  const redirectUri = `${window.location.origin}/profile`
+  const redirectUri = `${window.location.origin}/register`
   return () =>
     loginWithRedirect({
       redirectUri,

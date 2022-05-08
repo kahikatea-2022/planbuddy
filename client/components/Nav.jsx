@@ -42,14 +42,14 @@ function Nav() {
         <IfNotAuthenticated>
           {/* <section className='nav-item'> */}
 
-          <section className="sign">
+          {/* <section className="sign">
             <a href="/" onClick={handleLogin} className="nav-link">
               Sign in
             </a>
             <a href="/" onClick={handleRegister} className="nav-link">
               Register
             </a>
-          </section>
+          </section> */}
           {/* </section> */}
         </IfNotAuthenticated>
       </section>
