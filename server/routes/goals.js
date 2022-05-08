@@ -87,21 +87,4 @@ router.delete('/deleteGoalById', (req, res) => {
 })
 
 
-//!!DANGER ZONE!!
-//DELETE /api/v1/goals
-router.delete('/deletePlanByGoalId', (req, res) => {
-  const goalId = req.body.goalId
-console.log('route hit');
-  db.deletePlanByGoalId(goalId)
-  .then(() => {
-    res.status(200).json({ message: 'plan deleted successfully' })
-  })
-  .catch((err) => {
-    console.error(err)
-    res.status(500).json({ message: 'there was an error deleting the plan' })
-  })
-})
-
-
-
 module.exports = router
