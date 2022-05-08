@@ -38,9 +38,15 @@ function addNewReflection(reflectionData, db = connection) {
   .insert(data)
 }
 
+//DELETE
+function deleteReflectionById(reflectionId, db = connection) {
+  return db('reflections').where('reflection_id', reflectionId).del()
+}
+
 
 module.exports = {
   getReflectionsByTaskId,
   getReflectionById,
-  addNewReflection
+  addNewReflection,
+  deleteReflectionById
 }
