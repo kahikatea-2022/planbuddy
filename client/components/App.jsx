@@ -42,7 +42,7 @@ function App() {
           <Route path="/subgoal/:subgoalId" element={<CreateSubGoal />} />
           <Route path="/research/:goalId" element={<Research />} />
           <Route path="/dailylearning/:taskid" element={<DailyLearning />} />
-          <Route path="/" element={<Users />} />
+          <Route path="/reflection/:taskId" element={<Reflections/>} />
           {/* <Route path="/" element={<PingRoutes />} /> */}
         </Routes>
       </IfAuthenticated>
