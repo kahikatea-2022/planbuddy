@@ -12,6 +12,7 @@ import { addNewResource } from '../apis/resources'
 import { addNewTask, updateTaskCompletion } from '../apis/tasks'
 import { updateSubgoalById } from '../apis/subGoals'
 import { updateCurrentTask } from '../apis/users'
+import PlanBuddy from './PlanBuddy'
 
 //Steps:
 //Create an add resources form
@@ -22,9 +23,9 @@ function CreateSubGoal() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const {subgoalId} = useParams()
-  const user = useSelector(state=>state.user)
-  const subgoal = useSelector(state=>state.subGoal)
+  const { subgoalId } = useParams()
+  const user = useSelector((state) => state.user)
+  const subgoal = useSelector((state) => state.subGoal)
   const resources = useSelector((state) => state.resources)
   const tasks = useSelector((state) => state.tasks)
   console.log(resources)
@@ -40,14 +41,14 @@ function CreateSubGoal() {
     current: false,
     goalId: subgoal.goalId,
     subgoalId: subgoal.subgoalId,
-    timeSpent: 0
+    timeSpent: 0,
   })
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(fetchSubGoal(Number(subgoalId)))
     dispatch(fetchResources(Number(subgoalId)))
     dispatch(fetchTasks(Number(subgoalId)))
-  },[])
+  }, [])
   const handleFormResources = (event) => {
     setInputStateResources({
       ...inputStateResources,
@@ -65,92 +66,128 @@ function CreateSubGoal() {
 
   function submitHandlerResources(event) {
     event.preventDefault()
-    const newResource = {...inputStateResources, goalId: subgoal.goalId, subgoalId: subgoal.subgoalId}
-    addNewResource(newResource).then(res=>{
-      const newId = res.newResourceId[0]
-      dispatch(addResource({...newResource, resourceId: newId}))
-
-    }).catch(console.error)
+    const newResource = {
+      ...inputStateResources,
+      goalId: subgoal.goalId,
+      subgoalId: subgoal.subgoalId,
+    }
+    addNewResource(newResource)
+      .then((res) => {
+        const newId = res.newResourceId[0]
+        dispatch(addResource({ ...newResource, resourceId: newId }))
+      })
+      .catch(console.error)
   }
 
   function submitHandlerTasks(event) {
     event.preventDefault()
-    const newTask = {...inputStateTasks, goalId: subgoal.goalId, subgoalId: subgoal.subgoalId}
-    addNewTask(newTask).then(res=>{
-      const newId = res.newTaskId[0]
-      dispatch(addTask({...newTask, taskId: newId}))
-    }).catch(console.error)
-    
+    const newTask = {
+      ...inputStateTasks,
+      goalId: subgoal.goalId,
+      subgoalId: subgoal.subgoalId,
+    }
+    addNewTask(newTask)
+      .then((res) => {
+        const newId = res.newTaskId[0]
+        dispatch(addTask({ ...newTask, taskId: newId }))
+      })
+      .catch(console.error)
   }
-  function checkboxHandler(task){
+  function checkboxHandler(task) {
     setCheckboxState(!checkboxState)
     // console.log(!checkboxState)
     updateTaskCompletion(task, !checkboxState)
   }
-  function completeHandler(e){
+  function completeHandler(e) {
     e.preventDefault()
-    updateSubgoalById(subgoal, true).then(res=>{
-      navigate('/goal/' + subgoal.goalId)
-    }).catch(console.error)
+    updateSubgoalById(subgoal, true)
+      .then((res) => {
+        navigate('/goal/' + subgoal.goalId)
+      })
+      .catch(console.error)
   }
-  function goToTaskHandler(taskId){
+  function goToTaskHandler(taskId) {
     updateCurrentTask(user.id, taskId)
   }
   return (
     <>
+      <div className="blank-nav2"></div>
       <h1>{subgoal.subgoalName}</h1>
-      <div>
+      {/* <div> */}
+      <div className="subgoal-content">
         <p>Resources:</p>
         <ul>
-          {resources.map(resource=>{
-            return(
-              <li key={resource.resourceName + resource.resourceId}><a href={resource.url}>{resource.resourceName}</a></li>
+          {resources.map((resource) => {
+            return (
+              <li key={resource.resourceName + resource.resourceId}>
+                <a className="list" href={resource.url}>
+                  {resource.resourceName}
+                </a>
+              </li>
             )
           })}
         </ul>
+
         <form>
-          <label htmlFor="resourceName">Name of resource:</label>
+          <label htmlFor="resourceName"> </label>
           <input
-            type="text"
-            id="resourceName"
-            onChange={handleFormResources}
-            value={inputStateResources.resource_name}
-          ></input>
-          <label htmlFor="url">Link to resource:</label>
-          <input
+            className="textbox-input"
+            placeholder="Resource Link"
             type="text"
             id="url"
             onChange={handleFormResources}
             value={inputStateResources.url}
           ></input>
-          <button onClick={submitHandlerResources}>Add</button>
+          <input
+            className="textbox-input"
+            placeholder="Resource Name"
+            type="text"
+            id="resourceName"
+            onChange={handleFormResources}
+            value={inputStateResources.resource_name}
+          ></input>
+          <label htmlFor="url"></label>
         </form>
-      </div>
-      {/* list to render the resources*/}
-      {/* <ul>
+
+        <button onClick={submitHandlerResources}>Add Resource</button>
+        {/* list to render the resources*/}
+        {/* <ul>
         <li>{resources.resource_name}</li>
       </ul> */}
-      <form>
-        {/* this needs to change based on whether subgoal has been created */}
-        <h2>Great work, now add your first tasks</h2>
-        <ul>
-          {tasks.map(task=>{
-            return(
-              <li key={task.taskName + task.taskId}>
-                <input onChange={()=>checkboxHandler(task)} type={'checkbox'} defaultChecked={task.completed}/><span onClick={()=>goToTaskHandler(task.taskId)}>{task.taskName}</span>
-              </li>
-            )
-          })}
-        </ul>
-        <input
-          type="text"
-          id="taskName"
-          value={inputStateTasks.name}
-          onChange={handleFormTasks}
-        ></input>
-        <button onClick={submitHandlerTasks}>Add</button>
-      </form>
+        {/* </div> */}
+        <form>
+          {/* this needs to change based on whether subgoal has been created */}
+          <p>Tasks:</p>
+          <ul>
+            {tasks.map((task) => {
+              return (
+                <li key={task.taskName + task.taskId}>
+                  <input
+                    onChange={() => checkboxHandler(task)}
+                    type={'checkbox'}
+                    defaultChecked={task.completed}
+                  />
+                  <span onClick={() => goToTaskHandler(task.taskId)}>
+                    {task.taskName}
+                  </span>
+                </li>
+              )
+            })}
+          </ul>
+          <input
+            className="textbox-input"
+            placeholder="New Task"
+            type="text"
+            id="taskName"
+            value={inputStateTasks.name}
+            onChange={handleFormTasks}
+          ></input>
+          <button onClick={submitHandlerTasks}>Add New Task</button>
+        </form>
+      </div>
       <button onClick={completeHandler}>Complete Subgoal</button>
+
+      <PlanBuddy />
     </>
   )
 }

@@ -73,15 +73,36 @@ function Research() {
       <p>Once Done press complete Research to continue!</p>
       <label htmlFor="input1">
         Subgoal 1:
-        <input onChange={handleForm} id="input1" name="input1" type={'text'} />x
+        <input
+          className="textbox-input"
+          onChange={handleForm}
+          id="input1"
+          name="input1"
+          type={'text'}
+        />
+        x
       </label>
       <label htmlFor="input2">
         Subgoal 2:
-        <input onChange={handleForm} id="input2" name="input2" type={'text'} />x
+        <input
+          className="textbox-input"
+          onChange={handleForm}
+          id="input2"
+          name="input2"
+          type={'text'}
+        />
+        x
       </label>
       <label htmlFor="input3">
         Subgoal 3:
-        <input onChange={handleForm} id="input3" name="input3" type={'text'} />x
+        <input
+          className="textbox-input"
+          onChange={handleForm}
+          id="input3"
+          name="input3"
+          type={'text'}
+        />
+        x
       </label>
 
       {/* <div  className="subGoalCreator">
