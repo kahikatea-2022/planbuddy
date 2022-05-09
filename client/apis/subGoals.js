@@ -25,3 +25,9 @@ export function addSubGoal(goal) {
     .send(goal)
     .then((res) => res.body.newSubgoalId[0])
 }
+export function updateSubgoalById(subgoal, bool) {
+  return request
+    .patch(rootUrl + '/subGoals/updateSubgoalById/')
+    .send({ subgoalId: subgoal.subgoalId, completed: bool })
+    .then((res) => res.body)
+}

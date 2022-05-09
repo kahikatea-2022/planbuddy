@@ -24,9 +24,9 @@ router.get('/getGoalById/:id', (req, res) => {
 })
 
 //GET /api/v1/goals/
-router.get('/getUserGoals', (req, res) => {
+router.get('/getUserGoals/:id', (req, res) => {
   //this is hardcoded and will be replaced by res.body (perhaps)
-  let id = req.body.userId
+  let id = Number(req.params.id)
   db.getUserGoals(id)
     .then((data) => {
       res.json(data)
@@ -59,6 +59,7 @@ router.post('/addNewGoal', (req, res) => {
 //PATCH /api/v1/goals/
 router.patch('/editGoal', (req, res) => {
   const data = req.body
+  console.log(data)
   db.editGoal(data)
     .then(() => {
       res.sendStatus(200)
@@ -69,6 +70,38 @@ router.patch('/editGoal', (req, res) => {
       res.status(500).json({ message: 'Something went wrong editing the goal' })
     })
 })
+
+
+//DELETE /api/v1/goals
+router.delete('/deleteGoalById', (req, res) => {
+  const goalId = req.body.goalId
+
+  db.deleteGoalById(goalId)
+  .then(() => {
+    res.status(200).json({ message: 'goal deleted successfully' })
+  })
+  .catch((err) => {
+    console.error(err)
+    res.status(500).json({ message: 'there was an error deleting the goal' })
+  })
+})
+
+
+//!!DANGER ZONE!!
+//DELETE /api/v1/goals
+router.delete('/deletePlanByGoalId', (req, res) => {
+  const goalId = req.body.goalId
+console.log('route hit');
+  db.deletePlanByGoalId(goalId)
+  .then(() => {
+    res.status(200).json({ message: 'plan deleted successfully' })
+  })
+  .catch((err) => {
+    console.error(err)
+    res.status(500).json({ message: 'there was an error deleting the plan' })
+  })
+})
+
 
 
 module.exports = router

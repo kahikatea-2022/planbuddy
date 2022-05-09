@@ -35,12 +35,13 @@ The final, and one of the most important points, was some guidelines around how 
 
 ### Goals database
 
-| Method | Endpoint                   | Send Body                                         | Returns                                         |
-| ------ | -------------------------- | ------------------------------------------------- | ----------------------------------------------- |
-| GET    | /api/v1/goals/getGoalById  | requires goalId                                   | returns goal by goal_id                         |
-| GET    | /api/v1/goals/getUserGoals | requires userId                                   | returns array of a users goals                  |
-| POST   | /api/v1/goals/addNewGoal   | requires goal data object that includes user_id   | adds new goal to goals table and returns new id |
-| PATCH  | /api/v1/goals/editGoal     | requires goal data object that includes a goal_id | edits goal by id                                |
+| Method | Endpoint                     | Send Body                                         | Returns                                         |
+| ------ | ---------------------------- | ------------------------------------------------- | ----------------------------------------------- |
+| GET    | /api/v1/goals/getGoalById    | requires goalId                                   | returns goal by goal_id                         |
+| GET    | /api/v1/goals/getUserGoals   | requires userId                                   | returns array of a users goals                  |
+| POST   | /api/v1/goals/addNewGoal     | requires goal data object that includes user_id   | adds new goal to goals table and returns new id |
+| PATCH  | /api/v1/goals/editGoal       | requires goal data object that includes a goal_id | edits goal by id                                |
+| DELETE | /api/v1/users/deleteGoalById | requires goalId                                   | returns confirmation                            |
 
 #### Data structures
 
@@ -173,14 +174,33 @@ OK
 
 ```
 
+DELETE /api/v1/users/deleteGoalById
+
+Request:
+
+```
+{
+    "goalId": "1"
+}
+```
+
+Response:
+
+```
+{
+    "message": "goal deleted successfully"
+}
+```
+
 ### Sub Goals database
 
-| Method | Endpoint                         | Send Body          | Returns                                          |
-| ------ | -------------------------------- | ------------------ | ------------------------------------------------ |
-| GET    | api/v1/subGoals/getSubGoals      | requires goalId    | returns an array of subgoals by goal_id          |
-| GET    | api/v1/subGoals/getSubGoalById   | requires subgoalId | returns subgoal by subgoal_id                    |
-| POST   | api/v1/subGoals/addNewSubgoal    | (see request)      | edits existing subgoal and returns newSubgoal Id |
-| PATCH  | api/v1/subGoals/upateSubgoalById | (see request)      | confirmation                                     |
+| Method | Endpoint                          | Send Body          | Returns                                          |
+| ------ | --------------------------------- | ------------------ | ------------------------------------------------ |
+| GET    | api/v1/subGoals/getSubGoals       | requires goalId    | returns an array of subgoals by goal_id          |
+| GET    | api/v1/subGoals/getSubGoalById    | requires subgoalId | returns subgoal by subgoal_id                    |
+| POST   | api/v1/subGoals/addNewSubgoal     | (see request)      | edits existing subgoal and returns newSubgoal Id |
+| PATCH  | api/v1/subGoals/upateSubgoalById  | (see request)      | confirmation                                     |
+| DELETE | api/v1/subGoals/deleteSubgoalById | requires subgoalId | confirmation                                     |
 
 ### Data structures:
 
@@ -305,14 +325,32 @@ Response:
 }
 ```
 
+DELETE api/v1/subGoals/deleteSubgoalById
+
+Request:
+
+```
+{
+    "subgoalId": "1"
+}
+```
+
+Response:
+
+```
+{
+    "message": "subgoal deleted successfully"
+}
+```
+
 ### resources database
 
-| Method | Endpoint                                 | Send Body          | Returns                                    |
-| ------ | ---------------------------------------- | ------------------ | ------------------------------------------ |
-| GET    | api/v1/resources/getResourcesByGoalId    | requires goalId    | returns an array of resources by goalId    |
-| GET    | api/v1/resources/getResourcesBySubgoalId | requires subgoalId | returns an array of resources by subgoalId |
-| POST   | api/v1/resources/addNewResource          | (see request)      | returns newResourceId                      |
-|        |                                          |                    |                                            |
+| Method | Endpoint                                 | Send Body           | Returns                                    |
+| ------ | ---------------------------------------- | ------------------- | ------------------------------------------ |
+| GET    | api/v1/resources/getResourcesByGoalId    | requires goalId     | returns an array of resources by goalId    |
+| GET    | api/v1/resources/getResourcesBySubgoalId | requires subgoalId  | returns an array of resources by subgoalId |
+| POST   | api/v1/resources/addNewResource          | (see request)       | returns newResourceId                      |
+| DELETE | api/v1/resources/deleteResourceById      | requires resourceId | confirmation                               |
 
 ### Data structures:
 
@@ -399,14 +437,33 @@ Response:
 
 ```
 
+DELETE api/v1/resources/deleteResourceById
+
+Request:
+
+```
+{
+    "resourceId": "1"
+}
+```
+
+Response:
+
+```
+{
+    "message": "resource deleted successfully"
+}
+```
+
 ### user profiles database
 
-| Method | Endpoint                               | Send Body                       | Returns                             |
-| ------ | -------------------------------------- | ------------------------------- | ----------------------------------- |
-| GET    | api/v1/users/getAllUsers               | requires nothing                | returns an array of all users       |
-| POST   | api/v1/users/addNewUser                | (see request)                   | returns newUserId                   |
-| GET    | api/v1/users/getCurrentTaskByUserId    | requires userId                 | returns current task by userId      |
-| PATCH  | api/v1/users/updateCurrentTaskByUserId | requires userId and CurrentTask | returns 'you update was successful' |
+| Method | Endpoint                               | Send Body                       | Returns                              |
+| ------ | -------------------------------------- | ------------------------------- | ------------------------------------ |
+| GET    | api/v1/users/getAllUsers               | requires nothing                | returns an array of all users        |
+| POST   | api/v1/users/addNewUser                | (see request)                   | returns newUserId                    |
+| GET    | api/v1/users/getCurrentTaskByUserId    | requires userId                 | returns current task by userId       |
+| PATCH  | api/v1/users/updateCurrentTaskByUserId | requires userId and CurrentTask | returns 'your update was successful' |
+| DELETE | api/v1/users/deleteUserById            | requires userId                 | returns confirmation                 |
 
 ### Data structures:
 
@@ -503,6 +560,26 @@ Response:
 
 ```
 
+DELETE api/v1/users/deleteUserById
+
+Request:
+
+```
+{
+    "userId": "1"
+}
+
+```
+
+Response:
+
+```
+{
+    "message": "user deleted successfully"
+}
+
+```
+
 ### tasks database
 
 | Method | Endpoint                         | Send Body          | Returns                             |
@@ -511,6 +588,7 @@ Response:
 | GET    | api/v1/tasks/getTasksBySubGoalId | requires subgoalId | returns tasks by subgoalId          |
 | GET    | api/v1/tasks/getTasksByGoalId    | requires goalId    | returns an array of tasks by goalId |
 | PATCH  | api/v1/tasks/updateTaskById      | (see request)      | confirmation                        |
+| DELETE | api/v1/tasks/deleteTaskById      | requires taskId    | confirmation                        |
 
 ### Data structures:
 
@@ -624,6 +702,24 @@ Response:
 }
 ```
 
+DELETE api/v1/tasks/deleteTaskById
+
+Request:
+
+```
+{
+    "taskId": "1"
+}
+```
+
+Response:
+
+```
+{
+    "message": "task deleted successfully"
+}
+```
+
 ### Reflections database
 
 | Method | Endpoint                                  | Send Body             | Returns                                   |
@@ -631,7 +727,7 @@ Response:
 | GET    | api/v1/reflections/getReflectionById      | requires reflectionId | returns reflection by reflectionId        |
 | GET    | api/v1/reflections/getReflectionsByTaskId | requires taskId       | returns an array of reflections by taskId |
 | POST   | api/v1/reflections/addNewReflection       | (see request)         | returns newReflectionId                   |
-|        |                                           |                       |                                           |
+| DELETE | api/v1/reflections/deleteReflectionById  | requires reflectionId  | dletes reflection by ID                   |
 
 ### Data structures:
 
@@ -702,6 +798,24 @@ Response:
     "newReflectionId": [
         4
     ]
+}
+```
+
+DELETE api/v1/reflections/deleteReflectionById
+
+Request:
+
+```
+{
+	"reflectionId": "1"
+}
+```
+
+Response:
+
+```
+{
+	"message": "reflection deleted successfully"
 }
 ```
 

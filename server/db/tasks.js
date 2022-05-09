@@ -60,6 +60,7 @@ function addNewTask(task, db = connection) {
 
 //PATCH
 function updateTaskById(task, db = connection) {
+  console.log(task)
   const data = {
     task_id: task.taskId,
     goal_id: task.goalId,
@@ -72,10 +73,16 @@ function updateTaskById(task, db = connection) {
   return db('tasks').where('task_id', task.taskId).update(data)
 }
 
+//DELETE
+function deleteTaskById(taskId, db = connection) {
+  return db('tasks').where('task_id', taskId).del()
+}
+
 module.exports = {
   getTasks,
   getTasksBySubGoalId,
   getTaskById,
   addNewTask,
   updateTaskById,
+  deleteTaskById,
 }

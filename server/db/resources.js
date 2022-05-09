@@ -29,7 +29,7 @@ function getResourcesBySubGoalId(subgoal_id, db = connection) {
 
 function addNewResource(newResource, db = connection) {
   const data = {
-    resource_id: newResource.resource_id,
+    // resource_id: newResource.resource_id,
     goal_id: newResource.goalId,
     subgoal_id: newResource.subgoalId,
     resource_name: newResource.resourceName,
@@ -38,8 +38,29 @@ function addNewResource(newResource, db = connection) {
   return db('resources').insert(data)
 }
 
+//PATCH
+function editResource(newResource, db = connection) {
+  const data = {
+    resource_id: newResource.resourceId,
+    goal_id: newResource.goalId,
+    subgoal_id: newResource.subgoalId,
+    resource_name: newResource.resourceName,
+    url: newResource.url,
+  }
+  return db('resources').where('resource_id', data.resource_id).update(data)
+}
+
+
+
+//DELETE
+function deleteResourceById(resourceId, db = connection) {
+  return db('resources').where('resource_id', resourceId).del()
+}
+
 module.exports = {
   getResourcesData,
   getResourcesBySubGoalId,
   addNewResource,
+  deleteResourceById,
+  editResource,
 }

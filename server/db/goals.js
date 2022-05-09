@@ -58,8 +58,23 @@ function editGoal(goalData, db = connection) {
     weekly_hours: goalData.weeklyHours,
     date_created: goalData.dateCreated,
     completed: goalData.completed,
+    researched: goalData.researched,
   }
   return db('goals').where('goal_id', data.goal_id).update(data)
+}
+
+//DELETE
+function deleteGoalById(goalId, db = connection) {
+  return db('goals').where('goal_id', goalId).del()
+}
+
+//DELETE whole pland data by goal id DANGER ZONE!!!!!
+function deletePlanByGoalId(goalId, db = connection) {
+  console.log(goalId);
+  return db('goals')
+  .where('goal_id', goalId)
+  .join('tasks', 'tasks.goal_id', 'goals.goal_id')
+  .del()
 }
 
 module.exports = {
@@ -67,4 +82,6 @@ module.exports = {
   getUserGoals,
   addNewGoal,
   editGoal,
+  deleteGoalById,
+  deletePlanByGoalId
 }

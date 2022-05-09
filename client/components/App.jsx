@@ -34,15 +34,14 @@ function App() {
       <IfAuthenticated>
         <Routes>
           <Route path="/register" element={<Registration />} />
-
           <Route path="/" element={<LandingPage />} />
           <Route path="/welcome/:type" element={<Welcome />} />
           <Route path="/newgoal" element={<NewGoal />} />
           <Route path="/veteranview" element={<VeteranView />} />
           <Route path="/goal/:goalId" element={<GoalOverview />} />
           <Route path="/subgoal/:subgoalId" element={<CreateSubGoal />} />
-          <Route path="/nav" element={<Nav />} />
           <Route path="/research/:goalId" element={<Research />} />
+          <Route path="/dailylearning/:taskid" element={<DailyLearning />} />
           <Route path="/" element={<Users />} />
           {/* <Route path="/" element={<PingRoutes />} /> */}
         </Routes>
