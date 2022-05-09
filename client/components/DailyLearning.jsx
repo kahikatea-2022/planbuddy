@@ -19,12 +19,12 @@ function DailyLearning() {
   const resources = useSelector(state=>state.resources)
   const reflections = useSelector(state=>state.reflections)
   const {taskid} = useParams()
-
+  
   const [checkboxState, setCheckboxState] = useState(false)
   useEffect(()=>{
     dispatch(fetchTask(Number(taskid)))
+    // fetch resources
     
-
   }, [checkboxState])
   useEffect(()=>{
     dispatch(fetchResources(task.subgoalId))
