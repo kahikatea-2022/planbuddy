@@ -20,6 +20,10 @@ function GoalsOverview() {
   useEffect(()=>{
     dispatch(fetchGoals(Number(userId)))
   },[])
+
+  function clickHandler(){
+    navigate('/newGoal/')
+  }
   return (
     <>
       <h1>Your learning goals</h1>
@@ -27,7 +31,7 @@ function GoalsOverview() {
       <div key={'gregs kitchen'} className="pencilButtons">
         {goals?.map(goal=><GoalCard key={goal.goalId} goal={goal}/>)}
       
-        <div className="subGoalCreator">
+        <div onClick={clickHandler} className="subGoalCreator">
           <img className="pencilButtonImg" src="/images/greyPencil.png"></img>
           <p className="pencilButtonText">Add Goal</p>
         </div>
