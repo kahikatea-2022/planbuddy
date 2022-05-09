@@ -1,12 +1,15 @@
+import { useAuth0 } from '@auth0/auth0-react'
 import { format } from 'prettier'
 import React, { useEffect, useState } from 'react'
 import { useDispatch , useSelector } from 'react-redux'
 // import { useSelector, useDispatch } from 'react-redux'
 // import { addGoal, ADD_GOAL, fetchGoals } from '../actions/goals'
 import { useNavigate, useParams } from 'react-router-dom'
+import { fetchGoal } from '../actions/goal'
 import { fetchSubGoal } from '../actions/subGoals'
 import { fetchTask } from '../actions/tasks'
 import { addNewReflection } from '../apis/reflections'
+import { getLogoutFn } from '../auth0-utils'
 // import { addResource } from '../actions/resources'
 // import { addTask, setTasks } from '../actions/tasks'
 
@@ -15,7 +18,10 @@ const navigate = useNavigate()
 const dispatch = useDispatch()
 const task = useSelector(state=>state.task)
 const subgoal = useSelector(state=>state.subgoal)
+const goal = useSelector(state=>state.goal)
+const user = useSelector(state=>state.user)
 const {taskId} = useParams()
+const logout = getLogoutFn(useAuth0)
 
 const [reflection, setReflection] = useState('')
 
@@ -33,18 +39,26 @@ function inputHandler(e){
   console.log(reflection)
 }
 
-function logoutAndComplete(e){
-  e.preventDefault()
+function handleReflectionAdd(){
   const newReflection = {
-    subgoalId: subgoal.subgoalId,
+    goalId: task.goalId,
     taskId: task.taskId,
     reflection: reflection
   }
-  addNewReflection()
+  return addNewReflection(newReflection)
+}
+function logoutAndComplete(e){
+  e.preventDefault()
+  handleReflectionAdd().then(res=>{
+    logout()
+  }).catch(console.error)
 }
 
 function toGoalsAndComplete(e){
   e.preventDefault()
+  handleReflectionAdd().then(res=>{
+    navigate('/goal/' + task.goalId)
+  }).catch(console.error)
   
 }
   return (
