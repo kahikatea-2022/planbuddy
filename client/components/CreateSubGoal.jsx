@@ -31,7 +31,7 @@ function CreateSubGoal({first, schugl}) {
   const subgoal = useSelector(state=>state.subGoal)
   const resources = useSelector((state) => state.resources)
   const tasks = useSelector((state) => state.tasks)
-  console.log(resources)
+  // console.log(resources)
   const [checkboxState, setCheckboxState] = useState(false)
   const [inputStateResources, setInputStateResources] = useState({
     resourceName: '',
@@ -54,7 +54,7 @@ function CreateSubGoal({first, schugl}) {
   },[])
   useEffect(()=>{
     getGoalsByUserId(user.id).then(res=>{
-      console.log(res)
+      console.log(1, res)
       if(res === null) return
       if(res.find(el=> el.goalId === subgoal.goalId)) return
       navigate('/goals/' + user.id)
@@ -65,7 +65,7 @@ function CreateSubGoal({first, schugl}) {
       ...inputStateResources,
       [event.target.id]: event.target.value,
     })
-    console.log(inputStateResources)
+    // console.log(inputStateResources)
   }
 
   const handleFormTasks = (event) => {

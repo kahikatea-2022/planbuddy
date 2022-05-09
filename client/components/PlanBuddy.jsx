@@ -31,7 +31,7 @@ function PlanBuddy() {
         <div className="hamburgerMenu">
           <ul>
             <li>
-              <a href="http://localhost:3000/goaloverview"> Goals Overview </a>
+              <a href="http://localhost:3000/goals"> Goals Overview </a>
             </li>
             <li>
               <a href="http://localhost:3000/welcome"> Daily Learning </a>
