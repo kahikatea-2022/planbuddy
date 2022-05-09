@@ -15,6 +15,7 @@ import Research from './Research'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import Welcome from './Welcome'
 import GoalOverview from './GoalOverview'
+import GoalsOverview from './GoalsOverview'
 import DailyLearning from './DailyLearning'
 import Reflections from './Reflections'
 
@@ -42,6 +43,7 @@ function App() {
           <Route path="/research/:goalId" element={<Research />} />
           <Route path="/dailylearning/:taskid" element={<DailyLearning />} />
           <Route path="/reflection/:taskId" element={<Reflections/>} />
+          <Route path="/goals/:userId" element={<GoalsOverview/>} />
           {/* <Route path="/" element={<PingRoutes />} /> */}
         </Routes>
       </IfAuthenticated>
