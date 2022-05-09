@@ -9,6 +9,7 @@ import { fetchTask } from '../actions/tasks'
 import { updateTaskCompletion } from '../apis/tasks'
 import PlanBuddy from './PlanBuddy'
 import { ReflectionsList } from './ReflectionsList'
+import { ResourcesList } from './ResourcesList'
 
 function DailyLearning() {
 // TODO Add funcitonality to buddy to accept on the fly reflections
@@ -63,11 +64,7 @@ function DailyLearning() {
       <div className='left'>
         <span>Resources:</span>
         <ul>
-          {resources.map(resource=>{
-            return(
-              <li key={resource.resourceName + resource.resourceId}><a target="_blank" href={resource.url} rel="noreferrer">{resource.resourceName}</a></li>
-            )
-          })}
+          {<ResourcesList resources={resources}/>}
         </ul>
       </div>
       <div className='left'>
