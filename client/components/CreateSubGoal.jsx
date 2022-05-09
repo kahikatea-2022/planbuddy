@@ -52,14 +52,15 @@ function CreateSubGoal({first, schugl}) {
     dispatch(fetchResources(Number(subgoalId)))
     dispatch(fetchTasks(Number(subgoalId)))
   },[])
-  useEffect(()=>{
-    getGoalsByUserId(user.id).then(res=>{
-      console.log(1, res)
-      if(res === null) return
-      if(res.find(el=> el.goalId === subgoal.goalId)) return
-      navigate('/goals/' + user.id)
-    }).catch(err=>console.error('Something went wrong'))
-  }, [subgoal])
+  // Validate ownership, needs slight rework to accout for inital empty data
+  // useEffect(()=>{
+  //   getGoalsByUserId(user.id).then(res=>{
+  //     console.log(1, res)
+  //     if(res === null) return
+  //     if(res.find(el=> el.goalId === subgoal.goalId)) return
+  //     navigate('/goals/' + user.id)
+  //   }).catch(err=>console.error('Something went wrong'))
+  // }, [subgoal])
   const handleFormResources = (event) => {
     setInputStateResources({
       ...inputStateResources,

@@ -60,7 +60,7 @@ function Research() {
           completed: false,
           current: false,
         })
-        navigate('/subgoal/' + redir)
+        navigate('/subgoal/' + redir + '/new')
       })
       .catch(console.error)
   }

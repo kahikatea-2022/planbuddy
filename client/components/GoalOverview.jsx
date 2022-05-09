@@ -24,14 +24,7 @@ function GoalOverview() {
   function subgoalHandler() {
     // needs to be changed back to check if true for proper implementation
     // adds new subgoal and redirects to new subgoal
-<<<<<<< HEAD
     if(goal.researched === 1){
-||||||| d1dbbee
-    if (goal.researched === true) {
-=======
-    if(goal.researched === 1){
-      
->>>>>>> a7830bb5c89d1f969bd8272d401dbe17cfc1a4cd
       const newSubgoal = {
         goalId: goal.goalId,
         subgoalName: 'Please enter a name for your subgoal',
@@ -41,7 +34,7 @@ function GoalOverview() {
       }
       addSubGoal(newSubgoal)
         .then((res) => {
-          navigate('/subgoal/' + res)
+          navigate('/subgoal/' + res + "/new")
         })
         .catch(console.error)
     } else {
