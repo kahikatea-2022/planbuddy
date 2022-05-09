@@ -54,7 +54,7 @@ router.post('/addNewSubgoal', (req, res) => {
 //PATCH /api/v1/subGoals
 router.patch('/updateSubgoalById', (req, res) => {
   const data = req.body
-
+  console.log(data);
   db.updateSubGoalById(data)
     .then(() => {
       res.status(200).json({ message: 'your subgoal was successfully updated' })
