@@ -182,6 +182,7 @@ function CreateSubGoal({first, schugl}) {
       <button onClick={completeHandler}>Complete Subgoal</button>
 
       <PlanBuddy />
+    </div>
     </>
   )
 }
