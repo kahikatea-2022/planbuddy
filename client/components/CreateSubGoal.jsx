@@ -13,6 +13,7 @@ import { addNewTask, updateTaskCompletion } from '../apis/tasks'
 import { updateSubgoalById } from '../apis/subGoals'
 import { updateCurrentTask } from '../apis/users'
 import { ResourcesList } from './ResourcesList'
+import { getGoalsByUserId } from '../apis/goals'
 
 //Steps:
 //Create an add resources form
@@ -22,6 +23,7 @@ import { ResourcesList } from './ResourcesList'
 function CreateSubGoal({first, schugl}) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  if(schugl === "unga bungas") navigate('/')
   console.log(schugl)
   const {subgoalId} = useParams()
   const user = useSelector(state=>state.user)
@@ -49,6 +51,14 @@ function CreateSubGoal({first, schugl}) {
     dispatch(fetchResources(Number(subgoalId)))
     dispatch(fetchTasks(Number(subgoalId)))
   },[])
+  useEffect(()=>{
+    getGoalsByUserId(user.id).then(res=>{
+      console.log(res)
+      if(res === null) return
+      if(res.find(el=> el.goalId === subgoal.goalId)) return
+      navigate('/goals/' + user.id)
+    }).catch(err=>console.error('Something went wrong'))
+  }, [subgoal])
   const handleFormResources = (event) => {
     setInputStateResources({
       ...inputStateResources,
