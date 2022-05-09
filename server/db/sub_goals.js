@@ -60,10 +60,16 @@ function deleteSubgoalById(subgoalId, db = connection) {
   return db('sub_goals').where('subgoal_id', subgoalId).del()
 }
 
+//DELETE whole plan data by goal id DANGER ZONE!!!!!
+function deleteAllByGoalId(goalId, db = connection) {
+  return db('sub_goals').where('goal_id', goalId).del()
+}
+
 module.exports = {
   getSubGoals,
   getSubGoalById,
   addNewSubGoal,
   updateSubGoalById,
   deleteSubgoalById,
+  deleteAllByGoalId,
 }
