@@ -1,21 +1,27 @@
 import { format } from 'prettier'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { addGoal, ADD_GOAL } from '../actions/goals'
-import { useNavigate } from 'react-router-dom'
+import { fetchTask } from '../actions/tasks'
+import {  useNavigate } from 'react-router-dom'
 
 function VeteranView() {
+  const user = userSelector((state) => state.user)
+  const task = userSelector((state) => state.task)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
-// get user current goal information
-//     use current goal info to get task  
+  useEffect(() => {
+    dispatch(fetchTask(Number(user.currentTask)))
+  })
+
+  function handleClick() {
+    navigate(`/dailylearning/${user.currentTask}`)
+  }
 //     fill out button with task info
 //     link to respective task onclick
   return (
     <>
-
-    
-
-      <button> Continue with *current goal* </button>
+      <button onClick={handleClick}> Continue with {task.name} </button>
       <button> I'm learning something else today </button>
     </>
   )
