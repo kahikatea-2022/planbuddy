@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div className="app">
-      <Nav />
+      {/* <Nav /> */}
       <IfNotAuthenticated>
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -42,8 +42,8 @@ function App() {
           <Route path="/subgoal/:subgoalId" element={<CreateSubGoal />} />
           <Route path="/research/:goalId" element={<Research />} />
           <Route path="/dailylearning/:taskid" element={<DailyLearning />} />
-          <Route path="/reflection/:taskId" element={<Reflections/>} />
-          <Route path="/goals/:userId" element={<GoalsOverview/>} />
+          <Route path="/reflection/:taskId" element={<Reflections />} />
+          <Route path="/goals/:userId" element={<GoalsOverview />} />
           {/* <Route path="/" element={<PingRoutes />} /> */}
         </Routes>
       </IfAuthenticated>
