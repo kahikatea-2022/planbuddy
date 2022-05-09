@@ -16,12 +16,12 @@ test('GET getGoalDataById should return an array of goal data by GoalId', () => 
   return db.getGoalDataById(1, testDb).then((goals) => {
     console.log(goals)
     expect(goals.goalId).toBe(1)
-    // expect(goals.userId).toBeInstanceOf(typeof 22);
+    expect(typeof goals.userId).toBe('number')
     // expect(goals.goalName).toBe()
     // expect(goals.why).toBe()
     // expect(goals.weeklyHours).toBe()
     // expect(goals.dateCreated).toBe()
-    // expect(goals.completed).toBe()
+    //  expect(goals.completed).toBe
     // expect(goals.researched).toBe()
     return null
   })
