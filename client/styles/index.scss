@@ -43,7 +43,7 @@ table th {
 nav {
   display: flex;
   align-items: center;
-  color: rgb(8, 6, 6);
+  color: #4a4848;
   padding: 10px;
   align-self: stretch;
 }
@@ -54,8 +54,9 @@ nav {
   flex-direction: row;
 }
 
+// this is the pencil
 .pencil {
-  padding-top: 30px;
+  padding-top: 5px;
   height: 35px;
   width: auto;
 }
@@ -73,6 +74,14 @@ a {
   color: inherit;
 }
 
+.MainLogo {
+  min-height: 200%;
+  width: auto;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  padding-top: 8%;
+}
+
 .nav-item {
   width: 50%;
   text-align: right;
@@ -81,7 +90,8 @@ a {
 .app {
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  // gap: 100px;
+  gap: 50px;
   align-items: center;
 }
 
@@ -107,6 +117,7 @@ a {
   font-family: 'Courier New', Courier, monospace;
 }
 
+// this makes the buttons sit side by side and have a bit of a gap between them
 .buttons {
   display: flex;
   flex-direction: row;
@@ -131,14 +142,25 @@ body {
   font-family: 'Caveat', cursive;
 }
 
-p,
-h1 {
+p {
   color: #4a4848;
-  // padding: 0px;
-  // margin: 0px;
+  padding: 0px;
+  margin: 0px;
+  font-size: 130%;
 }
 
-// this img refers to the pencil next to the PlanBuddy Logo
+h1 {
+  color: #4a4848;
+  padding: 0px;
+  margin: 0px;
+}
+
+h2 {
+  color: #4a4848;
+  padding: 0px;
+  margin: 0px;
+}
+
 img {
   height: 100px;
   width: 100px;
@@ -168,6 +190,7 @@ img {
   margin: 20px;
   height: 120px;
   width: 160px;
+  text-align: center;
 }
 
 .pencilButtonImg {
@@ -183,11 +206,59 @@ img {
   padding-top: 0px;
   margin-top: 0px;
   padding-left: 10px;
+  text-align: center;
 }
 
 button {
   font-family: 'Caveat', cursive;
   font-size: larger;
+  background-color: rgb(250, 250, 250);
+  color: #4a4848;
+  box-shadow: 0px 2px rgb(71, 71, 71);
+}
+
+button:hover {
+  color: rgb(106, 106, 110);
+}
+
+// speech bubble, ENSURE YOU USE AS className="speechBubble tail"
+.speechBubble {
+  width: 300px;
+  margin: 50px auto;
+  border: 1px solid rgb(122, 121, 121);
+  padding: 10px;
+  text-align: center;
+  color: #4a4848;
+  font-family: 'Caveat';
+  position: relative;
+  border-radius: 25px;
+  gap: 50px;
+}
+
+.tail:before {
+  content: '';
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid transparent;
+  border-right: 10px solid rgb(122, 121, 121);
+  border-top: 10px solid rgb(122, 121, 121);
+  border-bottom: 10px solid transparent;
+  right: 23px;
+  bottom: -20px;
+}
+
+.tail:after {
+  content: '';
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 15px solid transparent;
+  border-right: 20px solid #fff;
+  border-top: 20px solid transparent;
+  border-bottom: 15px solid transparent;
+  right: 24px;
+  bottom: -14px;
 }
 
 // Mascot
@@ -201,7 +272,7 @@ button {
 .Buddy {
   height: 25%;
   width: auto;
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 0;
 }
@@ -223,6 +294,7 @@ ul {
 a {
   list-style-type: none;
   text-decoration: none;
+  color: #4a4848;
 }
 
 a:hover {
@@ -333,4 +405,115 @@ a:hover {
   100% {
     opacity: 0;
   }
+}
+
+.DailyLearning {
+  padding-top: 10%;
+  text-align: center;
+  line-height: 250%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h1 {
+    padding-bottom: 10%;
+    padding-top: 10%;
+  }
+}
+
+.veteran-view {
+  padding: 21%;
+  display: flex;
+  flex-direction: column;
+  .speechBubble:hover {
+    color: rgb(106, 106, 110);
+  }
+}
+
+//Welcome Page
+
+.WelcomeMessage {
+  padding-top: 15%;
+  text-align: center;
+  line-height: 250%;
+}
+
+.planbuddy-welcome {
+  .Buddy {
+    height: 34%;
+    width: auto;
+    position: absolute;
+    right: 40%;
+    bottom: 0;
+  }
+}
+
+//research page component
+//component to replace nav bar
+.blank-nav {
+  padding-top: 10%;
+}
+
+//blank nav for subgoal
+.blank-nav2 {
+  padding-top: 1%;
+}
+
+.new-goal {
+  font-size: 120%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  line-height: 300%;
+}
+
+//NewGoal Component text field
+//creates a textbox line
+
+.textbox-input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+}
+
+//CreateSubgoal component
+
+.subgoal-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  line-height: 300%;
+  p {
+    text-align: center;
+    padding-bottom: 0%;
+  }
+
+  form {
+    text-align: center;
+    padding-top: 0%;
+    padding: 10%;
+  }
+
+  li,
+  a {
+    line-height: 135%;
+    text-align: center;
+  }
+
+  button {
+    align-items: center;
+    font-size: 80%;
+  }
+
+  list {
+    align-items: center;
+  }
+
+  span {
+    color: #4a4848;
+  }
+}
+
+input::placeholder {
+  font-size: 150%;
 }

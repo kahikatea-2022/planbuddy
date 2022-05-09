@@ -12,19 +12,23 @@ import { addNewResource } from '../apis/resources'
 import { addNewTask, updateTaskCompletion } from '../apis/tasks'
 import { editSubgoalById, updateSubgoalById } from '../apis/subGoals'
 import { updateCurrentTask } from '../apis/users'
+import { ResourcesList } from './ResourcesList'
+import { getGoalsByUserId } from '../apis/goals'
+import PlanBuddy from './PlanBuddy'
+
 
 //Steps:
 //Create an add resources form
 //create an add tasks form
 //add the input to state
 
-function CreateSubGoal() {
+function CreateSubGoal({first, schugl}) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
-  const { subgoalId } = useParams()
-  const user = useSelector((state) => state.user)
-  const subgoal = useSelector((state) => state.subGoal)
+  if(schugl === "unga bungas") navigate('/')
+  const {subgoalId} = useParams()
+  const user = useSelector(state=>state.user)
+  const subgoal = useSelector(state=>state.subGoal)
   const resources = useSelector((state) => state.resources)
   const tasks = useSelector((state) => state.tasks)
   console.log(resources)
@@ -47,7 +51,15 @@ function CreateSubGoal() {
     dispatch(fetchSubGoal(Number(subgoalId)))
     dispatch(fetchResources(Number(subgoalId)))
     dispatch(fetchTasks(Number(subgoalId)))
-  }, [])
+  },[])
+  useEffect(()=>{
+    getGoalsByUserId(user.id).then(res=>{
+      console.log(res)
+      if(res === null) return
+      if(res.find(el=> el.goalId === subgoal.goalId)) return
+      navigate('/goals/' + user.id)
+    }).catch(err=>console.error('Something went wrong'))
+  }, [subgoal])
   const handleFormResources = (event) => {
     setInputStateResources({
       ...inputStateResources,
@@ -126,6 +138,7 @@ function CreateSubGoal() {
 
   return (
     <>
+      <div className="blank-nav2"></div>
       <input
         defaultValue={subgoal.subgoalName}
         placeholder="subgoal name"
@@ -133,42 +146,42 @@ function CreateSubGoal() {
         onKeyUp={saveInput}
       ></input>
       <h1>{subgoal.subgoalName}</h1>
-      <div>
-        <p>Resources:</p>
+      <div className="subgoal-content">
+        {/* should render based on whether this is first goal or not */}
+        <p>{first?"Add resources here:":"Resources:"}</p>
         <ul>
-          {resources.map((resource) => {
-            return (
-              <li key={resource.resourceName + resource.resourceId}>
-                <a href={resource.url}>{resource.resourceName}</a>
-              </li>
-            )
-          })}
+          {<ResourcesList resources={resources}/>}
         </ul>
+
         <form>
-          <label htmlFor="resourceName">Name of resource:</label>
+          <label htmlFor="resourceName"> </label>
           <input
-            type="text"
-            id="resourceName"
-            onChange={handleFormResources}
-            value={inputStateResources.resource_name}
-          ></input>
-          <label htmlFor="url">Link to resource:</label>
-          <input
+            className="textbox-input"
+            placeholder="Resource Link"
             type="text"
             id="url"
             onChange={handleFormResources}
             value={inputStateResources.url}
           ></input>
-          <button onClick={submitHandlerResources}>Add</button>
+          <input
+            className="textbox-input"
+            placeholder="Resource Name"
+            type="text"
+            id="resourceName"
+            onChange={handleFormResources}
+            value={inputStateResources.resource_name}
+          ></input>
+          <label htmlFor="url"></label>
         </form>
-      </div>
-      {/* list to render the resources*/}
-      {/* <ul>
+
+        <button onClick={submitHandlerResources}>Add Resource</button>
+        {/* list to render the resources*/}
+        {/* <ul>
         <li>{resources.resource_name}</li>
       </ul> */}
       <form>
         {/* this needs to change based on whether subgoal has been created */}
-        <h2>Great work, now add your first tasks</h2>
+        <h2>{first?"Great work, now add your first tasks":"Tasks:"}</h2>
         <ul>
           {tasks.map((task) => {
             return (
@@ -186,14 +199,19 @@ function CreateSubGoal() {
           })}
         </ul>
         <input
+          className="textbox-input"
+          placeholder="New Task"
           type="text"
           id="taskName"
           value={inputStateTasks.name}
           onChange={handleFormTasks}
         ></input>
-        <button onClick={submitHandlerTasks}>Add</button>
+        <button onClick={submitHandlerTasks}>Add New Task</button>
       </form>
       <button onClick={completeHandler}>Complete Subgoal</button>
+
+      <PlanBuddy />
+    </div>
     </>
   )
 }
