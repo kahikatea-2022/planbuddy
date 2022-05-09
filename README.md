@@ -935,6 +935,33 @@ Response:
 }
 ```
 
+### Quotes database
+
+| Method | Endpoint | Send Body | Returns |
+| ------ | -------- | --------- | ------- |
+| GET    |          |           |         |
+|        |          |           |         |
+|        |          |           |         |
+|        |          |           |         |
+
+### Data structures:
+
+GET
+
+```
+Request:
+
+sdafadg
+
+```
+
+```
+Response:
+
+SFgggah
+
+```
+
 # Fullstack boilerplate
 
 ## Getting Started
