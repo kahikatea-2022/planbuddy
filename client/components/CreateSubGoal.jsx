@@ -99,6 +99,7 @@ function CreateSubGoal() {
   }
   return (
     <>
+      <input defaultValue={'I am the default value'} placeholder='subgoal name' type={'text'}></input>
       <h1>{subgoal.subgoalName}</h1>
       <div>
         <p>Resources:</p>
