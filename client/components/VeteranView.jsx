@@ -17,15 +17,18 @@ function VeteranView() {
 
 
   //site doesnt know what user.currentTask is
-  function handleClick() {
+  function handleClickCont() {
     navigate(`/dailylearning/${user.currentTask}`)
   }
-//     fill out button with task info
-//     link to respective task onclick
+
+  function handleClickNew() {
+    navigate('/goalsoverview')
+  }
+
   return (
     <>
-      <button onClick={handleClick}> Continue with {task?.taskName} </button>
-      <button> I'm learning something else today </button>
+      <button onClick={handleClickCont}> Continue with: {task?.taskName} </button>
+      <button onClick={handleClickNew}> I'm learning something else today </button>
     </>
   )
 }
