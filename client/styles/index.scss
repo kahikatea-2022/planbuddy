@@ -146,6 +146,7 @@ p {
   color: #4a4848;
   padding: 0px;
   margin: 0px;
+  font-size: 130%;
 }
 
 h1 {
@@ -226,10 +227,6 @@ button {
   position: relative;
   border-radius: 25px;
   gap: 50px;
-}
-
-.speechBubble:hover {
-  color: rgb(106, 106, 110);
 }
 
 .tail:before {
@@ -403,12 +400,6 @@ a:hover {
   }
 }
 
-.WelcomeMessage {
-  padding-top: 10%;
-  text-align: center;
-  line-height: 250%;
-}
-
 .DailyLearning {
   padding-top: 10%;
   text-align: center;
@@ -426,4 +417,25 @@ a:hover {
   padding: 21%;
   display: flex;
   flex-direction: column;
+  .speechBubble:hover {
+    color: rgb(106, 106, 110);
+  }
+}
+
+//Welcome Page
+
+.WelcomeMessage {
+  padding-top: 15%;
+  text-align: center;
+  line-height: 250%;
+}
+
+.planbuddy-welcome {
+  .Buddy {
+    height: 34%;
+    width: auto;
+    position: absolute;
+    right: 40%;
+    bottom: 0;
+  }
 }

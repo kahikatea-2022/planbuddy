@@ -27,14 +27,16 @@ export default function Welcome() {
           className={fadeOut ? 'fade-out' : 'fade-in'}
           onAnimationEnd={handleRedirect}
         >
-          Hi, {user.name}!
+          Hi {user.name}!
         </p>
         <p className={fadeOut ? 'fade-out' : 'fade-in'}>I'm Buddy</p>
+        <p className={fadeOut ? 'fade-out' : 'fade-in'}>Let's get learning!</p>
         <p className={fadeOut ? 'fade-out' : 'fade-in'}>
           Click on me at any time for help and the menu
         </p>
-        <p className={fadeOut ? 'fade-out' : 'fade-in'}>Let's get learning!</p>
         <p className={fadeOut ? 'fade-out' : 'fade-in'}>you are {type} </p>
+      </div>
+      <div className="planbuddy-welcome">
         <PlanBuddy />
       </div>
     </>

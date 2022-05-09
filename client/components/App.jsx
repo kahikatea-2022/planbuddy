@@ -27,7 +27,7 @@ function App() {
       {/* <Nav /> */}
       <IfNotAuthenticated>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<Welcome />} />
           <Route path="/register" element={<Registration />} />
         </Routes>
       </IfNotAuthenticated>
