@@ -21,7 +21,7 @@ function VeteranView() {
   }
 
   function handleClickNew() {
-    navigate('/goalsoverview')
+    navigate('/goals/' + user.id)
   }
 
   return (

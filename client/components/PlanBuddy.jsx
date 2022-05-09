@@ -4,17 +4,34 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addGoal, ADD_GOAL } from '../actions/goals'
 import { useNavigate } from 'react-router-dom'
 import Goal from './Goal'
+import { getLogoutFn } from '../auth0-utils'
+import { useAuth0 } from '@auth0/auth0-react'
 
 // PlanBuddy needs to include the Nav functionality (sign in, sign out)
 
 function PlanBuddy() {
-  const [mascotHover, setMascotHover] = useState(false)
+  const navigate = useNavigate()
+  const user = useSelector(state=>state.user)
+  const [mascotHover, setMascotHover] = useState(true)
+  const [chatBubbleTimeout, setChatBubbleTimeout] = useState('')
+  const [chatBubble, setChatBubble] = useState('...')
+  const [chatBubbleVisible, setChatBubbleVisible] = useState(false)
   // this part of the code is to change buddys image when you mouse over them
   const [imgSource, setImgSource] = useState('/images/PlanBuddy.png')
 
+  
   function changeBuddyImage() {
-    if (mascotHover) setImgSource('/images/PlanBuddy-mouthOpen.png')
-    if (!mascotHover) setImgSource('/images/PlanBuddy.png')
+    if (mascotHover) {
+       setChatBubbleTimeout(setTimeout(()=>{
+        setChatBubbleVisible(true)
+      }, 1000))
+      setImgSource('/images/PlanBuddy-mouthOpen.png')
+    }
+    if (!mascotHover) {
+      clearTimeout(chatBubbleTimeout)
+      setChatBubbleVisible(false)
+      setImgSource('/images/PlanBuddy.png')
+    }
   }
 
   // this part of code is to render the menu when you click on buddy
@@ -24,23 +41,30 @@ function PlanBuddy() {
     console.log('hello')
     setClick(!click)
   }
-
+  function clickRedirect(url){
+    navigate(url)
+  }
+  
+  const logout = getLogoutFn(useAuth0)
   return (
     <>
       {click && (
         <div className="hamburgerMenu">
           <ul>
-            <li>
-              <a href="http://localhost:3000/goaloverview"> Goals Overview </a>
+            <li onClick={()=>clickRedirect('/goals/' + user.id)}>
+              Goals Overview
             </li>
-            <li>
-              <a href="http://localhost:3000/welcome"> Daily Learning </a>
-            </li>
-            <li>
-              <a href="http://localhost:3000/welcome"> Sign Out </a>
+            {user.currentTask && <li onClick={()=>clickRedirect('/dailylearning/' + user.currentTask)}>
+              Daily Learning
+            </li>}
+            <li onClick={()=>logout()}>
+              Sign Out
             </li>
           </ul>
         </div>
+      )}
+      {chatBubbleVisible && (
+        <h1>{chatBubble}</h1>
       )}
       <div>
         <img

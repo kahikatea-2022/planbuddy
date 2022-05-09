@@ -19,7 +19,6 @@ export function addResource(resource) {
 export function fetchResources(subGoalId) {
   return (dispatch) => {
     return getResourcesBySubGoalId(subGoalId).then((data) => {
-      console.log(data)
       dispatch(setResources(data))
       return null
     })

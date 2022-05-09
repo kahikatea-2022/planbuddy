@@ -10,13 +10,17 @@ import { addSubGoal } from '../apis/subGoals'
 import PlanBuddy from './PlanBuddy'
 import { GoalCard } from './GoalCard'
 
-function GoalsOverview() {
+function GoalsOverview({ noId }) {
+  console.log(noId)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { userId } = useParams()
   const user = useSelector((state) => state.user)
   const goals = useSelector((state) => state.goals)
-
+  // useEffect(()=>{
+  //   if(!user.id) return
+  //   if(noId)navigate("./" + user.id)
+  // }, [user])
   useEffect(() => {
     dispatch(fetchGoals(Number(userId)))
   }, [])
