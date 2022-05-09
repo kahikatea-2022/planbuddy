@@ -13,24 +13,27 @@ import { GoalCard } from './GoalCard'
 function GoalsOverview() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const {userId} = useParams()
-  const user = useSelector(state=>state.user)
-  const goals = useSelector(state=>state.goals)
+  const { userId } = useParams()
+  const user = useSelector((state) => state.user)
+  const goals = useSelector((state) => state.goals)
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(fetchGoals(Number(userId)))
-  },[])
+  }, [])
 
-  function clickHandler(){
+  function clickHandler() {
     navigate('/newGoal/')
   }
   return (
     <>
+      <div className="blank-nav"></div>
       <h1>Your learning goals</h1>
 
       <div key={'gregs kitchen'} className="pencilButtons">
-        {goals?.map(goal=><GoalCard key={goal.goalId} goal={goal}/>)}
-      
+        {goals?.map((goal) => (
+          <GoalCard key={goal.goalId} goal={goal} />
+        ))}
+
         <div onClick={clickHandler} className="subGoalCreator">
           <img className="pencilButtonImg" src="/images/greyPencil.png"></img>
           <p className="pencilButtonText">Add Goal</p>
