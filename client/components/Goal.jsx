@@ -11,8 +11,8 @@ function Goal() {
   //   why: 'Play at friends wedding',
   //   weekly_hours: '20',
   // }
-  
-  const {goalId} = useParams()
+
+  const { goalId } = useParams()
   // might change this to reflect index of goal in users goals array
   const goal = useSelector((state) => state.goal)
 
@@ -24,19 +24,19 @@ function Goal() {
   }, [])
   // console.log(goal)
 
-  return goal?.goalId? (
-    
-      <>
-        <h1> Learning Plan </h1>
-        <p> I want to learn {goal.goalName}</p>
-        <p> So that I can {goal.why}</p>
-        <p>
-          I will dedicate {goal.weeklyHours} hours per week to achieve this
-          goal
-        </p>
-      </>
-
-  ):<p>Please Wait</p>
+  return goal?.goalId ? (
+    <>
+      <div className="blank-nav"></div>
+      <h1> Learning Plan </h1>
+      <p> I want to learn {goal.goalName}</p>
+      <p> {goal.why}</p>
+      <p>
+        I will dedicate {goal.weeklyHours} hours per week to achieve this goal
+      </p>
+    </>
+  ) : (
+    <p>Please Wait</p>
+  )
 }
 
 export default Goal
