@@ -31,3 +31,11 @@ export function updateSubgoalById(subgoal, bool) {
     .send({ subgoalId: subgoal.subgoalId, completed: bool })
     .then((res) => res.body)
 }
+
+//this is to edit the subgoal
+export function editSubgoalById(subgoal, newName) {
+  return request
+    .patch(rootUrl + '/subGoals/updateSubgoalById/')
+    .send({ subgoalId: subgoal.subgoalId, subgoalName: newName })
+    .then((res) => res.body)
+}

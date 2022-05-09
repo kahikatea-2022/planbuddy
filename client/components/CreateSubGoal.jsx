@@ -10,7 +10,7 @@ import { addTask, fetchTasks, setTasks } from '../actions/tasks'
 import { fetchSubGoal } from '../actions/subGoals'
 import { addNewResource } from '../apis/resources'
 import { addNewTask, updateTaskCompletion } from '../apis/tasks'
-import { updateSubgoalById } from '../apis/subGoals'
+import { editSubgoalById, updateSubgoalById } from '../apis/subGoals'
 import { updateCurrentTask } from '../apis/users'
 
 //Steps:
@@ -22,9 +22,9 @@ function CreateSubGoal() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const {subgoalId} = useParams()
-  const user = useSelector(state=>state.user)
-  const subgoal = useSelector(state=>state.subGoal)
+  const { subgoalId } = useParams()
+  const user = useSelector((state) => state.user)
+  const subgoal = useSelector((state) => state.subGoal)
   const resources = useSelector((state) => state.resources)
   const tasks = useSelector((state) => state.tasks)
   console.log(resources)
@@ -40,14 +40,14 @@ function CreateSubGoal() {
     current: false,
     goalId: subgoal.goalId,
     subgoalId: subgoal.subgoalId,
-    timeSpent: 0
+    timeSpent: 0,
   })
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(fetchSubGoal(Number(subgoalId)))
     dispatch(fetchResources(Number(subgoalId)))
     dispatch(fetchTasks(Number(subgoalId)))
-  },[])
+  }, [])
   const handleFormResources = (event) => {
     setInputStateResources({
       ...inputStateResources,
@@ -65,48 +65,82 @@ function CreateSubGoal() {
 
   function submitHandlerResources(event) {
     event.preventDefault()
-    const newResource = {...inputStateResources, goalId: subgoal.goalId, subgoalId: subgoal.subgoalId}
-    addNewResource(newResource).then(res=>{
-      const newId = res.newResourceId[0]
-      dispatch(addResource({...newResource, resourceId: newId}))
-
-    }).catch(console.error)
+    const newResource = {
+      ...inputStateResources,
+      goalId: subgoal.goalId,
+      subgoalId: subgoal.subgoalId,
+    }
+    addNewResource(newResource)
+      .then((res) => {
+        const newId = res.newResourceId[0]
+        dispatch(addResource({ ...newResource, resourceId: newId }))
+      })
+      .catch(console.error)
   }
 
   function submitHandlerTasks(event) {
     event.preventDefault()
-    const newTask = {...inputStateTasks, goalId: subgoal.goalId, subgoalId: subgoal.subgoalId}
-    addNewTask(newTask).then(res=>{
-      const newId = res.newTaskId[0]
-      dispatch(addTask({...newTask, taskId: newId}))
-    }).catch(console.error)
-    
+    const newTask = {
+      ...inputStateTasks,
+      goalId: subgoal.goalId,
+      subgoalId: subgoal.subgoalId,
+    }
+    addNewTask(newTask)
+      .then((res) => {
+        const newId = res.newTaskId[0]
+        dispatch(addTask({ ...newTask, taskId: newId }))
+      })
+      .catch(console.error)
   }
-  function checkboxHandler(task){
+  function checkboxHandler(task) {
     setCheckboxState(!checkboxState)
     // console.log(!checkboxState)
     updateTaskCompletion(task, !checkboxState)
   }
-  function completeHandler(e){
+  function completeHandler(e) {
     e.preventDefault()
-    updateSubgoalById(subgoal, true).then(res=>{
-      navigate('/goal/' + subgoal.goalId)
-    }).catch(console.error)
+    updateSubgoalById(subgoal, true)
+      .then((res) => {
+        navigate('/goal/' + subgoal.goalId)
+      })
+      .catch(console.error)
   }
-  function goToTaskHandler(taskId){
+  function goToTaskHandler(taskId) {
     updateCurrentTask(user.id, taskId)
     navigate('/dailylearning/' + taskId)
   }
+
+  function saveInput(event) {
+    if (event.code === 'Enter') {
+      console.log(event.target.value)
+      editSubgoalById(subgoal.subgoalId, event.target.value)
+      return
+    }
+  }
+
+  //input have a default value of subgoal name,
+  //when you press enter, the name of the subgoal needs to be updated in the database via patch route
+  //updateSubgoalById
+  // create new function
+  // ff
+
   return (
     <>
-      <input defaultValue={'I am the default value'} placeholder='subgoal name' type={'text'}></input>
+      <input
+        defaultValue={subgoal.subgoalName}
+        placeholder="subgoal name"
+        type={'text'}
+        onKeyUp={saveInput}
+      ></input>
       <h1>{subgoal.subgoalName}</h1>
       <div>
         <p>Resources:</p>
         <ul>
-          {resources.map(resource=>{
-            return(
-              <li key={resource.resourceName + resource.resourceId}><a href={resource.url}>{resource.resourceName}</a></li>
+          {resources.map((resource) => {
+            return (
+              <li key={resource.resourceName + resource.resourceId}>
+                <a href={resource.url}>{resource.resourceName}</a>
+              </li>
             )
           })}
         </ul>
@@ -136,10 +170,17 @@ function CreateSubGoal() {
         {/* this needs to change based on whether subgoal has been created */}
         <h2>Great work, now add your first tasks</h2>
         <ul>
-          {tasks.map(task=>{
-            return(
+          {tasks.map((task) => {
+            return (
               <li key={task.taskName + task.taskId}>
-                <input onChange={()=>checkboxHandler(task)} type={'checkbox'} defaultChecked={task.completed}/><span onClick={()=>goToTaskHandler(task.taskId)}>{task.taskName}</span>
+                <input
+                  onChange={() => checkboxHandler(task)}
+                  type={'checkbox'}
+                  defaultChecked={task.completed}
+                />
+                <span onClick={() => goToTaskHandler(task.taskId)}>
+                  {task.taskName}
+                </span>
               </li>
             )
           })}
