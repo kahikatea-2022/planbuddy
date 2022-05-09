@@ -8,6 +8,7 @@ const emptyUser = {
   name: '',
   token: '',
   id: '',
+  currentTask: '',
   roles: [],
 }
 
@@ -34,6 +35,7 @@ export async function cacheUser(useAuth0) {
         email: user.email,
         name: user.nickname,
         id: userFromDb?.userId,
+        currentTask: userFromDb?.currentTask,
         token,
       }
       // removed roles from userToSave
