@@ -12,7 +12,7 @@ function VeteranView() {
 
   //not returning the current task
   useEffect(() => {
-    dispatch(fetchTask(Number(1)))
+    dispatch(fetchTask(Number(user.currentTask)))
   })
 
 
@@ -24,7 +24,7 @@ function VeteranView() {
 //     link to respective task onclick
   return (
     <>
-      <button onClick={handleClick}> Continue with {task.name} </button>
+      <button onClick={handleClick}> Continue with {task?.taskName} </button>
       <button> I'm learning something else today </button>
     </>
   )
