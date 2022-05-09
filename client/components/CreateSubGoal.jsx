@@ -19,7 +19,7 @@ import { ResourcesList } from './ResourcesList'
 //create an add tasks form
 //add the input to state
 
-function CreateSubGoal() {
+function CreateSubGoal({first}) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -102,7 +102,7 @@ function CreateSubGoal() {
       <h1>{subgoal.subgoalName}</h1>
       <div>
         {/* should render based on whether this is first goal or not */}
-        <p>Add resources here:</p>
+        <p>{first?"Add resources here:":"Resources:"}</p>
         <ul>
           {<ResourcesList resources={resources}/>}
         </ul>
@@ -130,7 +130,7 @@ function CreateSubGoal() {
       </ul> */}
       <form>
         {/* this needs to change based on whether subgoal has been created */}
-        <h2>Great work, now add your first tasks</h2>
+        <h2>{first?"Great work, now add your first tasks":"Tasks:"}</h2>
         <ul>
           {tasks.map(task=>{
             return(
