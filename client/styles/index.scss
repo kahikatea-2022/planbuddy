@@ -439,3 +439,26 @@ a:hover {
     bottom: 0;
   }
 }
+
+//research page component
+//component to replace nav bar
+.blank-nav {
+  padding-top: 10%;
+}
+
+.new-goal {
+  font-size: 120%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  line-height: 300%;
+}
+
+//NewGoal Component text field
+//creates a textbox line
+
+.textbox-input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}

@@ -27,7 +27,7 @@ function App() {
       {/* <Nav /> */}
       <IfNotAuthenticated>
         <Routes>
-          <Route path="/" element={<Welcome />} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/register" element={<Registration />} />
         </Routes>
       </IfNotAuthenticated>
@@ -42,7 +42,7 @@ function App() {
           <Route path="/subgoal/:subgoalId" element={<CreateSubGoal />} />
           <Route path="/research/:goalId" element={<Research />} />
           <Route path="/dailylearning/:taskid" element={<DailyLearning />} />
-          <Route path="/reflection/:taskId" element={<Reflections/>} />
+          <Route path="/reflection/:taskId" element={<Reflections />} />
           {/* <Route path="/" element={<PingRoutes />} /> */}
         </Routes>
       </IfAuthenticated>

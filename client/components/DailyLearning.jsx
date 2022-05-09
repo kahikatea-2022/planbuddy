@@ -23,6 +23,7 @@ function DailyLearning() {
   const [checkboxState, setCheckboxState] = useState(false)
   useEffect(() => {
     dispatch(fetchTask(Number(taskid)))
+    // fetch resources
   }, [checkboxState])
   useEffect(() => {
     dispatch(fetchResources(task.subgoalId))
