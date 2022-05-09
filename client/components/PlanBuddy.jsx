@@ -4,10 +4,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addGoal, ADD_GOAL } from '../actions/goals'
 import { useNavigate } from 'react-router-dom'
 import Goal from './Goal'
+import { getLogoutFn } from '../auth0-utils'
+import { useAuth0 } from '@auth0/auth0-react'
 
 // PlanBuddy needs to include the Nav functionality (sign in, sign out)
 
 function PlanBuddy() {
+  const navigate = useNavigate()
+  const user = useSelector(state=>state.user)
   const [mascotHover, setMascotHover] = useState(false)
   // this part of the code is to change buddys image when you mouse over them
   const [imgSource, setImgSource] = useState('/images/PlanBuddy.png')
@@ -24,20 +28,24 @@ function PlanBuddy() {
     console.log('hello')
     setClick(!click)
   }
-
+  function clickRedirect(url){
+    navigate(url)
+  }
+  
+  const logout = getLogoutFn(useAuth0)
   return (
     <>
       {click && (
         <div className="hamburgerMenu">
           <ul>
-            <li>
-              <a href="http://localhost:3000/goals"> Goals Overview </a>
+            <li onClick={()=>clickRedirect('/goals/' + user.id)}>
+              Goals Overview
             </li>
-            <li>
-              <a href="http://localhost:3000/welcome"> Daily Learning </a>
-            </li>
-            <li>
-              <a href="http://localhost:3000/welcome"> Sign Out </a>
+            {user.currentTask && <li onClick={()=>clickRedirect('/dailylearning/' + user.currentTask)}>
+              Daily Learning
+            </li>}
+            <li onClick={()=>logout()}>
+              Sign Out
             </li>
           </ul>
         </div>
