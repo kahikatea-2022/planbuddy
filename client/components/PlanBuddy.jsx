@@ -12,7 +12,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 function PlanBuddy() {
   const navigate = useNavigate()
   const user = useSelector(state=>state.user)
-  const [mascotHover, setMascotHover] = useState(false)
+  const [mascotHover, setMascotHover] = useState(true)
   // this part of the code is to change buddys image when you mouse over them
   const [imgSource, setImgSource] = useState('/images/PlanBuddy.png')
 
