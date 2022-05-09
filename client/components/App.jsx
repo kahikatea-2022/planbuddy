@@ -24,10 +24,10 @@ function App() {
 
   return (
     <div className="app">
-      <Nav />
+      {/* <Nav /> */}
       <IfNotAuthenticated>
         <Routes>
-          <Route path="/" element={<NewGoal />} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/register" element={<Registration />} />
         </Routes>
       </IfNotAuthenticated>
