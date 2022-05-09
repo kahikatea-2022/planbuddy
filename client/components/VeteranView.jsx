@@ -1,22 +1,39 @@
 import { format } from 'prettier'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { addGoal, ADD_GOAL } from '../actions/goals'
+import { fetchTask } from '../actions/tasks'
 import { useNavigate } from 'react-router-dom'
-import PlanBuddy from './PlanBuddy'
 
 function VeteranView() {
+  const user = useSelector((state) => state.user)
+  const task = useSelector((state) => state.task)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  //not returning the current task
+  useEffect(() => {
+    dispatch(fetchTask(Number(user.currentTask)))
+  })
+
+  //site doesnt know what user.currentTask is
+  function handleClickCont() {
+    navigate(`/dailylearning/${user.currentTask}`)
+  }
+
+  function handleClickNew() {
+    navigate('/goalsoverview')
+  }
+
   return (
     <>
-      <div className="veteran-view">
-        <button className="speechBubble tail">
-          Continue with *current goal*
-        </button>
-        <button className="speechBubble tail">
-          Learn something else today
-        </button>
-      </div>
-      <PlanBuddy />
+      <button onClick={handleClickCont}>
+        {' '}
+        Continue with: {task?.taskName}{' '}
+      </button>
+      <button onClick={handleClickNew}>
+        {' '}
+        I'm learning something else today{' '}
+      </button>
     </>
   )
 }

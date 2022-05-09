@@ -1,25 +1,37 @@
 import { format } from 'prettier'
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { addGoal } from '../actions/goals'
+import { addGoal, fetchGoals } from '../actions/goals'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import Goal from './Goal'
 import { fetchGoal } from '../actions/goal'
 import { fetchSubGoals } from '../actions/subGoals'
 import { addSubGoal } from '../apis/subGoals'
 import PlanBuddy from './PlanBuddy'
+import { GoalCard } from './GoalCard'
 
 function GoalsOverview() {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const {userId} = useParams()
+  const user = useSelector(state=>state.user)
+  const goals = useSelector(state=>state.goals)
+
+  useEffect(()=>{
+    dispatch(fetchGoals(Number(userId)))
+  },[])
+
+  function clickHandler(){
+    navigate('/newGoal/')
+  }
   return (
     <>
       <h1>Your learning goals</h1>
 
-      <div className="pencilButtons">
-        <div className="subGoalCreator">
-          <img className="pencilButtonImg" src="/images/Pencil.png"></img>
-          <p className="pencilButtonText">**Goal name**</p>
-        </div>
-        <div className="subGoalCreator">
+      <div key={'gregs kitchen'} className="pencilButtons">
+        {goals?.map(goal=><GoalCard key={goal.goalId} goal={goal}/>)}
+      
+        <div onClick={clickHandler} className="subGoalCreator">
           <img className="pencilButtonImg" src="/images/greyPencil.png"></img>
           <p className="pencilButtonText">Add Goal</p>
         </div>
