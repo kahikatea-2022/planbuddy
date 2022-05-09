@@ -3,6 +3,9 @@ import request from 'superagent'
 const rootUrl = '/api/v1'
 
 export function getUsers() {
+  // What is this needed for? Passing the full list of users
+  // could be a security vulnerability, particularly when put
+  // into Users.jsx
   return request.get(rootUrl + '/users/getAllUsers').then((res) => {
     return res.body
     console.log(res.body)

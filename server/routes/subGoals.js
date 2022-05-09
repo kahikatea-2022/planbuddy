@@ -20,6 +20,10 @@ router.get('/getSubGoals/:id', (req, res) => {
 })
 
 // GET /api/v1/subGoals
+// NB: to create a well-formed RESTful API, you'd want the routes to follow a
+// standard/expected format, rather than being named for the db functions they
+// invoke. In this case, `router.get('/:id', (req, res)...` would be the
+// expected route for this operation. 
 router.get('/getSubGoalById/:id', (req, res) => {
   let id = Number(req.params.id)
   db.getSubGoalById(id)
@@ -73,13 +77,13 @@ router.delete('/deleteSubgoalById', (req, res) => {
   const subgoalId = req.body.subgoalId
 
   db.deleteSubgoalById(subgoalId)
-  .then(() => {
-    res.status(200).json({ message: 'subgoal deleted successfully' })
-  })
-  .catch((err) => {
-    console.error(err)
-    res.status(500).json({ message: 'there was an error deleting the subgoal' })
-  })
+    .then(() => {
+      res.status(200).json({ message: 'subgoal deleted successfully' })
+    })
+    .catch((err) => {
+      console.error(err)
+      res.status(500).json({ message: 'there was an error deleting the subgoal' })
+    })
 })
 
 module.exports = router

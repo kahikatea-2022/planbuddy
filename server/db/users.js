@@ -32,6 +32,7 @@ function getCurrentTaskByUserId(userId, db = connection) {
 
 //PATCH
 function updateCurrentTaskByUserId(userData, db = connection) {
+  // Could this be made more general to allow updating of any user columns?
   const data = {
     user_id: userData.userId,
     current_task: userData.currentTask,

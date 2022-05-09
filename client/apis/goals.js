@@ -1,13 +1,15 @@
 import request from 'superagent'
 
 const rootUrl = '/api/v1'
+// For the purpose of this file (and the other API files), you could have
+// rootUrl = '/api/v1/goals' and save yourself a lot of 'goals' later on.
 
 // ?get goals by user id or goal id
 export function getGoals() {
   return Promise.resolve({
     user_name: 'Globox',
     goal_name: 'Befriend Rayman',
-    why: 'Their floating hands look so delicous',
+    why: 'Their floating hands look so delicious',
     weekly_hours: '120',
   }).then((res) => res)
 

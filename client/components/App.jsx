@@ -16,6 +16,9 @@ import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import Welcome from './Welcome'
 import GoalOverview from './GoalOverview'
 import DailyLearning from './DailyLearning'
+// Could be good to clean up these imports. Typically we'd see
+// external libraries imported up top (react, etc) and then components.
+// Preferably with unused components removed and everything alphabetised.
 
 function App() {
   cacheUser(useAuth0)

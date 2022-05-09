@@ -29,6 +29,8 @@ function LandingPage() {
           <button onClick={handleRegister}>New User</button>
         </div>
       )}
+      {/* Could be good to provide some content or options for authed
+      users who end up on this component. Yes, I've done this. */}
     </>
   )
 }

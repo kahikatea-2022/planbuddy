@@ -72,9 +72,10 @@ function deleteGoalById(goalId, db = connection) {
 function deletePlanByGoalId(goalId, db = connection) {
   console.log(goalId);
   return db('goals')
-  .where('goal_id', goalId)
-  .join('tasks', 'tasks.goal_id', 'goals.goal_id')
-  .del()
+    .where('goal_id', goalId)
+    .join('tasks', 'tasks.goal_id', 'goals.goal_id')
+    .del()
+  // Jared & Sophia already raised with Zak that we don't think this will work
 }
 
 module.exports = {
