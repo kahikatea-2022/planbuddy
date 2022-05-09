@@ -11,6 +11,7 @@ import { fetchSubGoal } from '../actions/subGoals'
 import { addNewResource } from '../apis/resources'
 import { addNewTask, updateTaskCompletion } from '../apis/tasks'
 import { updateSubgoalById } from '../apis/subGoals'
+import { updateCurrentTask } from '../apis/users'
 
 //Steps:
 //Create an add resources form
@@ -20,32 +21,9 @@ import { updateSubgoalById } from '../apis/subGoals'
 function CreateSubGoal() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  // const navigate = useNavigate()
 
-  // const resources = [
-  //   {
-  //     resource_name: 'youtube',
-  //     url: 'www.youtube.com',
-  //   },
-  //   {
-  //     resource_name: 'udemy',
-  //     url: 'www.udemy.com',
-  //   },
-  // ]
-
-  // const tasks = [
-  //   {
-  //     subgoal_name: 'learn C major scale',
-  //     completed: false,
-  //     current: true,
-  //   },
-  //   {
-  //     subgoal_name: 'learn D major scale',
-  //     completed: false,
-  //     current: false,
-  //   },
-  // ]
   const {subgoalId} = useParams()
+  const user = useSelector(state=>state.user)
   const subgoal = useSelector(state=>state.subGoal)
   const resources = useSelector((state) => state.resources)
   const tasks = useSelector((state) => state.tasks)
@@ -115,6 +93,9 @@ function CreateSubGoal() {
       navigate('/goal/' + subgoal.goalId)
     }).catch(console.error)
   }
+  function goToTaskHandler(taskId){
+    updateCurrentTask(user.id, taskId)
+  }
   return (
     <>
       <h1>{subgoal.subgoalName}</h1>
@@ -150,12 +131,13 @@ function CreateSubGoal() {
         <li>{resources.resource_name}</li>
       </ul> */}
       <form>
+        {/* this needs to change based on whether subgoal has been created */}
         <h2>Great work, now add your first tasks</h2>
         <ul>
           {tasks.map(task=>{
             return(
               <li key={task.taskName + task.taskId}>
-                <input onChange={()=>checkboxHandler(task)} type={'checkbox'} defaultChecked={task.completed}/>{task.taskName}
+                <input onChange={()=>checkboxHandler(task)} type={'checkbox'} defaultChecked={task.completed}/><span onClick={()=>goToTaskHandler(task.taskId)}>{task.taskName}</span>
               </li>
             )
           })}

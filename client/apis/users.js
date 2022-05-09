@@ -25,3 +25,10 @@ export function addUserName(id, name) {
     .send({ id, name })
     .then((res) => res.body)
 }
+
+export function updateCurrentTask(id, taskId) {
+  return request
+    .patch(rootUrl + '/users/updateCurrentTaskByUserId/')
+    .send({ userId: id, currentTask: taskId })
+    .then((res) => res.body)
+}

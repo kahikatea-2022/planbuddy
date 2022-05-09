@@ -2,6 +2,7 @@ import { format } from 'prettier'
 import React, { useState , useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
+import { fetchReflections } from '../actions/reflections'
 import { fetchResources } from '../actions/resources'
 import { fetchTask } from '../actions/tasks'
 import { updateTaskCompletion } from '../apis/tasks'
@@ -18,15 +19,16 @@ function DailyLearning() {
   const resources = useSelector(state=>state.resources)
   const reflections = useSelector(state=>state.reflections)
   const {taskid} = useParams()
-
+  
   const [checkboxState, setCheckboxState] = useState(false)
   useEffect(()=>{
     dispatch(fetchTask(Number(taskid)))
+    // fetch resources
     
-
   }, [checkboxState])
   useEffect(()=>{
     dispatch(fetchResources(task.subgoalId))
+    dispatch(fetchReflections(task.taskId))
     setCheckboxState(task.completed)
   }, [task])
 
