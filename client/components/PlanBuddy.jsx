@@ -13,12 +13,22 @@ function PlanBuddy() {
   const navigate = useNavigate()
   const user = useSelector(state=>state.user)
   const [mascotHover, setMascotHover] = useState(true)
+  const [chatBubbleTimeout, setChatBubbleTimeout] = useState('')
   // this part of the code is to change buddys image when you mouse over them
   const [imgSource, setImgSource] = useState('/images/PlanBuddy.png')
 
+  
   function changeBuddyImage() {
-    if (mascotHover) setImgSource('/images/PlanBuddy-mouthOpen.png')
-    if (!mascotHover) setImgSource('/images/PlanBuddy.png')
+    if (mascotHover) {
+       setChatBubbleTimeout(setTimeout(()=>{
+        console.log('I am buddy text')
+      }, 2000))
+      setImgSource('/images/PlanBuddy-mouthOpen.png')
+    }
+    if (!mascotHover) {
+      clearTimeout(chatBubbleTimeout)
+      setImgSource('/images/PlanBuddy.png')
+    }
   }
 
   // this part of code is to render the menu when you click on buddy
