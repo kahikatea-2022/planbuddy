@@ -67,6 +67,7 @@ function Registration() {
 
   return (
     <section >
+      {/* This is our stretched mascot, feed pls */}
       <div className='mascot centered'><img className='mascot' src='/images/PlanBuddy.png' alt='bird mascot cheering you on!'></img></div>
       <form className="registration">
         <input
