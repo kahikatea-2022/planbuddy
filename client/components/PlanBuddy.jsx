@@ -5,6 +5,8 @@ import { addGoal, ADD_GOAL } from '../actions/goals'
 import { useNavigate } from 'react-router-dom'
 import Goal from './Goal'
 
+// PlanBuddy needs to include the Nav functionality (sign in, sign out)
+
 function PlanBuddy() {
   const [mascotHover, setMascotHover] = useState(false)
   // this part of the code is to change buddys image when you mouse over them
@@ -33,6 +35,9 @@ function PlanBuddy() {
             </li>
             <li>
               <a href="http://localhost:3000/welcome"> Daily Learning </a>
+            </li>
+            <li>
+              <a href="http://localhost:3000/welcome"> Sign Out </a>
             </li>
           </ul>
         </div>
