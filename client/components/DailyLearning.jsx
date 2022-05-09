@@ -65,7 +65,7 @@ function DailyLearning() {
         <ul>
           {resources.map(resource=>{
             return(
-              <li key={resource.resourceName + resource.resourceId}><a href={resource.url}>{resource.resourceName}</a></li>
+              <li key={resource.resourceName + resource.resourceId}><a target="_blank" href={resource.url} rel="noreferrer">{resource.resourceName}</a></li>
             )
           })}
         </ul>
