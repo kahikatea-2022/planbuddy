@@ -14,6 +14,8 @@ function PlanBuddy() {
   const user = useSelector(state=>state.user)
   const [mascotHover, setMascotHover] = useState(true)
   const [chatBubbleTimeout, setChatBubbleTimeout] = useState('')
+  const [chatBubble, setChatBubble] = useState('...')
+  const [chatBubbleVisible, setChatBubbleVisible] = useState(false)
   // this part of the code is to change buddys image when you mouse over them
   const [imgSource, setImgSource] = useState('/images/PlanBuddy.png')
 
@@ -21,12 +23,13 @@ function PlanBuddy() {
   function changeBuddyImage() {
     if (mascotHover) {
        setChatBubbleTimeout(setTimeout(()=>{
-        console.log('I am buddy text')
-      }, 2000))
+        setChatBubbleVisible(true)
+      }, 1000))
       setImgSource('/images/PlanBuddy-mouthOpen.png')
     }
     if (!mascotHover) {
       clearTimeout(chatBubbleTimeout)
+      setChatBubbleVisible(false)
       setImgSource('/images/PlanBuddy.png')
     }
   }
@@ -59,6 +62,9 @@ function PlanBuddy() {
             </li>
           </ul>
         </div>
+      )}
+      {chatBubbleVisible && (
+        <h1>{chatBubble}</h1>
       )}
       <div>
         <img
