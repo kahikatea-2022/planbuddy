@@ -5,8 +5,16 @@ import { addGoal, ADD_GOAL } from '../actions/goals'
 import { useNavigate } from 'react-router-dom'
 
 function VeteranView() {
+
+// get user current goal information
+//     use current goal info to get task  
+//     fill out button with task info
+//     link to respective task onclick
   return (
     <>
+
+    
+
       <button> Continue with *current goal* </button>
       <button> I'm learning something else today </button>
     </>
