@@ -19,10 +19,10 @@ import { ResourcesList } from './ResourcesList'
 //create an add tasks form
 //add the input to state
 
-function CreateSubGoal({first}) {
+function CreateSubGoal({first, schugl}) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
+  console.log(schugl)
   const {subgoalId} = useParams()
   const user = useSelector(state=>state.user)
   const subgoal = useSelector(state=>state.subGoal)
