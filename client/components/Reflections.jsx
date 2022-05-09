@@ -1,24 +1,89 @@
+import { useAuth0 } from '@auth0/auth0-react'
 import { format } from 'prettier'
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 // import { useSelector, useDispatch } from 'react-redux'
 // import { addGoal, ADD_GOAL, fetchGoals } from '../actions/goals'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { fetchGoal } from '../actions/goal'
+import { fetchSubGoal } from '../actions/subGoals'
+import { fetchTask } from '../actions/tasks'
+import { addNewReflection } from '../apis/reflections'
+import { getLogoutFn } from '../auth0-utils'
 // import { addResource } from '../actions/resources'
 // import { addTask, setTasks } from '../actions/tasks'
 
 function Reflections() {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const task = useSelector((state) => state.task)
+  const subgoal = useSelector((state) => state.subgoal)
+  const goal = useSelector((state) => state.goal)
+  const user = useSelector((state) => state.user)
+  const { taskId } = useParams()
+  const logout = getLogoutFn(useAuth0)
+
+  const [reflection, setReflection] = useState('')
+
+  useEffect(() => {
+    dispatch(fetchTask(Number(taskId)))
+  }, [])
+
+  useEffect(() => {
+    dispatch(fetchSubGoal(task.subgoalId))
+  }, [task])
+
+  function inputHandler(e) {
+    setReflection(e.target.value)
+    console.log(reflection)
+  }
+
+  function handleReflectionAdd() {
+    const newReflection = {
+      goalId: task.goalId,
+      taskId: task.taskId,
+      reflection: reflection,
+    }
+    return addNewReflection(newReflection)
+  }
+  function logoutAndComplete(e) {
+    e.preventDefault()
+    handleReflectionAdd()
+      .then((res) => {
+        logout()
+      })
+      .catch(console.error)
+  }
+
+  function toGoalsAndComplete(e) {
+    e.preventDefault()
+    handleReflectionAdd()
+      .then((res) => {
+        navigate('/goal/' + task.goalId)
+      })
+      .catch(console.error)
+  }
   return (
     <>
       <h1>Reflections</h1>
       <div className="subGoalCreator">
         {/* <a href='' > */}
         <img src="/images/Pencil.png"></img>
-        <p>*C Major Scale*</p>
+        <p>{task.taskName}</p>
         {/* </a> */}
       </div>
-      <textarea rows="5" cols="50"></textarea>
-      <button>Complete Reflection and Log out</button>
-      <button>Complete Reflection and return to learning plan</button>
+      <textarea
+        onChange={inputHandler}
+        value={reflection}
+        rows="5"
+        cols="50"
+      ></textarea>
+      <button onClick={logoutAndComplete}>
+        Complete Reflection and Log out
+      </button>
+      <button onClick={toGoalsAndComplete}>
+        Complete Reflection and return to learning plan
+      </button>
     </>
   )
 }

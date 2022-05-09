@@ -1,5 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-export function ReflectionsListItem((){
-
+export function ReflectionsListItem({reflection}) {
+  const [showReflection, setShowReflection] = useState(false)
+  function clickHandler(){
+    setShowReflection(!showReflection)
+  }
+  return (
+    <li onClick={clickHandler} key={reflection.reflection + reflection.reflectionId}>
+      {showReflection?reflection.reflection:reflection.reflection.slice(0, 15) + '...'}
+    </li>
+  )
 }

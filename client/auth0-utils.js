@@ -1,3 +1,4 @@
+import { useAuth0 } from '@auth0/auth0-react'
 import { setUser } from './actions/user'
 import { getUserRoles, getUsers } from './apis/users'
 import store from './store'
@@ -8,6 +9,7 @@ const emptyUser = {
   name: '',
   token: '',
   id: '',
+  currentTask: '',
   roles: [],
 }
 
@@ -34,6 +36,7 @@ export async function cacheUser(useAuth0) {
         email: user.email,
         name: user.nickname,
         id: userFromDb?.userId,
+        currentTask: userFromDb?.currentTask,
         token,
       }
       // removed roles from userToSave
@@ -68,4 +71,16 @@ export function getRegisterFn(useAuth0) {
       screen_hint: 'signin',
       scope: 'role:member',
     })
+}
+
+export async function addUserId(user) {
+  const users = await getUsers()
+  const userFromDb = users.find((el) => el.email === user.name)
+  const update = {
+    id: userFromDb?.userId,
+    currentTask: userFromDb?.currentTask,
+    fishing: 'heck yeah',
+  }
+  console.log(update)
+  return update
 }

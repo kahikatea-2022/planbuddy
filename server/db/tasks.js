@@ -78,6 +78,11 @@ function deleteTaskById(taskId, db = connection) {
   return db('tasks').where('task_id', taskId).del()
 }
 
+//DELETE whole plan data by goal id DANGER ZONE!!!!!
+function deleteAllByGoalId(goalId, db = connection) {
+  return db('tasks').where('goal_id', goalId).del()
+}
+
 module.exports = {
   getTasks,
   getTasksBySubGoalId,
@@ -85,4 +90,5 @@ module.exports = {
   addNewTask,
   updateTaskById,
   deleteTaskById,
+  deleteAllByGoalId,
 }

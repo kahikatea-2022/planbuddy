@@ -1,11 +1,22 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import PlanBuddy from './PlanBuddy'
 
 function LandingPage() {
   const { logout, loginWithRedirect, isAuthenticated } = useAuth0()
   const user = useSelector((state) => state.user)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    isAuthenticated ?
+     setTimeout(() => {
+      navigate(`/welcome/veteran`)
+    }, 3000)
+    : null
+  }, [])
+
   function handleLogin(event) {
     event.preventDefault()
     loginWithRedirect({
