@@ -95,6 +95,7 @@ function CreateSubGoal() {
   }
   function goToTaskHandler(taskId){
     updateCurrentTask(user.id, taskId)
+    navigate('/dailylearning/' + taskId)
   }
   return (
     <>
