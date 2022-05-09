@@ -63,10 +63,10 @@ function DailyLearning() {
         <PlanBuddy />
       </div>
       <h1> Task: </h1>
-      <label>
+      {task && <label>
         <input onClick={(e)=>checkboxHandler(task)} type={'checkbox'} defaultChecked={task.completed} />
         <span>{task?.taskName}</span>
-      </label>
+      </label>}
       <button onClick={endSessionHandler}>
         {task.completed ? 'Complete Task' : 'Finish Session'}
       </button>
