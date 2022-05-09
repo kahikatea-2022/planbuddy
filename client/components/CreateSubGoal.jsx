@@ -31,7 +31,7 @@ function CreateSubGoal({first, schugl}) {
   const subgoal = useSelector(state=>state.subGoal)
   const resources = useSelector((state) => state.resources)
   const tasks = useSelector((state) => state.tasks)
-  console.log(resources)
+  // console.log(resources)
   const [checkboxState, setCheckboxState] = useState(false)
   const [inputStateResources, setInputStateResources] = useState({
     resourceName: '',
@@ -52,20 +52,21 @@ function CreateSubGoal({first, schugl}) {
     dispatch(fetchResources(Number(subgoalId)))
     dispatch(fetchTasks(Number(subgoalId)))
   },[])
-  useEffect(()=>{
-    getGoalsByUserId(user.id).then(res=>{
-      console.log(res)
-      if(res === null) return
-      if(res.find(el=> el.goalId === subgoal.goalId)) return
-      navigate('/goals/' + user.id)
-    }).catch(err=>console.error('Something went wrong'))
-  }, [subgoal])
+  // Validate ownership, needs slight rework to accout for inital empty data
+  // useEffect(()=>{
+  //   getGoalsByUserId(user.id).then(res=>{
+  //     console.log(1, res)
+  //     if(res === null) return
+  //     if(res.find(el=> el.goalId === subgoal.goalId)) return
+  //     navigate('/goals/' + user.id)
+  //   }).catch(err=>console.error('Something went wrong'))
+  // }, [subgoal])
   const handleFormResources = (event) => {
     setInputStateResources({
       ...inputStateResources,
       [event.target.id]: event.target.value,
     })
-    console.log(inputStateResources)
+    // console.log(inputStateResources)
   }
 
   const handleFormTasks = (event) => {
