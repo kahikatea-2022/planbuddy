@@ -13,7 +13,7 @@ function VeteranView() {
   //not returning the current task
   useEffect(() => {
     dispatch(fetchTask(Number(user.currentTask)))
-  })
+  }, [])
 
 
   //site doesnt know what user.currentTask is
