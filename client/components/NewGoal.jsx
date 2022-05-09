@@ -57,7 +57,10 @@ function NewGoal() {
 
     {formState === 1 &&
     <>
-    <label htmlFor="goalName">What skill are you trying to learn?</label>
+    <div className="speech-bubble">
+        <label htmlFor="goalName">What skill are you trying to learn?</label>
+    </div>
+    
       <input
         type="text"
         id="goalName"

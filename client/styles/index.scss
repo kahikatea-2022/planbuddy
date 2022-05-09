@@ -334,3 +334,43 @@ a:hover {
     opacity: 0;
   }
 }
+
+
+.speech-bubble {
+  width: 300px;
+  margin: 50px auto;
+  border: 2px solid #000000;
+  border-radius: 30px;
+  padding: 20px;
+  text-align: center;
+  font-weight: 900;
+  color: #000000;
+  font-family: inherit;
+  position: relative;
+}
+
+.speech-bubble:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #000000;
+  border-bottom: 10px solid transparent;
+  right: 10%;
+  bottom: -23px;
+ }
+
+ .speech-bubble:after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #fff;
+  border-bottom: 10px solid transparent;
+  right: 10%;
+  bottom: -18px;
+ }
