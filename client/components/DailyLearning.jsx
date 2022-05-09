@@ -7,6 +7,7 @@ import { fetchResources } from '../actions/resources'
 import { fetchTask } from '../actions/tasks'
 import { updateTaskCompletion } from '../apis/tasks'
 import PlanBuddy from './PlanBuddy'
+import { ReflectionsList } from './ReflectionsList'
 
 function DailyLearning() {
 // TODO Add funcitonality to buddy to accept on the fly reflections
@@ -72,11 +73,7 @@ function DailyLearning() {
       {/* refactor into own component */}
         <span>Reflections:</span>
         <ul>
-          {reflections.map(reflection=>{
-            return(
-              <li key={reflection.reflection + reflection.reflectionId}>{reflection.reflection.slice(0, 15) + '...'}</li>
-            )
-          })}
+          {<ReflectionsList reflections={reflections}/>}
         </ul>
       </div>
       <PlanBuddy/>
