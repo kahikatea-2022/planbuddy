@@ -12,6 +12,7 @@ import { addNewResource } from '../apis/resources'
 import { addNewTask, updateTaskCompletion } from '../apis/tasks'
 import { updateSubgoalById } from '../apis/subGoals'
 import { updateCurrentTask } from '../apis/users'
+import { ResourcesList } from './ResourcesList'
 
 //Steps:
 //Create an add resources form
@@ -100,13 +101,10 @@ function CreateSubGoal() {
     <>
       <h1>{subgoal.subgoalName}</h1>
       <div>
-        <p>Resources:</p>
+        {/* should render based on whether this is first goal or not */}
+        <p>Add resources here:</p>
         <ul>
-          {resources.map(resource=>{
-            return(
-              <li key={resource.resourceName + resource.resourceId}><a href={resource.url}>{resource.resourceName}</a></li>
-            )
-          })}
+          {<ResourcesList resources={resources}/>}
         </ul>
         <form>
           <label htmlFor="resourceName">Name of resource:</label>
