@@ -6,6 +6,21 @@ html,
 body {
   font-family: 'Caveat', cursive;
   font-size: larger;
+  background-color: rgb(249, 246, 239);
+  // background-image: url('/server/public/images/Lined_paper_light.png');
+  // background-image: url('/server/public/images/Lined_paper_wide.png');
+  // background-image: url('/server/public/images/wide_lined.jpg');
+  // background-image: url('/server/public/images/Lined_paper.jpeg');
+  // background-image: url('/server/public/images/crumple-brown.jpg');
+  // background-image: url('/server/public/images/crumple-white.png');
+  // background-image: url('/server/public/images/lightly_scrunched.png');
+  background-repeat: no-repeat;
+  // background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
 }
 
 .table {
