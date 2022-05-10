@@ -15,6 +15,7 @@ import { updateCurrentTask } from '../apis/users'
 import { ResourcesList } from './ResourcesList'
 import { getGoalsByUserId } from '../apis/goals'
 import PlanBuddy from './PlanBuddy'
+import { TaskList } from './TaskList'
 
 
 //Steps:
@@ -33,6 +34,7 @@ function CreateSubGoal({first, schugl}) {
   const tasks = useSelector((state) => state.tasks)
   // console.log(resources)
   const [checkboxState, setCheckboxState] = useState(false)
+  const [checked, setChecked] = useState(false)
   const [inputStateResources, setInputStateResources] = useState({
     resourceName: '',
     url: '',
@@ -151,7 +153,7 @@ function CreateSubGoal({first, schugl}) {
         {/* should render based on whether this is first goal or not */}
         <p>{first?"Add resources here:":"Resources:"}</p>
         <ul>
-          {<ResourcesList resources={resources}/>}
+          {<ResourcesList user={user} resources={resources}/>}
         </ul>
 
         <form>
@@ -184,20 +186,22 @@ function CreateSubGoal({first, schugl}) {
         {/* this needs to change based on whether subgoal has been created */}
         <h2>{first?"Great work, now add your first tasks":"Tasks:"}</h2>
         <ul>
-          {tasks.map((task) => {
+          {<TaskList tasks={tasks}/>}
+          {/* {tasks.map((task) => {
             return (
               <li key={task.taskName + task.taskId}>
                 <input
                   onChange={() => checkboxHandler(task)}
                   type={'checkbox'}
                   defaultChecked={task.completed}
+                  checked={checked}
                 />
                 <span onClick={() => goToTaskHandler(task.taskId)}>
                   {task.taskName}
                 </span>
               </li>
             )
-          })}
+          })} */}
         </ul>
         <input
           className="textbox-input"
