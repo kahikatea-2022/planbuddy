@@ -74,7 +74,7 @@ function PlanBuddy(props) {
         </div>
       )}
       {chatBubbleVisible && (
-        <h1>{chatBubble}</h1>
+        <h1 className='quote-bubble'>{chatBubble}</h1>
       )}
       <div>
         <img

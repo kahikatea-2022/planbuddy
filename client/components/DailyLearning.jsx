@@ -82,7 +82,7 @@ function DailyLearning() {
         <span>Reflections:</span>
         <ul>{<ReflectionsList reflections={reflections} />}</ul>
       </div>
-      <PlanBuddy />
+      {/* <PlanBuddy /> */}
     </>
   )
 }
