@@ -38,9 +38,6 @@ function DailyLearning() {
   function endSessionHandler(e) {
     e.preventDefault()
     navigate('/reflection/' + task.taskId)
-    updateTaskCompletion(task, true)
-      .then((res) => {})
-      .catch(console.error)
   }
   function checkboxHandler(task) {
     setCheckboxState(!checkboxState)
