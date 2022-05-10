@@ -4,13 +4,14 @@ import { useNavigate } from 'react-router-dom'
 import { updateTaskCompletion } from '../apis/tasks'
 import { updateCurrentTask } from '../apis/users'
 
-export function TaskListItem({task}) {
+export function TaskListItem({task, check, tasks}) {
   const navigate = useNavigate()
   const user = useSelector(state=>state.user)
   const [checked, setChecked] = useState(task.completed)
   function checkboxHandler(task) {
     setChecked(!checked)
     // console.log(!checkboxState)
+    check(tasks)
     updateTaskCompletion(task, !checked)
   }
   function goToTaskHandler(taskId) {
