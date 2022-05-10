@@ -35,19 +35,24 @@ function CreateSubGoal({ first, schugl }) {
   const [checkboxState, setCheckboxState] = useState(false)
   const [checked, setChecked] = useState(false)
   const [complete, setComplete] = useState(false)
-  const [inputStateResources, setInputStateResources] = useState({
+
+  const defaultResource = {
     resourceName: '',
     url: '',
-  })
+  }
 
-  const [inputStateTasks, setInputStateTasks] = useState({
+  const [inputStateResources, setInputStateResources] = useState(defaultResource)
+
+  const defaultTask = {
     taskName: '',
     completed: false,
     current: false,
     goalId: subgoal.goalId,
     subgoalId: subgoal.subgoalId,
     timeSpent: 0,
-  })
+  }
+
+  const [inputStateTasks, setInputStateTasks] = useState(defaultTask)
 
   useEffect(() => {
     dispatch(fetchSubGoal(Number(subgoalId)))
@@ -92,6 +97,7 @@ function CreateSubGoal({ first, schugl }) {
       .then((res) => {
         const newId = res.newResourceId[0]
         dispatch(addResource({ ...newResource, resourceId: newId }))
+        setInputStateResources(defaultResource)
       })
       .catch(console.error)
   }
@@ -107,14 +113,17 @@ function CreateSubGoal({ first, schugl }) {
       .then((res) => {
         const newId = res.newTaskId[0]
         dispatch(addTask({ ...newTask, taskId: newId }))
+        setInputStateTasks(defaultTask)
       })
       .catch(console.error)
   }
+
   function checkboxHandler(task) {
     setCheckboxState(!checkboxState)
     // console.log(!checkboxState)
     updateTaskCompletion(task, !checkboxState)
   }
+
   function completeHandler(e) {
     e.preventDefault()
     updateSubgoalById(subgoal, true)
@@ -123,6 +132,7 @@ function CreateSubGoal({ first, schugl }) {
       })
       .catch(console.error)
   }
+
   function goToTaskHandler(taskId) {
     updateCurrentTask(user.id, taskId)
     navigate('/dailylearning/' + taskId)
@@ -187,7 +197,7 @@ function CreateSubGoal({ first, schugl }) {
               type="text"
               id="resourceName"
               onChange={handleFormResources}
-              value={inputStateResources.resource_name}
+              value={inputStateResources.resourceName}
             ></input>
             <label htmlFor="url"></label>
           </form>
@@ -206,7 +216,7 @@ function CreateSubGoal({ first, schugl }) {
           placeholder="New Task"
           type="text"
           id="taskName"
-          value={inputStateTasks.name}
+          value={inputStateTasks.taskName}
           onChange={handleFormTasks}
         ></input>
         <button onClick={submitHandlerTasks}>Add New Task</button>
