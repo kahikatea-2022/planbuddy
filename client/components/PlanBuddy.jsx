@@ -85,9 +85,11 @@ function PlanBuddy(props) {
           </ul>
         </div>
       )}
+
       {chatBubbleVisible && (
         <h1 className='quote-bubble'>{chatBubble}</h1>
       )}
+
       <div>
         <img
           onClick={toggleBuddyMenu}
