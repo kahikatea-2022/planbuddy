@@ -70,7 +70,6 @@ function DailyLearning() {
       <button onClick={endSessionHandler}>
         {task.completed ? 'Complete Task' : 'Finish Session'}
       </button>
-      {/* refactor into own component */}
       <div className="left">
         <span>Resources:</span>
         <ul>
@@ -78,7 +77,6 @@ function DailyLearning() {
         </ul>
       </div>
       <div className="left">
-        {/* refactor into own component */}
         <span>Reflections:</span>
         <ul>{<ReflectionsList reflections={reflections} />}</ul>
       </div>
