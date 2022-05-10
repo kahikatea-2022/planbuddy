@@ -55,6 +55,7 @@ function CreateSubGoal({ first, schugl }) {
     dispatch(fetchTasks(Number(subgoalId)))
   },[])
   useEffect(()=>{
+    if(tasks===undefined) return
     checkCompletion(tasks)
   },[tasks])
   // Validate ownership, needs slight rework to accout for inital empty data
