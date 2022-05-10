@@ -43,12 +43,13 @@ function Reflections() {
     const newReflection = {
       goalId: task.goalId,
       taskId: task.taskId,
-      reflection: reflection,
+      reflection: reflection.trim(),
     }
     return addNewReflection(newReflection)
   }
   function logoutAndComplete(e) {
     e.preventDefault()
+    if(reflection.trim() === '') return logout()
     handleReflectionAdd()
       .then((res) => {
         logout()
@@ -56,11 +57,12 @@ function Reflections() {
       .catch(console.error)
   }
 
-  function toGoalsAndComplete(e) {
+  function toSubgoalAndComplete(e) {
     e.preventDefault()
+    if(reflection.trim() === '') return navigate('/subgoal/' + task.subgoalId)
     handleReflectionAdd()
       .then((res) => {
-        navigate('/goal/' + task.goalId)
+        navigate('/subgoal/' + task.subgoalId)
       })
       .catch(console.error)
   }
@@ -81,10 +83,10 @@ function Reflections() {
         className="reflections-text"
       ></textarea>
       <button onClick={logoutAndComplete}>
-        Complete Reflection and Log out
+        Complete Reflection and Log Out
       </button>
-      <button onClick={toGoalsAndComplete}>
-        Complete Reflection and return to learning plan
+      <button onClick={toSubgoalAndComplete}>
+        Complete Reflection and Return to Subgoal
       </button>
       <PlanBuddy id={3} />
     </>

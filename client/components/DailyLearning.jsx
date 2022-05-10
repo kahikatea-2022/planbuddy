@@ -64,19 +64,26 @@ function DailyLearning() {
         )}
         <PlanBuddy id={2} />
       </div>
-      <button onClick={(e)=>{
+      {!task.completed && <button onClick={(e)=>{
         e.preventDefault()
         endSessionHandler('conclude')
       }
       }>
         Conclude Today's Session
-      </button>
-      <button onClick={(e)=>{
+      </button>}
+      {!task.completed && <button onClick={(e)=>{
         e.preventDefault()
         endSessionHandler('complete')
       }
       }>
         Mark as Completed
+      </button>}
+      <button className={!task.completed? 'bottom-left':''} onClick={(e)=>{
+        e.preventDefault()
+        navigate('/subgoal/' + task.subgoalId)
+      }
+      }>
+        Return to Subgoal
       </button>
       {/* refactor into own component */}
       <div className="left1">
