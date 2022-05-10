@@ -45,7 +45,7 @@ export default function Welcome() {
         <p className={fadeOut ? 'fade-out' : 'fade-in'}>
           Click on me at any time for help and the menu
         </p>
-        <p className={fadeOut ? 'fade-out' : 'fade-in'}>you are {type} </p>
+        <p className={fadeOut ? 'fade-out' : 'fade-in'}> {type != 'new' ? 'Welcome back!' : 'Welcome!'} </p>
         <p className={fadeOut ? 'fade-out' : 'fade-in'}>
           Click anywhere to begin!
         </p>
