@@ -14,12 +14,18 @@ export default function Welcome() {
     }
   }
   const [fadeOut, setFadeOut] = useState(false)
-  useEffect(() => {
-    setTimeout(() => {
-      setFadeOut(!fadeOut)
-      // handleRedirect()
-    }, 3000)
-  }, [])
+
+  window.addEventListener('mouseup', () => {
+    setFadeOut(!fadeOut)
+  })
+
+  // useEffect(() => {
+  //   onmouseup(setFadeOut(!fadeOut))
+  //   // setTimeout(() => {
+  //   //   setFadeOut(!fadeOut)
+  //   //   // handleRedirect()
+  //   // }, 3000)
+  // }, [])
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
