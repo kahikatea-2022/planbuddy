@@ -15,6 +15,7 @@ import { updateCurrentTask } from '../apis/users'
 import { ResourcesList } from './ResourcesList'
 import { getGoalsByUserId } from '../apis/goals'
 import PlanBuddy from './PlanBuddy'
+import { TaskList } from './TaskList'
 
 //Steps:
 //Create an add resources form
@@ -32,6 +33,8 @@ function CreateSubGoal({ first, schugl }) {
   const tasks = useSelector((state) => state.tasks)
   // console.log(resources)
   const [checkboxState, setCheckboxState] = useState(false)
+  const [checked, setChecked] = useState(false)
+  const [complete, setComplete] = useState(false)
   const [inputStateResources, setInputStateResources] = useState({
     resourceName: '',
     url: '',
@@ -50,7 +53,10 @@ function CreateSubGoal({ first, schugl }) {
     dispatch(fetchSubGoal(Number(subgoalId)))
     dispatch(fetchResources(Number(subgoalId)))
     dispatch(fetchTasks(Number(subgoalId)))
-  }, [])
+  },[])
+  useEffect(()=>{
+    checkCompletion(tasks)
+  },[tasks])
   // Validate ownership, needs slight rework to accout for inital empty data
   // useEffect(()=>{
   //   getGoalsByUserId(user.id).then(res=>{
@@ -130,6 +136,13 @@ function CreateSubGoal({ first, schugl }) {
     }
   }
 
+  function checkCompletion(tasks){
+    const notComplete = tasks.find(el=>el.completed == 0)
+    if(notComplete) return setComplete(false)
+    return setComplete(true)
+
+  }
+
   //input have a default value of subgoal name,
   //when you press enter, the name of the subgoal needs to be updated in the database via patch route
   //updateSubgoalById
@@ -151,12 +164,14 @@ function CreateSubGoal({ first, schugl }) {
       {/* should render based on whether this is first goal or not */}
 
       <div className="subgoal-content">
-        <div className="speechBubble">
-          <p>{first ? 'Add resources here:' : 'Resources:'}</p>
-
-          <ul>{<ResourcesList resources={resources} />}</ul>
-
-          <form>
+        {/* should render based on whether this is first goal or not */}
+        {/* //? div with classname speechBubble */}
+        <div className='speechBubble'>
+        <p>{first?"Add resources here:":"Resources:"}</p>
+        <ul>
+          {<ResourcesList user={user} resources={resources}/>}
+        </ul>
+        <form>
             <label htmlFor="resourceName"> </label>
             <input
               className="textbox-input"
@@ -176,70 +191,31 @@ function CreateSubGoal({ first, schugl }) {
             ></input>
             <label htmlFor="url"></label>
           </form>
-
-          <button onClick={submitHandlerResources}>Add Resource</button>
-          {/* list to render the resources*/}
-          {/* <ul>
-        <li>{resources.resource_name}</li>
-      </ul> */}
+        <button onClick={submitHandlerResources}>Add Resource</button>
         </div>
-        <div className="speechBubble">
-          <form>
-            {/* this needs to change based on whether subgoal has been created */}
-
-            <p>{first ? 'Great work, now add your first tasks' : 'Tasks:'}</p>
-            <ul>
-              {tasks.map((task) => {
-                return (
-                  <li key={task.taskName + task.taskId}>
-                    <input
-                      onChange={() => checkboxHandler(task)}
-                      type={'checkbox'}
-                      defaultChecked={task.completed}
-                    />
-                    <span onClick={() => goToTaskHandler(task.taskId)}>
-                      {task.taskName}
-                    </span>
-                  </li>
-                )
-              })}
-            </ul>
-            <input
-              className="textbox-input"
-              placeholder="New Task"
-              type="text"
-              id="taskName"
-              value={inputStateTasks.name}
-              onChange={handleFormTasks}
-            ></input>
-            <button onClick={submitHandlerTasks}>Add New Task</button>
-          </form>
-        </div>
+        <div className='speechBubble'>
+      <form>
+        {/* this needs to change based on whether subgoal has been created */}
+        {/* speechbubble div */}
+        <p>{first?"Great work, now add your first tasks":"Tasks:"}</p>
+        <ul>
+          {<TaskList tasks={tasks} check={checkCompletion}/>}
+        </ul>
+        <input
+          className="textbox-input"
+          placeholder="New Task"
+          type="text"
+          id="taskName"
+          value={inputStateTasks.name}
+          onChange={handleFormTasks}
+        ></input>
+        <button onClick={submitHandlerTasks}>Add New Task</button>
+      </form>
       </div>
-      <button onClick={completeHandler}>Complete Subgoal</button>
-
+    </div>
+      {complete && !first && <button onClick={completeHandler}>Complete Subgoal</button>}
       <PlanBuddy />
     </>
   )
 }
 export default CreateSubGoal
-
-{
-  /*
- subgoal_id: 1,
-      goal_id: 1,
-      subgoal_name: 'learn C major scale',
-      reward_id: 1,
-      completed: false,
-      current: true
-
-{
-      resource_id: 1,
-      goal_id: 1, 
-      subgoal_id: 1,
-      resource_name: 'youtube',
-      url: 'www.youtube.com'
-    }, 
-
-*/
-}

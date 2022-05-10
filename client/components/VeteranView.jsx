@@ -13,7 +13,7 @@ function VeteranView() {
   //not returning the current task
   useEffect(() => {
     dispatch(fetchTask(Number(user.currentTask)))
-  }, [])
+  }, [user])
 
   //site doesnt know what user.currentTask is
   function handleClickCont() {
@@ -26,10 +26,14 @@ function VeteranView() {
 
   return (
     <>
-      <div className="blank-nav"></div>
-      <button onClick={handleClickCont}>Continue with: {task?.taskName}</button>
+    <div className="blank-nav"></div>
+      {task?.taskName && <button onClick={handleClickCont}>
+        {' '}
+        Continue with: {task.taskName}{' '}
+      </button>}
       <button onClick={handleClickNew}>
-        I'm learning something else today
+        
+        {task?.taskName?"I'm learning something else today":"Get Started!"}
       </button>
     </>
   )

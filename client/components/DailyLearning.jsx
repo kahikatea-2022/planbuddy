@@ -38,9 +38,6 @@ function DailyLearning() {
   function endSessionHandler(e) {
     e.preventDefault()
     navigate('/reflection/' + task.taskId)
-    updateTaskCompletion(task, true)
-      .then((res) => {})
-      .catch(console.error)
   }
   function checkboxHandler(task) {
     setCheckboxState(!checkboxState)
@@ -55,16 +52,12 @@ function DailyLearning() {
           <p className="pencilButtonText">{subgoal?.subgoalName}</p>
         </div>
         <h1> Today's Task: </h1>
-      </div>
-
-      <label>
-        <input
-          onClick={(e) => checkboxHandler(task)}
-          type={'checkbox'}
-          defaultChecked={task.completed}
-        />
+        {task && <label>
+        <input onClick={(e)=>checkboxHandler(task)} type={'checkbox'} defaultChecked={task.completed} />
         <span>{task?.taskName}</span>
-      </label>
+      </label>}
+        <PlanBuddy />
+      </div>
       <button onClick={endSessionHandler}>
         {task.completed ? 'Complete Task' : 'Finish Session'}
       </button>
