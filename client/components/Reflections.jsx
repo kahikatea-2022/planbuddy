@@ -49,6 +49,7 @@ function Reflections() {
   }
   function logoutAndComplete(e) {
     e.preventDefault()
+    if(reflection.trim() === '') return logout()
     handleReflectionAdd()
       .then((res) => {
         logout()
@@ -58,6 +59,7 @@ function Reflections() {
 
   function toSubgoalAndComplete(e) {
     e.preventDefault()
+    if(reflection.trim() === '') return navigate('/subgoal/' + task.subgoalId)
     handleReflectionAdd()
       .then((res) => {
         navigate('/subgoal/' + task.subgoalId)
