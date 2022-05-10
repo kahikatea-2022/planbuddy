@@ -16,19 +16,18 @@ import { ResourcesList } from './ResourcesList'
 import { getGoalsByUserId } from '../apis/goals'
 import PlanBuddy from './PlanBuddy'
 
-
 //Steps:
 //Create an add resources form
 //create an add tasks form
 //add the input to state
 
-function CreateSubGoal({first, schugl}) {
+function CreateSubGoal({ first, schugl }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  if(schugl === "unga bungas") navigate('/')
-  const {subgoalId} = useParams()
-  const user = useSelector(state=>state.user)
-  const subgoal = useSelector(state=>state.subGoal)
+  if (schugl === 'unga bungas') navigate('/')
+  const { subgoalId } = useParams()
+  const user = useSelector((state) => state.user)
+  const subgoal = useSelector((state) => state.subGoal)
   const resources = useSelector((state) => state.resources)
   const tasks = useSelector((state) => state.tasks)
   // console.log(resources)
@@ -51,7 +50,7 @@ function CreateSubGoal({first, schugl}) {
     dispatch(fetchSubGoal(Number(subgoalId)))
     dispatch(fetchResources(Number(subgoalId)))
     dispatch(fetchTasks(Number(subgoalId)))
-  },[])
+  }, [])
   // Validate ownership, needs slight rework to accout for inital empty data
   // useEffect(()=>{
   //   getGoalsByUserId(user.id).then(res=>{
@@ -146,73 +145,80 @@ function CreateSubGoal({first, schugl}) {
         type={'text'}
         onKeyUp={saveInput}
       ></input>
+
       <h1>{subgoal.subgoalName}</h1>
+
+      {/* should render based on whether this is first goal or not */}
+
       <div className="subgoal-content">
-        {/* should render based on whether this is first goal or not */}
-        <p>{first?"Add resources here:":"Resources:"}</p>
-        <ul>
-          {<ResourcesList resources={resources}/>}
-        </ul>
+        <div className="speechBubble">
+          <p>{first ? 'Add resources here:' : 'Resources:'}</p>
 
-        <form>
-          <label htmlFor="resourceName"> </label>
-          <input
-            className="textbox-input"
-            placeholder="Resource Link"
-            type="text"
-            id="url"
-            onChange={handleFormResources}
-            value={inputStateResources.url}
-          ></input>
-          <input
-            className="textbox-input"
-            placeholder="Resource Name"
-            type="text"
-            id="resourceName"
-            onChange={handleFormResources}
-            value={inputStateResources.resource_name}
-          ></input>
-          <label htmlFor="url"></label>
-        </form>
+          <ul>{<ResourcesList resources={resources} />}</ul>
 
-        <button onClick={submitHandlerResources}>Add Resource</button>
-        {/* list to render the resources*/}
-        {/* <ul>
+          <form>
+            <label htmlFor="resourceName"> </label>
+            <input
+              className="textbox-input"
+              placeholder="Resource Link"
+              type="text"
+              id="url"
+              onChange={handleFormResources}
+              value={inputStateResources.url}
+            ></input>
+            <input
+              className="textbox-input"
+              placeholder="Resource Name"
+              type="text"
+              id="resourceName"
+              onChange={handleFormResources}
+              value={inputStateResources.resource_name}
+            ></input>
+            <label htmlFor="url"></label>
+          </form>
+
+          <button onClick={submitHandlerResources}>Add Resource</button>
+          {/* list to render the resources*/}
+          {/* <ul>
         <li>{resources.resource_name}</li>
       </ul> */}
-      <form>
-        {/* this needs to change based on whether subgoal has been created */}
-        <h2>{first?"Great work, now add your first tasks":"Tasks:"}</h2>
-        <ul>
-          {tasks.map((task) => {
-            return (
-              <li key={task.taskName + task.taskId}>
-                <input
-                  onChange={() => checkboxHandler(task)}
-                  type={'checkbox'}
-                  defaultChecked={task.completed}
-                />
-                <span onClick={() => goToTaskHandler(task.taskId)}>
-                  {task.taskName}
-                </span>
-              </li>
-            )
-          })}
-        </ul>
-        <input
-          className="textbox-input"
-          placeholder="New Task"
-          type="text"
-          id="taskName"
-          value={inputStateTasks.name}
-          onChange={handleFormTasks}
-        ></input>
-        <button onClick={submitHandlerTasks}>Add New Task</button>
-      </form>
+        </div>
+        <div className="speechBubble">
+          <form>
+            {/* this needs to change based on whether subgoal has been created */}
+
+            <p>{first ? 'Great work, now add your first tasks' : 'Tasks:'}</p>
+            <ul>
+              {tasks.map((task) => {
+                return (
+                  <li key={task.taskName + task.taskId}>
+                    <input
+                      onChange={() => checkboxHandler(task)}
+                      type={'checkbox'}
+                      defaultChecked={task.completed}
+                    />
+                    <span onClick={() => goToTaskHandler(task.taskId)}>
+                      {task.taskName}
+                    </span>
+                  </li>
+                )
+              })}
+            </ul>
+            <input
+              className="textbox-input"
+              placeholder="New Task"
+              type="text"
+              id="taskName"
+              value={inputStateTasks.name}
+              onChange={handleFormTasks}
+            ></input>
+            <button onClick={submitHandlerTasks}>Add New Task</button>
+          </form>
+        </div>
+      </div>
       <button onClick={completeHandler}>Complete Subgoal</button>
 
       <PlanBuddy />
-    </div>
     </>
   )
 }
