@@ -55,11 +55,6 @@ function DailyLearning() {
           <p className="pencilButtonText">{subgoal?.subgoalName}</p>
         </div>
         <h1> Today's Task: </h1>
-        {/* <label>
-          <input type="checkbox" />
-          **Sit down and play some guitar **
-        </label> */}
-        <PlanBuddy />
       </div>
 
       <label>
@@ -83,7 +78,7 @@ function DailyLearning() {
         <span>Reflections:</span>
         <ul>{<ReflectionsList reflections={reflections} />}</ul>
       </div>
-      <PlanBuddy />
+      {/* <PlanBuddy /> */}
     </>
   )
 }
