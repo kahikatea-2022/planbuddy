@@ -255,8 +255,6 @@ button:hover {
   position: relative;
   border-radius: 25px;
   gap: 50px;
-  overflow: overlay;
-  overflow-x: hidden;
 }
 
 .tail:before {
@@ -560,6 +558,8 @@ a:hover {
 
   .speechBubble {
     height: 400px;
+    overflow: overlay;
+    overflow-x: hidden;
   }
 }
 
