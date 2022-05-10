@@ -43,7 +43,7 @@ export default function Welcome() {
           Click anywhere to begin!
         </p>
       </div>
-      <div className="planbuddy-welcome">
+      <div className={`planbuddy-welcome ${fadeOut ? 'fade-out' : 'fade-in'}`}>
         <PlanBuddy />
       </div>
     </>
