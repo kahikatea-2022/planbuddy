@@ -35,8 +35,8 @@ function DailyLearning() {
     setCheckboxState(task.completed)
   }, [task])
 
-  function endSessionHandler(e) {
-    e.preventDefault()
+  function endSessionHandler(call) {
+    if(call === 'complete') updateTaskCompletion(task, true)
     navigate('/reflection/' + task.taskId)
   }
   function checkboxHandler(task) {
@@ -54,18 +54,29 @@ function DailyLearning() {
         <p> Today's Task: </p>
         {task && (
           <label>
-            <input
+            {/* <input
               onClick={(e) => checkboxHandler(task)}
               type={'checkbox'}
               defaultChecked={task.completed}
-            />
-            <span>{task?.taskName}</span>
+            /> */}
+            {task.completed?<strike><span>{task?.taskName}</span></strike>:<span>{task?.taskName}</span>}
           </label>
         )}
         <PlanBuddy id={2} />
       </div>
-      <button onClick={endSessionHandler}>
-        {task.completed ? 'Complete Task' : 'Finish Session'}
+      <button onClick={(e)=>{
+        e.preventDefault()
+        endSessionHandler('conclude')
+      }
+      }>
+        Conclude Today's Session
+      </button>
+      <button onClick={(e)=>{
+        e.preventDefault()
+        endSessionHandler('complete')
+      }
+      }>
+        Mark as Completed
       </button>
       {/* refactor into own component */}
       <div className="left1">
