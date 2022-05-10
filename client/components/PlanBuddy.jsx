@@ -20,6 +20,7 @@ function PlanBuddy() {
   const [imgSource, setImgSource] = useState('/images/PlanBuddy.png')
 
   
+  
   function changeBuddyImage() {
     if (mascotHover) {
        setChatBubbleTimeout(setTimeout(()=>{
