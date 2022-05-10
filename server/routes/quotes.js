@@ -5,8 +5,8 @@ const db = require('../db/quotes')
 const router = express.Router()
 
 //GET api/v1/quotes
-router.get('/getRandomQuoteBySubjectId', (req, res) => {
-  const id = req.body.subjectId
+router.get('/getRandomQuoteBySubjectId/:id', (req, res) => {
+  const id = Number(req.params.id)
   console.log(id);
   db.getQuotesBySubjectId(id)
   .then((data) => {
