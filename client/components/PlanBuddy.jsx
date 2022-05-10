@@ -18,7 +18,7 @@ function PlanBuddy(props) {
   const [chatBubbleTimeout, setChatBubbleTimeout] = useState('')
   const [chatBubble, setChatBubble] = useState('loser')
   const [chatterActive, setChatterActive] = useState(true)
-  const [chatBubbleClass, setChatBubbleClass] = useState('')
+  const [chatBubbleClass, setChatBubbleClass] = useState('fade-out')
   const [chatterButtonText, setChatterButtonText] = useState('Disable Chatter')
   const [chatBubbleVisible, setChatBubbleVisible] = useState(false)
   // this part of the code is to change buddys image when you mouse over them
@@ -42,10 +42,12 @@ function PlanBuddy(props) {
       setTimeout(()=>{
         if(props.message){
           setChatBubble(props.message)
+          setChatBubbleClass('fade-in')
           setChatBubbleVisible(true)
           setImgSource('/images/PlanBuddy-mouthOpen.png')
           setTimeout(()=>{
-            setChatBubbleVisible(false)
+          setChatBubbleClass('fade-out')
+          setChatBubbleVisible(false)
             setImgSource('/images/PlanBuddy.png')
             setTimeout(()=>{
               handleChatter(chatterActive)
@@ -67,10 +69,12 @@ function PlanBuddy(props) {
         .then((data) => {
           console.log(data.quote, 2133327)
           updateBubble(data.quote)
+          setChatBubbleClass('fade-in')
           setChatBubbleVisible(true)
           setImgSource('/images/PlanBuddy-mouthOpen.png')
           setTimeout(()=>{
-            setChatBubbleVisible(false)
+          setChatBubbleClass('fade-out')
+          setChatBubbleVisible(false)
             setImgSource('/images/PlanBuddy.png')
             setTimeout(()=>{
               handleChatter(chatterActive)
@@ -90,6 +94,7 @@ function PlanBuddy(props) {
     if (mascotHover) {
       if(!chatterActive){setChatBubbleTimeout(
         setTimeout(() => {
+          setChatBubbleClass('fade-in')
           setChatBubbleVisible(true)
         }, 1000)
       )}
@@ -98,7 +103,8 @@ function PlanBuddy(props) {
     if (!mascotHover) {
       if(!chatterActive){
         clearTimeout(chatBubbleTimeout)
-      setChatBubbleVisible(false)
+          setChatBubbleClass('fade-out')
+          setChatBubbleVisible(false)
     }
       setImgSource('/images/PlanBuddy.png')
     }
@@ -149,7 +155,7 @@ function PlanBuddy(props) {
       )}
 
       {chatBubbleVisible && (
-        <h1 className="quote-bubble speechBubble tail">{chatBubble}</h1>
+        <h1 className={`quote-bubble speechBubble tail ${chatBubbleClass}`}>{chatBubble}</h1>
       )}
 
       <div>
