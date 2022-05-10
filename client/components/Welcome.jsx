@@ -46,6 +46,9 @@ export default function Welcome() {
           Click on me at any time for help and the menu
         </p>
         <p className={fadeOut ? 'fade-out' : 'fade-in'}>you are {type} </p>
+        <p className={fadeOut ? 'fade-out' : 'fade-in'}>
+          Click anywhere to begin!
+        </p>
       </div>
       <div className="planbuddy-welcome">
         <PlanBuddy />
