@@ -20,18 +20,17 @@ function PlanBuddy(props) {
   // this part of the code is to change buddys image when you mouse over them
   const [imgSource, setImgSource] = useState('/images/PlanBuddy.png')
 
-  
   useEffect(() => {
-    if (props.id) getRandomQuote(props.id)
+    if (props.id)
+      getRandomQuote(props.id)
         .then((data) => {
           console.log(data.quote, 1337)
-        updateBubble(data.quote)
+          updateBubble(data.quote)
         })
         .catch((err) => {
-        return null
+          return null
         })
   }, [])
- 
 
   function updateBubble(quote) {
     setChatBubble(quote)
@@ -88,7 +87,7 @@ function PlanBuddy(props) {
       )}
 
       {chatBubbleVisible && (
-        <h1 className='quote-bubble'>{chatBubble}</h1>
+        <h1 className="quote-bubble speechBubble tail">{chatBubble}</h1>
       )}
 
       <div>

@@ -69,8 +69,8 @@ function Reflections() {
       <h1>Reflections</h1>
       <div className="subGoalCreator">
         {/* <a href='' > */}
-        <img src="/images/Pencil.png"></img>
-        <p>{task.taskName}</p>
+        <img className="pencilButtonImg" src="/images/Pencil.png"></img>
+        <p className="pencilButtonText">{task.taskName}</p>
         {/* </a> */}
       </div>
       <textarea
@@ -86,7 +86,7 @@ function Reflections() {
       <button onClick={toGoalsAndComplete}>
         Complete Reflection and return to learning plan
       </button>
-      <PlanBuddy id={3}/>
+      <PlanBuddy id={3} />
     </>
   )
 }

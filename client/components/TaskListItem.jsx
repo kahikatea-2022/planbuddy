@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom'
 import { updateTaskCompletion } from '../apis/tasks'
 import { updateCurrentTask } from '../apis/users'
 
-export function TaskListItem({task}) {
+export function TaskListItem({ task }) {
   const navigate = useNavigate()
-  const user = useSelector(state=>state.user)
+  const user = useSelector((state) => state.user)
   const [checked, setChecked] = useState(task.completed)
   function checkboxHandler(task) {
     setChecked(!checked)
@@ -17,16 +17,18 @@ export function TaskListItem({task}) {
     updateCurrentTask(user.id, taskId)
     navigate('/dailylearning/' + taskId)
   }
-  return user && (
-    <li>
-      <input
-        onChange={() => checkboxHandler(task)}
-        type={'checkbox'}
-        checked={checked}
-      />
-      <span onClick={() => goToTaskHandler(task.taskId)}>
-        {task.taskName}
-      </span>
-</li>
+  return (
+    user && (
+      <li>
+        <input
+          onChange={() => checkboxHandler(task)}
+          type={'checkbox'}
+          checked={checked}
+        />
+        <span onClick={() => goToTaskHandler(task.taskId)}>
+          {task.taskName}
+        </span>
+      </li>
+    )
   )
 }

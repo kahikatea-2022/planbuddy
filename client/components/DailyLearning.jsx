@@ -51,12 +51,18 @@ function DailyLearning() {
           <img className="pencilButtonImg" src="/images/Pencil.png"></img>
           <p className="pencilButtonText">{subgoal?.subgoalName}</p>
         </div>
-        <h1> Today's Task: </h1>
-        {task && <label>
-        <input onClick={(e)=>checkboxHandler(task)} type={'checkbox'} defaultChecked={task.completed} />
-        <span>{task?.taskName}</span>
-      </label>}
-        <PlanBuddy id={2}/>
+        <p> Today's Task: </p>
+        {task && (
+          <label>
+            <input
+              onClick={(e) => checkboxHandler(task)}
+              type={'checkbox'}
+              defaultChecked={task.completed}
+            />
+            <span>{task?.taskName}</span>
+          </label>
+        )}
+        <PlanBuddy id={2} />
       </div>
       <button onClick={endSessionHandler}>
         {task.completed ? 'Complete Task' : 'Finish Session'}
