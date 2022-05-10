@@ -13,19 +13,12 @@ export default function Welcome() {
       if (type === 'veteran') navigate('/veteranview')
     }
   }
+  function clickToAdvance(){
+    setFadeOut(true)
+    return removeEventListener('click', clickToAdvance)
+  }
+  document.addEventListener('click', clickToAdvance)
   const [fadeOut, setFadeOut] = useState(false)
-
-  window.addEventListener('mouseup', () => {
-    setFadeOut(!fadeOut)
-  })
-
-  // useEffect(() => {
-  //   onmouseup(setFadeOut(!fadeOut))
-  //   // setTimeout(() => {
-  //   //   setFadeOut(!fadeOut)
-  //   //   // handleRedirect()
-  //   // }, 3000)
-  // }, [])
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
