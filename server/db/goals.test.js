@@ -26,11 +26,21 @@ test('GET getGoalDataById should return an array of goal data by GoalId', () => 
   })
 })
 
-test('GET getUserGoals should an array of users', () => {
-  return db.getUserGoals(1, testDb).then((goals) => {
-    expect(goals).toHaveReturned()
-  })
-})
+
+
+
+
+
+
+
+
+
+
+// test('GET getUserGoals should an array of users', () => {
+//   return db.getUserGoals(1, testDb).then((goals) => {
+//     expect(goals).toHaveReturned()
+//   })
+// })
 // {
 //   goalId: 1,
 //   userId: 1,
