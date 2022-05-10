@@ -7,7 +7,7 @@ const router = express.Router()
 //GET api/v1/quotes
 router.get('/getRandomQuoteBySubjectId', (req, res) => {
   const id = req.body.subjectId
-
+  console.log(id);
   db.getQuotesBySubjectId(id)
   .then((data) => {
     res.json(data[getRandomIntInclusive(0, data.length)])

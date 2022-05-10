@@ -60,7 +60,7 @@ function DailyLearning() {
           <input type="checkbox" />
           **Sit down and play some guitar **
         </label>
-        <PlanBuddy />
+        <PlanBuddy id={2} />
       </div>
       <h1> Task: </h1>
       <label>

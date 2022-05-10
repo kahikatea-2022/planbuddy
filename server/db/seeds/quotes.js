@@ -103,32 +103,32 @@ exports.seed = async function (knex) {
     //subject_id 4 is the goal and subgoal page quotes
 
     {
-      quote_id: 11,
+      quote_id: 16,
       subject_id: 4,
       quote:
         "It's time to divide and conquer our goals! like it's 18th century france",
     },
 
     {
-      quote_id: 12,
+      quote_id: 17,
       subject_id: 4,
       quote: 'Divide et impera.',
     },
 
     {
-      quote_id: 13,
+      quote_id: 18,
       subject_id: 4,
       quote: 'Time to score some goals!',
     },
 
     {
-      quote_id: 14,
+      quote_id: 19,
       subject_id: 4,
       quote: 'Happy learning time',
     },
 
     {
-      quote_id: 15,
+      quote_id: 20,
       subject_id: 4,
       quote: 'I am the worlds worst goalie, I help you score goals',
     },
