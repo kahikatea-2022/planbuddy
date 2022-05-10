@@ -5,6 +5,7 @@ import { addUser, getUsers } from '../apis/users'
 import { addUserId} from '../auth0-utils'
 import { updateUser } from '../actions/user'
 import { useAuth0 } from '@auth0/auth0-react'
+import PlanBuddy from './PlanBuddy'
 function Registration() {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
@@ -68,7 +69,6 @@ function Registration() {
   return (
     <section >
       {/* This is our stretched mascot, feed pls */}
-      <div className='mascot centered'><img className='mascot' src='/images/PlanBuddy.png' alt='bird mascot cheering you on!'></img></div>
       <form className="registration">
         <input
           name="auth0Id"
