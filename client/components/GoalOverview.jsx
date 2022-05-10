@@ -63,8 +63,8 @@ function GoalOverview() {
           <img className="pencilButtonImg" src="/images/greyPencil.png"></img>
           <p className="pencilButtonText">Add subgoal</p>
           {/* </a> */}
-          <PlanBuddy id={4}/>
         </div>
+          <PlanBuddy id={4}/>
       </div>
     </>
   )
