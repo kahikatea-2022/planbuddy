@@ -24,6 +24,7 @@ function PlanBuddy(props) {
   useEffect(() => {
     if (props.id) getRandomQuote(props.id)
         .then((data) => {
+          console.log(data.quote, 1337)
         updateBubble(data.quote)
         })
         .catch((err) => {

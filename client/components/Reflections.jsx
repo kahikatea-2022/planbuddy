@@ -10,6 +10,7 @@ import { fetchSubGoal } from '../actions/subGoals'
 import { fetchTask } from '../actions/tasks'
 import { addNewReflection } from '../apis/reflections'
 import { getLogoutFn } from '../auth0-utils'
+import PlanBuddy from './PlanBuddy'
 // import { addResource } from '../actions/resources'
 // import { addTask, setTasks } from '../actions/tasks'
 
@@ -85,6 +86,7 @@ function Reflections() {
       <button onClick={toGoalsAndComplete}>
         Complete Reflection and return to learning plan
       </button>
+      <PlanBuddy id={3}/>
     </>
   )
 }

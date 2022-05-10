@@ -56,7 +56,7 @@ function DailyLearning() {
         <input onClick={(e)=>checkboxHandler(task)} type={'checkbox'} defaultChecked={task.completed} />
         <span>{task?.taskName}</span>
       </label>}
-        <PlanBuddy />
+        <PlanBuddy id={2}/>
       </div>
       <button onClick={endSessionHandler}>
         {task.completed ? 'Complete Task' : 'Finish Session'}

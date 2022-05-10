@@ -43,7 +43,7 @@ function GoalsOverview({ noId }) {
           <p className="pencilButtonText">Add Goal</p>
         </div>
       </div>
-      <PlanBuddy />
+      <PlanBuddy id={4}/>
     </>
   )
 }

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchTask } from '../actions/tasks'
 import { useNavigate } from 'react-router-dom'
+import PlanBuddy from './PlanBuddy'
 
 function VeteranView() {
   const user = useSelector((state) => state.user)
@@ -35,6 +36,7 @@ function VeteranView() {
         
         {task?.taskName?"I'm learning something else today":"Get Started!"}
       </button>
+      <PlanBuddy id={1}/>
     </>
   )
 }
