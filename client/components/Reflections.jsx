@@ -77,6 +77,7 @@ function Reflections() {
         value={reflection}
         rows="5"
         cols="50"
+        className="reflections-text"
       ></textarea>
       <button onClick={logoutAndComplete}>
         Complete Reflection and Log out

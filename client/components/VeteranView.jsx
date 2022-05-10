@@ -26,6 +26,7 @@ function VeteranView() {
 
   return (
     <>
+    <div className="blank-nav"></div>
       {task?.taskName && <button onClick={handleClickCont}>
         {' '}
         Continue with: {task.taskName}{' '}

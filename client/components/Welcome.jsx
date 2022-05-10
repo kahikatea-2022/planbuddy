@@ -23,12 +23,12 @@ export default function Welcome() {
   return (
     <>
       <div className="WelcomeMessage">
-        <p
+        <h1
           className={fadeOut ? 'fade-out' : 'fade-in'}
           onAnimationEnd={handleRedirect}
         >
           Hi {user.name}!
-        </p>
+        </h1>
         <p className={fadeOut ? 'fade-out' : 'fade-in'}>I'm Buddy</p>
         <p className={fadeOut ? 'fade-out' : 'fade-in'}>Let's get learning!</p>
         <p className={fadeOut ? 'fade-out' : 'fade-in'}>
