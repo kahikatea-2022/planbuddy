@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div className="app">
-      <Nav />
+      {/* <Nav /> */}
       <IfNotAuthenticated>
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -33,17 +33,24 @@ function App() {
       </IfNotAuthenticated>
       <IfAuthenticated>
         <Routes>
-          <Route path="/register" element={<Registration />} />
           <Route path="/" element={<LandingPage />} />
+          <Route path="/register" element={<Registration />} />
           <Route path="/welcome/:type" element={<Welcome />} />
           <Route path="/newgoal" element={<NewGoal />} />
           <Route path="/veteranview" element={<VeteranView />} />
           <Route path="/goal/:goalId" element={<GoalOverview />} />
-          <Route path="/subgoal/:subgoalId" element={<CreateSubGoal />} />
+          <Route path="/goals">
+            <Route index element={<GoalsOverview noId={true}/>}/>
+            <Route path=":userId" element={<GoalsOverview />}/>
+          </Route>
+          <Route path="/subgoal" >
+            <Route index element={<CreateSubGoal schugl={'unga bungas'} first={false}/>} />
+            <Route path=":subgoalId" element={<CreateSubGoal schugl={'unga bunga'} first={false}/>} />
+            <Route path=":subgoalId/new" element={<CreateSubGoal schugl={'unga bunga'} first={true}/>} />
+          </Route>
           <Route path="/research/:goalId" element={<Research />} />
           <Route path="/dailylearning/:taskid" element={<DailyLearning />} />
-          <Route path="/reflection/:taskId" element={<Reflections/>} />
-          <Route path="/goals/:userId" element={<GoalsOverview/>} />
+          <Route path="/reflection/:taskId" element={<Reflections />} />
           {/* <Route path="/" element={<PingRoutes />} /> */}
         </Routes>
       </IfAuthenticated>

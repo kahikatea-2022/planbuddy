@@ -1,85 +1,88 @@
 import { format } from 'prettier'
-import React, { useState , useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { fetchReflections } from '../actions/reflections'
 import { fetchResources } from '../actions/resources'
+import { fetchSubGoal } from '../actions/subGoals'
 import { fetchTask } from '../actions/tasks'
 import { updateTaskCompletion } from '../apis/tasks'
 import PlanBuddy from './PlanBuddy'
+import { ReflectionsList } from './ReflectionsList'
+import { ResourcesList } from './ResourcesList'
 
 function DailyLearning() {
-// TODO Add funcitonality to buddy to accept on the fly reflections
-// pass buddy ?task id?
+  // TODO Add funcitonality to buddy to accept on the fly reflections
+  // pass buddy ?task id?
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const task = useSelector(state=>state.task)
-  const subgoal = useSelector(state=>state.subgoal)
+  const subgoal = useSelector(state=>state.subGoal)
   const resources = useSelector(state=>state.resources)
   const reflections = useSelector(state=>state.reflections)
   const {taskid} = useParams()
-  
+
   const [checkboxState, setCheckboxState] = useState(false)
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(fetchTask(Number(taskid)))
     // fetch resources
-    
   }, [checkboxState])
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(fetchResources(task.subgoalId))
     dispatch(fetchReflections(task.taskId))
+    dispatch(fetchSubGoal(task.subgoalId))
     setCheckboxState(task.completed)
   }, [task])
 
-  function endSessionHandler(e){
+  function endSessionHandler(e) {
     e.preventDefault()
     navigate('/reflection/' + task.taskId)
-    updateTaskCompletion(task, true).then(res=>{
-      
-    }).catch(console.error)
+    updateTaskCompletion(task, true)
+      .then((res) => {})
+      .catch(console.error)
   }
-  function checkboxHandler(task){
+  function checkboxHandler(task) {
     setCheckboxState(!checkboxState)
-    console.log('wut')
     // console.log(!checkboxState)
     updateTaskCompletion(task, !checkboxState)
   }
   return (
     <>
-      <div className="subGoalCreator">
-        <img className="pencilButtonImg" src="/images/Pencil.png"></img>
-        <p className="pencilButtonText">**subgoal name**</p>
+
+      <div className="DailyLearning">
+        <div className="subGoalCreator">
+          <img className="pencilButtonImg" src="/images/Pencil.png"></img>
+          <p className="pencilButtonText">{subgoal?.subgoalName}</p>
+        </div>
+        <h1> Today's Task: </h1>
+        <label>
+          <input type="checkbox" />
+          **Sit down and play some guitar **
+        </label>
+        <PlanBuddy />
       </div>
       <h1> Task: </h1>
       <label>
-        <input onChange={(e)=>checkboxHandler(task)} type={'checkbox'} defaultChecked={task.completed} />
-        **Sit down and play some guitar **
+        <input onClick={(e)=>checkboxHandler(task)} type={'checkbox'} defaultChecked={task.completed} />
+        <span>{task?.taskName}</span>
       </label>
-      <button onClick={endSessionHandler}>{task.completed?'Complete Task':'Finish Session'}</button>
+      <button onClick={endSessionHandler}>
+        {task.completed ? 'Complete Task' : 'Finish Session'}
+      </button>
       {/* refactor into own component */}
-      <div className='left'>
+      <div className="left">
         <span>Resources:</span>
         <ul>
-          {resources.map(resource=>{
-            return(
-              <li key={resource.resourceName + resource.resourceId}><a href={resource.url}>{resource.resourceName}</a></li>
-            )
-          })}
+          {<ResourcesList resources={resources}/>}
         </ul>
       </div>
-      <div className='left'>
-      {/* refactor into own component */}
+      <div className="left">
+        {/* refactor into own component */}
         <span>Reflections:</span>
-        <ul>
-          {reflections.map(reflection=>{
-            return(
-              <li key={reflection.reflection + reflection.reflectionId}>{reflection.reflection.slice(0, 15) + '...'}</li>
-            )
-          })}
-        </ul>
+        <ul>{<ReflectionsList reflections={reflections} />}</ul>
       </div>
-      <PlanBuddy/>
+      <PlanBuddy />
     </>
   )
 }
