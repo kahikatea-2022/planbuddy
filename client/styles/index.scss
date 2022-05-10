@@ -280,12 +280,13 @@ button:hover {
 }
 
 .hamburgerMenu {
-  position: absolute;
+  position: fixed;
   bottom: 25%;
   right: 3%;
+}
 
-  // padding-bottom: 25%;
-  // padding-right: 5%;
+.menuHover:hover {
+  color: #9c9c9c;
 }
 
 ul {
