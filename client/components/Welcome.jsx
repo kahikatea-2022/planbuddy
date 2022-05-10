@@ -20,6 +20,11 @@ export default function Welcome() {
       // handleRedirect()
     }, 3000)
   }, [])
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   return (
     <>
       <div className="WelcomeMessage">
@@ -27,7 +32,7 @@ export default function Welcome() {
           className={fadeOut ? 'fade-out' : 'fade-in'}
           onAnimationEnd={handleRedirect}
         >
-          Hi {user.name}!
+          Hi {capitalizeFirstLetter(user.name)}!
         </h1>
         <p className={fadeOut ? 'fade-out' : 'fade-in'}>I'm Buddy</p>
         <p className={fadeOut ? 'fade-out' : 'fade-in'}>Let's get learning!</p>
