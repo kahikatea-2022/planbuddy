@@ -36,7 +36,10 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/register" element={<Registration />} />
           <Route path="/welcome/:type" element={<Welcome />} />
-          <Route path="/newgoal" element={<NewGoal />} />
+          <Route path="/newgoal">
+            <Route index element={<NewGoal new={false} />} />
+            <Route path="new" element={<NewGoal new={true}/>} />
+          </Route>
           <Route path="/veteranview" element={<VeteranView />} />
           <Route path="/goal/:goalId" element={<GoalOverview />} />
           <Route path="/goals">
