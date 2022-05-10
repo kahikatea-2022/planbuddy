@@ -56,17 +56,12 @@ function DailyLearning() {
           <p className="pencilButtonText">{subgoal?.subgoalName}</p>
         </div>
         <h1> Today's Task: </h1>
-        <label>
-          <input type="checkbox" />
-          **Sit down and play some guitar **
-        </label>
-        <PlanBuddy />
-      </div>
-      <h1> Task: </h1>
-      {task && <label>
+        {task && <label>
         <input onClick={(e)=>checkboxHandler(task)} type={'checkbox'} defaultChecked={task.completed} />
         <span>{task?.taskName}</span>
       </label>}
+        <PlanBuddy />
+      </div>
       <button onClick={endSessionHandler}>
         {task.completed ? 'Complete Task' : 'Finish Session'}
       </button>
