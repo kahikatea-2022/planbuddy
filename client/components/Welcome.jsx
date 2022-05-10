@@ -9,7 +9,7 @@ export default function Welcome() {
   const navigate = useNavigate()
   function handleRedirect() {
     if (fadeOut) {
-      if (type === 'new') navigate('/newgoal')
+      if (type === 'new') navigate('/newgoal/new')
       if (type === 'veteran') navigate('/veteranview')
     }
   }

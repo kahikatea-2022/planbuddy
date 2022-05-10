@@ -37,8 +37,8 @@ function App() {
           <Route path="/register" element={<Registration />} />
           <Route path="/welcome/:type" element={<Welcome />} />
           <Route path="/newgoal">
-            <Route index element={<NewGoal new={false} />} />
-            <Route path="new" element={<NewGoal new={true}/>} />
+            <Route index element={<NewGoal first={false} />} />
+            <Route path="new" element={<NewGoal first={true}/>} />
           </Route>
           <Route path="/veteranview" element={<VeteranView />} />
           <Route path="/goal/:goalId" element={<GoalOverview />} />
