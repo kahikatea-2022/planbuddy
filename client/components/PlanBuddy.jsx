@@ -12,7 +12,7 @@ import { getRandomQuote } from '../apis/quotes'
 
 function PlanBuddy(props) {
   const navigate = useNavigate()
-  const user = useSelector(state=>state.user)
+  const user = useSelector((state) => state.user)
   const [mascotHover, setMascotHover] = useState(true)
   const [chatBubbleTimeout, setChatBubbleTimeout] = useState('')
   const [chatBubble, setChatBubble] = useState('blah blah')
@@ -20,21 +20,29 @@ function PlanBuddy(props) {
   // this part of the code is to change buddys image when you mouse over them
   const [imgSource, setImgSource] = useState('/images/PlanBuddy.png')
 
+  
   useEffect(() => {
     if (props.id) getRandomQuote(props.id)
-    .then((data) => {
-      setChatBubble(data.quote)
-    })
-    .catch((err) => {
-      return null
-    })
+        .then((data) => {
+        updateBubble(data.quote)
+        })
+        .catch((err) => {
+        return null
+        })
   }, [])
+ 
+
+  function updateBubble(quote) {
+    setChatBubble(quote)
+  }
 
   function changeBuddyImage() {
     if (mascotHover) {
-       setChatBubbleTimeout(setTimeout(()=>{
-        setChatBubbleVisible(true)
-      }, 1000))
+      setChatBubbleTimeout(
+        setTimeout(() => {
+          setChatBubbleVisible(true)
+        }, 1000)
+      )
       setImgSource('/images/PlanBuddy-mouthOpen.png')
     }
     if (!mascotHover) {
@@ -51,25 +59,29 @@ function PlanBuddy(props) {
     console.log('hello')
     setClick(!click)
   }
-  function clickRedirect(url){
+  function clickRedirect(url) {
     navigate(url)
   }
-  
+
   const logout = getLogoutFn(useAuth0)
   return (
     <>
       {click && (
         <div className="hamburgerMenu">
           <ul>
-            <li onClick={()=>clickRedirect('/goals/' + user.id)}>
+            <li onClick={() => clickRedirect('/goals/' + user.id)}>
               Goals Overview
             </li>
-            {user.currentTask && <li onClick={()=>clickRedirect('/dailylearning/' + user.currentTask)}>
-              Daily Learning
-            </li>}
-            <li onClick={()=>logout()}>
-              Sign Out
-            </li>
+            {user.currentTask && (
+              <li
+                onClick={() =>
+                  clickRedirect('/dailylearning/' + user.currentTask)
+                }
+              >
+                Daily Learning
+              </li>
+            )}
+            <li onClick={() => logout()}>Sign Out</li>
           </ul>
         </div>
       )}
