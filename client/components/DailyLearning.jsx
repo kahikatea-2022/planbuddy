@@ -74,11 +74,11 @@ function DailyLearning() {
         {task.completed ? 'Complete Task' : 'Finish Session'}
       </button>
       {/* refactor into own component */}
-      <div className="left">
+      <div className="left1">
         <span>Resources:</span>
         <ul>{<ResourcesList resources={resources} />}</ul>
       </div>
-      <div className="left">
+      <div className="left2">
         {/* refactor into own component */}
         <span>Reflections:</span>
         <ul>{<ReflectionsList reflections={reflections} />}</ul>

@@ -291,6 +291,7 @@ button:hover {
 ul {
   list-style-type: none;
   text-decoration: none;
+  color: #4a4848;
 }
 
 a {
@@ -514,6 +515,7 @@ a:hover {
     line-height: 135%;
     text-align: center;
     font-size: 110%;
+    color: #4a4848;
   }
   a {
     line-height: 135%;
@@ -569,4 +571,32 @@ input::placeholder {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.DailyLearningPositioning {
+  display: flex;
+  flex-direction: row;
+}
+
+.left1 {
+  position: absolute;
+  left: 5%;
+  bottom: 499px;
+}
+
+.left2 {
+  position: absolute;
+  left: 5%;
+  bottom: 375px;
+}
+
+.reflections-text {
+  font-family: 'Caveat';
+  font-size: 90%;
+  color: #4a4848;
+  border-color: #4a4848;
+}
+
+span {
+  color: #4a4848;
 }
