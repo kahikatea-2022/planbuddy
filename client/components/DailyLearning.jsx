@@ -64,13 +64,13 @@ function DailyLearning() {
         )}
         <PlanBuddy id={2} />
       </div>
-      <button onClick={(e)=>{
+      {!task.completed && <button onClick={(e)=>{
         e.preventDefault()
         endSessionHandler('conclude')
       }
       }>
         Conclude Today's Session
-      </button>
+      </button>}
       {!task.completed && <button onClick={(e)=>{
         e.preventDefault()
         endSessionHandler('complete')
@@ -78,7 +78,7 @@ function DailyLearning() {
       }>
         Mark as Completed
       </button>}
-      <button className={!task.completed && 'bottom-left'} onClick={(e)=>{
+      <button className={!task.completed? 'bottom-left':''} onClick={(e)=>{
         e.preventDefault()
         navigate('/subgoal/' + task.subgoalId)
       }
