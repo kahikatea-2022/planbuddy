@@ -17,11 +17,11 @@ function DailyLearning() {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const task = useSelector(state=>state.task)
-  const subgoal = useSelector(state=>state.subGoal)
-  const resources = useSelector(state=>state.resources)
-  const reflections = useSelector(state=>state.reflections)
-  const {taskid} = useParams()
+  const task = useSelector((state) => state.task)
+  const subgoal = useSelector((state) => state.subGoal)
+  const resources = useSelector((state) => state.resources)
+  const reflections = useSelector((state) => state.reflections)
+  const { taskid } = useParams()
 
   const [checkboxState, setCheckboxState] = useState(false)
   useEffect(() => {
@@ -38,9 +38,6 @@ function DailyLearning() {
   function endSessionHandler(e) {
     e.preventDefault()
     navigate('/reflection/' + task.taskId)
-    updateTaskCompletion(task, true)
-      .then((res) => {})
-      .catch(console.error)
   }
   function checkboxHandler(task) {
     setCheckboxState(!checkboxState)
@@ -49,40 +46,32 @@ function DailyLearning() {
   }
   return (
     <>
-
       <div className="DailyLearning">
         <div className="subGoalCreator">
           <img className="pencilButtonImg" src="/images/Pencil.png"></img>
           <p className="pencilButtonText">{subgoal?.subgoalName}</p>
         </div>
         <h1> Today's Task: </h1>
-        <label>
-          <input type="checkbox" />
-          **Sit down and play some guitar **
-        </label>
-        <PlanBuddy />
-      </div>
-      <h1> Task: </h1>
-      <label>
+        {task && <label>
         <input onClick={(e)=>checkboxHandler(task)} type={'checkbox'} defaultChecked={task.completed} />
         <span>{task?.taskName}</span>
-      </label>
+      </label>}
+        <PlanBuddy id={2}/>
+      </div>
       <button onClick={endSessionHandler}>
         {task.completed ? 'Complete Task' : 'Finish Session'}
       </button>
       {/* refactor into own component */}
-      <div className="left">
+      <div className="left1">
         <span>Resources:</span>
-        <ul>
-          {<ResourcesList resources={resources}/>}
-        </ul>
+        <ul>{<ResourcesList resources={resources} />}</ul>
       </div>
-      <div className="left">
+      <div className="left2">
         {/* refactor into own component */}
         <span>Reflections:</span>
         <ul>{<ReflectionsList reflections={reflections} />}</ul>
       </div>
-      <PlanBuddy />
+      {/* <PlanBuddy /> */}
     </>
   )
 }

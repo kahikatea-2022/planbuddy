@@ -53,8 +53,8 @@ function GoalOverview() {
                 onClick={() => navigate('/subgoal/' + subGoal.subgoalId)}
                 className="subGoalCreator"
               >
-                <img src="/images/Pencil.png"></img>
-                <p>{subGoal.subgoalName}</p>
+                <img className="pencilButtonImg" src="/images/Pencil.png"></img>
+                <p className="pencilButtonText">{subGoal.subgoalName}</p>
               </div>
             )
           })}
@@ -63,7 +63,7 @@ function GoalOverview() {
           <img className="pencilButtonImg" src="/images/greyPencil.png"></img>
           <p className="pencilButtonText">Add subgoal</p>
           {/* </a> */}
-          <PlanBuddy />
+          <PlanBuddy id={4}/>
         </div>
       </div>
     </>

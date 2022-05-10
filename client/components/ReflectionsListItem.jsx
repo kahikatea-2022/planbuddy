@@ -6,7 +6,7 @@ export function ReflectionsListItem({reflection}) {
     setShowReflection(!showReflection)
   }
   return (
-    <li onClick={clickHandler} key={reflection.reflection + reflection.reflectionId}>
+    <li className={'unselectable'} onClick={clickHandler} key={reflection.reflection + reflection.reflectionId}>
       {showReflection?reflection.reflection:reflection.reflection.slice(0, 15) + '...'}
     </li>
   )

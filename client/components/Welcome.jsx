@@ -9,26 +9,31 @@ export default function Welcome() {
   const navigate = useNavigate()
   function handleRedirect() {
     if (fadeOut) {
-      if (type === 'new') navigate('/newgoal')
+      if (type === 'new') navigate('/newgoal/new')
       if (type === 'veteran') navigate('/veteranview')
     }
   }
+  function clickToAdvance(){
+    setFadeOut(true)
+    return removeEventListener('click', clickToAdvance)
+  }
+  document.addEventListener('click', clickToAdvance)
   const [fadeOut, setFadeOut] = useState(false)
-  useEffect(() => {
-    setTimeout(() => {
-      setFadeOut(!fadeOut)
-      // handleRedirect()
-    }, 3000)
-  }, [])
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setFadeOut(!fadeOut)
+  //     // handleRedirect()
+  //   }, 3000)
+  // }, [])
   return (
     <>
       <div className="WelcomeMessage">
-        <p
+        <h1
           className={fadeOut ? 'fade-out' : 'fade-in'}
           onAnimationEnd={handleRedirect}
         >
           Hi {user.name}!
-        </p>
+        </h1>
         <p className={fadeOut ? 'fade-out' : 'fade-in'}>I'm Buddy</p>
         <p className={fadeOut ? 'fade-out' : 'fade-in'}>Let's get learning!</p>
         <p className={fadeOut ? 'fade-out' : 'fade-in'}>

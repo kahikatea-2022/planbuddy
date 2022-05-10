@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchTask } from '../actions/tasks'
 import { useNavigate } from 'react-router-dom'
+import PlanBuddy from './PlanBuddy'
 
 function VeteranView() {
   const user = useSelector((state) => state.user)
@@ -13,7 +14,7 @@ function VeteranView() {
   //not returning the current task
   useEffect(() => {
     dispatch(fetchTask(Number(user.currentTask)))
-  }, [])
+  }, [user])
 
   //site doesnt know what user.currentTask is
   function handleClickCont() {
@@ -26,14 +27,16 @@ function VeteranView() {
 
   return (
     <>
-      <button onClick={handleClickCont}>
+    <div className="blank-nav"></div>
+      {task?.taskName && <button onClick={handleClickCont}>
         {' '}
-        Continue with: {task?.taskName}{' '}
-      </button>
+        Continue with: {task.taskName}{' '}
+      </button>}
       <button onClick={handleClickNew}>
-        {' '}
-        I'm learning something else today{' '}
+        
+        {task?.taskName?"I'm learning something else today":"Get Started!"}
       </button>
+      <PlanBuddy id={1}/>
     </>
   )
 }
