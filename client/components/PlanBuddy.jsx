@@ -114,18 +114,23 @@ function PlanBuddy(props) {
   function clickRedirect(url) {
     navigate(url)
   }
-  function handleChatter(){
+  function toggleChatter(enabled){
     setChatterActive(!chatterActive)
-    if(!chatterActive === true) setChatterButtonText('Enable Chatter')
-    if(!chatterActive === false) setChatterButtonText('Disable Chatter')
-  }
+    if(chatterActive === false) setChatterButtonText('Disable Chatter')
+    if(chatterActive === true) {
+      setChatterButtonText('Enable Chatter')
+      setTimeout(()=>{
+          handleChatter(chatterActive)
+        }, 2000)
+      }
+    }
   const logout = getLogoutFn(useAuth0)
   return (
     <>
       {click && (
         <div className="hamburgerMenu">
           <ul>
-            <li onClick={() => handleChatter()}>{chatterButtonText}</li>
+            <li onClick={() => toggleChatter()}>{chatterButtonText}</li>
             <li onClick={() => clickRedirect('/goals/' + user.id)}>
               Goals Overview
             </li>
