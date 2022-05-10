@@ -68,8 +68,7 @@ export function getRegisterFn(useAuth0) {
   return () =>
     loginWithRedirect({
       redirectUri,
-      screen_hint: 'signin',
-      scope: 'role:member',
+      screen_hint: 'signup',
     })
 }
 
