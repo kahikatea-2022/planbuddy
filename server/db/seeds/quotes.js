@@ -148,6 +148,20 @@ exports.seed = async function (knex) {
       quote: 'When you are done typing hit that enter!',
     },
 
+    //subject_id 6 is for letting people know they can change the subgoal name in the subgoal component
+
+    {
+      quote_id: 23,
+      subject_id: 6,
+      quote: 'Did you know you can change the name of your sub-goal by clicking on it?',
+    },
+
+    {
+      quote_id: 24,
+      subject_id: 6,
+      quote: 'You can change the name of your sub-goal by clicking on it!',
+    },
+
 
   ])
 }
