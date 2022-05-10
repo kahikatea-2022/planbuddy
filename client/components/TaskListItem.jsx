@@ -23,14 +23,16 @@ export function TaskListItem({task, check, tasks}) {
   return (
     user && (
       <li>
-        <input
+        {/* <input
           onChange={() => checkboxHandler(task)}
           type={'checkbox'}
           checked={checked}
-        />
-        <span onClick={() => goToTaskHandler(task.taskId)}>
+        /> */}
+        {task.completed?<strike><span onClick={() => goToTaskHandler(task.taskId)}>
           {task.taskName}
-        </span>
+        </span></strike>:<span onClick={() => goToTaskHandler(task.taskId)}>
+          {task.taskName}
+        </span>}
       </li>
     )
   )

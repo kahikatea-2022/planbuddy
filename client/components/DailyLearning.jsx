@@ -54,12 +54,12 @@ function DailyLearning() {
         <p> Today's Task: </p>
         {task && (
           <label>
-            <input
+            {/* <input
               onClick={(e) => checkboxHandler(task)}
               type={'checkbox'}
               defaultChecked={task.completed}
-            />
-            <span>{task?.taskName}</span>
+            /> */}
+            {task.completed?<strike><span>{task?.taskName}</span></strike>:<span>{task?.taskName}</span>}
           </label>
         )}
         <PlanBuddy id={2} />
