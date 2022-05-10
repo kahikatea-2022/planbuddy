@@ -4,9 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { updateTaskCompletion } from '../apis/tasks'
 import { updateCurrentTask } from '../apis/users'
 
-
-export function TaskListItem({task, check, tasks}) {
-
+export function TaskListItem({ task, check, tasks }) {
   const navigate = useNavigate()
   const user = useSelector((state) => state.user)
   const [checked, setChecked] = useState(task.completed)
@@ -28,11 +26,23 @@ export function TaskListItem({task, check, tasks}) {
           type={'checkbox'}
           checked={checked}
         /> */}
-        {task.completed?<strike><span onClick={() => goToTaskHandler(task.taskId)}>
-          {task.taskName}
-        </span></strike>:<span onClick={() => goToTaskHandler(task.taskId)}>
-          {task.taskName}
-        </span>}
+        {task.completed ? (
+          <strike>
+            <span
+              className="text-hover"
+              onClick={() => goToTaskHandler(task.taskId)}
+            >
+              {task.taskName}
+            </span>
+          </strike>
+        ) : (
+          <span
+            className="text-hover"
+            onClick={() => goToTaskHandler(task.taskId)}
+          >
+            {task.taskName}
+          </span>
+        )}
       </li>
     )
   )

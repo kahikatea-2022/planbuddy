@@ -2,6 +2,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
 
+// html {
+//   cursor: url('/server/public/images/littlepencil.png'), auto;
+// }
+
 html,
 body {
   font-family: 'Caveat', cursive;
@@ -21,8 +25,6 @@ body {
   -o-background-size: cover;
   background-size: cover;
   height: 100%;
-
-  cursor: url(/server/public/images/littlepencil.png), default !important;
 }
 
 .table {
@@ -253,6 +255,8 @@ button:hover {
   position: relative;
   border-radius: 25px;
   gap: 50px;
+  overflow: overlay;
+  overflow-x: hidden;
 }
 
 .tail:before {
@@ -635,4 +639,18 @@ span {
   box-shadow: 0px 3px rgb(139, 139, 139);
   border-color: rgb(139, 139, 139);
   background-color: rgb(255, 252, 247);
+}
+
+.bottom-left {
+  position: fixed;
+  left: 0%;
+  bottom: 0%;
+}
+
+.text-hover {
+  color: #4a4848;
+}
+
+.text-hover:hover {
+  color: #9c9c9c;
 }
