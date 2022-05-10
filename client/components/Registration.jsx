@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector , useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { addUser, getUsers } from '../apis/users'
-
+import { addUserId} from '../auth0-utils'
+import { updateUser } from '../actions/user'
+import { useAuth0 } from '@auth0/auth0-react'
 function Registration() {
+  const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
   const navigate = useNavigate()
   function checkUser(){
@@ -35,7 +38,10 @@ function Registration() {
         currentTask: null
       }
       // console.log(newUser)
-      addUser(newUser).then(console.log)
+      addUser(newUser).then(data=>{
+        console.log(data)
+        dispatch(updateUser({id: data.body.newId[0], currentTask: null}))
+      }).catch(console.error)
       navigate('/welcome/new')
     }
   }, [user])
@@ -61,6 +67,7 @@ function Registration() {
 
   return (
     <section >
+      {/* This is our stretched mascot, feed pls */}
       <div className='mascot centered'><img className='mascot' src='/images/PlanBuddy.png' alt='bird mascot cheering you on!'></img></div>
       <form className="registration">
         <input

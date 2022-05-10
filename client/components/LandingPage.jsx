@@ -1,11 +1,22 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import PlanBuddy from './PlanBuddy'
 
 function LandingPage() {
   const { logout, loginWithRedirect, isAuthenticated } = useAuth0()
   const user = useSelector((state) => state.user)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    isAuthenticated ?
+     setTimeout(() => {
+      navigate(`/welcome/veteran`)
+    }, 3000)
+    : null
+  }, [])
+
   function handleLogin(event) {
     event.preventDefault()
     loginWithRedirect({
@@ -21,10 +32,12 @@ function LandingPage() {
 
   return (
     <>
-      <h1>PlanBuddy</h1>
-      <h2>Helping you with the planning so you can focus on the learning!</h2>
+      <img className="MainLogo" src="/images/PlanBuddyLogo0.png"></img>
+      <p className="speechBubble tail">
+        Helping you with the planning so you can focus on the learning!
+      </p>
       {!isAuthenticated && (
-        <div className="flex">
+        <div className="buttons">
           <button onClick={handleLogin}>Sign In</button>
           <button onClick={handleRegister}>New User</button>
         </div>

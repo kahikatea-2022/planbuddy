@@ -2,7 +2,7 @@ import { format } from 'prettier'
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchTask } from '../actions/tasks'
-import {  useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function VeteranView() {
   const user = useSelector((state) => state.user)
@@ -13,8 +13,7 @@ function VeteranView() {
   //not returning the current task
   useEffect(() => {
     dispatch(fetchTask(Number(user.currentTask)))
-  })
-
+  }, [])
 
   //site doesnt know what user.currentTask is
   function handleClickCont() {
@@ -22,13 +21,19 @@ function VeteranView() {
   }
 
   function handleClickNew() {
-    navigate('/goalsoverview')
+    navigate('/goals/' + user.id)
   }
 
   return (
     <>
-      <button onClick={handleClickCont}> Continue with: {task?.taskName} </button>
-      <button onClick={handleClickNew}> I'm learning something else today </button>
+      <button onClick={handleClickCont}>
+        {' '}
+        Continue with: {task?.taskName}{' '}
+      </button>
+      <button onClick={handleClickNew}>
+        {' '}
+        I'm learning something else today{' '}
+      </button>
     </>
   )
 }

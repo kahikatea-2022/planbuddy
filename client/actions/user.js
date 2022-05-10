@@ -4,6 +4,7 @@ export const SET_USER = 'SET_USER'
 export const SET_USERS = 'SET_USERS'
 export const CLEAR_USER = 'CLEAR_USER'
 export const CLEAR_USERS = 'CLEAR_USERS'
+export const UPDATE_USER = 'UPDATE_USER'
 
 export function setUser(user) {
   return {
@@ -28,6 +29,13 @@ export function clearUser() {
 export function clearUsers() {
   return {
     type: CLEAR_USERS,
+  }
+}
+
+export function updateUser(update) {
+  return {
+    type: UPDATE_USER,
+    update,
   }
 }
 
