@@ -40,13 +40,22 @@ function App() {
           <Route path="/veteranview" element={<VeteranView />} />
           <Route path="/goal/:goalId" element={<GoalOverview />} />
           <Route path="/goals">
-            <Route index element={<GoalsOverview noId={true}/>}/>
-            <Route path=":userId" element={<GoalsOverview />}/>
+            <Route index element={<GoalsOverview noId={true} />} />
+            <Route path=":userId" element={<GoalsOverview />} />
           </Route>
-          <Route path="/subgoal" >
-            <Route index element={<CreateSubGoal schugl={'unga bungas'} first={false}/>} />
-            <Route path=":subgoalId" element={<CreateSubGoal schugl={'unga bunga'} first={false}/>} />
-            <Route path=":subgoalId/new" element={<CreateSubGoal schugl={'unga bunga'} first={true}/>} />
+          <Route path="/subgoal">
+            <Route
+              index
+              element={<CreateSubGoal schugl={'unga bungas'} first={false} />}
+            />
+            <Route
+              path=":subgoalId"
+              element={<CreateSubGoal schugl={'unga bunga'} first={false} />}
+            />
+            <Route
+              path=":subgoalId/new"
+              element={<CreateSubGoal schugl={'unga bunga'} first={true} />}
+            />
           </Route>
           <Route path="/research/:goalId" element={<Research />} />
           <Route path="/dailylearning/:taskid" element={<DailyLearning />} />

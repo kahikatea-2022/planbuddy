@@ -66,8 +66,8 @@ function Research() {
   }
   return (
     <>
-      <div className="blank-nav"></div>
-      <h1>Research Time!</h1>
+      <div className="blank-nav3"></div>
+      <h1 className="h1-research">Research Time!</h1>
       <p>Start by googling {goal.goalName} basics</p>
       <p>Find and write down 3 sub goals for {goal.goalName} </p>
       <p>Once Done press complete Research to continue!</p>
@@ -110,6 +110,7 @@ function Research() {
           <p>click to add subgoal</p>
         </div> */}
       <button onClick={completeHandler}>Complete Research</button>
+
       <PlanBuddy />
     </>
   )

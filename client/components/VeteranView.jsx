@@ -26,13 +26,10 @@ function VeteranView() {
 
   return (
     <>
-      <button onClick={handleClickCont}>
-        {' '}
-        Continue with: {task?.taskName}{' '}
-      </button>
+      <div className="blank-nav"></div>
+      <button onClick={handleClickCont}>Continue with: {task?.taskName}</button>
       <button onClick={handleClickNew}>
-        {' '}
-        I'm learning something else today{' '}
+        I'm learning something else today
       </button>
     </>
   )
