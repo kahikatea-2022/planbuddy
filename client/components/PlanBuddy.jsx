@@ -18,6 +18,8 @@ function PlanBuddy(props) {
   const [chatBubbleTimeout, setChatBubbleTimeout] = useState('')
   const [chatBubble, setChatBubble] = useState('loser')
   const [chatterActive, setChatterActive] = useState(true)
+  const [chatBubbleClass, setChatBubbleClass] = useState('')
+  const [chatterButtonText, setChatterButtonText] = useState('Disable Chatter')
   const [chatBubbleVisible, setChatBubbleVisible] = useState(false)
   // this part of the code is to change buddys image when you mouse over them
   const [imgSource, setImgSource] = useState('/images/PlanBuddy.png')
@@ -41,9 +43,15 @@ function PlanBuddy(props) {
         if(props.message){
           setChatBubble(props.message)
           setChatBubbleVisible(true)
+          setImgSource('/images/PlanBuddy-mouthOpen.png')
           setTimeout(()=>{
-            handleChatter(chatterActive)
-          }, 2000)
+            setChatBubbleVisible(false)
+            setImgSource('/images/PlanBuddy.png')
+            setTimeout(()=>{
+              handleChatter(chatterActive)
+            }, getRandomIntInclusive(8000, 15000))
+            
+          }, 3500)
         } else {
           handleChatter(chatterActive)
         }
@@ -60,8 +68,10 @@ function PlanBuddy(props) {
           console.log(data.quote, 2133327)
           updateBubble(data.quote)
           setChatBubbleVisible(true)
+          setImgSource('/images/PlanBuddy-mouthOpen.png')
           setTimeout(()=>{
             setChatBubbleVisible(false)
+            setImgSource('/images/PlanBuddy.png')
             setTimeout(()=>{
               handleChatter(chatterActive)
             }, getRandomIntInclusive(8000, 15000))
@@ -78,16 +88,18 @@ function PlanBuddy(props) {
 
   function changeBuddyImage() {
     if (mascotHover) {
-      setChatBubbleTimeout(
+      if(!chatterActive){setChatBubbleTimeout(
         setTimeout(() => {
           setChatBubbleVisible(true)
         }, 1000)
-      )
+      )}
       setImgSource('/images/PlanBuddy-mouthOpen.png')
     }
     if (!mascotHover) {
-      clearTimeout(chatBubbleTimeout)
+      if(!chatterActive){
+        clearTimeout(chatBubbleTimeout)
       setChatBubbleVisible(false)
+    }
       setImgSource('/images/PlanBuddy.png')
     }
   }
@@ -102,13 +114,18 @@ function PlanBuddy(props) {
   function clickRedirect(url) {
     navigate(url)
   }
-
+  function handleChatter(){
+    setChatterActive(!chatterActive)
+    if(!chatterActive === true) setChatterButtonText('Enable Chatter')
+    if(!chatterActive === false) setChatterButtonText('Disable Chatter')
+  }
   const logout = getLogoutFn(useAuth0)
   return (
     <>
       {click && (
         <div className="hamburgerMenu">
           <ul>
+            <li onClick={() => handleChatter()}>{chatterButtonText}</li>
             <li onClick={() => clickRedirect('/goals/' + user.id)}>
               Goals Overview
             </li>
