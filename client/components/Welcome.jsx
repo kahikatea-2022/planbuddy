@@ -13,13 +13,18 @@ export default function Welcome() {
       if (type === 'veteran') navigate('/veteranview')
     }
   }
+  function clickToAdvance(){
+    setFadeOut(true)
+    return removeEventListener('click', clickToAdvance)
+  }
+  document.addEventListener('click', clickToAdvance)
   const [fadeOut, setFadeOut] = useState(false)
-  useEffect(() => {
-    setTimeout(() => {
-      setFadeOut(!fadeOut)
-      // handleRedirect()
-    }, 3000)
-  }, [])
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setFadeOut(!fadeOut)
+  //     // handleRedirect()
+  //   }, 3000)
+  // }, [])
   return (
     <>
       <div className="WelcomeMessage">
