@@ -7,6 +7,7 @@ import Goal from './Goal'
 import { getLogoutFn } from '../auth0-utils'
 import { useAuth0 } from '@auth0/auth0-react'
 import { getRandomQuote } from '../apis/quotes'
+import { getRandomIntInclusive } from '../utils'
 
 // PlanBuddy needs to include the Nav functionality (sign in, sign out)
 
@@ -16,6 +17,7 @@ function PlanBuddy(props) {
   const [mascotHover, setMascotHover] = useState(true)
   const [chatBubbleTimeout, setChatBubbleTimeout] = useState('')
   const [chatBubble, setChatBubble] = useState('loser')
+  const [chatterActive, setChatterActive] = useState(true)
   const [chatBubbleVisible, setChatBubbleVisible] = useState(false)
   // this part of the code is to change buddys image when you mouse over them
   const [imgSource, setImgSource] = useState('/images/PlanBuddy.png')
@@ -32,6 +34,44 @@ function PlanBuddy(props) {
         })
   }, [])
 
+  useEffect(()=>{
+    if(props.id){
+      console.log('I have ran')
+      setTimeout(()=>{
+        if(props.message){
+          setChatBubble(props.message)
+          setChatBubbleVisible(true)
+          setTimeout(()=>{
+            handleChatter(chatterActive)
+          }, 2000)
+        } else {
+          handleChatter(chatterActive)
+        }
+      }, 2000)
+    }
+  }, [])
+  // should display speech bubble ans set a timeout for removing it and running function again
+  // intervals between chatter should be random from a set range
+  // should stop chatter if user opts out
+  function handleChatter(bool){
+    if(!bool) return
+    getRandomQuote(props.id)
+        .then((data) => {
+          console.log(data.quote, 2133327)
+          updateBubble(data.quote)
+          setChatBubbleVisible(true)
+          setTimeout(()=>{
+            setChatBubbleVisible(false)
+            setTimeout(()=>{
+              handleChatter(chatterActive)
+            }, getRandomIntInclusive(8000, 15000))
+            
+          }, 3500)
+        })
+        .catch((err) => {
+          return null
+        })
+  }
   function updateBubble(quote) {
     setChatBubble(quote)
   }
