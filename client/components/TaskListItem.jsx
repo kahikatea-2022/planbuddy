@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch , useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { updateUser } from '../actions/user'
 import { updateTaskCompletion } from '../apis/tasks'
-import { updateCurrentTask } from '../apis/users'
+import { getUsers, updateCurrentTask } from '../apis/users'
 
 export function TaskListItem({ task, check, tasks }) {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
   const [checked, setChecked] = useState(task.completed)
   function checkboxHandler(task) {
@@ -16,8 +18,16 @@ export function TaskListItem({ task, check, tasks }) {
   }
   function goToTaskHandler(taskId) {
     updateCurrentTask(user.id, taskId)
+    whatever()
     navigate('/dailylearning/' + taskId)
+
   }
+
+  function whatever(){
+    getUsers().then(data=>{
+    dispatch(updateUser({currentTask: data.find(el=>el.userId === user.id).currentTask}))
+  })
+}
   return (
     user && (
       <li>
