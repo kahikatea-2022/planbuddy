@@ -68,7 +68,7 @@ function DailyLearning() {
             )}
           </label>
         )}
-        <PlanBuddy id={2} />
+        <PlanBuddy id={2} message={'hi'}/>
       </div>
       <div className="dailylearning-buttons">
         {!task.completed && (
