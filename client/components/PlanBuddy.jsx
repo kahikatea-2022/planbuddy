@@ -36,74 +36,60 @@ function PlanBuddy(props) {
           return null
         })
   }, [])
-
-
-
-  useEffect(()=>{
-    if(props.id){
-      console.log('I have ran')
-      setTimeout(()=>{
-        if(props.message){
-          setChatBubble(props.message)
-          setChatBubbleClass('fade-in')
-          setChatBubbleVisible(true)
-          setImgSource('/images/PlanBuddy-mouthOpen.png')
-          setTimeout(()=>{
-          setChatBubbleClass('fade-out')
-          setChatBubbleVisible(false)
-            setImgSource('/images/PlanBuddy.png')
-            setTimeout(()=>{
-              handleChatter(chatterActive)
-            }, getRandomIntInclusive(8000, 15000))
-            
-          }, 3500)
-        } else {
-          handleChatter(chatterActive)
-        }
-      }, 2000)
-    }
-  }, [])
-
   useEffect(()=>{
     if(chatterActive){
       console.log('active')
       // handleChatter()
       setChatterTimeout(setTimeout(()=>{
-        setChatterActive(false)
-        setChatterActive(true)
-      }, 1000))
+        handleChatter()
+        // setChatterActive(false)
+        // setChatterActive(true)
+      }, 2000))
     }
     else{
       clearTimeout(chatterTimeout)
       return
     }
   },[chatterActive])
+
+  function handleChatter(){
+    getRandomQuote(props.id)
+        .then((data) => {
+          console.log(data)
+          setChatterActive(false)
+          setChatterActive(true)
+        }
+      }
+
+  // useEffect(()=>{
+  //   if(props.id){
+  //     console.log('I have ran')
+  //     setTimeout(()=>{
+  //       if(props.message){
+  //         setChatBubble(props.message)
+  //         setChatBubbleClass('fade-in')
+  //         setChatBubbleVisible(true)
+  //         setImgSource('/images/PlanBuddy-mouthOpen.png')
+  //         setTimeout(()=>{
+  //         setChatBubbleClass('fade-out')
+  //         setChatBubbleVisible(false)
+  //           setImgSource('/images/PlanBuddy.png')
+  //           setTimeout(()=>{
+  //             handleChatter(chatterActive)
+  //           }, getRandomIntInclusive(8000, 15000))         
+  //         }, 3500)
+  //       } else {
+  //         handleChatter(chatterActive)
+  //       }
+  //     }, 2000)
+  //   }
+  // }, [])
+
+  
   // should display speech bubble ans set a timeout for removing it and running function again
   // intervals between chatter should be random from a set range
   // should stop chatter if user opts out
-  function handleChatter(){
-    if(!chatterActive) return
-    getRandomQuote(props.id)
-        .then((data) => {
-          console.log(data.quote, 2133327)
-          updateBubble(data.quote)
-          setChatBubbleClass('fade-in')
-          setChatBubbleVisible(true)
-          setImgSource('/images/PlanBuddy-mouthOpen.png')
-          setTimeout(()=>{
-          setChatBubbleClass('fade-out')
-          setChatBubbleVisible(false)
-            setImgSource('/images/PlanBuddy.png')
-            setTimeout(()=>{
-              handleChatter(chatterActive)
-            }, getRandomIntInclusive(8000, 15000))
-            
-          }, 3500)
-        })
-        .catch((err) => {
-          return null
-        })
-  }
+
   function updateBubble(quote) {
     setChatBubble(quote)
   }
