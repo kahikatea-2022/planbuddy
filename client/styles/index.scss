@@ -442,6 +442,13 @@ a:hover {
     padding-bottom: 10%;
     padding-top: 10%;
   }
+  span {
+    font-size: 143%;
+  }
+
+  p {
+    font-size: 100%;
+  }
 }
 
 .veteran-view {
@@ -550,6 +557,7 @@ a:hover {
 
   list {
     align-items: center;
+    text-align: center;
   }
 
   span {

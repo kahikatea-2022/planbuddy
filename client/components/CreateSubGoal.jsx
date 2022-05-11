@@ -196,7 +196,7 @@ function CreateSubGoal({ first, schugl }) {
           <form>
             {/* this needs to change based on whether subgoal has been created */}
             {/* speechbubble div */}
-            <p>{first ? 'Great work, now add your first tasks' : 'Tasks:'}</p>
+            <p>{first ? 'Add tasks here:' : 'Tasks:'}</p>
             <ul>{<TaskList tasks={tasks} check={checkCompletion} />}</ul>
             <input
               className="textbox-input"
