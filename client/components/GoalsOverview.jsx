@@ -11,7 +11,6 @@ import PlanBuddy from './PlanBuddy'
 import { GoalCard } from './GoalCard'
 
 function GoalsOverview({ noId }) {
-  
   const chatter = "'I am the worlds worst goalie, I help you score goals'"
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -44,7 +43,7 @@ function GoalsOverview({ noId }) {
           <p className="pencilButtonText">Add Goal</p>
         </div>
       </div>
-      <PlanBuddy id={4} message = {chatter} />
+      <PlanBuddy id={4} message={chatter} />
     </>
   )
 }
