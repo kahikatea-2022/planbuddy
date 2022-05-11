@@ -241,6 +241,7 @@ function CreateSubGoal({ first, schugl }) {
       {complete && !first && (
         <button onClick={completeHandler}>Complete Subgoal</button>
       )}
+      </div>
       <PlanBuddy id={6} />
     </>
   )
