@@ -7,7 +7,9 @@ import { addNewGoal } from '../apis/goals'
 import { useEffect } from 'react'
 import PlanBuddy from './PlanBuddy'
 
-function NewGoal({first}) {
+function NewGoal({ first }) {
+  const chatter =
+    ' Let us define a new goal, when you are done hit the enter key!'
   const user = useSelector((state) => state.user)
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -58,8 +60,8 @@ function NewGoal({first}) {
       // navigate('/goals')
     }
   }
-  function fadeHandler(event){
-    if(event.code === "Enter"){
+  function fadeHandler(event) {
+    if (event.code === 'Enter') {
       setFadeState('fade-out')
     }
   }
@@ -74,7 +76,9 @@ function NewGoal({first}) {
 
           {formState === 1 && (
             <>
-              <label className={fadeState} htmlFor="goalName">Which skill are you wanting to learn?</label>
+              <label className={fadeState} htmlFor="goalName">
+                Which skill are you wanting to learn?
+              </label>
               <input
                 className={`textbox-input ${fadeState}`}
                 type="text"
@@ -90,7 +94,9 @@ function NewGoal({first}) {
 
           {formState === 2 && (
             <>
-              <label className={fadeState} htmlFor="why">Why would you like to learn this?</label>
+              <label className={fadeState} htmlFor="why">
+                Why would you like to learn this?
+              </label>
               <input
                 className={`textbox-input ${fadeState}`}
                 type="text"
@@ -122,11 +128,9 @@ function NewGoal({first}) {
             </>
           )}
         </div>
-        <PlanBuddy id={5} />
-      </> 
-      
+        <PlanBuddy id={5} message={chatter} />
+      </>
     )
-    
   )
 }
 
