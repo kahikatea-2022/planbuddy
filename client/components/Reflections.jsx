@@ -15,6 +15,8 @@ import PlanBuddy from './PlanBuddy'
 // import { addTask, setTasks } from '../actions/tasks'
 
 function Reflections() {
+  const chatter =
+    'Phewf what a day, how did we do? Start by writing down your thoughts from the session, then reflect on what went well, what could have gone better, and what you will do differently next time. This might seem tedious, but take it from me, writing reflections is super helpful for your learning. \n - PlanBuddy 2022'
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const task = useSelector((state) => state.task)
@@ -90,7 +92,7 @@ function Reflections() {
         Complete Reflection and Sign Out
       </button>
 
-      <PlanBuddy id={3} />
+      <PlanBuddy id={3} message={chatter} />
     </>
   )
 }

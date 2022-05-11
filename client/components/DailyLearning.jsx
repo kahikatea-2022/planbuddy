@@ -14,6 +14,8 @@ import { ResourcesList } from './ResourcesList'
 function DailyLearning() {
   // TODO Add funcitonality to buddy to accept on the fly reflections
   // pass buddy ?task id?
+  const chatter =
+    "sweet I'm ready to learn this! A great technique is to time box, set a timer for a length you can manage and then when it is done, take a break"
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -68,7 +70,7 @@ function DailyLearning() {
             )}
           </label>
         )}
-        <PlanBuddy id={2} message={'hi'}/>
+        <PlanBuddy id={2} message={chatter} />
       </div>
       <div className="dailylearning-buttons">
         {!task.completed && (

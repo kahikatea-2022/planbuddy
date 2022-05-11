@@ -24,6 +24,8 @@ import { updateUser } from '../actions/user'
 //add the input to state
 
 function CreateSubGoal({ first, schugl }) {
+  const chatter =
+    'In the left box add resources that will help you learn. In the right box you will break down your goal further into small, actionable steps. By the way, you can change the name of your subgoal by clicking on it. When you are done click on your first task to begin.'
   const dispatch = useDispatch()
   const navigate = useNavigate()
   if (schugl === 'unga bungas') navigate('/')
@@ -166,8 +168,6 @@ function CreateSubGoal({ first, schugl }) {
   function selectHandler(event) {
     event.target.select()
   }
-  
-
 
   //input have a default value of subgoal name,
   //when you press enter, the name of the subgoal needs to be updated in the database via patch route
@@ -245,7 +245,7 @@ function CreateSubGoal({ first, schugl }) {
         <button onClick={completeHandler}>Complete Subgoal</button>
       )}
 
-      <PlanBuddy id={6} />
+      <PlanBuddy id={6} message={chatter} />
     </>
   )
 }

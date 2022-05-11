@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import PlanBuddy from './PlanBuddy'
 
 function VeteranView() {
+  const chatter = 'Hello, what are we learning today?'
   const user = useSelector((state) => state.user)
   const task = useSelector((state) => state.task)
   const navigate = useNavigate()
@@ -27,16 +28,17 @@ function VeteranView() {
 
   return (
     <>
-    <div className="blank-nav"></div>
-      {task?.taskName && <button onClick={handleClickCont}>
-        {' '}
-        Continue with: {task.taskName}{' '}
-      </button>}
+      <div className="blank-nav"></div>
+      {task?.taskName && (
+        <button onClick={handleClickCont}>
+          {' '}
+          Continue with: {task.taskName}{' '}
+        </button>
+      )}
       <button onClick={handleClickNew}>
-        
-        {task?.taskName?"I'm learning something else today":"Get Started!"}
+        {task?.taskName ? "I'm learning something else today" : 'Get Started!'}
       </button>
-      <PlanBuddy id={1}/>
+      <PlanBuddy id={1} message={chatter} />
     </>
   )
 }

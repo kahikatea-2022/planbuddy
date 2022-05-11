@@ -11,6 +11,9 @@ import PlanBuddy from './PlanBuddy'
 // import SubGoal from './SubGoal'
 
 function GoalOverview() {
+  const chatter =
+    "It's time to divide and conquer our goals! like it's 18th century france"
+
   const { goalId } = useParams()
   const goal = useSelector((state) => state.goal)
   const subGoals = useSelector((state) => state.subGoals)
@@ -24,7 +27,7 @@ function GoalOverview() {
   function subgoalHandler() {
     // needs to be changed back to check if true for proper implementation
     // adds new subgoal and redirects to new subgoal
-    if(goal.researched === 1){
+    if (goal.researched === 1) {
       const newSubgoal = {
         goalId: goal.goalId,
         subgoalName: 'Please enter a name for your subgoal',
@@ -34,7 +37,7 @@ function GoalOverview() {
       }
       addSubGoal(newSubgoal)
         .then((res) => {
-          navigate('/subgoal/' + res + "/new")
+          navigate('/subgoal/' + res + '/new')
         })
         .catch(console.error)
     } else {
@@ -53,7 +56,14 @@ function GoalOverview() {
                 onClick={() => navigate('/subgoal/' + subGoal.subgoalId)}
                 className="subGoalCreator"
               >
-                <img className="pencilButtonImg" src={subGoal.completed?'/images/greenPencil.png':'/images/Pencil.png'}></img>
+                <img
+                  className="pencilButtonImg"
+                  src={
+                    subGoal.completed
+                      ? '/images/greenPencil.png'
+                      : '/images/Pencil.png'
+                  }
+                ></img>
                 <p className="pencilButtonText">{subGoal.subgoalName}</p>
               </div>
             )
@@ -64,7 +74,7 @@ function GoalOverview() {
           <p className="pencilButtonText">Add subgoal</p>
           {/* </a> */}
         </div>
-          <PlanBuddy id={4}/>
+        <PlanBuddy id={4} message={chatter} french={true} />
       </div>
     </>
   )
