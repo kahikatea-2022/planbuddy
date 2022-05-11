@@ -24,6 +24,7 @@ function NewGoal({first}) {
   const [formState, setFormState] = useState(1)
   const [goalData, setGoalData] = useState(inputData)
   const [name, setName] = useState('')
+  const [fadeState, setFadeState] = useState('fade-in')
   const handleForm = (event) => {
     setGoalData({
       ...goalData,
@@ -38,13 +39,14 @@ function NewGoal({first}) {
     setName(event.target.value)
   }
   function advanceForm(event) {
-    if (event.code === 'Enter') {
+    if (fadeState === 'fade-out') {
+      setFadeState('fade-in')
       setFormState((current) => current + 1)
     }
   }
   //because it's an event, it takes in event parameter (could name banana)
   function submitHandler(event) {
-    if (event.code === 'Enter') {
+    if (fadeState === 'fade-out') {
       dispatch(addGoal(goalData))
       console.log('submitHandler')
       addNewGoal(goalData)
@@ -54,6 +56,11 @@ function NewGoal({first}) {
         })
         .catch(console.error)
       // navigate('/goals')
+    }
+  }
+  function fadeHandler(event){
+    if(event.code === "Enter"){
+      setFadeState('fade-out')
     }
   }
 
@@ -67,13 +74,14 @@ function NewGoal({first}) {
 
           {formState === 1 && (
             <>
-              <label htmlFor="goalName">Which skill are you wanting to learn?</label>
+              <label className={fadeState} htmlFor="goalName">Which skill are you wanting to learn?</label>
               <input
-                className="textbox-input"
+                className={`textbox-input ${fadeState}`}
                 type="text"
                 id="goalName"
                 onChange={handleForm}
-                onKeyUp={advanceForm}
+                onKeyUp={fadeHandler}
+                onAnimationEnd={advanceForm}
                 value={goalData.goalName}
                 autoFocus
               ></input>
@@ -82,13 +90,14 @@ function NewGoal({first}) {
 
           {formState === 2 && (
             <>
-              <label htmlFor="why">Why would you like to learn this?</label>
+              <label className={fadeState} htmlFor="why">Why would you like to learn this?</label>
               <input
-                className="textbox-input"
+                className={`textbox-input ${fadeState}`}
                 type="text"
                 id="why"
                 onChange={handleForm}
-                onKeyUp={advanceForm}
+                onKeyUp={fadeHandler}
+                onAnimationEnd={advanceForm}
                 value={goalData.why}
                 autoFocus
               ></input>
@@ -97,16 +106,17 @@ function NewGoal({first}) {
 
           {formState === 3 && (
             <>
-              <label htmlFor="weeklyHours">
+              <label className={fadeState} htmlFor="weeklyHours">
                 How many hours per week will you put into this?
               </label>
               <input
-                className="textbox-input"
+                className={`textbox-input ${fadeState}`}
                 type="text"
                 id="weeklyHours"
                 onChange={handleForm}
                 value={goalData.weeklyHours}
-                onKeyUp={submitHandler}
+                onKeyUp={fadeHandler}
+                onAnimationEnd={submitHandler}
                 autoFocus
               ></input>
             </>
