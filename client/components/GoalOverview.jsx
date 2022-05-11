@@ -12,6 +12,7 @@ import PlanBuddy from './PlanBuddy'
 
 function GoalOverview() {
   const chatter = "It's time to divide and conquer our goals! like it's 18th century france"
+  
   const { goalId } = useParams()
   const goal = useSelector((state) => state.goal)
   const subGoals = useSelector((state) => state.subGoals)
