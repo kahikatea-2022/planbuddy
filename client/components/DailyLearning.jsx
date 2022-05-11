@@ -62,7 +62,7 @@ function DailyLearning() {
             {task.completed?<strike><span>{task?.taskName}</span></strike>:<span>{task?.taskName}</span>}
           </label>
         )}
-        <PlanBuddy id={2} />
+        <PlanBuddy id={2} message={'So for the, hold on let me, umm so we want him to say something along the lines of hi this is yourtask for the day'} />
       </div>
       {!task.completed && <button onClick={(e)=>{
         e.preventDefault()

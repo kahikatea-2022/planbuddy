@@ -16,6 +16,7 @@ function PlanBuddy(props) {
   const user = useSelector((state) => state.user)
   const [mascotHover, setMascotHover] = useState(true)
   const [chatBubbleTimeout, setChatBubbleTimeout] = useState('')
+  const [chatterTimeout, setChatterTimeout] = useState('')
   const [chatBubble, setChatBubble] = useState('loser')
   const [chatterActive, setChatterActive] = useState(true)
   const [chatBubbleClass, setChatBubbleClass] = useState('fade-out')
@@ -23,7 +24,7 @@ function PlanBuddy(props) {
   const [chatBubbleVisible, setChatBubbleVisible] = useState(false)
   // this part of the code is to change buddys image when you mouse over them
   const [imgSource, setImgSource] = useState('/images/PlanBuddy.png')
-
+  // let chatterActive = true
   useEffect(() => {
     if (props.id)
       getRandomQuote(props.id)
@@ -35,6 +36,8 @@ function PlanBuddy(props) {
           return null
         })
   }, [])
+
+
 
   useEffect(()=>{
     if(props.id){
@@ -60,11 +63,26 @@ function PlanBuddy(props) {
       }, 2000)
     }
   }, [])
+
+  useEffect(()=>{
+    if(chatterActive){
+      console.log('active')
+      // handleChatter()
+      setChatterTimeout(setTimeout(()=>{
+        setChatterActive(false)
+        setChatterActive(true)
+      }, 1000))
+    }
+    else{
+      clearTimeout(chatterTimeout)
+      return
+    }
+  },[chatterActive])
   // should display speech bubble ans set a timeout for removing it and running function again
   // intervals between chatter should be random from a set range
   // should stop chatter if user opts out
-  function handleChatter(bool){
-    if(!bool) return
+  function handleChatter(){
+    if(!chatterActive) return
     getRandomQuote(props.id)
         .then((data) => {
           console.log(data.quote, 2133327)
@@ -130,15 +148,18 @@ function PlanBuddy(props) {
         }, 2000)
       }
     }
+    function disable(){
+      setChatterActive(!chatterActive)
+    }
   const logout = getLogoutFn(useAuth0)
   return (
     <>
       {click && (
         <div className="hamburgerMenu">
           <ul>
-            <li onClick={() => toggleChatter()}>{chatterButtonText}</li>
+            <li onClick={() => disable()}>{chatterButtonText}</li>
             <li onClick={() => clickRedirect('/goals/' + user.id)}>
-              Goals Overview
+              Your Goals
             </li>
             {user.currentTask && (
               <li
