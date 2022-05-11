@@ -1,7 +1,7 @@
 //reference resources from db
 //reference tasks from db
 import { format } from 'prettier'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { addGoal, ADD_GOAL, fetchGoals } from '../actions/goals'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -34,7 +34,10 @@ function CreateSubGoal({ first, schugl }) {
   // console.log(resources)
   const [checkboxState, setCheckboxState] = useState(false)
   const [checked, setChecked] = useState(false)
+  const [nameInput, setNameInput] = useState('')
   const [complete, setComplete] = useState(false)
+
+  const subgoalNameInput = useRef(null)
 
   const defaultResource = {
     resourceName: '',
@@ -64,6 +67,9 @@ function CreateSubGoal({ first, schugl }) {
     if (tasks === undefined) return
     checkCompletion(tasks)
   }, [tasks])
+  useEffect(() => {
+    setNameInput(subgoal.subgoalName)
+  }, [subgoal])
   // Validate ownership, needs slight rework to accout for inital empty data
   // useEffect(()=>{
   //   getGoalsByUserId(user.id).then(res=>{
@@ -139,13 +145,13 @@ function CreateSubGoal({ first, schugl }) {
     updateCurrentTask(user.id, taskId)
     navigate('/dailylearning/' + taskId)
   }
-
+  function dropFocus(event) {
+    if (event.code === 'Enter') subgoalNameInput.current.blur()
+  }
   function saveInput(event) {
-    if (event.code === 'Enter') {
-      console.log(event.target.value)
-      editSubgoalById(subgoal.subgoalId, event.target.value)
-      return
-    }
+    console.log(event.target.value)
+    editSubgoalById(subgoal.subgoalId, nameInput)
+    return
   }
 
   function checkCompletion(tasks) {
@@ -153,7 +159,12 @@ function CreateSubGoal({ first, schugl }) {
     if (notComplete) return setComplete(false)
     return setComplete(true)
   }
-
+  function nameFormHandler(e) {
+    setNameInput(e.target.value)
+  }
+  function selectHandler(event) {
+    event.target.select()
+  }
   //input have a default value of subgoal name,
   //when you press enter, the name of the subgoal needs to be updated in the database via patch route
   //updateSubgoalById
@@ -165,10 +176,15 @@ function CreateSubGoal({ first, schugl }) {
       <div className="blank-nav2"></div>
       <input
         className="subgoal-name"
-        defaultValue={subgoal.subgoalName}
+        value={nameInput}
+        onChange={nameFormHandler}
+        onFocus={selectHandler}
+        ref={subgoalNameInput}
+        // defaultValue={subgoal.subgoalName}
         placeholder="subgoal name"
         type={'text'}
-        onKeyUp={saveInput}
+        onBlur={saveInput}
+        onKeyUp={dropFocus}
       ></input>
 
       {/* <h1>{subgoal.subgoalName}</h1> */}
