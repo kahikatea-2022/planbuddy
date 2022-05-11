@@ -9,6 +9,8 @@ import { addSubGoal } from '../apis/subGoals'
 import PlanBuddy from './PlanBuddy'
 
 function Research() {
+  const message =
+    'Here you want to split your goal into 3 smaller goals, this will make your goal easier to approach and learn! Divide et imperium!'
   const navigate = useNavigate()
   const goals = useSelector((state) => state.goals)
   const goal = useSelector((state) => state.goal)
@@ -111,7 +113,7 @@ function Research() {
         </div> */}
       <button onClick={completeHandler}>Continue</button>
 
-      <PlanBuddy />
+      <PlanBuddy message={chatter} />
     </>
   )
 }
