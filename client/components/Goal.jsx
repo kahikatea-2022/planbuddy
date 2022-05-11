@@ -26,7 +26,7 @@ function Goal() {
 
   return goal?.goalId ? (
     <>
-      <div className="blank-nav"></div>
+      <div className="blank-nav2"></div>
       <h1> Learning Plan </h1>
       <p> I want to learn {goal.goalName}</p>
       <p> {goal.why}</p>

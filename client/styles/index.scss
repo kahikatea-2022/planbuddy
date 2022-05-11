@@ -6,6 +6,23 @@ html,
 body {
   font-family: 'Caveat', cursive;
   font-size: larger;
+  background-color: rgb(255, 252, 247);
+  // background-image: url('/server/public/images/Lined_paper_light.png');
+  // background-image: url('/server/public/images/Lined_paper_wide.png');
+  // background-image: url('/server/public/images/wide_lined.jpg');
+  // background-image: url('/server/public/images/Lined_paper.jpeg');
+  // background-image: url('/server/public/images/crumple-brown.jpg');
+  // background-image: url('/server/public/images/crumple-white.png');
+  // background-image: url('/server/public/images/lightly_scrunched.png');
+  background-repeat: no-repeat;
+  // background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+
+  cursor: url(/server/public/images/littlepencil.png), default !important;
 }
 
 .table {
@@ -16,6 +33,7 @@ body {
 
 input {
   font-family: 'Caveat', cursive;
+  background-color: rgb(255, 252, 247);
 }
 
 table td,
@@ -205,8 +223,10 @@ img {
   padding-bottom: 5px;
   padding-top: 0px;
   margin-top: 0px;
-  padding-left: 10px;
+  padding-left: 0px;
   text-align: center;
+  // overflow: scroll;
+  font-size: clamp(10%, 80%, 130%);
 }
 
 button {
@@ -225,7 +245,7 @@ button:hover {
 .speechBubble {
   width: 300px;
   margin: 50px auto;
-  border: 1px solid rgb(122, 121, 121);
+  border: 1px solid rgb(148, 147, 147);
   padding: 10px;
   text-align: center;
   color: #4a4848;
@@ -241,8 +261,8 @@ button:hover {
   height: 0px;
   position: absolute;
   border-left: 10px solid transparent;
-  border-right: 10px solid rgb(122, 121, 121);
-  border-top: 10px solid rgb(122, 121, 121);
+  border-right: 10px solid rgb(148, 147, 147);
+  border-top: 10px solid rgb(148, 147, 147);
   border-bottom: 10px solid transparent;
   right: 23px;
   bottom: -20px;
@@ -254,11 +274,11 @@ button:hover {
   height: 0px;
   position: absolute;
   border-left: 15px solid transparent;
-  border-right: 20px solid #fff;
+  border-right: 15px solid rgb(255, 252, 247);
   border-top: 20px solid transparent;
   border-bottom: 15px solid transparent;
   right: 24px;
-  bottom: -14px;
+  bottom: -18px;
 }
 
 // Mascot
@@ -278,17 +298,19 @@ button:hover {
 }
 
 .hamburgerMenu {
-  position: absolute;
+  position: fixed;
   bottom: 25%;
   right: 3%;
+}
 
-  // padding-bottom: 25%;
-  // padding-right: 5%;
+.menuHover:hover {
+  color: #9c9c9c;
 }
 
 ul {
   list-style-type: none;
   text-decoration: none;
+  color: #4a4848;
 }
 
 a {
@@ -408,7 +430,7 @@ a:hover {
 }
 
 .DailyLearning {
-  padding-top: 10%;
+  padding-top: 5%;
   text-align: center;
   line-height: 250%;
   display: flex;
@@ -432,7 +454,7 @@ a:hover {
 //Welcome Page
 
 .WelcomeMessage {
-  padding-top: 15%;
+  padding-top: 5%;
   text-align: center;
   line-height: 250%;
 }
@@ -453,9 +475,16 @@ a:hover {
   padding-top: 10%;
 }
 
-//blank nav for subgoal
+//blank nav for subgoal and goal
 .blank-nav2 {
   padding-top: 1%;
+}
+
+// blank nav for research
+.blank-nav2 {
+  padding-top: 0%;
+  border-top: 0%;
+  margin-top: 0%;
 }
 
 .new-goal {
@@ -474,6 +503,9 @@ a:hover {
   border-left: none;
   border-right: none;
   outline: none;
+  font-size: 70%;
+  color: #9c9c9c;
+  border-color: #9c9c9c;
 }
 
 //CreateSubgoal component
@@ -481,8 +513,12 @@ a:hover {
 .subgoal-content {
   display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   line-height: 300%;
+  gap: 5%;
+  margin-top: -74px;
+  margin-bottom: -64px;
+
   p {
     text-align: center;
     padding-bottom: 0%;
@@ -494,7 +530,12 @@ a:hover {
     padding: 10%;
   }
 
-  li,
+  li {
+    line-height: 135%;
+    text-align: center;
+    font-size: 110%;
+    color: #4a4848;
+  }
   a {
     line-height: 135%;
     text-align: center;
@@ -512,8 +553,86 @@ a:hover {
   span {
     color: #4a4848;
   }
+
+  .speechBubble {
+    height: 400px;
+  }
 }
 
 input::placeholder {
   font-size: 150%;
+  color: #9c9c9c;
+}
+
+.h1-research {
+  line-height: 90%;
+}
+
+// for the goal button thingys on goal overview
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.link {
+  cursor: alias;
+  color: #4a4848;
+}
+
+.link:hover {
+  color: #9c9c9c;
+}
+
+.unselectable {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.DailyLearningPositioning {
+  display: flex;
+  flex-direction: row;
+}
+
+.left1 {
+  position: absolute;
+  left: 5%;
+  bottom: 690px;
+}
+
+.left2 {
+  position: absolute;
+  left: 5%;
+  bottom: 486px;
+  overflow: hidden;
+  width: 24%;
+}
+
+.reflections-text {
+  font-family: 'Caveat';
+  font-size: 90%;
+  color: #4a4848;
+  border-color: #4a4848;
+  background-color: rgb(255, 252, 247);
+}
+
+span {
+  color: #4a4848;
+}
+
+//buddy's quotes
+
+.quote-bubble {
+  font-size: 110%;
+  // height: 25%;
+  // width: auto;
+  position: fixed;
+  right: 10%;
+  bottom: 20%;
+  box-shadow: 0px 3px rgb(139, 139, 139);
+  border-color: rgb(139, 139, 139);
+  background-color: rgb(255, 252, 247);
 }

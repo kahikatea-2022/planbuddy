@@ -7,7 +7,7 @@ import { addNewGoal } from '../apis/goals'
 import { useEffect } from 'react'
 import PlanBuddy from './PlanBuddy'
 
-function NewGoal() {
+function NewGoal({first}) {
   const user = useSelector((state) => state.user)
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -63,11 +63,11 @@ function NewGoal() {
         <div className="blank-nav"></div>
         <div className="new-goal">
           {/* this only renders once after signing up */}
-          <label>Thanks for signing up {user?.name}!</label>
+          {first && <label>Thanks for signing up {user?.name}!</label>}
 
           {formState === 1 && (
             <>
-              <label htmlFor="goalName">What is your learning goal?</label>
+              <label htmlFor="goalName">Which skill are you wanting to learn?</label>
               <input
                 className="textbox-input"
                 type="text"
@@ -111,10 +111,12 @@ function NewGoal() {
               ></input>
             </>
           )}
-          <PlanBuddy />
         </div>
-      </>
+        <PlanBuddy id={5} />
+      </> 
+      
     )
+    
   )
 }
 

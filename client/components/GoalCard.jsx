@@ -8,7 +8,7 @@ export function GoalCard({goal}){
   }
   return(
   <div onClick={clickHandler} className="subGoalCreator">
-    <img className="pencilButtonImg" src="/images/Pencil.png"></img>
+    <img className="pencilButtonImg" src={goal.completed?'/images/greenPencil.png':'/images/Pencil.png'}></img>
     <p className="pencilButtonText">{goal.goalName}</p>
   </div>
   )

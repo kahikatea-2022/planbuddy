@@ -21,12 +21,14 @@ function LandingPage() {
     event.preventDefault()
     loginWithRedirect({
       redirectUri: `${window.location.origin}/welcome/veteran`,
+      
     })
   }
   function handleRegister(event) {
     event.preventDefault()
     loginWithRedirect({
       redirectUri: `${window.location.origin}/register`,
+      screen_hint: 'signup'
     })
   }
 
