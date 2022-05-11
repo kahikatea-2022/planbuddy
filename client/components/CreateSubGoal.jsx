@@ -234,7 +234,7 @@ function CreateSubGoal({ first, schugl }) {
               placeholder="New Task"
               type="text"
               id="taskName"
-              value={inputStateTasks.name}
+              value={inputStateTasks.taskName}
               onChange={handleFormTasks}
             ></input>
             <button onClick={submitHandlerTasks}>Add New Task</button>

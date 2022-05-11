@@ -211,6 +211,7 @@ img {
   height: 120px;
   width: 160px;
   text-align: center;
+  cursor: pointer;
 }
 
 .pencilButtonImg {
@@ -674,6 +675,9 @@ span {
 
 .text-hover {
   color: #4a4848;
+}
+span.text-hover {
+  cursor: pointer;
 }
 
 .text-hover:hover {
