@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import PlanBuddy from './PlanBuddy'
 
 function VeteranView() {
+  chatter = "Hello, what are we learning today?"
   const user = useSelector((state) => state.user)
   const task = useSelector((state) => state.task)
   const navigate = useNavigate()
@@ -36,7 +37,7 @@ function VeteranView() {
         
         {task?.taskName?"I'm learning something else today":"Get Started!"}
       </button>
-      <PlanBuddy id={1}/>
+      <PlanBuddy id={1} message = {chatter} />
     </>
   )
 }
