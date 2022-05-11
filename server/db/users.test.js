@@ -41,3 +41,36 @@ test('addUser should add a new user to the databse and return the new id', () =>
     })
   })
 })
+
+test('updateCurrentTaskByUserId should update a users current task to the given one', () => {
+  const data = {
+    userId: 1,
+    currentTask: 42
+  }
+
+  return db.updateCurrentTaskByUserId(data, testDb)
+  .then(() => {
+    return db.getUsers(testDb)
+    .then((users) => {
+      expect(users[0].currentTask).toBe(42)
+    })
+  })
+})
+
+test('getUsers should return an array of users', () => {
+  return db.getUsers(testDb)
+  .then((users) => {
+    expect(users).toHaveLength(1)
+  })
+})
+
+test('getCurrentTaskByUserId should return the users current task', () => {
+  const id = 1
+
+  return db.getCurrentTaskByUserId(id, testDb)
+  .then((data) => {
+    expect(data.currentTask).toBe(1)
+  })
+
+})
+

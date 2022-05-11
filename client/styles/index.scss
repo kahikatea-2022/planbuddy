@@ -6,7 +6,7 @@ html,
 body {
   font-family: 'Caveat', cursive;
   font-size: larger;
-  background-color: rgb(249, 246, 239);
+  background-color: rgb(255, 252, 247);
   // background-image: url('/server/public/images/Lined_paper_light.png');
   // background-image: url('/server/public/images/Lined_paper_wide.png');
   // background-image: url('/server/public/images/wide_lined.jpg');
@@ -21,6 +21,8 @@ body {
   -o-background-size: cover;
   background-size: cover;
   height: 100%;
+
+  cursor: url(/server/public/images/littlepencil.png), default !important;
 }
 
 .table {
@@ -31,6 +33,7 @@ body {
 
 input {
   font-family: 'Caveat', cursive;
+  background-color: rgb(255, 252, 247);
 }
 
 table td,
@@ -242,7 +245,7 @@ button:hover {
 .speechBubble {
   width: 300px;
   margin: 50px auto;
-  border: 1px solid rgb(122, 121, 121);
+  border: 1px solid rgb(148, 147, 147);
   padding: 10px;
   text-align: center;
   color: #4a4848;
@@ -258,8 +261,8 @@ button:hover {
   height: 0px;
   position: absolute;
   border-left: 10px solid transparent;
-  border-right: 10px solid rgb(122, 121, 121);
-  border-top: 10px solid rgb(122, 121, 121);
+  border-right: 10px solid rgb(148, 147, 147);
+  border-top: 10px solid rgb(148, 147, 147);
   border-bottom: 10px solid transparent;
   right: 23px;
   bottom: -20px;
@@ -271,7 +274,7 @@ button:hover {
   height: 0px;
   position: absolute;
   border-left: 15px solid transparent;
-  border-right: 15px solid #fff;
+  border-right: 15px solid rgb(255, 252, 247);
   border-top: 20px solid transparent;
   border-bottom: 15px solid transparent;
   right: 24px;
@@ -597,13 +600,15 @@ input::placeholder {
 .left1 {
   position: absolute;
   left: 5%;
-  bottom: 499px;
+  bottom: 690px;
 }
 
 .left2 {
   position: absolute;
   left: 5%;
-  bottom: 375px;
+  bottom: 486px;
+  overflow: hidden;
+  width: 24%;
 }
 
 .reflections-text {
@@ -611,8 +616,23 @@ input::placeholder {
   font-size: 90%;
   color: #4a4848;
   border-color: #4a4848;
+  background-color: rgb(255, 252, 247);
 }
 
 span {
   color: #4a4848;
+}
+
+//buddy's quotes
+
+.quote-bubble {
+  font-size: 110%;
+  // height: 25%;
+  // width: auto;
+  position: fixed;
+  right: 10%;
+  bottom: 20%;
+  box-shadow: 0px 3px rgb(139, 139, 139);
+  border-color: rgb(139, 139, 139);
+  background-color: rgb(255, 252, 247);
 }

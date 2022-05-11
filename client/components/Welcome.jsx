@@ -19,12 +19,11 @@ export default function Welcome() {
   }
   document.addEventListener('click', clickToAdvance)
   const [fadeOut, setFadeOut] = useState(false)
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setFadeOut(!fadeOut)
-  //     // handleRedirect()
-  //   }, 3000)
-  // }, [])
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   return (
     <>
       <div className="WelcomeMessage">
@@ -32,16 +31,19 @@ export default function Welcome() {
           className={fadeOut ? 'fade-out' : 'fade-in'}
           onAnimationEnd={handleRedirect}
         >
-          Hi {user.name}!
+          Hi {capitalizeFirstLetter(user.name)}!
         </h1>
         <p className={fadeOut ? 'fade-out' : 'fade-in'}>I'm Buddy</p>
         <p className={fadeOut ? 'fade-out' : 'fade-in'}>Let's get learning!</p>
         <p className={fadeOut ? 'fade-out' : 'fade-in'}>
           Click on me at any time for help and the menu
         </p>
-        <p className={fadeOut ? 'fade-out' : 'fade-in'}>you are {type} </p>
+        <p className={fadeOut ? 'fade-out' : 'fade-in'}> {type != 'new' ? 'Welcome back!' : 'Welcome!'} </p>
+        <p className={fadeOut ? 'fade-out' : 'fade-in'}>
+          Click anywhere to begin!
+        </p>
       </div>
-      <div className="planbuddy-welcome">
+      <div className={`planbuddy-welcome ${fadeOut ? 'fade-out' : 'fade-in'}`}>
         <PlanBuddy />
       </div>
     </>

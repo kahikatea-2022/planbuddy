@@ -35,8 +35,8 @@ function DailyLearning() {
     setCheckboxState(task.completed)
   }, [task])
 
-  function endSessionHandler(e) {
-    e.preventDefault()
+  function endSessionHandler(call) {
+    if(call === 'complete') updateTaskCompletion(task, true)
     navigate('/reflection/' + task.taskId)
   }
   function checkboxHandler(task) {
@@ -51,15 +51,39 @@ function DailyLearning() {
           <img className="pencilButtonImg" src="/images/Pencil.png"></img>
           <p className="pencilButtonText">{subgoal?.subgoalName}</p>
         </div>
-        <h1> Today's Task: </h1>
-        {task && <label>
-        <input onClick={(e)=>checkboxHandler(task)} type={'checkbox'} defaultChecked={task.completed} />
-        <span>{task?.taskName}</span>
-      </label>}
-        <PlanBuddy id={2}/>
+        <p> Today's Task: </p>
+        {task && (
+          <label>
+            {/* <input
+              onClick={(e) => checkboxHandler(task)}
+              type={'checkbox'}
+              defaultChecked={task.completed}
+            /> */}
+            {task.completed?<strike><span>{task?.taskName}</span></strike>:<span>{task?.taskName}</span>}
+          </label>
+        )}
+        <PlanBuddy id={2} />
       </div>
-      <button onClick={endSessionHandler}>
-        {task.completed ? 'Complete Task' : 'Finish Session'}
+      {!task.completed && <button onClick={(e)=>{
+        e.preventDefault()
+        endSessionHandler('conclude')
+      }
+      }>
+        Conclude Today's Session
+      </button>}
+      {!task.completed && <button onClick={(e)=>{
+        e.preventDefault()
+        endSessionHandler('complete')
+      }
+      }>
+        Mark as Completed
+      </button>}
+      <button className={!task.completed? 'bottom-left':''} onClick={(e)=>{
+        e.preventDefault()
+        navigate('/subgoal/' + task.subgoalId)
+      }
+      }>
+        Return to Subgoal
       </button>
       {/* refactor into own component */}
       <div className="left1">

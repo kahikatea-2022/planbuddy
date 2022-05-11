@@ -111,10 +111,12 @@ function NewGoal({first}) {
               ></input>
             </>
           )}
-          <PlanBuddy />
         </div>
-      </>
+        <PlanBuddy id={5} />
+      </> 
+      
     )
+    
   )
 }
 
