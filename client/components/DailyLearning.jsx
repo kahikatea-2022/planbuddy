@@ -70,25 +70,24 @@ function DailyLearning() {
             )}
           </label>
         )}
-        <PlanBuddy id={2} message={chatter} />
       </div>
       <div className="dailylearning-buttons">
         {!task.completed && (
           <button
-            onClick={(e) => {
-              e.preventDefault()
-              endSessionHandler('conclude')
-            }}
+          onClick={(e) => {
+            e.preventDefault()
+            endSessionHandler('conclude')
+          }}
           >
             Conclude Today's Session
           </button>
         )}
         {!task.completed && (
           <button
-            onClick={(e) => {
-              e.preventDefault()
-              endSessionHandler('complete')
-            }}
+          onClick={(e) => {
+            e.preventDefault()
+            endSessionHandler('complete')
+          }}
           >
             Mark as Completed
           </button>
@@ -113,6 +112,7 @@ function DailyLearning() {
         <span>Reflections:</span>
         <ul>{<ReflectionsList reflections={reflections} />}</ul>
       </div>
+<PlanBuddy id={2} message={chatter} />
       {/* <PlanBuddy /> */}
     </>
   )

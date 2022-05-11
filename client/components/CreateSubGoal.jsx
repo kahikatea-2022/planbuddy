@@ -25,7 +25,7 @@ import { updateUser } from '../actions/user'
 
 function CreateSubGoal({ first, schugl }) {
   const chatter =
-    'In the left box add resources that will help you learn. In the right box you will break down your goal further into small, actionable steps. By the way, you can change the name of your subgoal by clicking on it. When you are done click on your first task to begin.'
+    'In the left box add resources that will help you learn. In the right box you will break down your goal further into small, actionable steps. By the way, you can change the name of your subgoal by clicking on it. When you are done, click on your first task to begin.'
   const dispatch = useDispatch()
   const navigate = useNavigate()
   if (schugl === 'unga bungas') navigate('/')
