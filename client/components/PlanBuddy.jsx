@@ -18,20 +18,24 @@ function PlanBuddy(props) {
   const [chatBubble, setChatBubble] = useState('Hi Friend <3')
   const [load, setLoad] = useState(true)
   const [chatBubbleVisible, setChatBubbleVisible] = useState(false)
+  let standard = '/images/PlanBuddy.png'
+  let open = 'images/PlabBuddy-mouthOpen.png'
+  if (french) {
+    standard = '/images/Buddy-Napoleon.png'
+    open = '/images/Buddy-Napoleon-moutOpen.png'
+  }
   // this part of the code is to change buddys image when you mouse over them
-  
+
   const [imgSource, setImgSource] = useState('/images/PlanBuddy.png')
   useEffect(() => {
-    if(props.message && load){
-      setTimeout(()=>{
+    if (props.message && load) {
+      setTimeout(() => {
         document.addEventListener('click', listenerHandle)
         setChatBubble(props.message)
         setChatBubbleVisible(true)
         console.log('hooo')
       }, 1000)
-      
-    }
-    else if (props.id)
+    } else if (props.id)
       getRandomQuote(props.id)
         .then((data) => {
           console.log(data.quote, 1337)
@@ -46,9 +50,9 @@ function PlanBuddy(props) {
   function updateBubble(quote) {
     setChatBubble(quote)
   }
-  function listenerHandle(){
-      setChatBubbleVisible(false)
-      setLoad(false)
+  function listenerHandle() {
+    setChatBubbleVisible(false)
+    setLoad(false)
     return document.removeEventListener('click', listenerHandle)
   }
   function changeBuddyImage() {
