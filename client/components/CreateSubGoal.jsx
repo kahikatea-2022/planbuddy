@@ -161,6 +161,9 @@ function CreateSubGoal({ first, schugl }) {
   function nameFormHandler(e){
     setNameInput(e.target.value)
   }
+  function selectHandler(event){
+    event.target.select()
+  }
   //input have a default value of subgoal name,
   //when you press enter, the name of the subgoal needs to be updated in the database via patch route
   //updateSubgoalById
@@ -174,6 +177,7 @@ function CreateSubGoal({ first, schugl }) {
         className="subgoal-name"
         value={nameInput}
         onChange={nameFormHandler}
+        onFocus={selectHandler}
         ref={subgoalNameInput}
         // defaultValue={subgoal.subgoalName}
         placeholder="subgoal name"
