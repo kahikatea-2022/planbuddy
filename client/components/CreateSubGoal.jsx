@@ -220,11 +220,11 @@ function CreateSubGoal({ first, schugl }) {
           <button onClick={submitHandlerResources}>Add Resource</button>
         </div>
         <div className="speechBubble">
+          <p>{first ? 'Add tasks here:' : 'Tasks:'}</p>
+          <ul>{<TaskList tasks={tasks} check={checkCompletion} />}</ul>
           <form>
             {/* this needs to change based on whether subgoal has been created */}
             {/* speechbubble div */}
-            <p>{first ? 'Add tasks here:' : 'Tasks:'}</p>
-            <ul>{<TaskList tasks={tasks} check={checkCompletion} />}</ul>
             <input
               className="textbox-input"
               placeholder="New Task"
