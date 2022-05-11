@@ -80,7 +80,8 @@ function Reflections() {
         value={reflection}
         rows="5"
         cols="50"
-        className="reflections-text"
+        className="reflections-text reflections-textbox-noborder"
+        autoFocus
       ></textarea>
       <button onClick={toSubgoalAndComplete}>
         Complete Reflection and Return to Subgoal

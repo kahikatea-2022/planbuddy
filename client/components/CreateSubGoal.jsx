@@ -11,11 +11,12 @@ import { fetchSubGoal } from '../actions/subGoals'
 import { addNewResource } from '../apis/resources'
 import { addNewTask, updateTaskCompletion } from '../apis/tasks'
 import { editSubgoalById, updateSubgoalById } from '../apis/subGoals'
-import { updateCurrentTask } from '../apis/users'
+import { getUsers, updateCurrentTask } from '../apis/users'
 import { ResourcesList } from './ResourcesList'
 import { getGoalsByUserId } from '../apis/goals'
 import PlanBuddy from './PlanBuddy'
 import { TaskList } from './TaskList'
+import { updateUser } from '../actions/user'
 
 //Steps:
 //Create an add resources form
@@ -165,6 +166,9 @@ function CreateSubGoal({ first, schugl }) {
   function selectHandler(event) {
     event.target.select()
   }
+  
+
+
   //input have a default value of subgoal name,
   //when you press enter, the name of the subgoal needs to be updated in the database via patch route
   //updateSubgoalById
@@ -220,11 +224,11 @@ function CreateSubGoal({ first, schugl }) {
           <button onClick={submitHandlerResources}>Add Resource</button>
         </div>
         <div className="speechBubble">
+          <p>{first ? 'Add tasks here:' : 'Tasks:'}</p>
+          <ul>{<TaskList tasks={tasks} check={checkCompletion} />}</ul>
           <form>
             {/* this needs to change based on whether subgoal has been created */}
             {/* speechbubble div */}
-            <p>{first ? 'Add tasks here:' : 'Tasks:'}</p>
-            <ul>{<TaskList tasks={tasks} check={checkCompletion} />}</ul>
             <input
               className="textbox-input"
               placeholder="New Task"

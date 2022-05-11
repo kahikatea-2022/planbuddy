@@ -51,7 +51,7 @@ function DailyLearning() {
           <img className="pencilButtonImg" src="/images/Pencil.png"></img>
           <p className="pencilButtonText">{subgoal?.subgoalName}</p>
         </div>
-        {/* <p> Today's Task: </p> */}
+        <p> Today's Task: </p>
         {task && (
           <label>
             {/* <input

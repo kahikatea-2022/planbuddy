@@ -333,6 +333,7 @@ a:hover {
   -moz-animation: fadeIn ease 1s;
   -o-animation: fadeIn ease 1s;
   -ms-animation: fadeIn ease 1s;
+  margin-top: 5%;
 }
 @keyframes fadeIn {
   0% {
@@ -544,6 +545,8 @@ a:hover {
   p {
     text-align: center;
     padding-bottom: 0%;
+    font-size: 100%;
+    color: #4a4848;
   }
 
   form {
@@ -585,7 +588,7 @@ a:hover {
 }
 
 input::placeholder {
-  font-size: 150%;
+  font-size: 120%;
   color: #9c9c9c;
 }
 
@@ -666,6 +669,7 @@ span {
   position: fixed;
   left: 0%;
   bottom: 0%;
+  margin: 2%;
 }
 
 .text-hover {
@@ -688,4 +692,9 @@ span {
 .subgoal-name:focus-visible {
   outline: none;
   border: none;
+}
+
+.reflections-textbox-noborder:focus-visible {
+  outline: none;
+  border-color: #4a4848;
 }
