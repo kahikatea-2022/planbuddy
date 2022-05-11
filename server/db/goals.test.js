@@ -1,3 +1,5 @@
+/* eslint-disable promise/no-nesting */
+/* eslint-disable jest/expect-expect */
 const knex = require('knex')
 const config = require('./knexfile').test
 const testDb = knex(config)
@@ -24,6 +26,44 @@ test('GET getGoalDataById should return an array of goal data by GoalId', () => 
     expect(typeof goals.researched).toBe('number')
     return null
   })
+})
+
+test('GET getUserGoals should an array of users', () => {
+  return db.getUserGoals(1, testDb).then((goals) => {
+    expect(goals).toHaveLength(1)
+  })
+})
+
+
+test('POST addNewGoal should add a new goal to the database', () => {
+  return db
+    .addNewGoal(
+      {
+        goalId: 2,
+        userId: 3,
+        goalName: 'Learn to salsa dance',
+        why: 'I want to dine at mexicali',
+        weeklyHours: 13,
+        dateCreated: 234516947,
+        completed: 0,
+        researched: 0,
+      },
+      testDb
+    )
+    .then((id) => {
+      console.log(id)
+      expect(id[0]).toBe(2)
+      return null
+    })
+    .then(() => {
+      // eslint-disable-next-line promise/no-nesting
+      return db.getGoalDataById(2, testDb).then((user) => {
+        console.log(user)
+        expect(user.goalName).toBe('Learn to salsa dance')
+        expect(user.why).toBe('I want to dine at mexicali')
+        return null
+      })
+    })
 })
 
 // {
