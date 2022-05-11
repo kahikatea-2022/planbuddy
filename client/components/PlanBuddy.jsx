@@ -17,7 +17,10 @@ function PlanBuddy(props) {
   const [chatBubbleTimeout, setChatBubbleTimeout] = useState('')
   const [chatBubble, setChatBubble] = useState('Hi Friend <3')
   const [load, setLoad] = useState(true)
+  const [fade, setFade] = useState('fade-in')
   const [chatBubbleVisible, setChatBubbleVisible] = useState(false)
+  let standard = '/images/PlanBuddy.png'
+  let open = '/images/PlanBuddy-mouthOpen.png'
   // this part of the code is to change buddys image when you mouse over them
   
   const [imgSource, setImgSource] = useState('/images/PlanBuddy.png')
@@ -47,10 +50,17 @@ function PlanBuddy(props) {
     setChatBubble(quote)
   }
   function listenerHandle(){
-      setChatBubbleVisible(false)
-      setLoad(false)
-    return document.removeEventListener('click', listenerHandle)
+    // setChatBubbleVisible(false)
+    setFade('fade-out')
+  return document.removeEventListener('click', listenerHandle)
+}
+function fadeHandle(){
+  if(fade === 'fade-out'){
+    setChatBubbleVisible(false)
+    setLoad(false)
+    console.log('hi')
   }
+}
   function changeBuddyImage() {
     if (mascotHover) {
       setChatBubbleTimeout(
@@ -108,7 +118,7 @@ function PlanBuddy(props) {
       )}
 
       {chatBubbleVisible && (
-        <h1 className="quote-bubble speechBubble tail">{chatBubble}</h1>
+        <h1 onAnimationEnd={fadeHandle} className={`quote-bubble speechBubble tail ${load?fade:''}`}>{chatBubble}</h1>
       )}
 
       <div>

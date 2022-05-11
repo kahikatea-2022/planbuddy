@@ -138,8 +138,7 @@ exports.seed = async function (knex) {
     {
       quote_id: 21,
       subject_id: 5,
-      quote:
-        "Hit the enter key when you are done typing to move on!",
+      quote: 'Hit the enter key when you are done typing to move on!',
     },
 
     {
@@ -153,7 +152,8 @@ exports.seed = async function (knex) {
     {
       quote_id: 23,
       subject_id: 6,
-      quote: 'Did you know you can change the name of your sub-goal by clicking on it?',
+      quote:
+        'Did you know you can change the name of your sub-goal by clicking on it?',
     },
 
     {
@@ -161,7 +161,5 @@ exports.seed = async function (knex) {
       subject_id: 6,
       quote: 'You can change the name of your sub-goal by clicking on it!',
     },
-
-
   ])
 }
