@@ -11,6 +11,7 @@ import PlanBuddy from './PlanBuddy'
 // import SubGoal from './SubGoal'
 
 function GoalOverview() {
+  const chatter = "It's time to divide and conquer our goals! like it's 18th century france"
   const { goalId } = useParams()
   const goal = useSelector((state) => state.goal)
   const subGoals = useSelector((state) => state.subGoals)
@@ -64,7 +65,7 @@ function GoalOverview() {
           <p className="pencilButtonText">Add subgoal</p>
           {/* </a> */}
         </div>
-          <PlanBuddy id={4}/>
+          <PlanBuddy id={4} message = {chatter} />
       </div>
     </>
   )
