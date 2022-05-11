@@ -1,7 +1,7 @@
 //reference resources from db
 //reference tasks from db
 import { format } from 'prettier'
-import React, { useEffect, useState , useRef } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { addGoal, ADD_GOAL, fetchGoals } from '../actions/goals'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -44,7 +44,8 @@ function CreateSubGoal({ first, schugl }) {
     url: '',
   }
 
-  const [inputStateResources, setInputStateResources] = useState(defaultResource)
+  const [inputStateResources, setInputStateResources] =
+    useState(defaultResource)
 
   const defaultTask = {
     taskName: '',
@@ -66,7 +67,7 @@ function CreateSubGoal({ first, schugl }) {
     if (tasks === undefined) return
     checkCompletion(tasks)
   }, [tasks])
-  useEffect(()=>{
+  useEffect(() => {
     setNameInput(subgoal.subgoalName)
   }, [subgoal])
   // Validate ownership, needs slight rework to accout for inital empty data
@@ -144,13 +145,13 @@ function CreateSubGoal({ first, schugl }) {
     updateCurrentTask(user.id, taskId)
     navigate('/dailylearning/' + taskId)
   }
-  function dropFocus(event){
+  function dropFocus(event) {
     if (event.code === 'Enter') subgoalNameInput.current.blur()
   }
   function saveInput(event) {
-      console.log(event.target.value)
-      editSubgoalById(subgoal.subgoalId, nameInput)
-      return
+    console.log(event.target.value)
+    editSubgoalById(subgoal.subgoalId, nameInput)
+    return
   }
 
   function checkCompletion(tasks) {
@@ -158,10 +159,10 @@ function CreateSubGoal({ first, schugl }) {
     if (notComplete) return setComplete(false)
     return setComplete(true)
   }
-  function nameFormHandler(e){
+  function nameFormHandler(e) {
     setNameInput(e.target.value)
   }
-  function selectHandler(event){
+  function selectHandler(event) {
     event.target.select()
   }
   //input have a default value of subgoal name,
@@ -239,7 +240,7 @@ function CreateSubGoal({ first, schugl }) {
       {complete && !first && (
         <button onClick={completeHandler}>Complete Subgoal</button>
       )}
-      
+
       <PlanBuddy id={6} />
     </>
   )

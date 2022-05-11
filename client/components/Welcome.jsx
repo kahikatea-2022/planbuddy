@@ -13,7 +13,7 @@ export default function Welcome() {
       if (type === 'veteran') navigate('/veteranview')
     }
   }
-  function clickToAdvance(){
+  function clickToAdvance() {
     setFadeOut(true)
     return removeEventListener('click', clickToAdvance)
   }
@@ -21,7 +21,7 @@ export default function Welcome() {
   const [fadeOut, setFadeOut] = useState(false)
 
   function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    return string.charAt(0).toUpperCase() + string.slice(1)
   }
 
   return (
@@ -33,14 +33,17 @@ export default function Welcome() {
         >
           Hi {capitalizeFirstLetter(user.name)}!
         </h1>
-        <p className={fadeOut ? 'fade-out' : 'fade-in'}>I'm Buddy</p>
-        <p className={fadeOut ? 'fade-out' : 'fade-in'}>Let's get learning!</p>
         <p className={fadeOut ? 'fade-out' : 'fade-in'}>
-          Click on me at any time for help and the menu
+          {' '}
+          {type != 'new' ? 'Welcome back,' : 'Welcome!'}{' '}
         </p>
-        <p className={fadeOut ? 'fade-out' : 'fade-in'}> {type != 'new' ? 'Welcome back!' : 'Welcome!'} </p>
+        {type == 'new' && (
+          <p className={fadeOut ? 'fade-out' : 'fade-in'}>I'm Buddy,</p>
+        )}
+        <p className={fadeOut ? 'fade-out' : 'fade-in'}>let's get learning.</p>
+        <p className={fadeOut ? 'fade-out' : 'fade-in'}></p>
         <p className={fadeOut ? 'fade-out' : 'fade-in'}>
-          Click anywhere to begin!
+          Click anywhere to begin...
         </p>
       </div>
       <div className={`planbuddy-welcome ${fadeOut ? 'fade-out' : 'fade-in'}`}>
