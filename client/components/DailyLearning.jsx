@@ -70,26 +70,28 @@ function DailyLearning() {
         )}
         <PlanBuddy id={2} />
       </div>
-      {!task.completed && (
-        <button
-          onClick={(e) => {
-            e.preventDefault()
-            endSessionHandler('conclude')
-          }}
-        >
-          Conclude Today's Session
-        </button>
-      )}
-      {!task.completed && (
-        <button
-          onClick={(e) => {
-            e.preventDefault()
-            endSessionHandler('complete')
-          }}
-        >
-          Mark as Completed
-        </button>
-      )}
+      <div className="dailylearning-buttons">
+        {!task.completed && (
+          <button
+            onClick={(e) => {
+              e.preventDefault()
+              endSessionHandler('conclude')
+            }}
+          >
+            Conclude Today's Session
+          </button>
+        )}
+        {!task.completed && (
+          <button
+            onClick={(e) => {
+              e.preventDefault()
+              endSessionHandler('complete')
+            }}
+          >
+            Mark as Completed
+          </button>
+        )}
+      </div>
       <button
         className={!task.completed ? 'bottom-left' : ''}
         onClick={(e) => {
