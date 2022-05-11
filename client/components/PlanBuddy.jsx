@@ -19,14 +19,14 @@ function PlanBuddy(props) {
   const [load, setLoad] = useState(true)
   const [chatBubbleVisible, setChatBubbleVisible] = useState(false)
   let standard = '/images/PlanBuddy.png'
-  let open = 'images/PlabBuddy-mouthOpen.png'
-  if (french) {
+  let open = '/images/PlanBuddy-mouthOpen.png'
+  if (props.french) {
     standard = '/images/Buddy-Napoleon.png'
-    open = '/images/Buddy-Napoleon-moutOpen.png'
+    open = '/images/Buddy-Napoleon-mouthOpen.png'
   }
   // this part of the code is to change buddys image when you mouse over them
 
-  const [imgSource, setImgSource] = useState('/images/PlanBuddy.png')
+  const [imgSource, setImgSource] = useState(standard)
   useEffect(() => {
     if (props.message && load) {
       setTimeout(() => {
@@ -62,12 +62,12 @@ function PlanBuddy(props) {
           setChatBubbleVisible(true)
         }, 1000)
       )
-      setImgSource('/images/PlanBuddy-mouthOpen.png')
+      setImgSource(open)
     }
     if (!mascotHover) {
       clearTimeout(chatBubbleTimeout)
       setChatBubbleVisible(false)
-      setImgSource('/images/PlanBuddy.png')
+      setImgSource(standard)
     }
   }
 
