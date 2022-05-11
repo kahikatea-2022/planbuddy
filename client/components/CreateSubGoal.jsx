@@ -58,11 +58,11 @@ function CreateSubGoal({ first, schugl }) {
     dispatch(fetchSubGoal(Number(subgoalId)))
     dispatch(fetchResources(Number(subgoalId)))
     dispatch(fetchTasks(Number(subgoalId)))
-  },[])
-  useEffect(()=>{
-    if(tasks===undefined) return
+  }, [])
+  useEffect(() => {
+    if (tasks === undefined) return
     checkCompletion(tasks)
-  },[tasks])
+  }, [tasks])
   // Validate ownership, needs slight rework to accout for inital empty data
   // useEffect(()=>{
   //   getGoalsByUserId(user.id).then(res=>{
@@ -147,11 +147,10 @@ function CreateSubGoal({ first, schugl }) {
     }
   }
 
-  function checkCompletion(tasks){
-    const notComplete = tasks.find(el=>el.completed == 0)
-    if(notComplete) return setComplete(false)
+  function checkCompletion(tasks) {
+    const notComplete = tasks.find((el) => el.completed == 0)
+    if (notComplete) return setComplete(false)
     return setComplete(true)
-
   }
 
   //input have a default value of subgoal name,
@@ -164,25 +163,24 @@ function CreateSubGoal({ first, schugl }) {
     <>
       <div className="blank-nav2"></div>
       <input
+        className="subgoal-name"
         defaultValue={subgoal.subgoalName}
         placeholder="subgoal name"
         type={'text'}
         onKeyUp={saveInput}
       ></input>
 
-      <h1>{subgoal.subgoalName}</h1>
+      {/* <h1>{subgoal.subgoalName}</h1> */}
 
       {/* should render based on whether this is first goal or not */}
 
       <div className="subgoal-content">
         {/* should render based on whether this is first goal or not */}
         {/* //? div with classname speechBubble */}
-        <div className='speechBubble'>
-        <p>{first?"Add resources here:":"Resources:"}</p>
-        <ul>
-          {<ResourcesList user={user} resources={resources}/>}
-        </ul>
-        <form>
+        <div className="speechBubble">
+          <p>{first ? 'Add resources here:' : 'Resources:'}</p>
+          <ul>{<ResourcesList user={user} resources={resources} />}</ul>
+          <form>
             <label htmlFor="resourceName"> </label>
             <input
               className="textbox-input"
@@ -202,7 +200,24 @@ function CreateSubGoal({ first, schugl }) {
             ></input>
             <label htmlFor="url"></label>
           </form>
-        <button onClick={submitHandlerResources}>Add Resource</button>
+          <button onClick={submitHandlerResources}>Add Resource</button>
+        </div>
+        <div className="speechBubble">
+          <form>
+            {/* this needs to change based on whether subgoal has been created */}
+            {/* speechbubble div */}
+            <p>{first ? 'Add tasks here:' : 'Tasks:'}</p>
+            <ul>{<TaskList tasks={tasks} check={checkCompletion} />}</ul>
+            <input
+              className="textbox-input"
+              placeholder="New Task"
+              type="text"
+              id="taskName"
+              value={inputStateTasks.name}
+              onChange={handleFormTasks}
+            ></input>
+            <button onClick={submitHandlerTasks}>Add New Task</button>
+          </form>
         </div>
         <div className='speechBubble'>
       <form>
@@ -223,9 +238,10 @@ function CreateSubGoal({ first, schugl }) {
         <button onClick={submitHandlerTasks}>Add New Task</button>
       </form>
       </div>
-    </div>
-      {complete && !first && <button onClick={completeHandler}>Complete Subgoal</button>}
-      <PlanBuddy id={6}/>
+      {complete && !first && (
+        <button onClick={completeHandler}>Complete Subgoal</button>
+      )}
+      <PlanBuddy id={6} />
     </>
   )
 }

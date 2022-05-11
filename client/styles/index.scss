@@ -2,6 +2,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
 
+// html {
+//   cursor: url('/server/public/images/littlepencil.png'), auto;
+// }
+
 html,
 body {
   font-family: 'Caveat', cursive;
@@ -21,8 +25,6 @@ body {
   -o-background-size: cover;
   background-size: cover;
   height: 100%;
-
-  cursor: url(/server/public/images/littlepencil.png), default !important;
 }
 
 .table {
@@ -231,10 +233,11 @@ img {
 
 button {
   font-family: 'Caveat', cursive;
-  font-size: larger;
+  font-size: 95%;
   background-color: rgb(250, 250, 250);
   color: #4a4848;
   box-shadow: 0px 2px rgb(71, 71, 71);
+  margin: 2%;
 }
 
 button:hover {
@@ -440,6 +443,22 @@ a:hover {
     padding-bottom: 10%;
     padding-top: 10%;
   }
+  span {
+    font-size: 143%;
+  }
+
+  p {
+    font-size: 100%;
+  }
+
+  .subGoalCreator {
+    margin-bottom: 9%;
+  }
+}
+
+.dailylearning-buttons {
+  display: flex;
+  flex-direction: row;
 }
 
 .veteran-view {
@@ -548,6 +567,7 @@ a:hover {
 
   list {
     align-items: center;
+    text-align: center;
   }
 
   span {
@@ -556,6 +576,8 @@ a:hover {
 
   .speechBubble {
     height: 400px;
+    overflow: overlay;
+    overflow-x: hidden;
   }
 }
 
@@ -635,4 +657,27 @@ span {
   box-shadow: 0px 3px rgb(139, 139, 139);
   border-color: rgb(139, 139, 139);
   background-color: rgb(255, 252, 247);
+}
+
+.bottom-left {
+  position: fixed;
+  left: 0%;
+  bottom: 0%;
+}
+
+.text-hover {
+  color: #4a4848;
+}
+
+.text-hover:hover {
+  color: #9c9c9c;
+}
+
+.subgoal-name {
+  color: #4a4848;
+  size: 100%;
+  background-color: rgb(255, 252, 247);
+  border: none;
+  font-size: 200%;
+  text-align: center;
 }

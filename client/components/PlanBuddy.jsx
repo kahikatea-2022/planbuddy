@@ -69,11 +69,15 @@ function PlanBuddy(props) {
       {click && (
         <div className="hamburgerMenu">
           <ul>
-            <li onClick={() => clickRedirect('/goals/' + user.id)}>
-              Goals Overview
+            <li
+              className="text-hover"
+              onClick={() => clickRedirect('/goals/' + user.id)}
+            >
+              All Goals
             </li>
             {user.currentTask && (
               <li
+                className="text-hover"
                 onClick={() =>
                   clickRedirect('/dailylearning/' + user.currentTask)
                 }
@@ -81,7 +85,9 @@ function PlanBuddy(props) {
                 Daily Learning
               </li>
             )}
-            <li onClick={() => logout()}>Sign Out</li>
+            <li className="text-hover" onClick={() => logout()}>
+              Sign Out
+            </li>
           </ul>
         </div>
       )}

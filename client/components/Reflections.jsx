@@ -49,7 +49,7 @@ function Reflections() {
   }
   function logoutAndComplete(e) {
     e.preventDefault()
-    if(reflection.trim() === '') return logout()
+    if (reflection.trim() === '') return logout()
     handleReflectionAdd()
       .then((res) => {
         logout()
@@ -59,7 +59,7 @@ function Reflections() {
 
   function toSubgoalAndComplete(e) {
     e.preventDefault()
-    if(reflection.trim() === '') return navigate('/subgoal/' + task.subgoalId)
+    if (reflection.trim() === '') return navigate('/subgoal/' + task.subgoalId)
     handleReflectionAdd()
       .then((res) => {
         navigate('/subgoal/' + task.subgoalId)
@@ -82,12 +82,13 @@ function Reflections() {
         cols="50"
         className="reflections-text"
       ></textarea>
-      <button onClick={logoutAndComplete}>
-        Complete Reflection and Log Out
-      </button>
       <button onClick={toSubgoalAndComplete}>
         Complete Reflection and Return to Subgoal
       </button>
+      <button onClick={logoutAndComplete}>
+        Complete Reflection and Sign Out
+      </button>
+
       <PlanBuddy id={3} />
     </>
   )

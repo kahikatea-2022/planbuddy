@@ -36,7 +36,7 @@ function DailyLearning() {
   }, [task])
 
   function endSessionHandler(call) {
-    if(call === 'complete') updateTaskCompletion(task, true)
+    if (call === 'complete') updateTaskCompletion(task, true)
     navigate('/reflection/' + task.taskId)
   }
   function checkboxHandler(task) {
@@ -51,7 +51,7 @@ function DailyLearning() {
           <img className="pencilButtonImg" src="/images/Pencil.png"></img>
           <p className="pencilButtonText">{subgoal?.subgoalName}</p>
         </div>
-        <p> Today's Task: </p>
+        {/* <p> Today's Task: </p> */}
         {task && (
           <label>
             {/* <input
@@ -59,30 +59,46 @@ function DailyLearning() {
               type={'checkbox'}
               defaultChecked={task.completed}
             /> */}
-            {task.completed?<strike><span>{task?.taskName}</span></strike>:<span>{task?.taskName}</span>}
+            {task.completed ? (
+              <strike>
+                <span>{task?.taskName}</span>
+              </strike>
+            ) : (
+              <span>{task?.taskName}</span>
+            )}
           </label>
         )}
         <PlanBuddy id={2} />
       </div>
-      {!task.completed && <button onClick={(e)=>{
-        e.preventDefault()
-        endSessionHandler('conclude')
-      }
-      }>
-        Conclude Today's Session
-      </button>}
-      {!task.completed && <button onClick={(e)=>{
-        e.preventDefault()
-        endSessionHandler('complete')
-      }
-      }>
-        Mark as Completed
-      </button>}
-      <button className={!task.completed? 'bottom-left':''} onClick={(e)=>{
-        e.preventDefault()
-        navigate('/subgoal/' + task.subgoalId)
-      }
-      }>
+      <div className="dailylearning-buttons">
+        {!task.completed && (
+          <button
+            onClick={(e) => {
+              e.preventDefault()
+              endSessionHandler('conclude')
+            }}
+          >
+            Conclude Today's Session
+          </button>
+        )}
+        {!task.completed && (
+          <button
+            onClick={(e) => {
+              e.preventDefault()
+              endSessionHandler('complete')
+            }}
+          >
+            Mark as Completed
+          </button>
+        )}
+      </div>
+      <button
+        className={!task.completed ? 'bottom-left' : ''}
+        onClick={(e) => {
+          e.preventDefault()
+          navigate('/subgoal/' + task.subgoalId)
+        }}
+      >
         Return to Subgoal
       </button>
       {/* refactor into own component */}
