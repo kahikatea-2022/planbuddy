@@ -219,29 +219,11 @@ function CreateSubGoal({ first, schugl }) {
             <button onClick={submitHandlerTasks}>Add New Task</button>
           </form>
         </div>
-        <div className='speechBubble'>
-      <form>
-        {/* this needs to change based on whether subgoal has been created */}
-        {/* speechbubble div */}
-        <p>{first?"Great work, now add your first tasks":"Tasks:"}</p>
-        <ul>
-          {<TaskList tasks={tasks} check={checkCompletion}/>}
-        </ul>
-        <input
-          className="textbox-input"
-          placeholder="New Task"
-          type="text"
-          id="taskName"
-          value={inputStateTasks.taskName}
-          onChange={handleFormTasks}
-        ></input>
-        <button onClick={submitHandlerTasks}>Add New Task</button>
-      </form>
       </div>
       {complete && !first && (
         <button onClick={completeHandler}>Complete Subgoal</button>
       )}
-      </div>
+      
       <PlanBuddy id={6} />
     </>
   )
