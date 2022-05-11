@@ -33,15 +33,17 @@ export default function Welcome() {
         >
           Hi {capitalizeFirstLetter(user.name)}!
         </h1>
-        <p className={fadeOut ? 'fade-out' : 'fade-in'}>I'm Buddy,</p>
-        <p className={fadeOut ? 'fade-out' : 'fade-in'}>let's get learning!</p>
-        <p className={fadeOut ? 'fade-out' : 'fade-in'}></p>
         <p className={fadeOut ? 'fade-out' : 'fade-in'}>
           {' '}
-          {type != 'new' ? 'Welcome back!' : 'Welcome!'}{' '}
+          {type != 'new' ? 'Welcome back,' : 'Welcome!'}{' '}
         </p>
+        {type == 'new' && (
+          <p className={fadeOut ? 'fade-out' : 'fade-in'}>I'm Buddy,</p>
+        )}
+        <p className={fadeOut ? 'fade-out' : 'fade-in'}>let's get learning.</p>
+        <p className={fadeOut ? 'fade-out' : 'fade-in'}></p>
         <p className={fadeOut ? 'fade-out' : 'fade-in'}>
-          Click anywhere to begin!
+          Click anywhere to begin...
         </p>
       </div>
       <div className={`planbuddy-welcome ${fadeOut ? 'fade-out' : 'fade-in'}`}>

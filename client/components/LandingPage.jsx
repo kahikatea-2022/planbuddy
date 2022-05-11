@@ -10,34 +10,31 @@ function LandingPage() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    isAuthenticated ?
-     setTimeout(() => {
-      navigate(`/welcome/veteran`)
-    }, 3000)
-    : null
+    isAuthenticated
+      ? setTimeout(() => {
+          navigate(`/welcome/veteran`)
+        }, 3000)
+      : null
   }, [])
 
   function handleLogin(event) {
     event.preventDefault()
     loginWithRedirect({
       redirectUri: `${window.location.origin}/welcome/veteran`,
-      
     })
   }
   function handleRegister(event) {
     event.preventDefault()
     loginWithRedirect({
       redirectUri: `${window.location.origin}/register`,
-      screen_hint: 'signup'
+      screen_hint: 'signup',
     })
   }
 
   return (
     <>
       <img className="MainLogo" src="/images/PlanBuddyLogo0.png"></img>
-      <p className="speechBubble tail">
-        Helping you with the planning so you can focus on the learning!
-      </p>
+      <p>Helping you with the planning so you can focus on the learning!</p>
       {!isAuthenticated && (
         <div className="buttons">
           <button onClick={handleLogin}>Sign In</button>
