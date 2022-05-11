@@ -15,27 +15,42 @@ function PlanBuddy(props) {
   const user = useSelector((state) => state.user)
   const [mascotHover, setMascotHover] = useState(true)
   const [chatBubbleTimeout, setChatBubbleTimeout] = useState('')
-  const [chatBubble, setChatBubble] = useState('loser')
+  const [chatBubble, setChatBubble] = useState('Hi Friend <3')
+  const [load, setLoad] = useState(true)
   const [chatBubbleVisible, setChatBubbleVisible] = useState(false)
   // this part of the code is to change buddys image when you mouse over them
+  
   const [imgSource, setImgSource] = useState('/images/PlanBuddy.png')
-
   useEffect(() => {
-    if (props.id)
+    if(props.message && load){
+      setTimeout(()=>{
+        document.addEventListener('click', listenerHandle)
+        setChatBubble(props.message)
+        setChatBubbleVisible(true)
+        console.log('hooo')
+      }, 1000)
+      
+    }
+    else if (props.id)
       getRandomQuote(props.id)
         .then((data) => {
           console.log(data.quote, 1337)
+          console.log(props?.message)
           updateBubble(data.quote)
         })
         .catch((err) => {
           return null
         })
-  }, [])
+  }, [load])
 
   function updateBubble(quote) {
     setChatBubble(quote)
   }
-
+  function listenerHandle(){
+      setChatBubbleVisible(false)
+      setLoad(false)
+    return document.removeEventListener('click', listenerHandle)
+  }
   function changeBuddyImage() {
     if (mascotHover) {
       setChatBubbleTimeout(
