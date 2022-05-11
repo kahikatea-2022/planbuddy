@@ -33,7 +33,8 @@ function PlanBuddy(props) {
       setTimeout(() => {
         document.addEventListener('click', listenerHandle)
         setChatBubble(props.message)
-        setChatBubbleVisible(true)
+      setImgSource(open)
+      setChatBubbleVisible(true)
         console.log('hooo')
       }, 1000)
     } else if (props.id)
@@ -59,7 +60,8 @@ function PlanBuddy(props) {
 function fadeHandle(){
   if(fade === 'fade-out'){
     setChatBubbleVisible(false)
-    setLoad(false)
+      setImgSource(standard)
+      setLoad(false)
     console.log('hi')
   }
 }

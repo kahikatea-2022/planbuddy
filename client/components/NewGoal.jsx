@@ -72,7 +72,7 @@ function NewGoal({ first }) {
         <div className="blank-nav"></div>
         <div className="new-goal">
           {/* this only renders once after signing up */}
-          {first && <label>Thanks for signing up {user?.name}!</label>}
+          
 
           {formState === 1 && (
             <>
