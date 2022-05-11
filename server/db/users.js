@@ -11,6 +11,8 @@ function getUsers(db = connection) {
   )
 }
 
+
+
 //ADD USER to the database
 function addUser(userData, db = connection) {
   const data = {

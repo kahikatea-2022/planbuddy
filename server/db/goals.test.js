@@ -63,37 +63,37 @@ test('POST addNewGoal should add a new goal to the database', () => {
     })
 })
 
-test('PATCH editGoal should update an existing goal', () => {
-  return db
-    .editGoal(
-      // 1,
-      {
-        goalId: 1,
-        userId: 1,
-        goalName: 'Learn to play EVIL piano organ',
-        why: 'I have turned to the darkside and am a vampire',
-        weeklyHours: 24,
-        dateCreated: 234516947,
-        completed: 0,
-        researched: 0,
-      },
-      testDb
-    )
-    .then((id) => {
-      expect(id).toBe(1)
-      return null
-    })
-    .then(() => {
-      // eslint-disable-next-line promise/no-nesting
+// test('PATCH editGoal should update an existing goal', () => {
+//   return db
+//     .editGoal(
+//       // 1,
+//       {
+//         goalId: 1,
+//         userId: 1,
+//         goalName: 'Learn to play EVIL piano organ',
+//         why: 'I have turned to the darkside and am a vampire',
+//         weeklyHours: 24,
+//         dateCreated: 234516947,
+//         completed: 0,
+//         researched: 0,
+//       },
+//       testDb
+//     )
+//     .then((id) => {
+//       expect(id).toBe(1)
+//       return null
+//     })
+//     .then(() => {
+//       // eslint-disable-next-line promise/no-nesting
 
-      return db.getGoalDataById(2, testDb).then((user) => {
-        console.log(user)
-        expect(user.goalName).toBe('Learn to salsa dance')
-        expect(user.why).toBe('I want to dine at mexicali')
-        return null
-      })
-    })
-})
+//       return db.getGoalDataById(2, testDb).then((user) => {
+//         console.log(user)
+//         expect(user.goalName).toBe('Learn to salsa dance')
+//         expect(user.why).toBe('I want to dine at mexicali')
+//         return null
+//       })
+//     })
+// })
 
 // {
 //   goalId: 1,
