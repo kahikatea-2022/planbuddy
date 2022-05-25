@@ -161,5 +161,11 @@ exports.seed = async function (knex) {
       subject_id: 6,
       quote: 'You can change the name of your sub-goal by clicking on it!',
     },
+    {
+      quote_id: 25,
+      subject_id: 7,
+      quote:
+        'Phewf what a day, how did we do? Start by writing down your thoughts from the session, then reflect on what went well, what could have gone better, and what you will do differently next time. This might seem tedious, but take it from me, writing reflections is super helpful for your learning. \n   - PlanBuddy 2022',
+    },
   ])
 }

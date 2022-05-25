@@ -92,7 +92,7 @@ function Reflections() {
         Complete Reflection and Sign Out
       </button>
 
-      <PlanBuddy id={3} message={chatter} />
+      <PlanBuddy id={7} message={chatter} />
     </>
   )
 }
