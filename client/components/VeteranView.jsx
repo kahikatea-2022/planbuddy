@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchTask } from '../actions/tasks'
 import { useNavigate } from 'react-router-dom'
 import PlanBuddy from './PlanBuddy'
+import { addUserId } from '../auth0-utils'
 
 function VeteranView() {
   const chatter = 'Hello, what are we learning today?'
@@ -15,6 +16,7 @@ function VeteranView() {
   //not returning the current task
   useEffect(() => {
     dispatch(fetchTask(Number(user.currentTask)))
+    addUserId(user)
   }, [user])
 
   //site doesnt know what user.currentTask is
