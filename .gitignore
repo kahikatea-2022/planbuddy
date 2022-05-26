@@ -15,7 +15,6 @@ server/public/styles.css.map
 
 # Secrets
 .env
-auth_config.json
 
 # Editor settings
 .vscode
