@@ -34,7 +34,7 @@ function DailyLearning() {
     dispatch(fetchResources(task.subgoalId))
     dispatch(fetchReflections(task.taskId))
     dispatch(fetchSubGoal(task.subgoalId))
-    setCheckboxState(task.completed)
+    setCheckboxState(task?.completed || false)
   }, [task])
 
   function endSessionHandler(call) {

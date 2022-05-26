@@ -41,7 +41,7 @@ router.get('/getTasksbySubgoalId/:id', (req, res) => {
 //GET /api/v1/tasks
 // get task by task ID
 router.get('/getTaskById/:id', (req, res) => {
-  const id = req.params.id
+  const id = Number(req.params.id)
 
   db.getTaskById(id)
     .then((data) => {
