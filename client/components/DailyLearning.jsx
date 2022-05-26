@@ -72,7 +72,7 @@ function DailyLearning() {
         )}
       </div>
       <div className="dailylearning-buttons">
-        {!task.completed && (
+        {!task?.completed && (
           <button
           onClick={(e) => {
             e.preventDefault()
@@ -82,7 +82,7 @@ function DailyLearning() {
             Conclude Today's Session
           </button>
         )}
-        {!task.completed && (
+        {!task?.completed && (
           <button
           onClick={(e) => {
             e.preventDefault()
@@ -94,7 +94,7 @@ function DailyLearning() {
         )}
       </div>
       <button
-        className={!task.completed ? 'bottom-left' : ''}
+        className={!task?.completed ? 'bottom-left' : ''}
         onClick={(e) => {
           e.preventDefault()
           navigate('/subgoal/' + task.subgoalId)
