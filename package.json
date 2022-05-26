@@ -101,5 +101,8 @@
   "prettier": {
     "semi": false,
     "singleQuote": true
-  }
+  },
+  "engines": {
+    "node": "16.x"
+}
 }
