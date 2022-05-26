@@ -106,7 +106,7 @@ function CreateSubGoal({ first, schugl }) {
     }
     addNewResource(newResource)
       .then((res) => {
-        const newId = res.newResourceId[0]
+        const newId = res.newResourceId[0]['resource_id']
         dispatch(addResource({ ...newResource, resourceId: newId }))
         setInputStateResources(defaultResource)
       })
@@ -122,7 +122,7 @@ function CreateSubGoal({ first, schugl }) {
     }
     addNewTask(newTask)
       .then((res) => {
-        const newId = res.newTaskId[0]
+        const newId = res.newTaskId[0]['task_id']
         dispatch(addTask({ ...newTask, taskId: newId }))
         setInputStateTasks(defaultTask)
       })

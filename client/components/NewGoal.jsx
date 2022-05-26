@@ -53,8 +53,7 @@ function NewGoal({ first }) {
       console.log('submitHandler')
       addNewGoal(goalData)
         .then((newId) => {
-          console.log(newId)
-          const goalId = newId.newId[0]
+          const goalId = newId.newId[0]['goal_id']
           navigate('/goal/' + goalId)
         })
         .catch(console.error)

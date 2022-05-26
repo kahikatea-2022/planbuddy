@@ -22,7 +22,7 @@ export function addSubGoal(goal) {
   return request
     .post(rootUrl + '/subGoals/addNewSubgoal')
     .send(goal)
-    .then((res) => res.body.newSubgoalId[0])
+    .then((res) => res.body.newSubgoalId[0]['subgoal_id'])
 }
 export function updateSubgoalById(subgoal, bool) {
   return request
@@ -33,9 +33,11 @@ export function updateSubgoalById(subgoal, bool) {
 
 //this is to edit the subgoal
 export function editSubgoalById(subgoalId, newName) {
-  return request
-    .patch(rootUrl + '/subGoals/updateSubgoalById/')
-    //this is only sending through subgoalName
-    .send({ subgoalId: subgoalId, subgoalName: newName })
-    .then((res) => res.body)
+  return (
+    request
+      .patch(rootUrl + '/subGoals/updateSubgoalById/')
+      //this is only sending through subgoalName
+      .send({ subgoalId: subgoalId, subgoalName: newName })
+      .then((res) => res.body)
+  )
 }
