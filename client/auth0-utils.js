@@ -74,12 +74,14 @@ export function getRegisterFn(useAuth0) {
 
 export async function addUserId(user) {
   const users = await getUsers()
-  const userFromDb = users.find((el) => el.email === user.name)
+  const userFromDb = users.find((el) => el.email === user.email)
   const update = {
     id: userFromDb?.userId,
     currentTask: userFromDb?.currentTask,
     fishing: 'heck yeah',
   }
-  console.log(update)
+  // console.log(user)
+  // console.log(users)
+  // console.log(update)
   return update
 }

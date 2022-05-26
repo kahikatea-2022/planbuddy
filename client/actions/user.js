@@ -1,4 +1,5 @@
 import { getUsers } from '../apis/users'
+import { addUserId } from '../auth0-utils'
 
 export const SET_USER = 'SET_USER'
 export const SET_USERS = 'SET_USERS'
@@ -38,7 +39,15 @@ export function updateUser(update) {
     update,
   }
 }
-
+export function thunkUpdateUser(user) {
+  return (dispatch) => {
+    return addUserId(user).then((update) => {
+      console.log(update)
+      dispatch(updateUser(update))
+      return null
+    })
+  }
+}
 export function fetchUsers() {
   return (dispatch) => {
     return getUsers().then((users) => {

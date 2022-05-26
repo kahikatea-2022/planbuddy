@@ -1,18 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch , useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
+import { thunkUpdateUser, updateUser } from '../actions/user'
+import { addUserId } from '../auth0-utils'
 import PlanBuddy from './PlanBuddy'
 
 export default function Welcome() {
   const user = useSelector((state) => state.user)
   const { type } = useParams()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   function handleRedirect() {
     if (fadeOut) {
       if (type === 'new') navigate('/newgoal/new')
       if (type === 'veteran') navigate('/veteranview')
     }
   }
+  useEffect(()=>{
+    if(user.email === '') return
+    return ()=> {dispatch(thunkUpdateUser(user))
+      console.log(user)
+    }
+  },[user])
   function clickToAdvance() {
     setFadeOut(true)
     return removeEventListener('click', clickToAdvance)

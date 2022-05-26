@@ -13,11 +13,11 @@ function VeteranView() {
   const task = useSelector((state) => state.task)
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  dispatch(updateUser(addUserId(user)))
 
   //not returning the current task
   useEffect(() => {
     dispatch(fetchTask(Number(user.currentTask)))
+    
   }, [user])
 
   //site doesnt know what user.currentTask is
