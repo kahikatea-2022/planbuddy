@@ -38,7 +38,7 @@ function addNewSubGoal(newSubGoal, db = connection) {
     completed: newSubGoal.completed,
     current: newSubGoal.current,
   }
-  return db('sub_goals').insert(data)
+  return db('sub_goals').insert(data, 'id')
 }
 
 //PATCH update subgoal

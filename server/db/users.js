@@ -11,8 +11,6 @@ function getUsers(db = connection) {
   )
 }
 
-
-
 //ADD USER to the database
 function addUser(userData, db = connection) {
   const data = {
@@ -21,7 +19,7 @@ function addUser(userData, db = connection) {
     email: userData.email,
     current_task: userData.currentTask,
   }
-  return db('user_profiles').insert(data)
+  return db('user_profiles').insert(data, 'id')
 }
 
 //GET

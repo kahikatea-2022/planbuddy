@@ -55,7 +55,7 @@ function addNewTask(task, db = connection) {
     completed: task.completed,
     current: task.current,
   }
-  return db('tasks').insert(data)
+  return db('tasks').insert(data, 'id')
 }
 
 //PATCH
