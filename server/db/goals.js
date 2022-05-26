@@ -42,8 +42,9 @@ function addNewGoal(goal, db = connection) {
     goal_name: goal.goalName,
     why: goal.why,
     weekly_hours: goal.weeklyHours,
-    date_created: goal.dateCreated,
+    // date_created: goal.dateCreated,
     completed: goal.completed,
+    researched: goal.researched,
   }
 
   return db('goals').insert(data, 'goal_id')
