@@ -19,7 +19,7 @@ function addUser(userData, db = connection) {
     email: userData.email,
     current_task: userData.currentTask,
   }
-  return db('user_profiles').insert(data, 'id')
+  return db('user_profiles').insert(data, 'user_id')
 }
 
 //GET

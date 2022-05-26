@@ -35,7 +35,7 @@ function addNewResource(newResource, db = connection) {
     resource_name: newResource.resourceName,
     url: newResource.url,
   }
-  return db('resources').insert(data, 'id')
+  return db('resources').insert(data, 'resource_id')
 }
 
 //PATCH

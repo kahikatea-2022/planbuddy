@@ -46,7 +46,7 @@ function addNewGoal(goal, db = connection) {
     completed: goal.completed,
   }
 
-  return db('goals').insert(data, 'id')
+  return db('goals').insert(data, 'goal_id')
 }
 //PATCH edit an existing goal
 function editGoal(goalData, db = connection) {

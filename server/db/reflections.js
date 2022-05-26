@@ -32,7 +32,7 @@ function addNewReflection(reflectionData, db = connection) {
     reflection: reflectionData.reflection,
   }
 
-  return db('reflections').insert(data, 'id')
+  return db('reflections').insert(data, 'reflection_id')
 }
 
 //PATCH edit reflection by reflectionId
